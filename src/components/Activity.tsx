@@ -4,6 +4,7 @@ import { CircleDot } from "lucide-react";
 import React from "react";
 
 const Activity = () => {
+
     return (
         <div className="border my-5 p-4 rounded border-gray-200">
             <div className="flex items-center justify-between ">
