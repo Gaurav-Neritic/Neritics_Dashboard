@@ -78,7 +78,7 @@ const OverView = () => {
                     <h1 className="font-semibold uppercase text-gray-600">
                         Sales Overview
                     </h1>
-                    <button className="flex items-center justify-center gap-1 text-gray-600">
+                    <button type="button" className="flex items-center justify-center gap-1 text-gray-600 cursor-pointer">
                         <span>Today</span>
                         <ChevronDown />
                     </button>

@@ -13,11 +13,11 @@ const Activity = () => {
                     Market Overview
                 </h1>
                 <div className="flex items-center justify-center gap-5">
-                    <button className="flex gap-3 items-center justify-center">
+                    <button type="button" className="flex gap-3 items-center justify-center cursor-pointer">
                         <CircleDot className="h-5 w-5 bg-blue-700 text-white rounded-full" />
                         Goal
                     </button>
-                    <button className="flex gap-3 items-center justify-center">
+                    <button type="button" className="flex gap-3 items-center justify-center cursor-pointer">
                         <CircleDot className="h-5 w-5 bg-blue-200 text-white rounded-full" />
                         Activity
                     </button>
