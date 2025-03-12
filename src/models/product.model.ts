@@ -5,24 +5,23 @@ const productSchema = new Schema(
         title: {
             type: String,
             required: true,
-            trim:true,
+            trim: true,
             lowercase: true
         },
         description: {
             type: String,
             required: true
         },
-        contents: {
+        content: [{
             type: String,
             required: true
-        },
+        }],
         price: {
             type: Number,
             required: true
         },
         discount: {
             type: Number,
-            required: true
         },
         quantity: {
             type: Number,
@@ -31,14 +30,14 @@ const productSchema = new Schema(
         reviews: [{
             type: String,
         }],
-        images: [{
+        image: [{
             type: String,
             required: true
         }],
-        publisher:{
-            type:Schema.Types.ObjectId,
-            ref:"User",
-        }
+        // publisher: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: "User",
+        // }
 
     },
     {
