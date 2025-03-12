@@ -3,6 +3,7 @@ import { LineChart } from "@mui/x-charts";
 import { CircleDot } from "lucide-react";
 import React from "react";
 
+<<<<<<< HEAD
 
 const Activity = () => {
 
@@ -10,15 +11,29 @@ const Activity = () => {
         <div className="border my-5 p-4 rounded border-gray-200">
             <div className="flex items-center justify-between ">
 
+=======
+const Activity = () => {
+    return (
+        <div className="border my-5 p-4 rounded border-gray-200">
+            <div className="flex items-center justify-between ">
+>>>>>>> fb4571e (start push in gaurav-home branch)
                 <h1 className="uppercase font-semibold text-gray-600">
                     Market Overview
                 </h1>
                 <div className="flex items-center justify-center gap-5">
+<<<<<<< HEAD
                     <button type="button" className="flex gap-3 items-center justify-center cursor-pointer">
                         <CircleDot className="h-5 w-5 bg-blue-700 text-white rounded-full" />
                         Goal
                     </button>
                     <button type="button" className="flex gap-3 items-center justify-center cursor-pointer">
+=======
+                    <button className="flex gap-3 items-center justify-center">
+                        <CircleDot className="h-5 w-5 bg-blue-700 text-white rounded-full" />
+                        Goal
+                    </button>
+                    <button className="flex gap-3 items-center justify-center">
+>>>>>>> fb4571e (start push in gaurav-home branch)
                         <CircleDot className="h-5 w-5 bg-blue-200 text-white rounded-full" />
                         Activity
                     </button>

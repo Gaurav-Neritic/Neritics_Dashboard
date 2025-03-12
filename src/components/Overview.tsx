@@ -78,7 +78,11 @@ const OverView = () => {
                     <h1 className="font-semibold uppercase text-gray-600">
                         Sales Overview
                     </h1>
+<<<<<<< HEAD
                     <button type="button" className="flex items-center justify-center gap-1 text-gray-600 cursor-pointer">
+=======
+                    <button className="flex items-center justify-center gap-1 text-gray-600">
+>>>>>>> fb4571e (start push in gaurav-home branch)
                         <span>Today</span>
                         <ChevronDown />
                     </button>

@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.7",
     "@mui/x-charts": "^7.27.1",
+<<<<<<< HEAD
     "axios": "^1.8.2",
     "chart.js": "^4.4.8",
     "cloudinary": "^2.6.0",
@@ -19,12 +20,21 @@
     "lucide": "^0.479.0",
     "lucide-react": "^0.479.0",
     "mongoose": "^8.12.1",
+=======
+    "chart.js": "^4.4.8",
+    "lucide": "^0.479.0",
+    "lucide-react": "^0.479.0",
+>>>>>>> fb4571e (start push in gaurav-home branch)
     "motion": "^12.4.10",
     "next": "15.2.1",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
+<<<<<<< HEAD
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2"
+=======
+    "react-dom": "^19.0.0"
+>>>>>>> fb4571e (start push in gaurav-home branch)
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
