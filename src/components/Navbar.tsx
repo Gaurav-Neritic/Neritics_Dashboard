@@ -8,12 +8,15 @@ import {
     Blocks,
     Bug,
     ChartPie,
+    Globe,
     House,
+    Mail,
     MessageCircleQuestion,
     PackagePlus,
     Settings,
     SquarePlus,
 } from "lucide-react";
+import ToggleMode from "./ToggleMode";
 
 const SidebarNav = () => {
     return (
@@ -28,7 +31,7 @@ const SidebarNav = () => {
             </div>
 
             {/* navbar Section */}
-            <nav className="py-5">
+            <nav className="py-5 dark:text-black">
                 <Link
                     href={"/"}
                     className="w-full bg-white border border-gray-200 rounded p-2 my-2 flex items-center justify-between gap-2 hover:bg-gray-200 transition-all ease-linear duration-200">
@@ -112,7 +115,15 @@ const SidebarNav = () => {
             </nav>
 
             {/* Action Button Section */}
-            <div></div>
+            <div className="flex items-center justify-start gap-4">
+                <ToggleMode />
+                <Link href={'https://gmail.com'} target="_blank" className='p-2 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer'>
+                    <Mail />
+                </Link>
+                <Link href={'https://neriticwellness.com/'} target="_blank" className='p-2 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer'>
+                    <Globe />
+                </Link>
+            </div>
         </section>
     );
 };
