@@ -18,7 +18,7 @@ const DashBoardStats = () => {
                 <div className="border border-gray-300 dark:border-neutral-600 py-3 px-6 rounded">
                     <div className="py-3">
                         <h1 className="text-4xl font-semibold pb-2">3451 +</h1>
-                        <p className="text-gray-500">Number of Sales</p>
+                        <p className="text-gray-500 dark:text-gray-400">Number of Sales</p>
                     </div>
                     <div className="flex items-end justify-between py-3">
                         <div className="flex text-green-500 ">
@@ -35,7 +35,7 @@ const DashBoardStats = () => {
                 <div className="border border-gray-300 dark:border-neutral-600 py-3 px-6 rounded">
                     <div className="py-3">
                         <h1 className="text-4xl font-semibold pb-2">$35.50 +</h1>
-                        <p className="text-gray-500">Sales Revenue</p>
+                        <p className="text-gray-500 dark:text-gray-400">Sales Revenue</p>
                     </div>
                     <div className="flex items-end justify-between py-3">
                         <div className="flex text-green-500 ">
@@ -52,7 +52,7 @@ const DashBoardStats = () => {
                 <div className="border border-gray-300 dark:border-neutral-600 py-3 px-6 rounded">
                     <div className="py-3">
                         <h1 className="text-4xl font-semibold pb-2">380</h1>
-                        <p className="text-gray-500">Number of Orders</p>
+                        <p className="text-gray-500 dark:text-gray-400">Number of Orders</p>
                     </div>
                     <div className="flex items-end justify-between py-3">
                         <div className="flex text-green-500 ">
@@ -69,7 +69,7 @@ const DashBoardStats = () => {
                 <div className="border border-gray-300 dark:border-neutral-600 py-3 px-6 rounded">
                     <div className="py-3">
                         <h1 className="text-4xl font-semibold pb-2">4</h1>
-                        <p className="text-gray-500">Total Queries</p>
+                        <p className="text-gray-500 dark:text-gray-400">Total Queries</p>
                     </div>
                     <div className="flex items-end justify-between py-3">
                         <div className="flex text-red-500 ">
