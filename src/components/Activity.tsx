@@ -22,10 +22,6 @@ const Activity = () => {
                         <CircleDot className="h-5 w-5 bg-blue-700 text-white rounded-full" />
                         Goal
                     </button>
-                    <button type="button" className="flex gap-3 items-center justify-center cursor-pointer">
-                        <CircleDot className="h-5 w-5 bg-blue-700 text-white rounded-full" />
-                        Goal
-                    </button>
                     <button className="flex gap-3 items-center justify-center">
 
                         <CircleDot className="h-5 w-5 bg-blue-200 text-white rounded-full" />
