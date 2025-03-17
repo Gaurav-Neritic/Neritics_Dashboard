@@ -24,15 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark:bg-[#1a1a1a] dark:text-white" >
       <body
-        className={`${inter.className} ${geistMono.variable} antialiased max-w-[85rem] mx-auto`}
+        className={`${inter.className} ${geistMono.variable} antialiased max-w-[85rem] mx-auto dark:bg-[#1a1a1a] dark:text-white`}
       >
         <div className="w-[100%] flex items-start justify-start gap-4">
-          <div className="w-[20%] my-5 border-gray-200 border rounded-xl top-1 sticky">
+          <div className="w-[20%] my-5 border-gray-200 border dark:border-neutral-600 rounded-xl top-1 sticky">
             <SidebarNav />
           </div>
-          <div className="w-[80%] my-5 border border-gray-300 rounded-xl ">
+          <div className="w-[80%] my-5 border border-gray-300 dark:border-neutral-600 rounded-xl ">
             {children}
           </div>
         </div>

@@ -1,15 +1,19 @@
 "use client";
 import { LineChart } from "@mui/x-charts";
 import { CircleDot } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 
 const Activity = () => {
-    return (
-        <div className="border my-5 p-4 rounded border-gray-200">
-            <div className="flex items-center justify-between ">
+    const [isHovered, setIsHovered] = useState(false);
 
-                <h1 className="uppercase font-semibold text-gray-600">
+    const handleHover = () => {
+        setIsHovered(!isHovered);
+    };
+    return (
+        <div className="border my-5 p-4 rounded border-gray-200 dark:border-neutral-700">
+            <div className="flex items-center justify-between ">
+                <h1 className="uppercase font-semibold text-gray-600 dark:text-gray-200">
                     Market Overview
                 </h1>
                 <div className="flex items-center justify-center gap-5">
@@ -29,7 +33,7 @@ const Activity = () => {
                     </button>
                 </div>
             </div>
-            <div className="flex">
+            <div className="flex dark:bg-neutral-800 mt-4">
                 <LineChart
                     className="w-full"
                     xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
@@ -38,6 +42,22 @@ const Activity = () => {
                             data: [2, 5.5, 2, 8.5, 1.5, 5],
                         },
                     ]}
+                    sx={{
+                        '& .MuiChartsAxis-left .MuiChartsAxis-line': {
+                            stroke: 'gray',
+                            strokeWidth: 1,
+                        },
+                        '& .MuiChartsAxis-bottom .MuiChartsAxis-line': {
+                            stroke: 'gray',
+                            strokeWidth: 1,
+                        },
+                        '& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel': {
+                            fill: 'gray', // Text color
+                        },
+                        '& .MuiChartsAxis-left .MuiChartsAxis-tickLabel': {
+                            fill: 'gray', // Text color
+                        },
+                    }}
                     height={300}
                 />
             </div>

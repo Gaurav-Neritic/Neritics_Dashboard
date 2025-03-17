@@ -73,9 +73,9 @@ export const data = {
 const OverView = () => {
     return (
         <div className="grid-cols-2 grid gap-4">
-            <div className="border my-5 p-4 rounded border-gray-200">
-                <div className="flex items-center justify-between pb-3 border-b border-gray-300">
-                    <h1 className="font-semibold uppercase text-gray-600">
+            <div className="border my-5 p-4 rounded border-gray-200 dark:border-neutral-600">
+                <div className="flex items-center justify-between pb-3 border-b dark:border-b-neutral-400 border-gray-300">
+                    <h1 className="font-semibold uppercase text-gray-600 dark:text-gray-200">
                         Sales Overview
                     </h1>
 
@@ -84,18 +84,18 @@ const OverView = () => {
                         <ChevronDown />
                     </button>
                 </div>
-                <div className="py-3">
+                <div className="py-3 dark:bg-neutral-800">
                     <Pie data={data} />
                 </div>
             </div>
 
-            <div className="border my-5 p-4 rounded border-gray-200">
-                <div className="flex items-center justify-between pb-3 border-b border-gray-300">
-                    <h1 className="font-semibold uppercase text-gray-600">
+            <div className="border my-5 p-4 rounded dark:border-neutral-600 border-gray-200">
+                <div className="flex items-center justify-between pb-3 border-b dark:border-b-neutral-400 border-gray-300">
+                    <h1 className="font-semibold uppercase text-gray-600 dark:text-gray-200">
                         Sales Analytics
                     </h1>
                 </div>
-                <div className="py-3">
+                <div className="py-3 dark:bg-neutral-800 dark:text-gray-200">
                     <Radar data={anlyticsData} />
                 </div>
             </div>
