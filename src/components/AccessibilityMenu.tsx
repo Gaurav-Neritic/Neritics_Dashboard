@@ -11,7 +11,7 @@ const AccessibilityMenu = () => {
           className="flex items-center justify-center gap-2 group cursor-pointer"
         >
           <Bell className="text-red-400 cursor-pointer dark:text-white group-hover:fill-red-200 dark:group-hover:fill-red-400" />
-          <span className="text-gray-500 dark:text-white"> Notifications</span>
+          <span className="text-gray-700 dark:text-white"> Notifications</span>
         </Link>
         <span className="h-auto w-[1px] bg-gray-300" />
         <Link
@@ -19,7 +19,7 @@ const AccessibilityMenu = () => {
           className="flex items-center justify-center gap-2 group cursor-pointer"
         >
           <CircleHelp className="text-blue-400 dark:text-white group-hover:fill-blue-200 dark:group-hover:fill-blue-400" />
-          <span className="text-gray-500 dark:text-white"> Need Help</span>
+          <span className="text-gray-700 dark:text-white"> Need Help</span>
         </Link>
       </div>
       <Link
