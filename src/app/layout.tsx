@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import SidebarNav from "@/components/Navbar";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark:bg-[#1a1a1a] dark:text-white" >
+    <html lang="en" className="dark:bg-[#1a1a1a] dark:text-white">
       <body
         className={`${inter.className} ${geistMono.variable} antialiased max-w-[85rem] mx-auto dark:bg-[#1a1a1a] dark:text-white`}
       >
@@ -34,6 +35,7 @@ export default function RootLayout({
           </div>
           <div className="w-[80%] my-5 border border-gray-300 dark:border-neutral-600 rounded-xl ">
             {children}
+            <Toaster position="top-center" reverseOrder={false} />
           </div>
         </div>
       </body>
