@@ -3,6 +3,7 @@ import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import SidebarNav from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
+import AccessibilityMenu from "@/components/AccessibilityMenu";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
             <SidebarNav />
           </div>
           <div className="w-[80%] my-5 border border-gray-300 dark:border-neutral-600 rounded-xl ">
+            <AccessibilityMenu />
             {children}
             <Toaster position="top-center" reverseOrder={false} />
           </div>

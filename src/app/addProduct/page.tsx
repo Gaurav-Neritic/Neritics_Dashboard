@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  AppWindowMac,
-  Bell,
-  CircleHelp,
-  Eraser,
-  Plus,
-  Store,
-} from "lucide-react";
+import { AppWindowMac, Eraser, Plus } from "lucide-react";
 import toast from "react-hot-toast";
 
 const AddProduct = () => {
@@ -22,22 +15,6 @@ const AddProduct = () => {
 
   return (
     <form className="p-5">
-      <div className="flex items-center justify-between p-5 gap-3 border-b border-gray-300 dark:border-neutral-700">
-        <div className="flex gap-5 border border-gray-300 px-4 py-2 rounded dark:border-neutral-600">
-          <button>
-            <Bell className="text-red-400 cursor-pointer dark:text-white hover:fill-red-200" />
-          </button>
-          <span className="h-auto w-[1px] bg-gray-300" />
-          <button>
-            <CircleHelp className="text-blue-400 cursor-pointer dark:text-white hover:fill-blue-200" />
-          </button>
-        </div>
-        <button className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800">
-          <Store />
-          Shop
-        </button>
-      </div>
-
       {/* Page Title */}
       <div className="flex items-center justify-start gap-3 py-5">
         <div className="p-1 border border-gray-500 rounded">
