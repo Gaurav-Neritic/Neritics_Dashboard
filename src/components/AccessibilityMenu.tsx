@@ -27,7 +27,7 @@ const AccessibilityMenu = () => {
         className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
       >
         <PackageSearch />
-        Product List
+        View Products
       </Link>
     </div>
   );
