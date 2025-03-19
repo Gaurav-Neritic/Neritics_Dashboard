@@ -41,7 +41,7 @@ const ProductList = () => {
 
       <div className="py-5">
         <div className="p-1 h-screen border border-gray-300 dark:border-neutral-700 rounded ">
-          <div className="m-5  border border-gray-300 dark:border-neutral-300 rounded">
+          <div className="m-5  border border-gray-300 dark:border-neutral-700 rounded">
             <div className=" py-3 flex justify-around items-center ">
               <h1>Products Id</h1>
               <h1>Products Name</h1>
@@ -50,7 +50,7 @@ const ProductList = () => {
               <h1>Stock</h1>
               <h1>Delete</h1>
             </div>
-            <hr className=" my-1 text-gray-300 " />
+            <hr className=" my-1 border-gray-300 dark:border-neutral-500" />
             <div>
               {/* Product Item */}
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -60,7 +60,7 @@ const ProductList = () => {
                 <h1>Category 1</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -70,7 +70,7 @@ const ProductList = () => {
                 <h1>Category 2</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -80,7 +80,7 @@ const ProductList = () => {
                 <h1>Category 3</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -90,7 +90,7 @@ const ProductList = () => {
                 <h1>Category 4</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -100,7 +100,7 @@ const ProductList = () => {
                 <h1>Category 5</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -110,7 +110,7 @@ const ProductList = () => {
                 <h1>Category 6</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -120,7 +120,7 @@ const ProductList = () => {
                 <h1>Category 6</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -130,7 +130,7 @@ const ProductList = () => {
                 <h1>Category 7</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -140,7 +140,7 @@ const ProductList = () => {
                 <h1>Category 8</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -150,7 +150,7 @@ const ProductList = () => {
                 <h1>Category 9</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -160,7 +160,7 @@ const ProductList = () => {
                 <h1>Category 10</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
             </div>
