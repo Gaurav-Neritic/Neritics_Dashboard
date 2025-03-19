@@ -1,20 +1,86 @@
 "use client";
 
-import { AppWindowMac, Eraser, Plus } from "lucide-react";
+import Loader from "@/components/Loader";
+import axios from "axios";
+import { AppWindowMac, Eraser, LoaderCircle, Plus } from "lucide-react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 const AddProduct = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [category, setCategory] = useState("");
+  const [type, setType] = useState("");
+  const [stock, setStock] = useState("");
+  const [mainImage, setMainImage]: any = useState([]);
+  const [primaryImage, setPrimaryImage]: any = useState([]);
+  const [secondImage, setSecondImage]: any = useState([]);
+  const [thirdImage, setThirdImage]: any = useState([]);
+  const [fourthImage, setFourthImage]: any = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handelSubmit = async (e: React.FormEvent) => {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("discount", discount);
+    formData.append("quantity", quantity);
+    formData.append("category", category);
+    formData.append("type", type);
+    formData.append("stock", stock);
+    formData.append("mainImage", mainImage);
+    formData.append("primaryImage", primaryImage);
+    formData.append("secondImage", secondImage);
+    formData.append("thirdImage", thirdImage);
+    formData.append("fourthImage", fourthImage);
+    try {
+      e.preventDefault();
+      setLoading(true);
+      const response = await axios.post("api/addProduct", formData);
+      if (response.data.data) {
+        toast.success("Product added");
+        handelClearFields();
+        setLoading(false);
+      } else {
+        setLoading(false);
+        toast.error("Failed to add the product");
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Adding the product !", error);
+      toast.error("Error Adding the product !");
+    }
+  };
+
   const handelClearFields = () => {
     try {
-      toast.success("Cleared All the fields");
+      setTitle("");
+      setDescription("");
+      setPrice("");
+      setDiscount("");
+      setQuantity("");
+      setStock("");
+      setType("");
+      setCategory("");
+      setMainImage("");
+      setPrimaryImage("");
+      setSecondImage("");
+      setThirdImage("");
+      setFourthImage("");
+      toast.success("All Fields Cleared");
     } catch (error) {
+      setLoading(false);
       toast.error("Error Clearing The Fields");
       toast.error("Try Refreshing");
     }
   };
 
   return (
-    <form className="p-5">
+    <form className="p-5" onSubmit={handelSubmit}>
       {/* Page Title */}
       <div className="flex items-center justify-start gap-3 py-5">
         <div className="p-1 border border-gray-500 rounded">
@@ -22,7 +88,7 @@ const AddProduct = () => {
         </div>
         <div>
           <p className="text-sm font-normal text-gray-500">
-            Page to add products
+            All the fields are required
           </p>
           <h1 className="text-3xl font-semibold">Add A New Product</h1>
         </div>
@@ -42,6 +108,11 @@ const AddProduct = () => {
                   <input
                     type="text"
                     placeholder="Name"
+                    value={title}
+                    required
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                    }}
                     className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 mt-2 rounded dark:border-neutral-600"
                   />
                 </div>
@@ -51,6 +122,11 @@ const AddProduct = () => {
                   <textarea
                     placeholder="Content Details"
                     rows={5}
+                    value={description}
+                    required
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
                     className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 mt-2 rounded dark:border-neutral-600"
                   />
                 </div>
@@ -68,7 +144,13 @@ const AddProduct = () => {
               <div>
                 <div className="w-full py-2">
                   <label>Product Category</label>
-                  <select className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:border-neutral-600">
+                  <select
+                    onChange={(e) => {
+                      setCategory(e.target.value);
+                    }}
+                    required
+                    className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:border-neutral-600"
+                  >
                     <option>Select Category</option>
                     <option>Category 2</option>
                     <option>Category 3</option>
@@ -78,7 +160,13 @@ const AddProduct = () => {
 
                 <div className="w-full py-2">
                   <label>Product Type</label>
-                  <select className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:border-neutral-600">
+                  <select
+                    onChange={(e) => {
+                      setType(e.target.value);
+                    }}
+                    required
+                    className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:border-neutral-600"
+                  >
                     <option>Select Type</option>
                     <option>Type 2</option>
                     <option>Type 3</option>
@@ -103,11 +191,21 @@ const AddProduct = () => {
                     <input
                       placeholder="Quantity"
                       type="number"
+                      required
+                      value={quantity}
+                      onChange={(e) => {
+                        setQuantity(e.target.value);
+                      }}
                       className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded dark:border-neutral-600"
                     />
                     <input
                       placeholder="Stock"
                       type="number"
+                      value={stock}
+                      required
+                      onChange={(e) => {
+                        setStock(e.target.value);
+                      }}
                       className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded dark:border-neutral-600"
                     />
                   </div>
@@ -134,7 +232,11 @@ const AddProduct = () => {
                       <input
                         placeholder="Main Image"
                         type="file"
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer text-transparent dark:border-neutral-600"
+                        required
+                        onChange={(e: any) => {
+                          setMainImage(e.target.files[0]);
+                        }}
+                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                       />
                       <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400">
                         Main Image
@@ -143,8 +245,12 @@ const AddProduct = () => {
                     <div className="relative">
                       <input
                         placeholder="Main Image"
+                        required
                         type="file"
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer text-transparent dark:border-neutral-600"
+                        onChange={(e: any) => {
+                          setPrimaryImage(e.target.files[0]);
+                        }}
+                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                       />
                       <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400 z-20">
                         Primary Image
@@ -154,9 +260,11 @@ const AddProduct = () => {
                   <div className="flex items-center justify-center gap-4 mt-2">
                     <div className="relative">
                       <input
-                        placeholder="Main Image"
                         type="file"
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer text-transparent dark:border-neutral-600"
+                        onChange={(e: any) => {
+                          setSecondImage(e.target.files[0]);
+                        }}
+                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                       />
                       <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400">
                         Second Image
@@ -166,7 +274,10 @@ const AddProduct = () => {
                       <input
                         placeholder="Main Image"
                         type="file"
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer text-transparent dark:border-neutral-600"
+                        onChange={(e: any) => {
+                          setThirdImage(e.target.files[0]);
+                        }}
+                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                       />
                       <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400">
                         Third Image
@@ -177,7 +288,10 @@ const AddProduct = () => {
                     <input
                       placeholder="Main Image"
                       type="file"
-                      className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer text-transparent dark:border-neutral-600"
+                      onChange={(e: any) => {
+                        setFourthImage(e.target.files[0]);
+                      }}
+                      className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                     />
                     <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400">
                       Fourth Image
@@ -203,6 +317,10 @@ const AddProduct = () => {
                       <input
                         placeholder="MRP Price"
                         type="number"
+                        value={price}
+                        onChange={(e) => {
+                          setPrice(e.target.value);
+                        }}
                         className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
                       />
                     </div>
@@ -211,6 +329,10 @@ const AddProduct = () => {
                       <input
                         placeholder="Discount Price"
                         type="number"
+                        value={discount}
+                        onChange={(e) => {
+                          setDiscount(e.target.value);
+                        }}
                         className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
                       />
                     </div>
@@ -227,8 +349,8 @@ const AddProduct = () => {
               className="px-4 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
             >
               <span className="flex items-center justify-center gap-2">
-                <Plus />
-                Add Product
+                {loading ? "" : <Plus />}
+                {loading ? <Loader title={"Adding..."} /> : "Add Product"}
               </span>
             </button>
             <button
