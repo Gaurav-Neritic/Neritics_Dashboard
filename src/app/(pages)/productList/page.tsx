@@ -1,12 +1,18 @@
 "use client";
-import { SlidersHorizontal, Trash2, AlertCircle } from "lucide-react";
+import {
+  SlidersHorizontal,
+  Trash2,
+  AlertCircle,
+  FilePenLine,
+} from "lucide-react";
 import React, { useState } from "react";
 
 const ProductList = () => {
   const [deletePopup, setDeletePopup] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
 
-  const handleDelete = (productId) => {
+  // Delete Handle
+  const handleDelete = (productId: any) => {
     setProductToDelete(productId);
     setDeletePopup(true);
   };
@@ -60,66 +66,107 @@ const ProductList = () => {
       {/* Products List */}
       <div className="py-5">
         <div className="p-1 h-screen border border-gray-300 dark:border-neutral-700 rounded ">
-          <div className="m-5  border border-gray-300 dark:border-neutral-300 rounded">
+          <div className="m-5  border border-gray-300 dark:border-neutral-700 rounded">
             <div className=" py-3 flex justify-around items-center ">
+>>>>>>>>> Temporary merge branch 2
               <h1>Products Id</h1>
               <h1>Products Name</h1>
               <h1>Price</h1>
               <h1>Category</h1>
               <h1>Stock</h1>
-              <h1>Delete</h1>
+              <h1>Action</h1>
             </div>
-            <hr className=" my-1 text-gray-300 " />
+<<<<<<<<< Temporary merge branch 1
+            <hr className=" my-1 border-gray-300 dark:border-neutral-500" />
+=========
+            <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
+>>>>>>>>> Temporary merge branch 2
             <div>
               {/* Product Item */}
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50 ">
+              <div className="py-3 grid grid-cols-6 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 1</h1>
-                <h1>Product 1 Name</h1>
+                <h1 className="line-clamp-1">Product 1 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 1</h1>
                 <h1>100</h1>
-                <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+<<<<<<<<< Temporary merge branch 1
+                <button className="text-red-400 hover:text-red-500 grid place-items-center ">
+                  <Trash2 className="text-s " />
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 1")}
+                >
+                  <Trash2 className="text-sm" />
+>>>>>>>>> Temporary merge branch 2
                 </button>
               </div>
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 2</h1>
-                <h1>Product 2 Name</h1>
+                <h1 className="line-clamp-1">Product 2 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 2</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 2")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 3</h1>
-                <h1>Product 3 Name</h1>
+                <h1 className="line-clamp-1">Product 3 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 3</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 3")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 4</h1>
-                <h1>Product 4 Name</h1>
+                <h1 className="line-clamp-1">Product 4 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 4</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 4")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 5</h1>
-                <h1>Product 5 Name</h1>
+                <h1 className="line-clamp-1">Product 5 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 5</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 5")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
               <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
@@ -128,69 +175,103 @@ const ProductList = () => {
                 <h1>$100</h1>
                 <h1>Category 6</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
-              <div className="py-3 flex justify-around items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 6</h1>
-                <h1>Product 6 Name</h1>
+                <h1 className="line-clamp-1">Product 6 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 6</h1>
                 <h1>100</h1>
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 6")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 7</h1>
-                <h1>Product 7 Name</h1>
+                <h1 className="line-clamp-1">Product 7 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 7</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 7")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 8</h1>
-                <h1>Product 8 Name</h1>
+                <h1 className="line-clamp-1">Product 8 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 8</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 8")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 9</h1>
-                <h1>Product 9 Name</h1>
+                <h1 className="line-clamp-1">Product 9 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 9</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 9")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
-              <div className="py-3 grid grid-cols-6 place-items-center gap-3 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+              <div className="py-3 grid grid-cols-6 place-items-center border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
                 <h1>Product 10</h1>
                 <h1>Product 10 Name</h1>
                 <h1>$100</h1>
                 <h1>Category 10</h1>
                 <h1>100</h1>
+<<<<<<<<< Temporary merge branch 1
                 <button className="text-red-400 hover:text-red-500">
-                  <Trash2  className="text-sm"/>
+=========
+                <button
+                  className="text-red-400 hover:text-red-500"
+                  onClick={() => handleDelete("Product 10")}
+                >
+>>>>>>>>> Temporary merge branch 2
+                  <Trash2 className="text-sm" />
                 </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       {/* Delete Confirmation Popup */}
       {deletePopup && (
-        <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-lg max-w-md w-full">
+        <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
             <div className="flex items-center mb-4 text-red-500">
               <AlertCircle className="mr-2" />
               <h2 className="text-xl font-bold">Confirm Delete</h2>
