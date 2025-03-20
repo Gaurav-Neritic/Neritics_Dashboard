@@ -229,6 +229,9 @@ const AddProduct = () => {
                   <label>Total 5 Images</label>
                   <div className="flex items-center justify-center gap-4 mt-2">
                     <div className="relative">
+                      <label className="text-yellow-800 dark:text-yellow-600">
+                        * Main Image
+                      </label>
                       <input
                         placeholder="Main Image"
                         type="file"
@@ -238,13 +241,12 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                       />
-                      <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400">
-                        Main Image
-                      </span>
                     </div>
                     <div className="relative">
+                      <label className="text-yellow-800 dark:text-yellow-600 z-20 ">
+                        * Primary Image
+                      </label>
                       <input
-                        placeholder="Main Image"
                         required
                         type="file"
                         onChange={(e: any) => {
@@ -252,13 +254,13 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                       />
-                      <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400 z-20">
-                        Primary Image
-                      </span>
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-4 mt-2">
                     <div className="relative">
+                      <label className="text-yellow-800 dark:text-yellow-600 z-20">
+                        * Second Image
+                      </label>
                       <input
                         type="file"
                         onChange={(e: any) => {
@@ -266,11 +268,11 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                       />
-                      <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400">
-                        Second Image
-                      </span>
                     </div>
                     <div className="relative">
+                      <label className="text-yellow-800 dark:text-yellow-600">
+                        * Third Image
+                      </label>
                       <input
                         placeholder="Main Image"
                         type="file"
@@ -279,12 +281,12 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                       />
-                      <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400">
-                        Third Image
-                      </span>
                     </div>
                   </div>
                   <div className="relative mt-2">
+                    <label className="text-yellow-800 dark:text-yellow-600">
+                      * Fourth Image
+                    </label>
                     <input
                       placeholder="Main Image"
                       type="file"
@@ -293,9 +295,6 @@ const AddProduct = () => {
                       }}
                       className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
                     />
-                    <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400">
-                      Fourth Image
-                    </span>
                   </div>
                 </div>
               </div>
@@ -313,7 +312,7 @@ const AddProduct = () => {
                 <div className="w-full py-2">
                   <div className="flex items-center justify-center gap-4">
                     <div>
-                      <label>Price</label>
+                      <label>Price (MRP)</label>
                       <input
                         placeholder="MRP Price"
                         type="number"
