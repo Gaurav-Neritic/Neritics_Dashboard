@@ -12,10 +12,6 @@ const productSchema = new Schema(
             type: String,
             required: true
         },
-        // content: [{
-        //     type: String,
-        //     required: true
-        // }],
         price: {
             type: Number,
             required: true
@@ -42,12 +38,44 @@ const productSchema = new Schema(
         stock: {
             type: String,
             required: true
+        },
+        listingStatus: {
+            type: Boolean,
+            required: true
+        },
+        hsnCode: {
+            type: Number,
+            required: true
+        },
+        gstOnProduct: {
+            type: Number,
+            required: true
+        },
+        countryOfOrigin: {
+            type: String,
+            required: true
+        },
+        shelfLife: {
+            type: String,
+            required: true
+        },
+        suitableForVegeterian: {
+            type: Boolean,
+            required: true
+        },
+        brand: {
+            type: String,
+            required: true
+        },
+        form: {
+            type: String,
+        },
+        ayurvedic: {
+            type: Boolean,
+        },
+        containerType: {
+            type: String,
         }
-        // publisher: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: "User",
-        // }
-
     },
     {
         timestamps: true

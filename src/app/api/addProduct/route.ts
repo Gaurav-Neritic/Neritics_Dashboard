@@ -21,8 +21,23 @@ export async function POST(request: NextRequest) {
         const category = formData.get("category");
         const type = formData.get("type");
         const stock = formData.get("stock");
+        const brand = formData.get("brandName");
+        const form = formData.get("form")
+        const gst = formData.get("gst")
+        const hsnCode = formData.get("hsnCode")
+        const coo = formData.get("coo")
+        const shelfLife = formData.get("shelfLife")
+        const isAyurvedic = formData.get("isAyurvedic")
+        const suitableFor = formData.get("suitableFor")
+        const publish = formData.get("publish")
+        const container = formData.get("container")
 
-        if (!title || !description || !mainImage || !price || !quantity) {
+        let ayurvedicCheck: boolean;
+        let suitableForCheck: boolean;
+        let publishCheck: boolean;
+
+
+        if (!title || !description || !price || !quantity || !discount || !category) {
             return NextResponse.json(
                 { error: "All the marked fields are required" },
                 { status: 402 }
@@ -46,16 +61,45 @@ export async function POST(request: NextRequest) {
 
         const imageArray = [mainImg?.secure_url, primImg?.secure_url, secImg?.secure_url, thirdImg?.secure_url, fourthImg?.secure_url]
 
+        // Checks for boolean values
+        if (isAyurvedic === "true") {
+            ayurvedicCheck = true
+        } else {
+            ayurvedicCheck = false
+        }
+
+        if (suitableFor === "Vegeterian") {
+            suitableForCheck = true
+        } else {
+            suitableForCheck = false
+        }
+
+        if (publish === "Publish") {
+            publishCheck = true;
+        } else {
+            publishCheck = false;
+        }
+
         const product = await Product.create({
-            title,
-            description,
-            price,
-            quantity,
+            title: title,
+            description: description,
+            price: price,
+            discount: discount,
+            quantity: quantity,
             image: imageArray || [],
-            discount,
-            category,
-            type,
-            stock
+            category: category,
+            type: type,
+            stock: stock,
+            listingStatus: publishCheck,
+            hsnCode: hsnCode,
+            gstOnProduct: gst,
+            countryOfOrigin: coo,
+            shelfLife: shelfLife,
+            suitableForVegeterian: suitableForCheck,
+            brand: brand,
+            form: form,
+            ayurvedic: ayurvedicCheck,
+            containerType: container
         });
 
         if (!product) {

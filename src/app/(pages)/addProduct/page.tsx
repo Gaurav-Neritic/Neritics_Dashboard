@@ -2,7 +2,7 @@
 
 import Loader from "@/components/Loader";
 import axios from "axios";
-import { AppWindowMac, Eraser, LoaderCircle, Plus } from "lucide-react";
+import { AppWindowMac, Eraser, Plus } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -20,6 +20,17 @@ const AddProduct = () => {
   const [secondImage, setSecondImage]: any = useState([]);
   const [thirdImage, setThirdImage]: any = useState([]);
   const [fourthImage, setFourthImage]: any = useState([]);
+  const [brandName, setBrandName] = useState("");
+  const [form, setForm] = useState("");
+  const [isAyurvedic, setIsAyurvedic] = useState("");
+  const [container, setContainer] = useState("");
+  const [coo, setCoo] = useState("India");
+  const [hsnCode, setHsnCode] = useState("");
+  const [gst, setGst] = useState("");
+  const [shelfLife, setShelfLife] = useState("");
+  const [suitableFor, setSuitableFor] = useState("");
+  const [publish, setPublish] = useState("");
+
   const [loading, setLoading] = useState(false);
 
   const handelSubmit = async (e: React.FormEvent) => {
@@ -37,6 +48,16 @@ const AddProduct = () => {
     formData.append("secondImage", secondImage);
     formData.append("thirdImage", thirdImage);
     formData.append("fourthImage", fourthImage);
+    formData.append("brandName", brandName);
+    formData.append("form", form);
+    formData.append("container", container);
+    formData.append("gst", gst);
+    formData.append("hsnCode", hsnCode);
+    formData.append("coo", coo);
+    formData.append("shelfLife", shelfLife);
+    formData.append("isAyurvedic", isAyurvedic);
+    formData.append("suitableFor", suitableFor);
+    formData.append("publish", publish);
     try {
       e.preventDefault();
       setLoading(true);
@@ -213,6 +234,83 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
+
+          {/* Product Features */}
+          <div className="py-5">
+            <div className="pb-2">
+              <h2 className="text-lg font-semibold antialiased">Features</h2>
+            </div>
+
+            <div className="border rounded border-gray-300 p-4 dark:border-neutral-600">
+              <div>
+                <div className="w-full py-2">
+                  <div className="grid grid-cols-2 gap-4 place-items-center ">
+                    <div>
+                      <label>Brand Name</label>
+                      <input
+                        type="text"
+                        required
+                        value={brandName}
+                        onChange={(e) => {
+                          setBrandName(e.target.value);
+                        }}
+                        placeholder="Brand Name"
+                        className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                      />
+                    </div>
+
+                    <div className="w-full">
+                      <label>Form</label>
+                      <select
+                        value={form}
+                        required
+                        onChange={(e) => {
+                          setForm(e.target.value);
+                        }}
+                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                      >
+                        <option>Capsules</option>
+                        <option>Oil</option>
+                        <option>Tablets</option>
+                      </select>
+                    </div>
+
+                    {/* HSN Code and GST  */}
+                    <div>
+                      <label>Ayurvedic</label>
+                      <select
+                        required
+                        onChange={(e: any) => {
+                          setIsAyurvedic(e.target.value);
+                        }}
+                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                      >
+                        <option>Nature Of Medicine</option>
+                        <option>True</option>
+                        <option>False</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label>Container</label>
+                      <select
+                        required
+                        value={container}
+                        onChange={(e) => {
+                          setContainer(e.target.value);
+                        }}
+                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                      >
+                        <option>Container Type</option>
+                        <option>Bottle</option>
+                        <option>Strip</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Grid col-2 */}
@@ -262,6 +360,7 @@ const AddProduct = () => {
                         * Second Image
                       </label>
                       <input
+                        required
                         type="file"
                         onChange={(e: any) => {
                           setSecondImage(e.target.files[0]);
@@ -274,6 +373,7 @@ const AddProduct = () => {
                         * Third Image
                       </label>
                       <input
+                        required
                         placeholder="Main Image"
                         type="file"
                         onChange={(e: any) => {
@@ -288,6 +388,7 @@ const AddProduct = () => {
                       * Fourth Image
                     </label>
                     <input
+                      required
                       placeholder="Main Image"
                       type="file"
                       onChange={(e: any) => {
@@ -315,6 +416,7 @@ const AddProduct = () => {
                       <label>Price (MRP)</label>
                       <input
                         placeholder="MRP Price"
+                        required
                         type="number"
                         value={price}
                         onChange={(e) => {
@@ -327,6 +429,7 @@ const AddProduct = () => {
                       <label>Discount</label>
                       <input
                         placeholder="Discount Price"
+                        required
                         type="number"
                         value={discount}
                         onChange={(e) => {
@@ -334,6 +437,109 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
                       />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Manufacturing */}
+          <div className="py-5">
+            <div className="pb-2">
+              <h2 className="text-lg font-semibold antialiased">
+                Manufacturing
+              </h2>
+            </div>
+
+            <div className="border rounded border-gray-300 p-4 dark:border-neutral-600">
+              <div>
+                <div className="w-full py-2">
+                  <div className="grid grid-cols-2 gap-4 place-items-center ">
+                    <div>
+                      <label>Country Of Origin</label>
+                      <select
+                        onChange={(e) => {
+                          setCoo(e.target.value);
+                        }}
+                        required
+                        className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                      >
+                        <option>India</option>
+                        <option>USA</option>
+                        <option>China</option>
+                      </select>
+                    </div>
+
+                    {/* HSN Code and GST  */}
+                    <div>
+                      <label>HSN Code</label>
+                      <input
+                        placeholder="HSN Code"
+                        required
+                        type="number"
+                        value={hsnCode}
+                        onChange={(e) => {
+                          setHsnCode(e.target.value);
+                        }}
+                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                      />
+                    </div>
+
+                    <div>
+                      <label>GST (%)</label>
+                      <input
+                        placeholder="GST "
+                        required
+                        type="number"
+                        value={gst}
+                        onChange={(e) => {
+                          setGst(e.target.value);
+                        }}
+                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                      />
+                    </div>
+
+                    <div>
+                      <label>Shelf Life</label>
+                      <input
+                        placeholder="Shelf Life (Months) "
+                        type="text"
+                        required
+                        value={shelfLife}
+                        onChange={(e) => {
+                          setShelfLife(e.target.value);
+                        }}
+                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                      />
+                    </div>
+
+                    <div>
+                      <label>Suitable For</label>
+                      <select
+                        required
+                        onChange={(e) => {
+                          setSuitableFor(e.target.value);
+                        }}
+                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                      >
+                        <option>Vegeterian </option>
+                        <option>Non Vegeterian </option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label>List Product</label>
+                      <select
+                        required
+                        onChange={(e) => {
+                          setPublish(e.target.value);
+                        }}
+                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                      >
+                        <option>Publish</option>
+                        <option>UnList</option>
+                      </select>
                     </div>
                   </div>
                 </div>
