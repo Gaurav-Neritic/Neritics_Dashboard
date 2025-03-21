@@ -1,7 +1,7 @@
 "use client";
 
 import { MoonStar, Sun } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ToggleMode = () => {
   const [mode, setMode] = useState("");
@@ -15,6 +15,12 @@ const ToggleMode = () => {
       setMode("dark");
     }
   };
+
+  useEffect(() => {
+    mode === "dark"
+      ? document.body.classList.add("dark")
+      : document.body.classList.remove("dark");
+  }, [mode]);
 
   return (
     <button

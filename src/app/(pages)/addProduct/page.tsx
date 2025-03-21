@@ -198,43 +198,6 @@ const AddProduct = () => {
             </div>
           </div>
 
-          {/* Product Inventory */}
-          <div className="py-5">
-            <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">Inventory</h2>
-            </div>
-
-            <div className="border rounded border-gray-300 dark:border-neutral-600 p-4">
-              <div>
-                <div className="w-full py-2">
-                  <label>Quantity</label>
-                  <div className="flex items-center justify-center gap-4 mt-2">
-                    <input
-                      placeholder="Quantity"
-                      type="number"
-                      required
-                      value={quantity}
-                      onChange={(e) => {
-                        setQuantity(e.target.value);
-                      }}
-                      className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded dark:border-neutral-600"
-                    />
-                    <input
-                      placeholder="Stock"
-                      type="number"
-                      value={stock}
-                      required
-                      onChange={(e) => {
-                        setStock(e.target.value);
-                      }}
-                      className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded dark:border-neutral-600"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Product Features */}
           <div className="py-5">
             <div className="pb-2">
@@ -305,6 +268,34 @@ const AddProduct = () => {
                         <option>Bottle</option>
                         <option>Strip</option>
                       </select>
+                    </div>
+
+                    <div>
+                      <label>Quantity In Container </label>
+                      <input
+                        type="number"
+                        required
+                        value={quantity}
+                        onChange={(e) => {
+                          setQuantity(e.target.value);
+                        }}
+                        placeholder="Quantity"
+                        className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                      />
+                    </div>
+
+                    <div>
+                      <label>Total Stock</label>
+                      <input
+                        type="number"
+                        required
+                        value={stock}
+                        onChange={(e) => {
+                          setStock(e.target.value);
+                        }}
+                        placeholder="Stock Available"
+                        className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                      />
                     </div>
                   </div>
                 </div>
@@ -528,18 +519,20 @@ const AddProduct = () => {
                       </select>
                     </div>
 
-                    <div>
-                      <label>List Product</label>
-                      <select
-                        required
-                        onChange={(e) => {
-                          setPublish(e.target.value);
-                        }}
-                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
-                      >
-                        <option>Publish</option>
-                        <option>UnList</option>
-                      </select>
+                    <div className="w-full">
+                      <div className="relative">
+                        <label>List Product</label>
+                        <select
+                          required
+                          onChange={(e) => {
+                            setPublish(e.target.value);
+                          }}
+                          className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                        >
+                          <option>Publish</option>
+                          <option>UnList</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
