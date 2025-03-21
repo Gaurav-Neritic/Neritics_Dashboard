@@ -119,13 +119,13 @@ const QueriesTable = () => {
             <input
               type="text"
               placeholder="Search queries..."
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 dark:border-neutral-700 rounded  dark:bg-neutral-800 dark:text-gray-100"
+              className="pl-10 pr-4 py-2 w-full border border-lightBorder dark:border-darkBorder  rounded  dark:bg-neutral-800 dark:text-gray-100"
             />
           </div>
 
           <div className="flex gap-2">
             <div className="relative">
-              <select className="appearance-none pl-3 pr-8 py-2 border border-gray-300 dark:border-neutral-700 rounded  dark:bg-neutral-800 dark:text-gray-100">
+              <select className="appearance-none pl-3 pr-8 py-2 border border-lightBorder dark:border-darkBorder  rounded  dark:bg-neutral-800 dark:text-gray-100">
                 <option>All Statuses</option>
                 <option>Open</option>
                 <option>In Progress</option>
@@ -136,7 +136,7 @@ const QueriesTable = () => {
               </div>
             </div>
 
-            <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-neutral-700 rounded dark:bg-neutral-800 dark:text-gray-100">
+            <button className="flex items-center gap-2 px-4 py-2 border border-lightBorder dark:border-darkBorder  rounded dark:bg-neutral-800 dark:text-gray-100">
               <Filter size={16} />
               <span>More Filters</span>
             </button>
@@ -144,9 +144,9 @@ const QueriesTable = () => {
         </div>
 
         {/* Queries List */}
-        <div className="border border-gray-300 dark:border-neutral-700 rounded overflow-hidden">
+        <div className="border border-lightBorder dark:border-darkBorder  rounded overflow-hidden">
           {/* Header */}
-          <div className="grid grid-cols-12 bg-gray-100 dark:bg-neutral-800 p-4 border-b border-gray-300 dark:border-neutral-700 font-medium text-gray-700 dark:text-gray-200">
+          <div className="grid grid-cols-12 bg-gray-100 dark:bg-neutral-800 p-4 border-b border-lightBorder dark:border-darkBorder  font-medium text-gray-700 dark:text-gray-200">
             <div className="col-span-1">ID</div>
             <div className="col-span-1">Profile</div>
             <div className="col-span-2">Customer</div>
@@ -160,7 +160,7 @@ const QueriesTable = () => {
           {queries.map((query) => (
             <div
               key={query.id}
-              className="border-b border-gray-300 dark:border-neutral-700 last:border-b-0"
+              className="border-b border-lightBorder dark:border-darkBorder  last:border-b-0"
             >
               {/* Summary Row */}
               <div

@@ -11,7 +11,7 @@ const Activity = () => {
         setIsHovered(!isHovered);
     };
     return (
-        <div className="border my-5 p-4 rounded border-gray-200 dark:border-neutral-700">
+        <div className="border my-5 p-4 rounded border-lightBorder  dark:border-darkBorder">
             <div className="flex items-center justify-between ">
                 <h1 className="uppercase font-semibold text-gray-600 dark:text-gray-200">
                     Market Overview

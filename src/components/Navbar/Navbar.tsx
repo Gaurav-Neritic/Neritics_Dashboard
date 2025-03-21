@@ -20,7 +20,7 @@ import ToggleMode from "@/components/Theme/ToggleMode";
 
 const SidebarNav = () => {
   return (
-    <section className="p-5 border-gray-300">
+    <section className="p-5 border-lightBorder dark:border-darkBorder ">
       {/* logo Dashboard */}
       <div className="flex items-center justify-center py-3 ">
         <Link

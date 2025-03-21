@@ -4,8 +4,8 @@ import React from "react";
 
 const AccessibilityMenu = () => {
   return (
-    <div className="flex items-center justify-between p-5 gap-3 border-b border-gray-300 dark:border-neutral-700 m-5">
-      <div className="flex gap-5 border border-gray-300 px-3 py-2 rounded dark:border-neutral-600">
+    <div className="flex items-center justify-between p-5 gap-3 border-b border-lightBorder dark:border-darkBorder  m-5">
+      <div className="flex gap-5 border  px-3 py-2 rounded border-lightBorder dark:border-darkBorder ">
         <Link
           href={"/notifications"}
           className="flex items-center justify-center gap-2 group cursor-pointer"

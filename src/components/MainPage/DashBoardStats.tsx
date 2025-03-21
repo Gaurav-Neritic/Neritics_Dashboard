@@ -15,7 +15,7 @@ const DashBoardStats = () => {
       <div className="grid grid-cols-4 gap-5 ">
         {/* Single Container */}
         {/* TODO: Still need to make it dynamic */}
-        <div className="border border-gray-300 dark:border-neutral-600 py-3 px-6 rounded">
+        <div className="border border-lightBorder  dark:border-darkBorder py-3 px-6 rounded">
           <div className="py-3">
             <h1 className="text-4xl font-semibold pb-2">3451 +</h1>
             <p className="text-gray-500 dark:text-gray-400">Number of Sales</p>
@@ -32,7 +32,7 @@ const DashBoardStats = () => {
         </div>
 
         {/* Total Sales Revenue */}
-        <div className="border border-gray-300 dark:border-neutral-600 py-3 px-6 rounded">
+        <div className="border border-lightBorder dark:border-darkBorder py-3 px-6 rounded">
           <div className="py-3">
             <h1 className="text-4xl font-semibold pb-2">$35.50 +</h1>
             <p className="text-gray-500 dark:text-gray-400">Sales Revenue</p>
@@ -49,7 +49,7 @@ const DashBoardStats = () => {
         </div>
 
         {/* Total Number of Orders */}
-        <div className="border border-gray-300 dark:border-neutral-600 py-3 px-6 rounded">
+        <div className="border border-lightBorder dark:border-darkBorder  py-3 px-6 rounded">
           <div className="py-3">
             <h1 className="text-4xl font-semibold pb-2">380</h1>
             <p className="text-gray-500 dark:text-gray-400">Number of Orders</p>
@@ -66,7 +66,7 @@ const DashBoardStats = () => {
         </div>
 
         {/* Total Number of Queries */}
-        <div className="border border-gray-300 dark:border-neutral-600 py-3 px-6 rounded">
+        <div className="border border-lightBorder dark:border-darkBorder  py-3 px-6 rounded">
           <div className="py-3">
             <h1 className="text-4xl font-semibold pb-2">4</h1>
             <p className="text-gray-500 dark:text-gray-400">Total Queries</p>
