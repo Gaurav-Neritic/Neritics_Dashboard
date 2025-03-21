@@ -111,8 +111,8 @@ const StocksTable = () => {
                 <h1 className="col-span-1 w-full truncate">
                   {stock.trim() === "0" || stock.length === 0 ? "No" : "Yes"}
                 </h1>
-                <h1 className="col-span-1">{stock}</h1>
-                <div className="col-span-1 w-full">
+                <h1 className="col-span-1 w-full truncate">{stock}</h1>
+                <div className="col-span-1 w-full truncate">
                   <button
                     className="cursor-pointer flex items-center"
                     onClick={() =>
