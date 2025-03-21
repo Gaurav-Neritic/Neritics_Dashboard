@@ -90,8 +90,8 @@ export const data = {
 const OverView = () => {
   return (
     <div className="grid-cols-2 grid gap-4">
-      <div className="border my-5 p-4 rounded border-gray-200 dark:border-neutral-600">
-        <div className="flex items-center justify-between pb-3 border-b dark:border-b-neutral-400 border-gray-300">
+      <div className="border my-5 p-4 rounded border-lightBorder dark:border-darkBorder ">
+        <div className="flex items-center justify-between pb-3 border-b border-lightBorder dark:border-darkBorder ">
           <h1 className="font-semibold uppercase text-gray-600 dark:text-gray-200">
             Sales Overview
           </h1>
@@ -108,8 +108,8 @@ const OverView = () => {
         </div>
       </div>
 
-      <div className="border my-5 p-4 rounded dark:border-neutral-600 border-gray-200">
-        <div className="flex items-center justify-between pb-3 border-b dark:border-b-neutral-400 border-gray-300">
+      <div className="border my-5 p-4 rounded border-lightBorder dark:border-darkBorder ">
+        <div className="flex items-center justify-between pb-3 border-b border-lightBorder dark:border-darkBorder ">
           <h1 className="font-semibold uppercase text-gray-600 dark:text-gray-200">
             Sales Analytics
           </h1>

@@ -106,7 +106,7 @@ const StocksTable = () => {
     <section className="p-5">
       <h1 className="text-2xl font-bold mb-6">Stocks In Inventory</h1>
       {/* Products List */}
-      <div className="border border-gray-300 dark:border-neutral-700 rounded">
+      <div className="border border-lightBorder dark:border-darkBorder  rounded">
         <div className=" py-3 px-5 grid grid-cols-8 place-items-center ">
           <h1 className="col-span-2 w-full truncate">Id</h1>
           <h1 className="col-span-3 w-full truncate">Name</h1>

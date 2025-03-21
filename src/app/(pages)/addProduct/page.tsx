@@ -122,7 +122,7 @@ const AddProduct = () => {
               <h2 className="text-lg font-semibold antialiased">Description</h2>
             </div>
 
-            <div className="border rounded border-gray-300 dark:border-neutral-600 p-4">
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4">
               <div>
                 <div className="w-full py-2">
                   <label className="mb-2">Product Name</label>
@@ -134,7 +134,7 @@ const AddProduct = () => {
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
-                    className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 mt-2 rounded dark:border-neutral-600"
+                    className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded "
                   />
                 </div>
 
@@ -148,7 +148,7 @@ const AddProduct = () => {
                     onChange={(e) => {
                       setDescription(e.target.value);
                     }}
-                    className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 mt-2 rounded dark:border-neutral-600"
+                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 mt-2 rounded "
                   />
                 </div>
               </div>
@@ -161,7 +161,7 @@ const AddProduct = () => {
               <h2 className="text-lg font-semibold antialiased">Category</h2>
             </div>
 
-            <div className="border dark:border-neutral-600 rounded border-gray-300 p-4 ">
+            <div className="border  rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <label>Product Category</label>
@@ -170,7 +170,7 @@ const AddProduct = () => {
                       setCategory(e.target.value);
                     }}
                     required
-                    className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:border-neutral-600"
+                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
                   >
                     <option>Select Category</option>
                     <option>Category 2</option>
@@ -186,7 +186,7 @@ const AddProduct = () => {
                       setType(e.target.value);
                     }}
                     required
-                    className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:border-neutral-600"
+                    className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
                   >
                     <option>Select Type</option>
                     <option>Type 2</option>
@@ -204,7 +204,7 @@ const AddProduct = () => {
               <h2 className="text-lg font-semibold antialiased">Features</h2>
             </div>
 
-            <div className="border rounded border-gray-300 p-4 dark:border-neutral-600">
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <div className="grid grid-cols-2 gap-4 place-items-center ">
@@ -218,7 +218,7 @@ const AddProduct = () => {
                           setBrandName(e.target.value);
                         }}
                         placeholder="Brand Name"
-                        className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
                       />
                     </div>
 
@@ -230,7 +230,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setForm(e.target.value);
                         }}
-                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       >
                         <option>Capsules</option>
                         <option>Oil</option>
@@ -246,7 +246,7 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setIsAyurvedic(e.target.value);
                         }}
-                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                        className=" w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded mt-2"
                       >
                         <option>Nature Of Medicine</option>
                         <option>True</option>
@@ -262,7 +262,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setContainer(e.target.value);
                         }}
-                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                        className=" w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       >
                         <option>Container Type</option>
                         <option>Bottle</option>
@@ -280,7 +280,7 @@ const AddProduct = () => {
                           setQuantity(e.target.value);
                         }}
                         placeholder="Quantity"
-                        className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                        className="w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
 
@@ -295,7 +295,7 @@ const AddProduct = () => {
                           setStock(e.target.value);
                         }}
                         placeholder="Stock Available"
-                        className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                        className="w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
                   </div>
@@ -313,7 +313,7 @@ const AddProduct = () => {
               <h2 className="text-lg font-semibold antialiased">Images</h2>
             </div>
 
-            <div className="border rounded border-gray-300 p-4 dark:border-neutral-600">
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <label>Total 5 Images</label>
@@ -329,7 +329,7 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setMainImage(e.target.files[0]);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
                     </div>
                     <div className="relative">
@@ -342,7 +342,7 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setPrimaryImage(e.target.files[0]);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
                     </div>
                   </div>
@@ -357,7 +357,7 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setSecondImage(e.target.files[0]);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
                     </div>
                     <div className="relative">
@@ -371,7 +371,7 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setThirdImage(e.target.files[0]);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
                     </div>
                   </div>
@@ -386,7 +386,7 @@ const AddProduct = () => {
                       onChange={(e: any) => {
                         setFourthImage(e.target.files[0]);
                       }}
-                      className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 dark:border-neutral-600"
+                      className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                     />
                   </div>
                 </div>
@@ -400,7 +400,7 @@ const AddProduct = () => {
               <h2 className="text-lg font-semibold antialiased">Pricing</h2>
             </div>
 
-            <div className="border rounded border-gray-300 p-4 dark:border-neutral-600">
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <div className="flex items-center justify-center gap-4">
@@ -414,7 +414,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setPrice(e.target.value);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
                     <div>
@@ -427,7 +427,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setDiscount(e.target.value);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       />
                     </div>
                   </div>
@@ -444,7 +444,7 @@ const AddProduct = () => {
               </h2>
             </div>
 
-            <div className="border rounded border-gray-300 p-4 dark:border-neutral-600">
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <div className="grid grid-cols-2 gap-4 place-items-center ">
@@ -455,7 +455,7 @@ const AddProduct = () => {
                           setCoo(e.target.value);
                         }}
                         required
-                        className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                        className="w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       >
                         <option>India</option>
                         <option>USA</option>
@@ -474,7 +474,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setHsnCode(e.target.value);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
 
@@ -488,7 +488,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setGst(e.target.value);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       />
                     </div>
 
@@ -502,7 +502,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setShelfLife(e.target.value);
                         }}
-                        className="block w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       />
                     </div>
 
@@ -513,7 +513,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setSuitableFor(e.target.value);
                         }}
-                        className=" w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600"
+                        className=" w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       >
                         <option>Vegeterian </option>
                         <option>Non Vegeterian </option>
@@ -528,7 +528,7 @@ const AddProduct = () => {
                           onChange={(e) => {
                             setPublish(e.target.value);
                           }}
-                          className="w-full border border-gray-300 outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:border-neutral-600 "
+                          className="w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                         >
                           <option>Publish</option>
                           <option>UnList</option>

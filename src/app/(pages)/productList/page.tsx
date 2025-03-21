@@ -42,7 +42,7 @@ const ProductList = () => {
 
   return (
     <section className="p-5">
-      <div className="border px-4 py-2 rounded border-gray-300 dark:border-neutral-700">
+      <div className="border px-4 py-2 rounded border-lightBorder dark:border-darkBorder ">
         <div className="flex items-center justify-start gap-3">
           <SlidersHorizontal />
           <select className="border border-gray-400 px-3 py-1 rounded outline-none">
@@ -76,8 +76,8 @@ const ProductList = () => {
 
       {/* Products List */}
       <div className="py-5">
-        <div className="p-1 h-screen border border-gray-300 dark:border-neutral-700 rounded ">
-          <div className="m-5  border border-gray-300 dark:border-neutral-700 rounded">
+        <div className="p-1 h-screen border border-lightBorder dark:border-darkBorder  rounded ">
+          <div className="m-5  border border-lightBorder dark:border-darkBorder  rounded">
             <div className=" py-3 grid grid-cols-6 place-items-center ">
               <h1>Products Id</h1>
               <h1>Products Name</h1>

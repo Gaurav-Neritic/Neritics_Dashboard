@@ -55,7 +55,7 @@ const DeletePoup = ({
         <div className="flex justify-end space-x-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
+            className="px-4 py-2 border rounded-md border-lightBorder dark:border-darkBorder  dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
           >
             Cancel
           </button>

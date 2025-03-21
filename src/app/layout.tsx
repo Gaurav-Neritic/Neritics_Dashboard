@@ -31,10 +31,10 @@ export default function RootLayout({
         className={`${inter.className} ${geistMono.variable} antialiased max-w-[85rem] mx-auto dark:bg-darkMode dark:text-white`}
       >
         <div className="grid grid-cols-[1fr_4fr] gap-4">
-          <div className=" my-5 border-gray-200 border h-fit dark:border-neutral-600 rounded-xl top-1 sticky">
+          <div className=" my-5 border-lightBorder border h-fit dark:border-darkBorder rounded-xl top-1 sticky">
             <SidebarNav />
           </div>
-          <div className=" my-5 border border-gray-300 dark:border-neutral-600 rounded-xl ">
+          <div className=" my-5 border border-lightBorder dark:border-darkBorder rounded-xl ">
             <AccessibilityMenu />
             {children}
             <Toaster position="top-center" reverseOrder={false} />
