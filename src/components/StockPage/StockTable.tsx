@@ -1,16 +1,18 @@
 "use client";
 import axios from "axios";
-import { Trash2, AlertCircle, X, SquarePen } from "lucide-react";
+import { X, SquarePen } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Loader from "../Loader";
 
 const StocksTable = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   //edit popup
   const [editPopup, setEditPopup] = useState(false);
   const [productToEdit, setProductToEdit]: any = useState("");
-  const [editForm, setEditForm] = useState({
+  const [editForm, setEditForm]: any = useState({
     productId: "",
     productName: "",
     inStock: "",
@@ -38,8 +40,30 @@ const StocksTable = () => {
     setEditPopup(true);
   };
 
-  const confirmEdit = () => {
-    console.log(`Editing product: ${productToEdit}`, editForm);
+  const handelEditStock = async (_id: string, newStock: string) => {
+    try {
+      setLoading(true);
+      const response = await axios.put("api/editStock", {
+        _id,
+        newStock,
+      });
+      if (response.data.data) {
+        toast.success("Stock Updated");
+        setProductToEdit(null);
+        setLoading(false);
+        setEditPopup(false);
+        getProductsStocks();
+      } else {
+        toast.error("Failed to update the stock");
+        setLoading(false);
+        setEditPopup(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error editing the stock", error);
+      toast.error("Failed to update the stock");
+      setEditPopup(false);
+    }
     setEditPopup(false);
     setProductToEdit(null);
   };
@@ -51,7 +75,7 @@ const StocksTable = () => {
 
   const handleInputChange = (e: React.FormEvent) => {
     const { name, value }: any = e.target;
-    setEditForm((prev) => ({
+    setEditForm((prev: any) => ({
       ...prev,
       [name]: value,
     }));
@@ -88,7 +112,7 @@ const StocksTable = () => {
           <h1 className="col-span-3 w-full truncate">Name</h1>
           <h1 className="col-span-1 w-full truncate">In Stock</h1>
           <h1 className="col-span-1 w-full truncate">Total Stock</h1>
-          <h1 className="col-span-1 w-full truncate">Action</h1>
+          <h1 className="col-span-1 w-full truncate">Update</h1>
         </div>
         <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
         {products.length !== 0 &&
@@ -142,12 +166,18 @@ const StocksTable = () => {
               {/*cancel button */}
               <button
                 onClick={cancelEdit}
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
+                className="text-gray-500 hover:text-gray-700 cursor-pointer dark:text-gray-300 dark:hover:text-white"
               >
-                <X size={20} />
+                <X className="h-6 w-6" />
               </button>
             </div>
-            <form className="space-y-4">
+            <form
+              className="space-y-4"
+              onSubmit={(e: React.FormEvent) => {
+                e.preventDefault();
+                handelEditStock(editForm.productId, editForm.inStock);
+              }}
+            >
               {/* Product Id */}
               <div>
                 <label
@@ -160,6 +190,7 @@ const StocksTable = () => {
                   type="text"
                   id="productId"
                   name="productId"
+                  required
                   value={editForm.productId}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed outline-none"
                   readOnly
@@ -193,6 +224,7 @@ const StocksTable = () => {
                 <input
                   type="number"
                   id="totalStock"
+                  required
                   disabled
                   name="totalStock"
                   value={editForm.totalStock}
@@ -208,6 +240,7 @@ const StocksTable = () => {
                 <input
                   id="inStock"
                   name="inStock"
+                  required
                   type="number"
                   min={0}
                   value={editForm.inStock}
@@ -222,17 +255,16 @@ const StocksTable = () => {
                 <button
                   type="button"
                   onClick={cancelEdit}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
+                  className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700 cursor-pointer"
                 >
                   Cancel
                 </button>
                 {/* save button */}
                 <button
-                  type="button"
-                  onClick={confirmEdit}
-                  className="px-4 py-2 bg-lime-500 text-white rounded-md hover:bg-lime-600"
+                  type="submit"
+                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 cursor-pointer"
                 >
-                  Save Changes
+                  {loading ? <Loader title="Updating..." /> : "Update Stock"}
                 </button>
               </div>
             </form>
