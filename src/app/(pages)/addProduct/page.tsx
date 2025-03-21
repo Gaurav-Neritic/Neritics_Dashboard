@@ -290,6 +290,7 @@ const AddProduct = () => {
                         type="number"
                         required
                         value={stock}
+                        min={0}
                         onChange={(e) => {
                           setStock(e.target.value);
                         }}

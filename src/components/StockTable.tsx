@@ -1,35 +1,39 @@
 "use client";
-import {
-  SlidersHorizontal,
-  Trash2,
-  AlertCircle,
-  X,
-  Pencil,
-} from "lucide-react";
-import React, { useState } from "react";
+import axios from "axios";
+import { Trash2, AlertCircle, X, SquarePen } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const StocksTable = () => {
-  //delete popup
-  const [deletePopup, setDeletePopup] = useState(false);
-  const [productToDelete, setProductToDelete] = useState(null);
+  const [products, setProducts] = useState([]);
+
   //edit popup
   const [editPopup, setEditPopup] = useState(false);
-  const [productToEdit, setProductToEdit] = useState(null);
+  const [productToEdit, setProductToEdit]: any = useState("");
   const [editForm, setEditForm] = useState({
     productId: "",
     productName: "",
-    inStock: "Yes",
-    totalStock: 0,
+    inStock: "",
+    totalStock: "",
   });
 
   // handleEdit
-  const handleEdit = (product: any) => {
-    setProductToEdit(product.id);
+  const handleEdit = ({
+    _id,
+    title,
+    stock,
+  }: {
+    _id: string;
+    title: string;
+    // Make the stock type number in model
+    stock: string;
+  }) => {
+    setProductToEdit(_id);
     setEditForm({
-      productId: product.id,
-      productName: product.name,
-      inStock: product.inStock,
-      totalStock: product.stock,
+      productId: _id,
+      productName: title,
+      inStock: stock,
+      totalStock: stock,
     });
     setEditPopup(true);
   };
@@ -45,194 +49,94 @@ const StocksTable = () => {
     setProductToEdit(null);
   };
 
-  const handleInputChange = (e: any) => {
-    const { name, value } = e.target;
+  const handleInputChange = (e: React.FormEvent) => {
+    const { name, value }: any = e.target;
     setEditForm((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
-  //Sample Data
-  const products = [
-    { id: 1, name: "Product 1", inStock: "Yes", stock: 50 },
-    { id: 2, name: "Product 2", inStock: "No", stock: 100 },
-    { id: 3, name: "Product 3", inStock: "Yes", stock: 75 },
-    { id: 4, name: "Product 4", inStock: "No", stock: 25 },
-    { id: 5, name: "Product 5", inStock: "Yes", stock: 125 },
-    { id: 6, name: "Product 6", inStock: "Yes", stock: 80 },
-    { id: 7, name: "Product 7", inStock: "No", stock: 50 },
-    { id: 8, name: "Product 8", inStock: "Yes", stock: 150 },
-    { id: 9, name: "Product 9", inStock: "Yes", stock: 100 },
-    { id: 10, name: "Product 10", inStock: "No", stock: 75 },
-  ];
 
-  // Delete Handle
-  const handleDelete = (productId: any) => {
-    setProductToDelete(productId);
-    setDeletePopup(true);
-  };
+  async function getProductsStocks() {
+    try {
+      const response = await axios.get("api/getProducts");
 
-  const confirmDelete = () => {
-    console.log(`Deleting product: ${productToDelete}`);
-    setDeletePopup(false);
-    setProductToDelete(null);
-  };
+      if (response.data.data) {
+        setProducts(response.data.data);
+        console.log(response.data.data);
+      } else {
+        toast.error("Failed to fetch the data");
+        setProducts([]);
+      }
+    } catch (error) {
+      console.log("Error Fetching Data: ", error);
+      toast.error("Failed to fetch the data");
+    }
+  }
 
-  const cancelDelete = () => {
-    setDeletePopup(false);
-    setProductToDelete(null);
-  };
+  useEffect(() => {
+    getProductsStocks();
+  }, []);
 
   return (
     <section className="p-5">
-      <div className="border px-4 py-2 rounded border-gray-300 dark:border-neutral-700">
-        <div className="flex items-center justify-start gap-3">
-          <SlidersHorizontal />
-          <select className="border border-gray-400 px-3 py-1 rounded outline-none dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
-            <option className="dark:bg-neutral-800">Filter One</option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Option 2
-            </option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Option 3
-            </option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Option 4
-            </option>
-          </select>
-          <select className="border border-gray-400 px-3 py-1 rounded outline-none dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
-            <option className="dark:bg-neutral-800">Type</option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Type 2
-            </option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Type 3
-            </option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Type 4
-            </option>
-          </select>
-
-          <select className="border border-gray-400 px-3 py-1 rounded outline-none dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
-            <option className="dark:bg-neutral-800">Range</option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              From 1 to 2
-            </option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              From 2 to 3
-            </option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              From 3 to 4
-            </option>
-          </select>
-
-          <select className="border border-gray-400 px-3 py-1 rounded outline-none dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
-            <option className="dark:bg-neutral-800">Time</option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Recently
-            </option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Frequently
-            </option>
-            <option className="dark:bg-neutral-800 dark:text-white">
-              Earlier
-            </option>
-          </select>
-        </div>
-      </div>
-
+      <h1 className="text-2xl font-bold mb-6">Stocks In Inventory</h1>
       {/* Products List */}
-      <div className="py-5">
-        <div className="p-1 h-screen border border-gray-300 dark:border-neutral-700 rounded ">
-          <div className="m-5  border border-gray-300 dark:border-neutral-700 rounded">
-            <div className=" py-3 grid grid-cols-5 place-items-center ">
-              <h1>Products Id</h1>
-              <h1>Products Name</h1>
-              <h1>In Stock</h1>
-              <h1>Total Stock</h1>
-              <h1>Action</h1>
-            </div>
-            <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
-            {products.map((product, index) => (
+      <div className="border border-gray-300 dark:border-neutral-700 rounded">
+        <div className=" py-3 px-5 grid grid-cols-8 place-items-center ">
+          <h1 className="col-span-2 w-full truncate">Id</h1>
+          <h1 className="col-span-3 w-full truncate">Name</h1>
+          <h1 className="col-span-1 w-full truncate">In Stock</h1>
+          <h1 className="col-span-1 w-full truncate">Total Stock</h1>
+          <h1 className="col-span-1 w-full truncate">Action</h1>
+        </div>
+        <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
+        {products.length !== 0 &&
+          products.map(
+            ({
+              _id,
+              title,
+              stock,
+            }: {
+              _id: string;
+              title: string;
+              stock: string;
+            }) => (
               <div
-                key={index}
-                className="py-3 grid grid-cols-5 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
+                key={_id}
+                className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
               >
-                <h1>{product.id}</h1>
-                <h1 className="line-clamp-1">{product.name}</h1>
-                <select className="dark:bg-neutral-800 dark:text-white border border-gray-400 px-3 py-1 rounded outline-none">
-                  <option
-                    className="dark:bg-neutral-800"
-                    value="Yes"
-                    selected={product.inStock === "Yes"}
-                  >
-                    Yes
-                  </option>
-                  <option
-                    className="dark:bg-neutral-800"
-                    value="No"
-                    selected={product.inStock === "No"}
-                  >
-                    No
-                  </option>
-                </select>
-                <h1>{product.stock}</h1>
-                <div className="flex gap-4">
+                <h1 className="col-span-2 w-full truncate">{_id}</h1>
+                <h1 className="col-span-3 w-full truncate">{title}</h1>
+                <h1 className="col-span-1 w-full truncate">
+                  {stock.trim() === "0" || stock.length === 0 ? "No" : "Yes"}
+                </h1>
+                <h1 className="col-span-1">{stock}</h1>
+                <div className="col-span-1 w-full">
                   <button
-                    className="text-green-500 hover:text-green-600"
-                    onClick={() => handleEdit(product)}
+                    className="cursor-pointer flex items-center"
+                    onClick={() =>
+                      handleEdit({
+                        _id,
+                        title,
+                        stock,
+                      })
+                    }
                   >
-                    <Pencil className="text-sm" />
-                  </button>
-                  <button
-                    className="text-red-400 hover:text-red-500"
-                    onClick={() => handleDelete(product.id)}
-                  >
-                    <Trash2 className="text-sm" />
+                    <SquarePen className="text-green-500 hover:text-green-600 " />
                   </button>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+            )
+          )}
       </div>
-      {/* Delete Confirmation Popup */}
-      {deletePopup && (
-        <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
-            <div className="flex items-center mb-4 text-red-500">
-              <AlertCircle className="mr-2" />
-              <h2 className="text-xl font-bold">Confirm Delete</h2>
-            </div>
-            <p className="mb-6 text-gray-600 dark:text-gray-300">
-              Are you sure you want to delete{" "}
-              <span className="font-semibold">{productToDelete}</span>? This
-              action cannot be undone.
-            </p>
-            <div className="flex justify-end space-x-3">
-              <button
-                onClick={cancelDelete}
-                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+
       {/* Edit Product Popup */}
       {editPopup && (
         <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold gap-2 flex items-center">
-                <Pencil className="text-sm" />
+              <h2 className="text-2xl font-bold gap-2 flex items-center capitalize">
                 Edit Product
               </h2>
               {/*cancel button */}
@@ -257,8 +161,7 @@ const StocksTable = () => {
                   id="productId"
                   name="productId"
                   value={editForm.productId}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed outline-none"
                   readOnly
                 />
               </div>
@@ -274,47 +177,45 @@ const StocksTable = () => {
                   type="text"
                   id="productName"
                   name="productName"
+                  disabled
                   value={editForm.productName}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed"
                 />
               </div>
-              {/* In Stock */}
-              <div>
-                <label
-                  htmlFor="inStock"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                >
-                  In Stock
-                </label>
-                <select
-                  id="inStock"
-                  name="inStock"
-                  value={editForm.inStock}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white"
-                >
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
-              {/* Total Stock */}
+              {/* Previous Stock */}
               <div>
                 <label
                   htmlFor="totalStock"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                 >
-                  Total Stock
+                  Previous Stock
                 </label>
                 <input
                   type="number"
                   id="totalStock"
+                  disabled
                   name="totalStock"
                   value={editForm.totalStock}
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white"
+                />
+              </div>
+
+              {/* In Stock */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  New Stock
+                </label>
+                <input
+                  id="inStock"
+                  name="inStock"
+                  type="number"
+                  min={0}
+                  value={editForm.inStock}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white"
                 />
               </div>
+
               {/* Save Changes */}
               <div className="flex justify-end space-x-3 pt-4">
                 {/*cancel button */}
