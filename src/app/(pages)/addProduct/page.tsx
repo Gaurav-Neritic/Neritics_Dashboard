@@ -262,7 +262,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setContainer(e.target.value);
                         }}
-                        className=" w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       >
                         <option>Container Type</option>
                         <option>Bottle</option>
@@ -280,7 +280,7 @@ const AddProduct = () => {
                           setQuantity(e.target.value);
                         }}
                         placeholder="Quantity"
-                        className="w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
 
@@ -295,7 +295,7 @@ const AddProduct = () => {
                           setStock(e.target.value);
                         }}
                         placeholder="Stock Available"
-                        className="w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
                   </div>
@@ -316,10 +316,9 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <label>Total 5 Images</label>
                   <div className="flex items-center justify-center gap-4 mt-2">
                     <div className="relative">
-                      <label className="text-yellow-800 dark:text-yellow-600">
+                      <label className="text-red-500 dark:text-red-300">
                         * Main Image
                       </label>
                       <input
@@ -329,12 +328,12 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setMainImage(e.target.files[0]);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
                     </div>
                     <div className="relative">
-                      <label className="text-yellow-800 dark:text-yellow-600 z-20 ">
-                        * Primary Image
+                      <label className="text-red-500 dark:text-red-300 z-20 ">
+                        * First Image
                       </label>
                       <input
                         required
@@ -342,13 +341,13 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setPrimaryImage(e.target.files[0]);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-4 mt-2">
                     <div className="relative">
-                      <label className="text-yellow-800 dark:text-yellow-600 z-20">
+                      <label className="text-red-500 dark:text-red-300 z-20">
                         * Second Image
                       </label>
                       <input
@@ -357,11 +356,11 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setSecondImage(e.target.files[0]);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
                     </div>
                     <div className="relative">
-                      <label className="text-yellow-800 dark:text-yellow-600">
+                      <label className="text-red-500 dark:text-red-300">
                         * Third Image
                       </label>
                       <input
@@ -371,12 +370,12 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setThirdImage(e.target.files[0]);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
                     </div>
                   </div>
                   <div className="relative mt-2">
-                    <label className="text-yellow-800 dark:text-yellow-600">
+                    <label className="text-red-500 dark:text-red-300">
                       * Fourth Image
                     </label>
                     <input
@@ -386,7 +385,7 @@ const AddProduct = () => {
                       onChange={(e: any) => {
                         setFourthImage(e.target.files[0]);
                       }}
-                      className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                      className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                     />
                   </div>
                 </div>
@@ -414,7 +413,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setPrice(e.target.value);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
                     <div>
@@ -427,7 +426,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setDiscount(e.target.value);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       />
                     </div>
                   </div>
@@ -455,7 +454,7 @@ const AddProduct = () => {
                           setCoo(e.target.value);
                         }}
                         required
-                        className="w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       >
                         <option>India</option>
                         <option>USA</option>
@@ -474,7 +473,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setHsnCode(e.target.value);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
 
@@ -488,7 +487,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setGst(e.target.value);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       />
                     </div>
 
@@ -502,7 +501,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setShelfLife(e.target.value);
                         }}
-                        className="block w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       />
                     </div>
 
@@ -513,7 +512,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setSuitableFor(e.target.value);
                         }}
-                        className=" w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       >
                         <option>Vegeterian </option>
                         <option>Non Vegeterian </option>
@@ -528,7 +527,7 @@ const AddProduct = () => {
                           onChange={(e) => {
                             setPublish(e.target.value);
                           }}
-                          className="w-full border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                          className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                         >
                           <option>Publish</option>
                           <option>UnList</option>
@@ -555,7 +554,7 @@ const AddProduct = () => {
             <button
               onClick={handelClearFields}
               type="reset"
-              className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
+              className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-500 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
             >
               <span className="flex items-center justify-center gap-2">
                 <Eraser />
