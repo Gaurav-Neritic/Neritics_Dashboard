@@ -13,26 +13,26 @@ import {
 
 const QueriesTable = () => {
   const [expandedQuery, setExpandedQuery] = useState(null);
-   const [deletePopup, setDeletePopup] = useState(false);
-    const [productToDelete, setProductToDelete] = useState(null);
-  
-    // Delete Handle
-    const handleDelete = (productId: any) => {
-      setProductToDelete(productId);
-      setDeletePopup(true);
-    };
-  
-    const confirmDelete = () => {
-      // Here you would add the actual delete logic
-      console.log(`Deleting product: ${productToDelete}`);
-      setDeletePopup(false);
-      setProductToDelete(null);
-    };
-  
-    const cancelDelete = () => {
-      setDeletePopup(false);
-      setProductToDelete(null);
-    };
+  const [deletePopup, setDeletePopup] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+
+  // Delete Handle
+  const handleDelete = (productId: any) => {
+    setProductToDelete(productId);
+    setDeletePopup(true);
+  };
+
+  const confirmDelete = () => {
+    // Here you would add the actual delete logic
+    console.log(`Deleting product: ${productToDelete}`);
+    setDeletePopup(false);
+    setProductToDelete(null);
+  };
+
+  const cancelDelete = () => {
+    setDeletePopup(false);
+    setProductToDelete(null);
+  };
   const queries = [
     {
       id: 1,
@@ -201,7 +201,10 @@ const QueriesTable = () => {
                   {query.date}
                 </div>
                 <div className="grid place-items-center ">
-                  <Trash2 className="text-red-500  hover:text-red-600"  onClick={() => handleDelete("Product 1")} />
+                  <Trash2
+                    className="text-red-500  hover:text-red-600"
+                    onClick={() => handleDelete("Product 1")}
+                  />
                 </div>
               </div>
 
@@ -313,34 +316,34 @@ const QueriesTable = () => {
           ))}
         </div>
       </div>
-       {/* Delete Confirmation Popup */}
-            {deletePopup && (
-              <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
-                <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
-                  <div className="flex items-center mb-4 text-red-500">
-                    <AlertCircle className="mr-2" />
-                    <h2 className="text-xl font-bold">Confirm Delete</h2>
-                  </div>
-                  <p className="mb-6 text-gray-600 dark:text-gray-300">
-                    Are you sure you want to delete action cannot be undone.
-                  </p>
-                  <div className="flex justify-end space-x-3">
-                    <button
-                      onClick={cancelDelete}
-                      className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={confirmDelete}
-                      className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
+      {/* Delete Confirmation Popup */}
+      {deletePopup && (
+        <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
+            <div className="flex items-center mb-4 text-red-500">
+              <AlertCircle className="mr-2" />
+              <h2 className="text-xl font-bold">Confirm Delete</h2>
+            </div>
+            <p className="mb-6 text-gray-600 dark:text-gray-300">
+              Are you sure you want to delete action cannot be undone.
+            </p>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={cancelDelete}
+                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

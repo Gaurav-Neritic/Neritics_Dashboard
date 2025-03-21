@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import SidebarNav from "@/components/Navbar";
+import SidebarNav from "@/components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";
-import AccessibilityMenu from "@/components/AccessibilityMenu";
+import AccessibilityMenu from "@/components/Navbar/AccessibilityMenu";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -26,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark:bg-[#1a1a1a] dark:text-white">
+    <html lang="en">
       <body
-        className={`${inter.className} ${geistMono.variable} antialiased max-w-[85rem] mx-auto dark:bg-[#1a1a1a] dark:text-white`}
+        className={`${inter.className} ${geistMono.variable} antialiased max-w-[85rem] mx-auto dark:bg-darkMode dark:text-white`}
       >
         <div className="grid grid-cols-[1fr_4fr] gap-4">
           <div className=" my-5 border-gray-200 border h-fit dark:border-neutral-600 rounded-xl top-1 sticky">

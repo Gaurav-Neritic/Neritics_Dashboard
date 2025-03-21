@@ -1,5 +1,5 @@
 import React from "react";
-import QueriesTable from "@/components/QueriesTable";
+import QueriesTable from "@/components/QueriesPage/QueriesTable";
 const QueriesPage = () => {
   return (
     <div>

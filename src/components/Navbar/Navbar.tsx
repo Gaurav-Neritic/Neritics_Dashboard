@@ -16,7 +16,7 @@ import {
   Settings,
   SquarePlus,
 } from "lucide-react";
-import ToggleMode from "./ToggleMode";
+import ToggleMode from "@/components/Theme/ToggleMode";
 
 const SidebarNav = () => {
   return (
