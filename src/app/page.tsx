@@ -1,6 +1,6 @@
-import Activity from "@/components/Activity";
-import DashBoardStats from "@/components/DashBoardStats";
-import OverView from "@/components/Overview";
+import Activity from "@/components/MainPage/Activity";
+import DashBoardStats from "@/components/MainPage/DashBoardStats";
+import OverView from "@/components/MainPage/Overview";
 
 export default function Home() {
   return (
