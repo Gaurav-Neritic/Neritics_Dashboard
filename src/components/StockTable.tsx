@@ -176,7 +176,7 @@ const StocksTable = () => {
                     No
                   </option>
                 </select>
-                <h1>stock</h1>
+                <h1>{product.stock}</h1>
                 <div className="flex gap-4">
                   <button
                     className="text-green-500 hover:text-green-600"
