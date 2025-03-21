@@ -1,8 +1,9 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-
 @import "tailwindcss";
 @theme {
-  --color-darkMode:#1a1a1a;
+  --color-darkMode: #1a1a1a;
+  --color-darkBorder: #404040;
+  --color-lightBorder: #d1d5dc;
 }
