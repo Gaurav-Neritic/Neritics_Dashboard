@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Eraser, FilePenLine, Save } from "lucide-react";
 import { use } from "react";
@@ -177,20 +177,20 @@ export default function Page({ params }: any) {
               {/* Grid col-2 */}
               <div>
                 {/* Product Images */}
-                <div className="py-5">
+                {/* <div className="py-5">
                   <div className="pb-2">
                     <h2 className="text-lg font-semibold antialiased">
                       Images
                     </h2>
                   </div>
 
-                  {/* <Link
+                  <Link
                     href={`/productList/${edit}/${edit + "img"}`}
                     className="border rounded border-lightBorder dark:border-darkBorder  p-4 "
                   >
                     Edit Image
-                  </Link> */}
-                </div>
+                  </Link>
+                </div> */}
 
                 {/* Product Pricing */}
                 <div className="py-5">
