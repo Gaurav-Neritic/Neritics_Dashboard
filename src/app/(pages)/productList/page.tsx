@@ -7,6 +7,7 @@ import {
   AlertCircle,
   FilePenLine,
 } from "lucide-react";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -16,6 +17,7 @@ interface productDataProps {
   price: number;
   category: string;
   stock: number;
+  image: [string];
 }
 
 const ProductList = () => {
@@ -78,13 +80,16 @@ const ProductList = () => {
       <div className="py-5">
         <div className="p-1 h-screen border border-lightBorder dark:border-darkBorder  rounded ">
           <div className="m-5  border border-lightBorder dark:border-darkBorder  rounded">
-            <div className=" py-3 grid grid-cols-6 place-items-center ">
-              <h1>Products Id</h1>
-              <h1>Products Name</h1>
-              <h1>Price</h1>
-              <h1>Category</h1>
-              <h1>Stock</h1>
-              <h1>Action</h1>
+            <div className=" py-3 px-5 gap-5 grid grid-cols-8 place-items-center ">
+              <h1 className="w-full truncate col-span-1">Products Id</h1>
+              <div className="w-full col-span-1 place-items-center">
+                <h1 className="truncate ">Image</h1>
+              </div>
+              <h1 className="w-full truncate col-span-2">Products Name</h1>
+              <h1 className="w-full truncate col-span-1">Price</h1>
+              <h1 className="w-full truncate col-span-1">Category</h1>
+              <h1 className="w-full truncate col-span-1">Stock</h1>
+              <h1 className="w-full truncate col-span-1">Action</h1>
             </div>
             <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
             <div>
@@ -99,23 +104,30 @@ const ProductList = () => {
                       price,
                       category,
                       stock,
+                      image,
                     }: productDataProps) => {
                       return (
                         <div
                           key={_id}
-                          className="py-3 grid grid-cols-6 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
+                          className="py-3 px-5 grid grid-cols-8 place-items-start gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
                         >
-                          <div className="truncate">
-                            <h1 className="line-clamp-1">
-                              {_id.length > 5 ? _id.slice(0, 6) : ""}...
-                            </h1>
+                          <h1 className="col-span-1 w-full truncate">{_id}</h1>
+                          <div className="col-span-1 w-full place-items-center">
+                            <Image
+                              src={image[0]}
+                              width={20}
+                              height={20}
+                              alt="img"
+                              className=" h-7 w-7 "
+                            />
                           </div>
-                          <h1 className="line-clamp-1">{title}</h1>
-                          <h1>₹ {price}</h1>
-                          <h1>{category}</h1>
-                          <h1>{stock}</h1>
+                          <h1 className="col-span-2">{title}</h1>
 
-                          <div className="flex gap-4">
+                          <h1 className="col-span-1">₹ {price}</h1>
+                          <h1 className="col-span-1">{category}</h1>
+                          <h1 className="col-span-1">{stock}</h1>
+
+                          <div className="flex gap-4 col-span-1">
                             <button className="text-lime-400 hover:text-lime-500">
                               <FilePenLine className="text-sm" />
                             </button>

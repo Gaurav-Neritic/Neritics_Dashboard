@@ -4,6 +4,7 @@ import { X, SquarePen } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Loader from "../Loader";
+import Image from "next/image";
 
 const StocksTable = () => {
   const [products, setProducts] = useState([]);
@@ -64,13 +65,6 @@ const StocksTable = () => {
       toast.error("Failed to update the stock");
       setEditPopup(false);
     }
-    setEditPopup(false);
-    setProductToEdit(null);
-  };
-
-  const cancelEdit = () => {
-    setEditPopup(false);
-    setProductToEdit(null);
   };
 
   const handleInputChange = (e: React.FormEvent) => {
@@ -108,7 +102,8 @@ const StocksTable = () => {
       {/* Products List */}
       <div className="border border-lightBorder dark:border-darkBorder  rounded">
         <div className=" py-3 px-5 grid grid-cols-8 place-items-center ">
-          <h1 className="col-span-2 w-full truncate">Id</h1>
+          <h1 className="col-span-1 w-full truncate">Id</h1>
+          <h1 className="col-span-1 w-full truncate">Image</h1>
           <h1 className="col-span-3 w-full truncate">Name</h1>
           <h1 className="col-span-1 w-full truncate">In Stock</h1>
           <h1 className="col-span-1 w-full truncate">Total Stock</h1>
@@ -121,16 +116,25 @@ const StocksTable = () => {
               _id,
               title,
               stock,
+              image,
             }: {
               _id: string;
               title: string;
               stock: string;
+              image: [string];
             }) => (
               <div
                 key={_id}
                 className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
               >
-                <h1 className="col-span-2 w-full truncate">{_id}</h1>
+                <h1 className="col-span-1 w-full truncate">{_id}</h1>
+                <Image
+                  src={image[0] || ""}
+                  height={20}
+                  width={20}
+                  alt="img"
+                  className="col-span-1 truncate object-contain h-10 w-10 border border-lightBorder rounded"
+                />
                 <h1 className="col-span-3 w-full truncate">{title}</h1>
                 <h1 className="col-span-1 w-full truncate">
                   {stock.trim() === "0" || stock.length === 0 ? "No" : "Yes"}
@@ -139,13 +143,7 @@ const StocksTable = () => {
                 <div className="col-span-1 w-full truncate">
                   <button
                     className="cursor-pointer flex items-center"
-                    onClick={() =>
-                      handleEdit({
-                        _id,
-                        title,
-                        stock,
-                      })
-                    }
+                    onClick={() => handleEdit({ _id, title, stock })}
                   >
                     <SquarePen className="text-green-500 hover:text-green-600 " />
                   </button>
@@ -165,7 +163,10 @@ const StocksTable = () => {
               </h2>
               {/*cancel button */}
               <button
-                onClick={cancelEdit}
+                onClick={() => {
+                  setEditPopup(false);
+                  setProductToEdit(null);
+                }}
                 className="text-gray-500 hover:text-gray-700 cursor-pointer dark:text-gray-300 dark:hover:text-white"
               >
                 <X className="h-6 w-6" />
@@ -254,7 +255,10 @@ const StocksTable = () => {
                 {/*cancel button */}
                 <button
                   type="button"
-                  onClick={cancelEdit}
+                  onClick={() => {
+                    setEditPopup(false);
+                    setProductToEdit(null);
+                  }}
                   className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700 cursor-pointer"
                 >
                   Cancel
