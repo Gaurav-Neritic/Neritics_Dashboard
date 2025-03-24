@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
             price: price,
             discount: discount,
             quantity: quantity,
-            image: imageArray || [],
+            image: imageArray || ["https://dummyimage.com/721x401", "https://dummyimage.com/721x401", "https://dummyimage.com/721x401", "https://dummyimage.com/721x401", "https://dummyimage.com/721x401"],
             category: category,
             type: type,
             stock: stock,
