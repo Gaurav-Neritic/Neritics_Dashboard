@@ -1,10 +1,48 @@
 "use client";
 
+import axios from "axios";
 import { Eraser, FilePenLine, Save } from "lucide-react";
-import { use } from "react";
+import { use, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+
+interface productDetails {
+  title: string;
+}
 
 export default function Page({ params }: any) {
   const { edit }: any = use(params);
+  const [details, setDetails] = useState({});
+
+  const { title }: any = details;
+
+  const [name, setName] = useState(title);
+
+  async function getEditableProduct() {
+    try {
+      const id = await edit;
+      const response = await axios.post("../api/getProductDetail", { id });
+
+      if (response.data.data) {
+        setDetails(response.data.data);
+        toast.success("Data fetched");
+      } else {
+        toast.error("Error Fetching Data");
+      }
+    } catch (error) {
+      console.log("Error Fetching products data : ", error);
+      toast.error("Error Fetching Data");
+    }
+  }
+
+  useEffect(() => {
+    try {
+      getEditableProduct();
+    } catch (error) {
+      console.log("Error Fetching products data : ", error);
+      toast.error("Error Fetching Data");
+    }
+  }, []);
+
   return (
     <section className="p-5">
       <div>
@@ -37,6 +75,10 @@ export default function Page({ params }: any) {
                         <label className="mb-2">Product Name</label>
                         <input
                           type="text"
+                          value={name}
+                          onChange={(e) => {
+                            setName(e.target.value);
+                          }}
                           placeholder="Name"
                           required
                           className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded "
