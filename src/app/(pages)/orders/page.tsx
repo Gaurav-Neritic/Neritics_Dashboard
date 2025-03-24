@@ -1,17 +1,12 @@
-import { div } from 'motion/react-client'
-import React from 'react'
+import OrderList from "@/components/OrdersPage/OrderList"
 
-const Orders = () => {
-    return (
-       <>
-       <div>
-        <h1>Order</h1>
-       </div>
-       <div> 
-       </div>
-       </>
 
-    )
+const page = () => {
+  return (
+    <div>
+      <OrderList/>
+    </div>
+  )
 }
 
-export default Orders
+export default page
