@@ -103,7 +103,9 @@ const StocksTable = () => {
       <div className="border border-lightBorder dark:border-darkBorder  rounded">
         <div className=" py-3 px-5 grid grid-cols-8 place-items-center ">
           <h1 className="col-span-1 w-full truncate">Id</h1>
-          <h1 className="col-span-1 w-full truncate">Image</h1>
+          <div className="col-span-1 w-full place-items-center">
+            <h1 className=" truncate">Image</h1>
+          </div>
           <h1 className="col-span-3 w-full truncate">Name</h1>
           <h1 className="col-span-1 w-full truncate">In Stock</h1>
           <h1 className="col-span-1 w-full truncate">Total Stock</h1>
@@ -218,7 +220,7 @@ const StocksTable = () => {
               <div>
                 <label
                   htmlFor="totalStock"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 "
                 >
                   Previous Stock
                 </label>
@@ -229,7 +231,7 @@ const StocksTable = () => {
                   disabled
                   name="totalStock"
                   value={editForm.totalStock}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed"
                 />
               </div>
 
