@@ -1,12 +1,7 @@
 "use client";
 import DeletePoup from "@/components/DeletePoup";
 import axios from "axios";
-import {
-  SlidersHorizontal,
-  Trash2,
-  AlertCircle,
-  FilePenLine,
-} from "lucide-react";
+import { SlidersHorizontal, Trash2, FilePenLine } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -19,11 +14,13 @@ interface productDataProps {
   category: string;
   stock: number;
   image: [string];
+  listingStatus: boolean;
 }
 
 const ProductList = () => {
   const [deletePopup, setDeletePopup] = useState(false);
   const [productData, setProductData] = useState([]);
+  const [filter, setFilter] = useState("");
 
   async function getProducts() {
     try {
@@ -42,6 +39,32 @@ const ProductList = () => {
   useEffect(() => {
     getProducts();
   }, [deletePopup]);
+
+  useEffect(() => {
+    if (filter === "Listed") {
+      async function listed() {
+        const response = await axios.get("api/getProducts");
+        if (response.data.data) {
+          setProductData(
+            response.data.data.filter((elm: any) => elm.listingStatus === true)
+          );
+        }
+      }
+      listed();
+    } else if (filter === "UnListed") {
+      async function unListed() {
+        const response = await axios.get("api/getProducts");
+        if (response.data.data) {
+          setProductData(
+            response.data.data.filter((elm: any) => elm.listingStatus === false)
+          );
+        }
+      }
+      unListed();
+    } else {
+      getProducts();
+    }
+  }, [filter]);
 
   return (
     <section className="p-5">
@@ -74,6 +97,17 @@ const ProductList = () => {
             <option className="dark:text-black">Frequently</option>
             <option className="dark:text-black">Earlier</option>
           </select>
+
+          <select
+            onChange={(e) => {
+              setFilter(e.target.value);
+            }}
+            className="border border-gray-400 px-3 py-1 rounded outline-none"
+          >
+            <option className="dark:bg-neutral-600">All</option>
+            <option className="dark:text-black">Listed</option>
+            <option className="dark:text-black">UnListed</option>
+          </select>
         </div>
       </div>
 
@@ -81,15 +115,20 @@ const ProductList = () => {
       <div className="py-5">
         <div className="p-1 h-screen border border-lightBorder dark:border-darkBorder  rounded ">
           <div className="m-5  border border-lightBorder dark:border-darkBorder  rounded">
-            <div className=" py-3 px-5 gap-5 grid grid-cols-8 place-items-center ">
+            <div className=" py-3 px-5 gap-5 grid grid-cols-9 place-items-center ">
               <h1 className="w-full truncate col-span-1">Products Id</h1>
+              <h1 className="w-full truncate col-span-2">Products Name</h1>
               <div className="w-full col-span-1 place-items-center">
                 <h1 className="truncate ">Image</h1>
               </div>
-              <h1 className="w-full truncate col-span-2">Products Name</h1>
               <h1 className="w-full truncate col-span-1">Price</h1>
               <h1 className="w-full truncate col-span-1">Category</h1>
-              <h1 className="w-full truncate col-span-1">Stock</h1>
+              <div className="w-full col-span-1 place-items-center">
+                <h1 className="truncate ">Publish</h1>
+              </div>
+              <div className="w-full col-span-1 place-items-center">
+                <h1 className="truncate ">Stock</h1>
+              </div>
               <h1 className="w-full truncate col-span-1">Action</h1>
             </div>
             <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
@@ -105,14 +144,16 @@ const ProductList = () => {
                       price,
                       category,
                       stock,
+                      listingStatus,
                       image,
                     }: productDataProps) => {
                       return (
                         <div
                           key={_id}
-                          className="py-3 px-5 grid grid-cols-8 place-items-start gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
+                          className="py-3 px-5 grid grid-cols-9 place-items-start gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
                         >
                           <h1 className="col-span-1 w-full truncate">{_id}</h1>
+                          <h1 className="col-span-2 line-clamp-2">{title}</h1>
                           <div className="col-span-1 w-full place-items-center">
                             <Image
                               src={image[0]}
@@ -122,11 +163,15 @@ const ProductList = () => {
                               className=" h-7 w-7 rounded"
                             />
                           </div>
-                          <h1 className="col-span-2">{title}</h1>
 
                           <h1 className="col-span-1">₹ {price}</h1>
                           <h1 className="col-span-1">{category}</h1>
-                          <h1 className="col-span-1">{stock}</h1>
+                          <div className="col-span-1 w-full place-items-center">
+                            <h1>{listingStatus ? "✔️" : "❌"}</h1>
+                          </div>
+                          <div className="col-span-1 w-full place-items-center">
+                            <h1 className="col-span-1">{stock}</h1>
+                          </div>
 
                           <div className="flex gap-4 col-span-1">
                             <Link

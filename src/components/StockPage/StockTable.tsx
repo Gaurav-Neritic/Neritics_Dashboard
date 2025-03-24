@@ -29,7 +29,7 @@ const StocksTable = () => {
     _id: string;
     title: string;
     // Make the stock type number in model
-    stock: string;
+    stock: number;
   }) => {
     setProductToEdit(_id);
     setEditForm({
@@ -122,7 +122,7 @@ const StocksTable = () => {
             }: {
               _id: string;
               title: string;
-              stock: string;
+              stock: number;
               image: [string];
             }) => (
               <div
@@ -139,7 +139,11 @@ const StocksTable = () => {
                 />
                 <h1 className="col-span-3 w-full truncate">{title}</h1>
                 <h1 className="col-span-1 w-full truncate">
-                  {stock.trim() === "0" || stock.length === 0 ? "No" : "Yes"}
+                  {stock <= 0 ? (
+                    <span className="text-red-500">❌</span>
+                  ) : (
+                    <span className="text-green-500">✔️</span>
+                  )}
                 </h1>
                 <h1 className="col-span-1 w-full truncate">{stock}</h1>
                 <div className="col-span-1 w-full truncate">

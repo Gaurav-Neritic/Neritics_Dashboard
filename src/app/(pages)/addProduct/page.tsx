@@ -59,6 +59,14 @@ const AddProduct = () => {
     formData.append("suitableFor", suitableFor);
     formData.append("publish", publish);
     try {
+      // Checks if the selected types and categorys are defaults
+      if (category === "Select Category") return setCategory("");
+      if (type === "Select Type") return setType("");
+      if (isAyurvedic === "Nature Of Medicine") return setIsAyurvedic("");
+      if (container === "Container Type") return setContainer("");
+      if (suitableFor === "Edible For") return setSuitableFor("");
+      if (publish === "Publishing Status") return setPublish("");
+
       e.preventDefault();
       setLoading(true);
       const response = await axios.post("api/addProduct", formData);
@@ -92,6 +100,12 @@ const AddProduct = () => {
       setSecondImage("");
       setThirdImage("");
       setFourthImage("");
+      setPrice("");
+      setDiscount("");
+      setHsnCode("");
+      setGst("");
+      setShelfLife("");
+      setPublish("");
       toast.success("All Fields Cleared");
     } catch (error) {
       setLoading(false);
@@ -514,8 +528,9 @@ const AddProduct = () => {
                         }}
                         className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       >
-                        <option>Vegeterian </option>
-                        <option>Non Vegeterian </option>
+                        <option>Edible For</option>
+                        <option>Vegeterian</option>
+                        <option>Non Vegeterian</option>
                       </select>
                     </div>
 
@@ -527,8 +542,9 @@ const AddProduct = () => {
                           onChange={(e) => {
                             setPublish(e.target.value);
                           }}
-                          className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                          className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 placeholder:text-gray-300 "
                         >
+                          <option>Publishing Status</option>
                           <option>Publish</option>
                           <option>UnList</option>
                         </select>
@@ -554,7 +570,7 @@ const AddProduct = () => {
             <button
               onClick={handelClearFields}
               type="reset"
-              className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-500 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
+              className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
             >
               <span className="flex items-center justify-center gap-2">
                 <Eraser />
