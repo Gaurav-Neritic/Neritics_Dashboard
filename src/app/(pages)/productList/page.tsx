@@ -1,12 +1,7 @@
 "use client";
 import DeletePoup from "@/components/DeletePoup";
 import axios from "axios";
-import {
-  SlidersHorizontal,
-  Trash2,
-  AlertCircle,
-  FilePenLine,
-} from "lucide-react";
+import { SlidersHorizontal, Trash2, FilePenLine } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
