@@ -3,6 +3,7 @@ import DeletePoup from "@/components/DeletePoup";
 import axios from "axios";
 import { SlidersHorizontal, Trash2, FilePenLine } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -113,7 +114,7 @@ const ProductList = () => {
                               width={20}
                               height={20}
                               alt="img"
-                              className=" h-7 w-7 "
+                              className=" h-7 w-7 rounded"
                             />
                           </div>
                           <h1 className="col-span-2">{title}</h1>
@@ -123,14 +124,17 @@ const ProductList = () => {
                           <h1 className="col-span-1">{stock}</h1>
 
                           <div className="flex gap-4 col-span-1">
-                            <button className="text-lime-400 hover:text-lime-500">
-                              <FilePenLine className="text-sm" />
-                            </button>
+                            <Link
+                              href={`/productList/${_id}`}
+                              className="text-green-400 hover:text-green-500"
+                            >
+                              <FilePenLine className="text-sm cursor-pointer" />
+                            </Link>
                             <button
                               className="text-red-400 hover:text-red-500"
                               onClick={() => setDeletePopup(true)}
                             >
-                              <Trash2 className="text-sm" />
+                              <Trash2 className="text-sm cursor-pointer" />
                             </button>
                           </div>
                           {/* Delete Confirmation Popup */}
