@@ -36,6 +36,7 @@ const ProductList = () => {
       if (response.data.data) {
         setProductData(response.data.data);
         setFilteredProducts(response.data.data);
+        console.log(response.data.data);
       } else {
         toast.error("Failed to fetch the product data");
       }
@@ -110,17 +111,19 @@ const ProductList = () => {
 
       {/*    Product Button (ListView & CardView) */}
       <div className="p-5 flex justify-between items-center">
-        <div className=" ">
-          <h1 className="text-2xl">Product Lists</h1>
+        <div>
+          <h1 className="text-xl uppercase font-semibold">Product Lists</h1>
         </div>
         <div className="flex gap-3">
           <button
+            title="Grid View"
             onClick={() => setListView(false)}
             className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
           >
             <LayoutGrid className="h-5 w-5" />
           </button>
           <button
+            title="List View"
             onClick={() => setListView(true)}
             className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
           >
@@ -177,7 +180,9 @@ const ProductList = () => {
                           className="py-3 px-5 grid grid-cols-9 place-items-start gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
                         >
                           <h1 className="col-span-1 w-full truncate">{_id}</h1>
-                          <h1 className="col-span-2 line-clamp-2">{title}</h1>
+                          <h1 className="col-span-2 line-clamp-2 capitalize">
+                            {title}
+                          </h1>
                           <div className="col-span-1 w-full place-items-center">
                             <Image
                               src={image[0]}
@@ -255,13 +260,13 @@ const ProductList = () => {
                     return (
                       <ProductCard
                         key={_id}
+                        _id={_id}
                         image={image}
                         title={title}
                         price={price}
                         stock={stock}
-                        _id={""}
-                        category={""}
-                        listingStatus={false}
+                        category={category}
+                        listingStatus={listingStatus}
                       />
                     );
                   }

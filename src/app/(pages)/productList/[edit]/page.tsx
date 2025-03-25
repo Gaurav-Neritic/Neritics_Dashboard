@@ -115,12 +115,14 @@ export default function Page({ params }: any) {
       setHsnCode(details?.hsnCode);
       setGst(details?.gstOnProduct);
       setShelfLife(details?.shelfLife);
-      setPublish(details?.listingStatus);
+      setPublish(details?.listingStatus ? "Publish" : "UnList");
       setBrandName(details?.brand);
-      setIsAyurvedic(details?.ayurvedic);
+      setIsAyurvedic(details?.ayurvedic ? "True" : "False");
       setContainer(details?.containerType);
       setForm(details?.form);
-      setSuitableFor(details?.suitableForVegeterian);
+      setSuitableFor(
+        details?.suitableForVegeterian ? "Vegeterian" : "Non Vegeterian"
+      );
       setCoo(details?.countryOfOrigin);
     }
   }, [details]);
@@ -324,6 +326,7 @@ export default function Page({ params }: any) {
                               type="number"
                               required
                               value={stock}
+                              min={0}
                               onChange={(e) => setStock(e.target.value)}
                               placeholder="Stock Available"
                               className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
@@ -459,15 +462,15 @@ export default function Page({ params }: any) {
                               required
                               className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                             >
-                              <option>Edible For </option>
-                              <option>Vegeterian </option>
-                              <option>Non Vegeterian </option>
+                              <option>Edible For</option>
+                              <option>Vegeterian</option>
+                              <option>Non Vegeterian</option>
                             </select>
                           </div>
 
                           <div className="w-full">
                             <div className="relative">
-                              <label>List Product</label>
+                              <label>Publish / Un-Publish</label>
                               <select
                                 required
                                 value={publish}

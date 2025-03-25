@@ -1,6 +1,7 @@
 import { FilePenLine, Trash2 } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import DeletePoup from "../DeletePoup";
 
 interface productDataProps {
   _id: string;
@@ -13,12 +14,15 @@ interface productDataProps {
 }
 
 const ProductCard = ({
+  _id,
   image,
   title,
   price,
+  category,
   stock,
   listingStatus,
 }: productDataProps) => {
+  const [deletePopup, setDeletePopup] = useState(false);
   return (
     <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-2">
       <img
@@ -26,28 +30,49 @@ const ProductCard = ({
         alt="image"
         className="w-[500px] h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
       />
-      <div className="flex flex-col flex-grow">
-        <h1 className="mt-2 line-clamp-2 capitalize">{title}</h1>
-        <h1 className="mt-2 text-md font-semibold">₹{price}</h1>
-        <h1 className="mt-2 text-md font-semibold">
-          Status : {listingStatus ? "Published ✔️" : "UnListed ❌"}
+      <div className="flex flex-col flex-grow pb-2">
+        <h1 className="mt-2 line-clamp-2 capitalize font-semibold">{title}</h1>
+        <h1 className="mt-2 text-md font-normal">
+          <span className="font-light"> Status </span> :{" "}
+          {listingStatus ? "✅ Published " : "❌ Un-Listed"}
         </h1>
+        <h1 className="mt-2 text-md font-normal">
+          <span className="font-light">Stock</span> :{" "}
+          {stock <= 0 ? `❌ ${stock}` : `✅ ${stock}`}
+        </h1>
+        <h1 className="mt-2 line-clamp-2 capitalize font-normal">
+          <span className="font-light">Category</span> : {category}
+        </h1>
+        <h1 className="mt-2 text-md font-semibold">Price : ₹{price}</h1>
       </div>
-      <div className="grid grid-cols-2 gap-2 mt-4">
+      <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder">
         <Link
-          href="/"
-          className="flex justify-center items-center gap-2 text-green-400 hover:text-green-500 p-1 border border-lightBorder dark:border-darkBorder rounded text-sm"
+          href={`/productList/${_id}`}
+          className="flex justify-center items-center gap-2 text-green-500 hover:text-green-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm"
         >
           <FilePenLine className="h-5 w-5 cursor-pointer" />
           Edit
         </Link>
-        <button className="flex justify-center items-center gap-2 text-red-400 hover:text-red-500 p-1 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer">
+        <button
+          onClick={() => setDeletePopup(true)}
+          className="flex justify-center items-center gap-2 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer"
+        >
           <Trash2 className="h-5 w-5 cursor-pointer" />
           Delete
         </button>
       </div>
+      {
+        <DeletePoup
+          isVisible={deletePopup}
+          prodId={_id}
+          prodName={title}
+          onClose={() => {
+            setDeletePopup(false);
+          }}
+        />
+      }
     </div>
   );
 };
-  
-export default ProductCard
+
+export default ProductCard;

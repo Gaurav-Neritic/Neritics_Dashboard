@@ -37,7 +37,7 @@ export async function PUT(request: NextRequest) {
 
 
         // Checks for boolean values
-        if (isAyurvedic === "true") {
+        if (isAyurvedic === "True") {
             ayurvedicCheck = true
         } else {
             ayurvedicCheck = false
