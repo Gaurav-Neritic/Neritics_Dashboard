@@ -19,6 +19,7 @@ interface productDataProps {
 const ProductList = () => {
   const [deletePopup, setDeletePopup] = useState(false);
   const [productData, setProductData] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [filter, setFilter] = useState("");
 
   async function getProducts() {
@@ -26,6 +27,7 @@ const ProductList = () => {
       const response = await axios.get("api/getProducts");
       if (response.data.data) {
         setProductData(response.data.data);
+        setFilteredProducts(response.data.data);
       } else {
         toast.error("Failed to fetch the product data");
       }
@@ -41,29 +43,17 @@ const ProductList = () => {
 
   useEffect(() => {
     if (filter === "Listed") {
-      async function listed() {
-        const response = await axios.get("api/getProducts");
-        if (response.data.data) {
-          setProductData(
-            response.data.data.filter((elm: any) => elm.listingStatus === true)
-          );
-        }
-      }
-      listed();
+      setFilteredProducts(
+        productData.filter((product: any) => product.listingStatus === true)
+      );
     } else if (filter === "UnListed") {
-      async function unListed() {
-        const response = await axios.get("api/getProducts");
-        if (response.data.data) {
-          setProductData(
-            response.data.data.filter((elm: any) => elm.listingStatus === false)
-          );
-        }
-      }
-      unListed();
+      setFilteredProducts(
+        productData.filter((product: any) => product.listingStatus === false)
+      );
     } else {
-      getProducts();
+      setFilteredProducts(productData);
     }
-  }, [filter]);
+  }, [filter, productData]);
 
   return (
     <section className="p-5">
@@ -144,8 +134,8 @@ const ProductList = () => {
               {/* Product Item */}
               <>
                 {/*  */}
-                {productData.length !== 0 &&
-                  productData.map(
+                {filteredProducts.length !== 0 &&
+                  filteredProducts.map(
                     ({
                       _id,
                       title,
@@ -210,7 +200,7 @@ const ProductList = () => {
                       );
                     }
                   )}
-                {productData.length === 0 && (
+                {filteredProducts.length === 0 && (
                   <div className="place-items-center uppercase text-gray-600 font-semibold py-10">
                     <h1>No Products to display</h1>
                   </div>
