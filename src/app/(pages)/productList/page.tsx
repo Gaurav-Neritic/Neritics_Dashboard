@@ -1,12 +1,11 @@
 "use client";
 import DeletePoup from "@/components/DeletePoup";
 import axios from "axios";
-import { SlidersHorizontal, Trash2, FilePenLine } from "lucide-react";
+import { SlidersHorizontal, Trash2, FilePenLine, LayoutGrid, Logs } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-
 interface productDataProps {
   _id: string;
   title: string;
@@ -110,9 +109,18 @@ const ProductList = () => {
           </select>
         </div>
       </div>
-
+      <div className=" p-4 grid place-items-end">
+        <div className="flex gap-3">
+        <button className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded">
+            <LayoutGrid className="h-5 w-5" />
+        </button>
+        <button className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded">
+            <Logs className="h-5 w-5" />
+        </button>
+        </div>
+      </div>
       {/* Products List */}
-      <div className="py-5">
+      <div className="py-2">
         <div className="p-1 h-screen border border-lightBorder dark:border-darkBorder  rounded ">
           <div className="m-5  border border-lightBorder dark:border-darkBorder  rounded">
             <div className=" py-3 px-5 gap-5 grid grid-cols-9 place-items-center ">
