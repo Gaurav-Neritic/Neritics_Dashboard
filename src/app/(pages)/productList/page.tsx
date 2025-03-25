@@ -1,7 +1,14 @@
 "use client";
 import DeletePoup from "@/components/DeletePoup";
+import ProductCard from "@/components/ProductPage/ProductCard";
 import axios from "axios";
-import { SlidersHorizontal, Trash2, FilePenLine, LayoutGrid, Logs } from "lucide-react";
+import {
+  SlidersHorizontal,
+  Trash2,
+  FilePenLine,
+  LayoutGrid,
+  Logs,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -20,6 +27,7 @@ const ProductList = () => {
   const [deletePopup, setDeletePopup] = useState(false);
   const [productData, setProductData] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
 
   async function getProducts() {
@@ -101,19 +109,31 @@ const ProductList = () => {
       </div>
       <div className=" p-4 grid place-items-end">
         <div className="flex gap-3">
-        <button className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded">
+          <button
+            onClick={() => setListView(false)}
+            className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+          >
             <LayoutGrid className="h-5 w-5" />
-        </button>
-        <button className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded">
+          </button>
+          <button
+            onClick={() => setListView(true)}
+            className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+          >
             <Logs className="h-5 w-5" />
-        </button>
+          </button>
         </div>
       </div>
       {/* Products List */}
       <div className="py-2">
         <div className="p-1 h-screen border border-lightBorder dark:border-darkBorder  rounded ">
-          <div className="m-5  border border-lightBorder dark:border-darkBorder  rounded">
-            <div className=" py-3 px-5 gap-5 grid grid-cols-9 place-items-center ">
+          <div
+            className={` ${
+              listView ? "block" : "hidden py-0 px-0"
+            } m-5  border border-lightBorder dark:border-darkBorder  rounded`}
+          >
+            <div
+              className={` py-3 px-5 gap-5 grid grid-cols-9 place-items-center `}
+            >
               <h1 className="w-full truncate col-span-1">Products Id</h1>
               <h1 className="w-full truncate col-span-2">Products Name</h1>
               <div className="w-full col-span-1 place-items-center">
@@ -132,7 +152,7 @@ const ProductList = () => {
             <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
             <div>
               {/* Product Item */}
-              <>
+              <div className={`${listView ? "block" : "hidden"}`}>
                 {/*  */}
                 {filteredProducts.length !== 0 &&
                   filteredProducts.map(
@@ -200,14 +220,52 @@ const ProductList = () => {
                       );
                     }
                   )}
+
                 {filteredProducts.length === 0 && (
                   <div className="place-items-center uppercase text-gray-600 font-semibold py-10">
                     <h1>No Products to display</h1>
                   </div>
                 )}
+
                 {/*  */}
-              </>
+              </div>
             </div>
+          </div>
+
+          {/* Grid View */}
+          <div className={`${listView ? "hidden" : "block"}`}>
+            <div className="grid grid-cols-4 gap-5 p-5">
+              {filteredProducts.length !== 0 &&
+                filteredProducts.map(
+                  ({
+                    _id,
+                    title,
+                    price,
+                    category,
+                    stock,
+                    listingStatus,
+                    image,
+                  }: productDataProps) => {
+                    return (
+                      <ProductCard
+                        key={_id}
+                        image={image}
+                        title={title}
+                        price={price}
+                        stock={stock}
+                        _id={""}
+                        category={""}
+                        listingStatus={false}
+                      />
+                    );
+                  }
+                )}
+            </div>
+            {filteredProducts.length === 0 && (
+              <div className="place-items-center uppercase text-gray-600 font-semibold py-10">
+                <h1>No Products to display</h1>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { AlertCircle } from "lucide-react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import Loader from "./Loader";
+import Loader from "./Loaders/Loader";
 
 interface DeletePopupProps {
   isVisible: boolean;

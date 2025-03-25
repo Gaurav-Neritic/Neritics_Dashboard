@@ -3,7 +3,7 @@ import axios from "axios";
 import { X, SquarePen } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Loader from "../Loader";
+import Loader from "../Loaders/Loader";
 import Image from "next/image";
 
 const StocksTable = () => {

@@ -58,7 +58,7 @@ export async function PUT(request: NextRequest) {
         const updatedProduct = await Product.findByIdAndUpdate(edit,
             {
                 $set: {
-                    name,
+                    title: name,
                     description,
                     price,
                     quantity,
