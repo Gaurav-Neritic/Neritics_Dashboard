@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
+
 
 const OrderList = () => {
   const [activeTab, setActiveTab] = useState("all");
@@ -22,7 +22,7 @@ const OrderList = () => {
       address: "Pune,India",
       date: "21/03/2025",
       price: "₹2760.00",
-      status: "Pending",
+      status: "Processing",
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const OrderList = () => {
     switch (status) {
       case "Completed":
         return "bg-green-100 text-green-600";
-      case "Pending":
+      case "Processing":
         return "bg-yellow-100 text-yellow-600";
       case "Cancelled":
         return "bg-red-100 text-red-500";
@@ -56,7 +56,7 @@ const OrderList = () => {
   return (
     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold ">Order</h1>
+        <h1 className="text-2xl font-semibold uppercase ">Order Lists</h1>
       </div>
       <div className=" border  border-lightBorder dark:border-darkBorder  rounded overflow-hidden">
         {/* Tabs Button */}
@@ -65,25 +65,25 @@ const OrderList = () => {
             <div className="flex">
               <button
                 onClick={() => setActiveTab("all")}
-                className={`px-6 py-4 ${activeTab === "all" ? "border-b text-green-500" : ""}`}
+                className={`px-6 py-4 ${activeTab === "all" ? "border-b-2 border-sky-500 text--500 " : ""}`}
               >
                 All orders
               </button>
               <button
                 onClick={() => setActiveTab("completed")}
-                className={`px-6 py-4 ${activeTab === "completed" ? "border-b text-green-500" : ""}`}
+                className={`px-6 py-4 ${activeTab === "completed" ? "border-b-2   border-green-500 text-green-500" : ""}`}
               >
                 Completed
               </button>
               <button
-                onClick={() => setActiveTab("pending")}
-                className={`px- py-4 ${activeTab === "pending" ? "border-b text-green-500 " : ""}`}
+                onClick={() => setActiveTab("Processing")}
+                className={`px-6 py-4 ${activeTab === "Processing" ? "border-b-2 text-yellow-500 border-yellow-500  " : ""}`}
               >
-                Pending
+                Processing
               </button>
               <button
                 onClick={() => setActiveTab("cancelled")}
-                className={`px-6 py-4 ${activeTab === "cancelled" ? "border-b text-green-500" : ""}`}
+                className={`px-6 py-4 ${activeTab === "cancelled" ? "border-b-2 text-red-500 border-red-500" : ""}`}
               >
                 Cancelled
               </button>
