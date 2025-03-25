@@ -107,7 +107,12 @@ const ProductList = () => {
           </select>
         </div>
       </div>
-      <div className=" p-4 grid place-items-end">
+
+      {/*    Product Button (ListView & CardView) */}
+      <div className="p-5 flex justify-between items-center">
+        <div className=" ">
+          <h1 className="text-2xl">Product Lists</h1>
+        </div>
         <div className="flex gap-3">
           <button
             onClick={() => setListView(false)}
@@ -123,6 +128,7 @@ const ProductList = () => {
           </button>
         </div>
       </div>
+
       {/* Products List */}
       <div className="py-2">
         <div className="p-1 h-screen border border-lightBorder dark:border-darkBorder  rounded ">
