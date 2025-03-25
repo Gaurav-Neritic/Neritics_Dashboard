@@ -1,21 +1,36 @@
 "use client";
 
+import Loader from "@/components/Loader";
 import axios from "axios";
-import { Eraser, FilePenLine, Save } from "lucide-react";
+import { Eraser, FilePenLine, Plus, Save } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-interface productDetails {
-  title: string;
-}
-
 export default function Page({ params }: any) {
+  const router = useRouter();
   const { edit }: any = use(params);
-  const [details, setDetails] = useState({});
+  const [details, setDetails]: any = useState({});
 
-  const { title }: any = details;
-
-  const [name, setName] = useState(title);
+  const [name, setName]: any = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [discount, setDiscount] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [category, setCategory] = useState("");
+  const [type, setType] = useState("");
+  const [stock, setStock] = useState("");
+  const [brandName, setBrandName] = useState("");
+  const [form, setForm] = useState("");
+  const [isAyurvedic, setIsAyurvedic] = useState("");
+  const [container, setContainer] = useState("");
+  const [coo, setCoo] = useState("India");
+  const [hsnCode, setHsnCode] = useState("");
+  const [gst, setGst] = useState("");
+  const [shelfLife, setShelfLife] = useState("");
+  const [suitableFor, setSuitableFor] = useState("");
+  const [publish, setPublish] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function getEditableProduct() {
     try {
@@ -25,6 +40,7 @@ export default function Page({ params }: any) {
       if (response.data.data) {
         setDetails(response.data.data);
         toast.success("Data fetched");
+        console.log(details);
       } else {
         toast.error("Error Fetching Data");
       }
@@ -34,6 +50,48 @@ export default function Page({ params }: any) {
     }
   }
 
+  const handelUpdate = async (e: React.FormEvent) => {
+    const data = {
+      edit,
+      name,
+      description,
+      price,
+      quantity,
+      stock,
+      discount,
+      category,
+      type,
+      brandName,
+      form,
+      isAyurvedic,
+      container,
+      coo,
+      hsnCode,
+      gst,
+      shelfLife,
+      suitableForVegeterian: suitableFor,
+      publish,
+    };
+    try {
+      e.preventDefault();
+      setLoading(true);
+      const response = await axios.put("../api/editProduct", { data });
+
+      if (response.data.data) {
+        toast.success("Product Updated Successfully");
+        setLoading(false);
+        router.push("/productList");
+      } else {
+        toast.error("Error Updating Data");
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("Error Updating products data : ", error);
+      toast.error("Error Updating Data");
+    }
+  };
+
   useEffect(() => {
     try {
       getEditableProduct();
@@ -42,6 +100,30 @@ export default function Page({ params }: any) {
       toast.error("Error Fetching Data");
     }
   }, []);
+
+  useEffect(() => {
+    if (details && Object.keys(details).length !== 0) {
+      setName(details?.title);
+      setDescription(details?.description);
+      setPrice(details?.price);
+      setDiscount(details?.discount);
+      setQuantity(details?.quantity);
+      setStock(details?.stock);
+      setType(details?.type);
+      setCategory(details?.category);
+      setPrice(details?.price);
+      setHsnCode(details?.hsnCode);
+      setGst(details?.gstOnProduct);
+      setShelfLife(details?.shelfLife);
+      setPublish(details?.listingStatus);
+      setBrandName(details?.brand);
+      setIsAyurvedic(details?.ayurvedic);
+      setContainer(details?.containerType);
+      setForm(details?.form);
+      setSuitableFor(details?.suitableForVegeterian);
+      setCoo(details?.countryOfOrigin);
+    }
+  }, [details]);
 
   return (
     <section className="p-5">
@@ -57,7 +139,7 @@ export default function Page({ params }: any) {
             <h1 className="text-3xl font-semibold">Edit A Product</h1>
           </div>
         </div>
-        <form>
+        <form onSubmit={handelUpdate}>
           <div className="p-2">
             <div className="grid grid-cols-2 gap-5 ">
               <div className=" border-gray-400 rounded">
@@ -89,6 +171,10 @@ export default function Page({ params }: any) {
                         <label>Content ( Description )</label>
                         <textarea
                           placeholder="Content Details"
+                          value={description}
+                          onChange={(e) => {
+                            setDescription(e.target.value);
+                          }}
                           rows={5}
                           required
                           className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 mt-2 rounded "
@@ -111,6 +197,10 @@ export default function Page({ params }: any) {
                       <div className="w-full py-2">
                         <label>Product Category</label>
                         <select
+                          value={category}
+                          onChange={(e) => {
+                            setCategory(e.target.value);
+                          }}
                           required
                           className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
                         >
@@ -123,7 +213,13 @@ export default function Page({ params }: any) {
 
                       <div className="w-full py-2">
                         <label>Product Type</label>
-                        <select className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2">
+                        <select
+                          value={type}
+                          onChange={(e) => {
+                            setType(e.target.value);
+                          }}
+                          className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
+                        >
                           <option>Select Type</option>
                           <option>Type 2</option>
                           <option>Type 3</option>
@@ -150,6 +246,10 @@ export default function Page({ params }: any) {
                             <label>Brand Name</label>
                             <input
                               type="text"
+                              value={brandName}
+                              onChange={(e) => {
+                                setBrandName(e.target.value);
+                              }}
                               required
                               placeholder="Brand Name"
                               className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
@@ -158,7 +258,13 @@ export default function Page({ params }: any) {
 
                           <div className="w-full">
                             <label>Form</label>
-                            <select className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 ">
+                            <select
+                              value={form}
+                              onChange={(e) => {
+                                setForm(e.target.value);
+                              }}
+                              className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                            >
                               <option>Capsules</option>
                               <option>Oil</option>
                               <option>Tablets</option>
@@ -170,6 +276,10 @@ export default function Page({ params }: any) {
                             <label>Ayurvedic</label>
                             <select
                               required
+                              value={isAyurvedic}
+                              onChange={(e) => {
+                                setIsAyurvedic(e.target.value);
+                              }}
                               className=" w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded mt-2"
                             >
                               <option>Nature Of Medicine</option>
@@ -182,6 +292,10 @@ export default function Page({ params }: any) {
                             <label>Container</label>
                             <select
                               required
+                              value={container}
+                              onChange={(e) => {
+                                setContainer(e.target.value);
+                              }}
                               className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                             >
                               <option>Container Type</option>
@@ -195,6 +309,10 @@ export default function Page({ params }: any) {
                             <input
                               type="number"
                               required
+                              value={quantity}
+                              onChange={(e) => {
+                                setQuantity(e.target.value);
+                              }}
                               placeholder="Quantity"
                               className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             />
@@ -205,6 +323,8 @@ export default function Page({ params }: any) {
                             <input
                               type="number"
                               required
+                              value={stock}
+                              onChange={(e) => setStock(e.target.value)}
                               placeholder="Stock Available"
                               className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             />
@@ -218,22 +338,6 @@ export default function Page({ params }: any) {
 
               {/* Grid col-2 */}
               <div>
-                {/* Product Images */}
-                {/* <div className="py-5">
-                  <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
-                      Images
-                    </h2>
-                  </div>
-
-                  <Link
-                    href={`/productList/${edit}/${edit + "img"}`}
-                    className="border rounded border-lightBorder dark:border-darkBorder  p-4 "
-                  >
-                    Edit Image
-                  </Link>
-                </div> */}
-
                 {/* Product Pricing */}
                 <div className="py-5">
                   <div className="pb-2">
@@ -250,6 +354,10 @@ export default function Page({ params }: any) {
                             <label>Price (MRP)</label>
                             <input
                               placeholder="MRP Price"
+                              value={price}
+                              onChange={(e) => {
+                                setPrice(e.target.value);
+                              }}
                               required
                               type="number"
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
@@ -259,6 +367,8 @@ export default function Page({ params }: any) {
                             <label>Discount</label>
                             <input
                               placeholder="Discount Price"
+                              value={discount}
+                              onChange={(e) => setDiscount(e.target.value)}
                               required
                               type="number"
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
@@ -285,6 +395,10 @@ export default function Page({ params }: any) {
                           <div>
                             <label>Country Of Origin</label>
                             <select
+                              value={coo}
+                              onChange={(e) => {
+                                setCoo(e.target.value);
+                              }}
                               required
                               className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             >
@@ -299,6 +413,8 @@ export default function Page({ params }: any) {
                             <label>HSN Code</label>
                             <input
                               placeholder="HSN Code"
+                              value={hsnCode}
+                              onChange={(e) => setHsnCode(e.target.value)}
                               required
                               type="number"
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
@@ -308,6 +424,8 @@ export default function Page({ params }: any) {
                           <div>
                             <label>GST (%)</label>
                             <input
+                              value={gst}
+                              onChange={(e) => setGst(e.target.value)}
                               placeholder="GST "
                               required
                               type="number"
@@ -320,6 +438,10 @@ export default function Page({ params }: any) {
                             <label>Shelf Life</label>
                             <input
                               placeholder="Shelf Life (Months)"
+                              value={shelfLife}
+                              onChange={(e) => {
+                                setShelfLife(e.target.value);
+                              }}
                               type="number"
                               min={1}
                               required
@@ -330,9 +452,14 @@ export default function Page({ params }: any) {
                           <div>
                             <label>Suitable For</label>
                             <select
+                              value={suitableFor}
+                              onChange={(e) => {
+                                setSuitableFor(e.target.value);
+                              }}
                               required
                               className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                             >
+                              <option>Edible For </option>
                               <option>Vegeterian </option>
                               <option>Non Vegeterian </option>
                             </select>
@@ -343,8 +470,13 @@ export default function Page({ params }: any) {
                               <label>List Product</label>
                               <select
                                 required
+                                value={publish}
+                                onChange={(e) => {
+                                  setPublish(e.target.value);
+                                }}
                                 className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                               >
+                                <option>Publishing Status</option>
                                 <option>Publish</option>
                                 <option>UnList</option>
                               </select>
@@ -363,10 +495,8 @@ export default function Page({ params }: any) {
                     className="px-4 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
                   >
                     <span className="flex items-center justify-center gap-2">
-                      <Save />
-                      {/* {loading ? "" : <Plus />}
-                {loading ? <Loader title={"Adding..."} /> : "Add Product"} */}
-                      Save
+                      {loading ? "" : <Save />}
+                      {loading ? <Loader title={"Saving..."} /> : "Save"}
                     </span>
                   </button>
                   <button
