@@ -136,9 +136,11 @@ export default function Page({ params }: any) {
           </div>
           <div>
             <p className="text-sm font-normal text-gray-500">
-              Editing... {edit}
+              Product Id - {edit}
             </p>
-            <h1 className="text-3xl font-semibold">Edit A Product</h1>
+            <h1 className="text-[28px] font-semibold capitalize">
+              Editing - <span className="text-xl font-normal ">{name}</span>
+            </h1>
           </div>
         </div>
         <form onSubmit={handelUpdate}>
