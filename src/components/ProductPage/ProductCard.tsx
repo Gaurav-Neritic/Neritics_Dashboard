@@ -18,7 +18,6 @@ const ProductCard = ({
   image,
   title,
   price,
-  category,
   stock,
   listingStatus,
 }: productDataProps) => {
@@ -26,12 +25,16 @@ const ProductCard = ({
   return (
     <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-2">
       <img
-        src={image[0]}
+        src={
+          image.length > 0 ? image[0] : "https://dummyimage.com/600x400/000/fff"
+        }
         alt="image"
         className="w-[500px] h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
       />
       <div className="flex flex-col flex-grow pb-2">
-        <h1 className="mt-2 line-clamp-2 capitalize font-semibold">{title}</h1>
+        <h1 className="mt-2 line-clamp-2 capitalize font-semibold h-12">
+          {title}
+        </h1>
         <h1 className="mt-2 text-md font-normal">
           <span className="font-light"> Status </span> :{" "}
           {listingStatus ? "✅ Published " : "❌ Un-Listed"}
@@ -40,12 +43,9 @@ const ProductCard = ({
           <span className="font-light">Stock</span> :{" "}
           {stock <= 0 ? `❌ ${stock}` : `✅ ${stock}`}
         </h1>
-        <h1 className="mt-2 line-clamp-2 capitalize font-normal">
-          <span className="font-light">Category</span> : {category}
-        </h1>
         <h1 className="mt-2 text-md font-semibold">Price : ₹{price}</h1>
       </div>
-      <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder">
+      <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder dark:border-darkBorder">
         <Link
           href={`/productList/${_id}`}
           className="flex justify-center items-center gap-2 text-green-500 hover:text-green-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm"
