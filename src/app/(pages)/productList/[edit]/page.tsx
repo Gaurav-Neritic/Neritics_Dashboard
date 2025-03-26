@@ -51,6 +51,14 @@ export default function Page({ params }: any) {
   }
 
   const handelUpdate = async (e: React.FormEvent) => {
+    // Checks if the selected types and categorys are defaults
+    if (category === "Select Category") return setCategory("");
+    if (type === "Select Type") return setType("");
+    if (isAyurvedic === "Nature Of Medicine") return setIsAyurvedic("");
+    if (container === "Container Type") return setContainer("");
+    if (suitableFor === "Edible For") return setSuitableFor("");
+    if (publish === "Publishing Status") return setPublish("");
+
     const data = {
       edit,
       name,
@@ -69,7 +77,7 @@ export default function Page({ params }: any) {
       hsnCode,
       gst,
       shelfLife,
-      suitableForVegeterian: suitableFor,
+      suitableFor,
       publish,
     };
     try {

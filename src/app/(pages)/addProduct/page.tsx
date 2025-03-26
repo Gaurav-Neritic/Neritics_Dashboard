@@ -32,7 +32,7 @@ const AddProduct = () => {
   const [shelfLife, setShelfLife] = useState("");
   const [suitableFor, setSuitableFor] = useState("");
   const [publish, setPublish] = useState("");
-  // Loading
+
   const [loading, setLoading] = useState(false);
 
   const handelSubmit = async (e: React.FormEvent) => {

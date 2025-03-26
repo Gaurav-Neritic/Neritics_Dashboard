@@ -1,5 +1,6 @@
 "use client";
 import DeletePoup from "@/components/DeletePoup";
+import Loader from "@/components/Loaders/Loader";
 import ProductCard from "@/components/ProductPage/ProductCard";
 import axios from "axios";
 import {
@@ -13,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+
 interface productDataProps {
   _id: string;
   title: string;
@@ -30,20 +32,32 @@ const ProductList = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function getProducts() {
     try {
       const response = await axios.get("api/getProducts");
       if (response.data.data) {
+        setLoading(true);
         setProductData(response.data.data);
         setFilteredProducts(response.data.data);
         console.log(response.data.data);
       } else {
+        setLoading(false);
         toast.error("Failed to fetch the product data");
       }
-    } catch (error) {
-      console.log("Error Fetching the products", error);
-      toast.error("Failed to fetch the product data");
+    } catch (error: any) {
+      if (error.response.status === 401) {
+        setLoading(true);
+        setTimeout(() => {
+          toast.success("No Products Found");
+          setLoading(false);
+        }, 2000);
+      } else if (error.response.status === 500) {
+        setLoading(false);
+        console.log("Error Fetching the products", error);
+        toast.error("Failed to fetch the product data");
+      }
     }
   }
 
@@ -187,7 +201,9 @@ const ProductList = () => {
                           <div className="col-span-1 w-full place-items-center">
                             <Image
                               src={
-                                image.length >= 0 ? "/placeholder.jpg": image[0]
+                                image.length >= 0
+                                  ? image[0]
+                                  : "/placeholder.jpg"
                               }
                               width={20}
                               height={20}
@@ -237,7 +253,13 @@ const ProductList = () => {
 
                 {filteredProducts.length === 0 && (
                   <div className="place-items-center uppercase text-gray-600 font-semibold py-10">
-                    <h1>No Products to display</h1>
+                    <h1>
+                      {loading ? (
+                        <Loader title="Fetching...." />
+                      ) : (
+                        "No Products Found"
+                      )}
+                    </h1>
                   </div>
                 )}
 

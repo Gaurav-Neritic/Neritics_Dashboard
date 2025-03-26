@@ -7,8 +7,6 @@ export async function PUT(request: NextRequest) {
     try {
         const reqBody = await request.json();
 
-        console.log(reqBody)
-
         const {
             edit,
             name,
@@ -34,7 +32,6 @@ export async function PUT(request: NextRequest) {
         let ayurvedicCheck: boolean;
         let suitableForCheck: boolean;
         let publishCheck: boolean;
-
 
         // Checks for boolean values
         if (isAyurvedic === "True") {
