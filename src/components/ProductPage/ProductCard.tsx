@@ -45,7 +45,7 @@ const ProductCard = ({
         </h1>
         <h1 className="mt-2 text-md font-semibold">Price : ₹{price}</h1>
       </div>
-      <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder">
+      <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder dark:border-darkBorder">
         <Link
           href={`/productList/${_id}`}
           className="flex justify-center items-center gap-2 text-green-500 hover:text-green-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm"
