@@ -19,6 +19,7 @@ interface productDataProps {
   price: number;
   category: string;
   stock: number;
+  discount: number;
   image: [string];
   listingStatus: boolean;
 }
@@ -185,7 +186,11 @@ const ProductList = () => {
                           </h1>
                           <div className="col-span-1 w-full place-items-center">
                             <Image
-                              src={image[0]}
+                              src={
+                                image.length >= 0
+                                  ? image[0]
+                                  : "https://dummyimage.com/600x400/000/fff"
+                              }
                               width={20}
                               height={20}
                               alt="img"
@@ -254,6 +259,7 @@ const ProductList = () => {
                     price,
                     category,
                     stock,
+                    discount,
                     listingStatus,
                     image,
                   }: productDataProps) => {
