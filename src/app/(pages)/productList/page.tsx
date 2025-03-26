@@ -187,7 +187,9 @@ const ProductList = () => {
                           <div className="col-span-1 w-full place-items-center">
                             <Image
                               src={
-                                image.length >= 0 ? "/placeholder.jpg": image[0]
+                                image.length >= 0
+                                  ? "/placeholder.jpg"
+                                  : image[0]
                               }
                               width={20}
                               height={20}
