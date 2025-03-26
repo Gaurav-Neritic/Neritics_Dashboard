@@ -7,7 +7,7 @@ const HelpPage = () => {
       <h1 className="text-3xl font-bold text-center mb-6 uppercase ">
         Need Help?
       </h1>
-      <p className="text-center text-gray-600 mb-8 space-y-3">
+      <p className="text-center  mb-8 space-y-3">
         Welcome to the help center. Here you will find answers to common
         questions and ways to contact support if needed.
       </p>
@@ -15,7 +15,7 @@ const HelpPage = () => {
         {/* Documentation & Guides Section */}
         <div className="mt-10 pt-6 text-center">
           <h2 className="text-xl font-semibold">Documentation & Guides</h2>
-          <p className="text-gray-600 mt-2">
+          <p className="mt-2">
             Explore our step-by-step guides and documentation for detailed
             instructions.
           </p>
@@ -33,7 +33,7 @@ const HelpPage = () => {
           {/* Feedback & Bug Reporting Section */}
           <div className="mt-10 border-t border-lightBorder dark:border-darkBorder pt-6 text-center">
             <h2 className="text-xl font-semibold">Feedback & Bug Reporting</h2>
-            <p className="text-gray-600 mt-2">
+            <p className="mt-2">
               Help us improve by providing feedback or reporting any issues you
               encounter.
             </p>
@@ -43,7 +43,7 @@ const HelpPage = () => {
                 href="mailto: neriticwellness@gamil.com"
                 className="text-red-600"
               >
-                neriticwellness@gamil.com
+                neriticwellness@gmail.com
               </a>
             </div>
           </div>
@@ -51,7 +51,7 @@ const HelpPage = () => {
         {/* Contact Section */}
         <div className="mt-10 border-t border-lightBorder dark:border-darkBorder pt-6 text-center">
           <h2 className="text-xl font-semibold">Still need help?</h2>
-          <p className="text-gray-600 mt-2">Contact our support team.</p>
+          <p className="mt-2">Contact our support team.</p>
           <div className="mt-4 space-y-2">
             <p>
               Email:{" "}
@@ -59,11 +59,11 @@ const HelpPage = () => {
                 href="mailto: neriticwellness@gamil.com"
                 className="text-green-500"
               >
-                neriticwellness@gamil.com
+                neriticwellness@gmail.com
               </a>
             </p>
             <p>
-              Phone: <span className="text-gray-800">+91 84848014597</span>
+              Phone: <span className="">+91 84848014597</span>
             </p>
           </div>
         </div>
