@@ -15,11 +15,13 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
   const [stock, setStock] = useState("");
-  const [mainImage, setMainImage]: any = useState([]);
-  const [primaryImage, setPrimaryImage]: any = useState([]);
-  const [secondImage, setSecondImage]: any = useState([]);
-  const [thirdImage, setThirdImage]: any = useState([]);
-  const [fourthImage, setFourthImage]: any = useState([]);
+  //image
+  const [mainImage, setMainImage] = useState(null);
+  const [primaryImage, setPrimaryImage] = useState(null);
+  const [secondImage, setSecondImage] = useState(null);
+  const [thirdImage, setThirdImage] = useState(null);
+  const [fourthImage, setFourthImage] = useState(null);
+
   const [brandName, setBrandName] = useState("");
   const [form, setForm] = useState("");
   const [isAyurvedic, setIsAyurvedic] = useState("");
@@ -30,7 +32,7 @@ const AddProduct = () => {
   const [shelfLife, setShelfLife] = useState("");
   const [suitableFor, setSuitableFor] = useState("");
   const [publish, setPublish] = useState("");
-
+  // Loading
   const [loading, setLoading] = useState(false);
 
   const handelSubmit = async (e: React.FormEvent) => {
@@ -43,11 +45,13 @@ const AddProduct = () => {
     formData.append("category", category);
     formData.append("type", type);
     formData.append("stock", stock);
-    formData.append("mainImage", mainImage);
-    formData.append("primaryImage", primaryImage);
-    formData.append("secondImage", secondImage);
-    formData.append("thirdImage", thirdImage);
-    formData.append("fourthImage", fourthImage);
+    //image
+    if (mainImage) formData.append("mainImage", mainImage);
+    if (primaryImage) formData.append("primaryImage", primaryImage);
+    if (secondImage) formData.append("secondImage", secondImage);
+    if (thirdImage) formData.append("thirdImage", thirdImage);
+    if (fourthImage) formData.append("fourthImage", fourthImage);
+
     formData.append("brandName", brandName);
     formData.append("form", form);
     formData.append("container", container);
@@ -95,11 +99,11 @@ const AddProduct = () => {
       setStock("");
       setType("");
       setCategory("");
-      setMainImage("");
-      setPrimaryImage("");
-      setSecondImage("");
-      setThirdImage("");
-      setFourthImage("");
+      setMainImage(null);
+      setPrimaryImage(null);
+      setSecondImage(null);
+      setThirdImage(null);
+      setFourthImage(null);
       setPrice("");
       setDiscount("");
       setHsnCode("");
@@ -112,6 +116,13 @@ const AddProduct = () => {
       toast.error("Error Clearing The Fields");
       toast.error("Try Refreshing");
     }
+  };
+  // Image Preview
+  const getPreviewUrl = (file: any) => {
+    if (!file) {
+      return null;
+    }
+    return URL.createObjectURL(file);
   };
 
   return (
@@ -217,11 +228,11 @@ const AddProduct = () => {
             <div className="pb-2">
               <h2 className="text-lg font-semibold antialiased">Features</h2>
             </div>
-
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <div className="grid grid-cols-2 gap-4 place-items-center ">
+                    {/* Brand Name */}
                     <div>
                       <label>Brand Name</label>
                       <input
@@ -235,7 +246,7 @@ const AddProduct = () => {
                         className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
                       />
                     </div>
-
+                    {/* Form */}
                     <div className="w-full">
                       <label>Form</label>
                       <select
@@ -267,7 +278,7 @@ const AddProduct = () => {
                         <option>False</option>
                       </select>
                     </div>
-
+                    {/* Container */}
                     <div>
                       <label>Container</label>
                       <select
@@ -283,7 +294,7 @@ const AddProduct = () => {
                         <option>Strip</option>
                       </select>
                     </div>
-
+                    {/* Quantity In Container */}
                     <div>
                       <label>Quantity In Container </label>
                       <input
@@ -297,7 +308,7 @@ const AddProduct = () => {
                         className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
-
+                    {/* Total Stock */}
                     <div>
                       <label>Total Stock</label>
                       <input
@@ -326,11 +337,11 @@ const AddProduct = () => {
             <div className="pb-2">
               <h2 className="text-lg font-semibold antialiased">Images</h2>
             </div>
-
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <div className="flex items-center justify-center gap-4 mt-2">
+                    {/* Main Image */}
                     <div className="relative">
                       <label className="text-red-500 dark:text-red-300">
                         * Main Image
@@ -344,7 +355,16 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
+                      {mainImage && (
+                        <img
+                          /* @ts-ignore */
+                          src={getPreviewUrl(mainImage)}
+                          alt="Main Image Preview"
+                          className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                        />
+                      )}
                     </div>
+                    {/*  First Image */}
                     <div className="relative">
                       <label className="text-red-500 dark:text-red-300 z-20 ">
                         * First Image
@@ -357,9 +377,18 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
+                      {primaryImage && (
+                        <img
+                          /* @ts-ignore */
+                          src={getPreviewUrl(primaryImage)}
+                          alt="Main Image Preview"
+                          className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                        />
+                      )}
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-4 mt-2">
+                    {/* Second Image */}
                     <div className="relative">
                       <label className="text-red-500 dark:text-red-300 z-20">
                         * Second Image
@@ -372,7 +401,16 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
+                      {secondImage && (
+                        <img
+                          /* @ts-ignore */
+                          src={getPreviewUrl(secondImage)}
+                          alt="Main Image Preview"
+                          className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                        />
+                      )}
                     </div>
+                    {/* Third Image */}
                     <div className="relative">
                       <label className="text-red-500 dark:text-red-300">
                         * Third Image
@@ -386,8 +424,17 @@ const AddProduct = () => {
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                       />
+                      {thirdImage && (
+                        <img
+                          /* @ts-ignore */
+                          src={getPreviewUrl(thirdImage)}
+                          alt="Main Image Preview"
+                          className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                        />
+                      )}
                     </div>
                   </div>
+                  {/* Fourth Image  */}
                   <div className="relative mt-2">
                     <label className="text-red-500 dark:text-red-300">
                       * Fourth Image
@@ -401,6 +448,14 @@ const AddProduct = () => {
                       }}
                       className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
                     />
+                    {fourthImage && (
+                      <img
+                        /* @ts-ignore */
+                        src={getPreviewUrl(fourthImage)}
+                        alt="Main Image Preview"
+                        className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -412,7 +467,7 @@ const AddProduct = () => {
             <div className="pb-2">
               <h2 className="text-lg font-semibold antialiased">Pricing</h2>
             </div>
-
+            {/*  Price (MRP)  */}
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
@@ -430,6 +485,7 @@ const AddProduct = () => {
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
+                    {/* Discount */}
                     <div>
                       <label>Discount</label>
                       <input
@@ -456,11 +512,11 @@ const AddProduct = () => {
                 Manufacturing
               </h2>
             </div>
-
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <div className="grid grid-cols-2 gap-4 place-items-center ">
+                    {/* Country Of Origin */}
                     <div>
                       <label>Country Of Origin</label>
                       <select
@@ -490,7 +546,7 @@ const AddProduct = () => {
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
-
+                    {/* GST  */}
                     <div>
                       <label>GST (%)</label>
                       <input
@@ -504,7 +560,7 @@ const AddProduct = () => {
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       />
                     </div>
-
+                    {/* Shelf Life */}
                     <div>
                       <label>Shelf Life</label>
                       <input
@@ -518,7 +574,7 @@ const AddProduct = () => {
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       />
                     </div>
-
+                    {/* Suitable For */}
                     <div>
                       <label>Suitable For</label>
                       <select
@@ -533,7 +589,7 @@ const AddProduct = () => {
                         <option>Non Vegeterian</option>
                       </select>
                     </div>
-
+                    {/* List Product */}
                     <div className="w-full">
                       <div className="relative">
                         <label>List Product</label>

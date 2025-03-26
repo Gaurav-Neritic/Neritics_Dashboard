@@ -26,7 +26,7 @@ const ProductCard = ({
     <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-2">
       <img
         src={
-          image.length > 0 ? image[0] : "https://dummyimage.com/600x400/000/fff"
+          image.length >= 0 ? "/placeholder.jpg ": image[0]
         }
         alt="image"
         className="w-[500px] h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"

@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 
 const HelpPage = () => {
@@ -39,12 +38,21 @@ const HelpPage = () => {
             </p>
             <div className="mt-4 space-y-2">
               Report a bug:{" "}
+              <div className="flex gap-3 justify-center text-center">
               <a
-                href="mailto: neriticwellness@gamil.com"
+                href="mailto: gaurav@neriticindustries.in"
                 className="text-red-600"
               >
-                neriticwellness@gmail.com
+               gaurav@neriticindustries.in
               </a>
+                |
+              <a
+                href="mailto:  sanket@neriticindustries.in"
+                className="text-red-600"
+              >
+                sanket@neriticindustries.in
+              </a>
+              </div>
             </div>
           </div>
         </div>
