@@ -25,11 +25,11 @@ const ProductCard = ({
   const [deletePopup, setDeletePopup] = useState(false);
   return (
     <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5">
-      <Image
+      <img
         width={20}
         height={20}
         alt="image"
-        src={image.length >= 0 ? image[0] : "/placeholder.jpg"}
+        src={image[0] || "/placeholder.jpg"}
         className="w-[500px] h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
       />
       <div className="flex flex-col flex-grow pb-2">

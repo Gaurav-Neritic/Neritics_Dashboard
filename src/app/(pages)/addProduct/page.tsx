@@ -349,7 +349,6 @@ const AddProduct = () => {
                       <input
                         placeholder="Main Image"
                         type="file"
-                        required
                         onChange={(e: any) => {
                           setMainImage(e.target.files[0]);
                         }}
@@ -370,7 +369,6 @@ const AddProduct = () => {
                         * First Image
                       </label>
                       <input
-                        required
                         type="file"
                         onChange={(e: any) => {
                           setPrimaryImage(e.target.files[0]);
@@ -394,7 +392,6 @@ const AddProduct = () => {
                         * Second Image
                       </label>
                       <input
-                        required
                         type="file"
                         onChange={(e: any) => {
                           setSecondImage(e.target.files[0]);
@@ -416,7 +413,6 @@ const AddProduct = () => {
                         * Third Image
                       </label>
                       <input
-                        required
                         placeholder="Main Image"
                         type="file"
                         onChange={(e: any) => {
@@ -440,7 +436,6 @@ const AddProduct = () => {
                       * Fourth Image
                     </label>
                     <input
-                      required
                       placeholder="Main Image"
                       type="file"
                       onChange={(e: any) => {

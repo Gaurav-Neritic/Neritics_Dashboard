@@ -14,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import placeholderImg from "../../../../public/placeholder.jpg";
 
 interface productDataProps {
   _id: string;
@@ -33,6 +34,7 @@ const ProductList = () => {
   const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
   const [loading, setLoading] = useState(false);
+  const [imgDummy, setImgDummy] = useState("/placeholder.jpg");
 
   async function getProducts() {
     try {
@@ -149,7 +151,7 @@ const ProductList = () => {
 
       {/* Products List */}
       <div className="py-2">
-        <div className="p-1 h-screen border border-lightBorder dark:border-darkBorder  rounded ">
+        <div className="p-1  border border-lightBorder dark:border-darkBorder  rounded ">
           <div
             className={` ${
               listView ? "block" : "hidden py-0 px-0"
@@ -199,12 +201,8 @@ const ProductList = () => {
                             {title}
                           </h1>
                           <div className="col-span-1 w-full place-items-center">
-                            <Image
-                              src={
-                                image.length >= 0
-                                  ? image[0]
-                                  : "/placeholder.jpg"
-                              }
+                            <img
+                              src={image[0] || "/placeholder.jpg"}
                               width={20}
                               height={20}
                               alt="img"
