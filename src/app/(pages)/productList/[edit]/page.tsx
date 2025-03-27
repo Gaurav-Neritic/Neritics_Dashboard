@@ -351,6 +351,9 @@ export default function Page({ params }: any) {
 
               {/* Grid col-2 */}
               <div>
+                {/* Images editing div */}
+                <div></div>
+
                 {/* Product Pricing */}
                 <div className="py-5">
                   <div className="pb-2">
