@@ -202,11 +202,7 @@ const ProductList = () => {
                           </h1>
                           <div className="col-span-1 w-full place-items-center">
                             <Image
-                              src={
-                                image.length >= 0
-                                  ? image[0]
-                                  : "/placeholder.jpg"
-                              }
+                              src={image[0] || "/placeholder.jpg"}
                               width={20}
                               height={20}
                               alt="img"
