@@ -1,8 +1,10 @@
 "use client";
 
 import Loader from "@/components/Loaders/Loader";
+import EditImagePopup from "@/components/ProductPage/EditImagePopup";
 import axios from "axios";
-import { Eraser, FilePenLine, ImageUp, Plus, Save } from "lucide-react";
+import { Eraser, FilePenLine, Images, ImageUp, Plus, Save } from "lucide-react";
+
 import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -32,6 +34,9 @@ export default function Page({ params }: any) {
   const [publish, setPublish] = useState("");
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
+
+  // image edit popup
+  const [popup, setPopup] = useState(false);
 
   async function getEditableProduct() {
     try {
@@ -372,6 +377,7 @@ export default function Page({ params }: any) {
                       })}
                       <div className="absolute h-full w-full top-0 left-0 group-hover:block hidden backdrop-blur-sm border border-lightBorder rounded dark:border-darkBorder">
                         <button
+                          onClick={() => setPopup(!popup)}
                           type="button"
                           className="absolute top-0 left-0 right-0 bottom-0 m-auto text-xl text-center flex items-center justify-center gap-3 font-semibold uppercase cursor-pointer"
                         >
@@ -562,6 +568,12 @@ export default function Page({ params }: any) {
           </div>
         </form>
       </div>
+
+      {popup && (
+       <>
+        <EditImagePopup/>
+       </>
+      )}
     </section>
   );
 }
