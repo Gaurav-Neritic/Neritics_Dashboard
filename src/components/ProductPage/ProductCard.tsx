@@ -2,6 +2,7 @@ import { FilePenLine, Trash2 } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import DeletePoup from "../DeletePoup";
+import Image from "next/image";
 
 interface productDataProps {
   _id: string;
@@ -24,11 +25,11 @@ const ProductCard = ({
   const [deletePopup, setDeletePopup] = useState(false);
   return (
     <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-2">
-      <img
-        src={
-          image.length >= 0 ? "/placeholder.jpg ": image[0]
-        }
+      <Image
+        width={20}
+        height={20}
         alt="image"
+        src={image.length >= 0 ? image[0] : "/placeholder.jpg"}
         className="w-[500px] h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
       />
       <div className="flex flex-col flex-grow pb-2">
