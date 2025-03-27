@@ -3,8 +3,7 @@
 import Loader from "@/components/Loaders/Loader";
 import EditImagePopup from "@/components/ProductPage/EditImagePopup";
 import axios from "axios";
-import { Eraser, FilePenLine, Images, ImageUp, Plus, Save } from "lucide-react";
-
+import { FilePenLine, ImagePlus, Save } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -34,6 +33,7 @@ export default function Page({ params }: any) {
   const [publish, setPublish] = useState("");
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
+  const [imgIndex, setImgIndex] = useState(0);
 
   // image edit popup
   const [popup, setPopup] = useState(false);
@@ -360,31 +360,44 @@ export default function Page({ params }: any) {
                   </div>
                   <div className="border rounded border-lightBorder dark:border-darkBorder p-4 ">
                     <div className="grid grid-cols-2 gap-5 relative group">
-                      {images.map((img, index) => {
+                      {images.map((img: string, index: number) => {
                         return (
                           <div
                             key={index}
-                            className="border border-lightBorder dark:border-darkBorder rounded py-2 place-items-center"
+                            className="border border-lightBorder dark:border-darkBorder rounded py-2 place-items-center relative group"
                           >
-                            <img
-                              src={img}
-                              alt="saved images"
-                              className="h-10 w-10 rounded-full border border-lightBorder dark:border-darkBorder"
-                            />
+                            <div>
+                              <img
+                                src={img}
+                                alt="saved images"
+                                className="h-10 w-10 rounded-full border border-lightBorder dark:border-darkBorder"
+                              />
+                            </div>
+
+                            <div className="absolute top-1 right-1 hidden group-hover:block">
+                              <button
+                                onClick={() => {
+                                  setImgIndex(index);
+                                  setPopup(!popup);
+                                }}
+                                className="text-lightBorder hover:text-darkBorder dark:hover:text-lightBorder dark:text-darkBorder cursor-pointer"
+                              >
+                                <ImagePlus />
+                              </button>
+                            </div>
+
                             <h1>img {index + 1}</h1>
+                            {popup && (
+                              <EditImagePopup
+                                id={edit}
+                                isVisible={popup}
+                                onClose={() => setPopup(false)}
+                                imgIndex={imgIndex}
+                              />
+                            )}
                           </div>
                         );
                       })}
-                      <div className="absolute h-full w-full top-0 left-0 group-hover:block hidden backdrop-blur-sm border border-lightBorder rounded dark:border-darkBorder">
-                        <button
-                          onClick={() => setPopup(!popup)}
-                          type="button"
-                          className="absolute top-0 left-0 right-0 bottom-0 m-auto text-xl text-center flex items-center justify-center gap-3 font-semibold uppercase cursor-pointer"
-                        >
-                          <ImageUp className="h-7 w-7" />
-                          Edit
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -547,7 +560,7 @@ export default function Page({ params }: any) {
                   container === "Container Type" ||
                   suitableFor === "Edible For" ||
                   publish === "Publishing Status" ? (
-                    <div className="animate-pulse text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
+                    <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
                       Note : Please Select Valid Options Only
                     </div>
                   ) : (
@@ -568,12 +581,6 @@ export default function Page({ params }: any) {
           </div>
         </form>
       </div>
-
-      {popup && (
-       <>
-        <EditImagePopup/>
-       </>
-      )}
     </section>
   );
 }

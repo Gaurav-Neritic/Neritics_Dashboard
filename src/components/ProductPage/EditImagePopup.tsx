@@ -1,64 +1,80 @@
-import { Images } from "lucide-react";
-import React from "react";
+"use client";
+import axios from "axios";
+import { Images, ImageUp, X } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
-const EditImagePopup = () => {
+interface editImageProps {
+  isVisible: boolean;
+  onClose: () => void;
+  imgIndex: number;
+  id: string;
+}
+
+const EditImagePopup = ({
+  isVisible,
+  onClose,
+  imgIndex,
+  id,
+}: editImageProps) => {
+  const [editImage, setEditImage] = useState("");
+
+  const handelEditUpload = async () => {
+    const formData = new FormData();
+    formData.append("editImage", editImage);
+    formData.append("imgIndex", imgIndex.toString());
+    formData.append("productId", id);
+    try {
+      const response = await axios.put("../api/editImage", formData);
+
+      if (response.data.data) {
+        toast.success("Image Updated Successfully");
+      } else {
+        toast.error("Error Updating the image");
+      }
+    } catch (error) {
+      console.log("Error Updating the image");
+      toast.error("Failed to upload try again!");
+    }
+  };
+
+  if (!isVisible) return null;
   return (
-    <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg  max-w-2xl  w-full">
-        <div className="flex items-center  gap-4">
-          <Images className="w-8 h-8 " />
-          <h1 className="text-2xl font-semibold ">Edit Image</h1>
+    <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg w-fit">
+        <div className="flex items-center justify-between p-5  gap-4">
+          <div className="flex items-center justify-center  gap-4">
+            <Images className="w-8 h-8 " />
+            <h1 className="text-2xl font-semibold ">Edit Image</h1>
+          </div>
+          <div>
+            <button onClick={() => onClose()} className="cursor-pointer">
+              <X />
+            </button>
+          </div>
         </div>
         {/* Main Image */}
         <div className="p-5">
+          {imgIndex === 0 && <label>* Main Image </label>}
+          {imgIndex === 1 && <label>* First Image </label>}
+          {imgIndex === 2 && <label>* Second Image </label>}
+          {imgIndex === 3 && <label>* Third Image </label>}
+          {imgIndex === 4 && <label>* Fourth Image </label>}
           <div className="flex justify-start items-start gap-6 mb-2 ">
-            <label>* Main Image: </label>
             <input
               type="file"
               required
-              className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
+              onChange={(e: any) => {
+                setEditImage(e.target.files[0]);
+              }}
+              className="p-2 w-fit cursor-pointer rounded border border-lightBorder dark:border-darkBorder"
             />
-            <button className="p-2 border rounded ">Upload</button>
-          </div>
-          {/* First Image  */}
-          <div className="flex justify-start items-start gap-6 mb-2 ">
-            <label>* First Image: </label>
-            <input
-              type="file"
-              required
-              className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
-            />
-            <button className="p-2 border rounded ">Upload</button>
-          </div>
-          {/* Second Image */}
-          <div className="flex justify-start items-start gap-6 mb-2 ">
-            <label>* Second Image: </label>
-            <input
-              type="file"
-              required
-              className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
-            />
-            <button className="p-2 border rounded ">Upload</button>
-          </div>
-          {/* Third Image */}
-          <div className="flex justify-start items-start gap-6 mb-2 ">
-            <label>* Third Image: </label>
-            <input
-              type="file"
-              required
-              className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
-            />
-            <button className="p-2 border rounded ">Upload</button>
-          </div>
-          {/* Fourth */}
-          <div className="flex justify-start items-start gap-6 mb-2 ">
-            <label>* Fourth Image: </label>
-            <input
-              type="file"
-              required
-              className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
-            />
-            <button className="p-2 border rounded ">Upload</button>
+            <button
+              onClick={handelEditUpload}
+              className="p-2 border border-lightBorder dark:border-darkBorder text-green-500 hover:text-green-600  rounded cursor-pointer"
+            >
+              <ImageUp />
+            </button>
           </div>
         </div>
       </div>
