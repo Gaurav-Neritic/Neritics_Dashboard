@@ -2,7 +2,8 @@
 
 import Loader from "@/components/Loaders/Loader";
 import axios from "axios";
-import { Eraser, FilePenLine, ImageUp, Plus, Save } from "lucide-react";
+import { Eraser, FilePenLine, Images, ImageUp, Plus, Save } from "lucide-react";
+
 import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -32,6 +33,9 @@ export default function Page({ params }: any) {
   const [publish, setPublish] = useState("");
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
+
+  // image edit popup
+  const [popup, setPopup] = useState(false);
 
   async function getEditableProduct() {
     try {
@@ -380,6 +384,7 @@ export default function Page({ params }: any) {
                       })}
                       <div className="absolute h-full w-full top-0 left-0 group-hover:block hidden backdrop-blur-sm border border-lightBorder rounded dark:border-darkBorder">
                         <button
+                          onClick={() => setPopup(!popup)}
                           type="button"
                           className="absolute top-0 left-0 right-0 bottom-0 m-auto text-xl text-center flex items-center justify-center gap-3 font-semibold uppercase cursor-pointer"
                         >
@@ -567,6 +572,79 @@ export default function Page({ params }: any) {
           </div>
         </form>
       </div>
+
+      {popup && (
+        <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg  max-w-2xl  w-full">
+            <div className="flex items-center  gap-4">
+              <Images className="w-5 h-5 " />
+              <h1>Edit Image</h1>
+            </div>
+              {/* Main Image */}
+              <div className="p-5">
+            <div className="flex justify-start items-start gap-6 mb-2 ">
+            <label>* Main Image: </label>
+              <input
+                type="file"
+                required
+                className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
+              />
+               <button className="p-2 border rounded ">
+                 Upload
+               </button>
+            </div>
+              {/* First Image  */}
+              <div className="flex justify-start items-start gap-6 mb-2 ">
+            <label>* First Image: </label>
+              <input
+                type="file"
+                required
+                className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
+              />
+               <button className="p-2 border rounded ">
+                 Upload
+               </button>
+            </div>
+            {/* Second Image */}
+            <div className="flex justify-start items-start gap-6 mb-2 ">
+            <label>* Second Image: </label>
+              <input
+                type="file"
+                required
+                className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
+              />
+               <button className="p-2 border rounded ">
+                 Upload
+               </button>
+            </div>
+            {/* Third Image */}
+            <div className="flex justify-start items-start gap-6 mb-2 ">
+            <label>* Third Image: </label>
+              <input
+                type="file"
+                required
+                className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
+              />
+               <button className="p-2 border rounded ">
+                 Upload
+               </button>
+            </div>
+            {/* Fourth */}
+            <div className="flex justify-start items-start gap-6 mb-2 ">
+            <label>* Fourth Image: </label>
+              <input
+                type="file"
+                required
+                className="p-2 w-fit  rounded border border-lightBorder dark:border-darkBorder"
+              />
+               <button className="p-2 border rounded ">
+                 Upload
+               </button>
+            </div>
+              </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
