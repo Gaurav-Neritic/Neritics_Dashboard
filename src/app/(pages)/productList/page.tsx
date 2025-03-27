@@ -149,7 +149,7 @@ const ProductList = () => {
 
       {/* Products List */}
       <div className="py-2">
-        <div className="p-1  border border-lightBorder dark:border-darkBorder  rounded ">
+        <div className="p-1 min-h-screen border border-lightBorder dark:border-darkBorder  rounded ">
           <div
             className={` ${
               listView ? "block" : "hidden py-0 px-0"

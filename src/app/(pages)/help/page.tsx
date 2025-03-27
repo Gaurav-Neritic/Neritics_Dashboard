@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const HelpPage = () => {
   return (
-    <div className=" p-5">
+    <div className="p-5">
       <h1 className="text-3xl font-bold text-center mb-6 uppercase ">
         Need Help?
       </h1>
@@ -12,7 +12,7 @@ const HelpPage = () => {
       </p>
       <div className="p-6 border border-lightBorder dark:border-darkBorder  rounded">
         {/* Documentation & Guides Section */}
-        <div className="mt-10 pt-6 text-center">
+        <div className="pt-4 text-center">
           <h2 className="text-xl font-semibold">Documentation & Guides</h2>
           <p className="mt-2">
             Explore our step-by-step guides and documentation for detailed
@@ -39,19 +39,19 @@ const HelpPage = () => {
             <div className="mt-4 space-y-2">
               Report a bug:{" "}
               <div className="flex gap-3 justify-center text-center">
-              <a
-                href="mailto: gaurav@neriticindustries.in"
-                className="text-red-600"
-              >
-               gaurav@neriticindustries.in
-              </a>
+                <a
+                  href="mailto: gaurav@neriticindustries.in"
+                  className="text-red-600"
+                >
+                  gaurav@neriticindustries.in
+                </a>
                 |
-              <a
-                href="mailto:  sanket@neriticindustries.in"
-                className="text-red-600"
-              >
-                sanket@neriticindustries.in
-              </a>
+                <a
+                  href="mailto:  sanket@neriticindustries.in"
+                  className="text-red-600"
+                >
+                  sanket@neriticindustries.in
+                </a>
               </div>
             </div>
           </div>

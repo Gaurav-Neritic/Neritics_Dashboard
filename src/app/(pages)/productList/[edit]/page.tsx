@@ -2,7 +2,7 @@
 
 import Loader from "@/components/Loaders/Loader";
 import axios from "axios";
-import { Eraser, FilePenLine, Plus, Save } from "lucide-react";
+import { Eraser, FilePenLine, ImageUp, Plus, Save } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -31,6 +31,7 @@ export default function Page({ params }: any) {
   const [suitableFor, setSuitableFor] = useState("");
   const [publish, setPublish] = useState("");
   const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState([]);
 
   async function getEditableProduct() {
     try {
@@ -132,6 +133,7 @@ export default function Page({ params }: any) {
         details?.suitableForVegeterian ? "Vegeterian" : "Non Vegeterian"
       );
       setCoo(details?.countryOfOrigin);
+      setImages(details?.image);
     }
   }, [details]);
 
@@ -350,9 +352,44 @@ export default function Page({ params }: any) {
               </div>
 
               {/* Grid col-2 */}
+
               <div>
                 {/* Images editing div */}
-                <div></div>
+                <div className="py-5">
+                  <div className="pb-2">
+                    <h2 className="text-lg font-semibold antialiased">
+                      Images
+                    </h2>
+                  </div>
+                  <div className="border rounded border-lightBorder dark:border-darkBorder p-4 ">
+                    <div className="grid grid-cols-2 gap-5 relative group">
+                      {images.map((img, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="border border-lightBorder dark:border-darkBorder rounded py-2 place-items-center"
+                          >
+                            <img
+                              src={img}
+                              alt="saved images"
+                              className="h-10 w-10 rounded-full border border-lightBorder dark:border-darkBorder"
+                            />
+                            <h1>img {index + 1}</h1>
+                          </div>
+                        );
+                      })}
+                      <div className="absolute h-full w-full top-0 left-0 group-hover:block hidden backdrop-blur-sm border border-lightBorder rounded dark:border-darkBorder">
+                        <button
+                          type="button"
+                          className="absolute top-0 left-0 right-0 bottom-0 m-auto text-xl text-center flex items-center justify-center gap-3 font-semibold uppercase cursor-pointer"
+                        >
+                          <ImageUp className="h-7 w-7" />
+                          Edit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Product Pricing */}
                 <div className="py-5">
