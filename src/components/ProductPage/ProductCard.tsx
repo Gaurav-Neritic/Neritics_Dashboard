@@ -2,7 +2,6 @@ import { FilePenLine, Trash2 } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import DeletePoup from "../DeletePoup";
-import Image from "next/image";
 
 interface productDataProps {
   _id: string;
