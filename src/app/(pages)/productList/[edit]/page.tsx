@@ -52,14 +52,6 @@ export default function Page({ params }: any) {
   }
 
   const handelUpdate = async (e: React.FormEvent) => {
-    // Checks if the selected types and categorys are defaults
-    if (category === "Select Category") return setCategory("");
-    if (type === "Select Type") return setType("");
-    if (isAyurvedic === "Nature Of Medicine") return setIsAyurvedic("");
-    if (container === "Container Type") return setContainer("");
-    if (suitableFor === "Edible For") return setSuitableFor("");
-    if (publish === "Publishing Status") return setPublish("");
-
     const data = {
       edit,
       name,
@@ -216,7 +208,7 @@ export default function Page({ params }: any) {
                             setCategory(e.target.value);
                           }}
                           required
-                          className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
+                          className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                         >
                           <option>Select Category</option>
                           <option>Category 2</option>
@@ -232,7 +224,7 @@ export default function Page({ params }: any) {
                           onChange={(e) => {
                             setType(e.target.value);
                           }}
-                          className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
+                          className="block w-full border border-lightBorder dark:border-darkBorder dark:bg-darkMode outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
                         >
                           <option>Select Type</option>
                           <option>Type 2</option>
@@ -277,7 +269,7 @@ export default function Page({ params }: any) {
                               onChange={(e) => {
                                 setForm(e.target.value);
                               }}
-                              className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                              className=" w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2 "
                             >
                               <option>Capsules</option>
                               <option>Oil</option>
@@ -294,7 +286,7 @@ export default function Page({ params }: any) {
                               onChange={(e) => {
                                 setIsAyurvedic(e.target.value);
                               }}
-                              className=" w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded mt-2"
+                              className=" w-full border border-lightBorder dark:border-darkBorder outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2"
                             >
                               <option>Nature Of Medicine</option>
                               <option>True</option>
@@ -310,7 +302,7 @@ export default function Page({ params }: any) {
                               onChange={(e) => {
                                 setContainer(e.target.value);
                               }}
-                              className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                              className=" w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2 "
                             >
                               <option>Container Type</option>
                               <option>Bottle</option>
@@ -453,7 +445,7 @@ export default function Page({ params }: any) {
                                 setCoo(e.target.value);
                               }}
                               required
-                              className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:bg-darkMode"
                             >
                               <option>India</option>
                               <option>USA</option>
@@ -498,7 +490,7 @@ export default function Page({ params }: any) {
                               type="number"
                               min={1}
                               required
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
                             />
                           </div>
 
@@ -510,7 +502,7 @@ export default function Page({ params }: any) {
                                 setSuitableFor(e.target.value);
                               }}
                               required
-                              className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                              className="w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2"
                             >
                               <option>Edible For</option>
                               <option>Vegeterian</option>
@@ -527,7 +519,7 @@ export default function Page({ params }: any) {
                                 onChange={(e) => {
                                   setPublish(e.target.value);
                                 }}
-                                className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                                className="w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2  "
                               >
                                 <option>Publishing Status</option>
                                 <option>Publish</option>
@@ -542,25 +534,28 @@ export default function Page({ params }: any) {
                 </div>
 
                 {/* Add Product Button */}
-                <div className="py-5 flex gap-3">
-                  <button
-                    type="submit"
-                    className="px-4 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      {loading ? "" : <Save />}
-                      {loading ? <Loader title={"Saving..."} /> : "Save"}
-                    </span>
-                  </button>
-                  <button
-                    type="reset"
-                    className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      <Eraser />
-                      Clear Fields
-                    </span>
-                  </button>
+                <div className="py-3">
+                  {category === "Select Category" ||
+                  type === "Select Type" ||
+                  isAyurvedic === "Nature Of Medicine" ||
+                  container === "Container Type" ||
+                  suitableFor === "Edible For" ||
+                  publish === "Publishing Status" ? (
+                    <div className="animate-pulse text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
+                      Note : Please Select Valid Options Only
+                    </div>
+                  ) : (
+                    <button
+                      type="submit"
+                      title="Save Updates"
+                      className={`px-4 py-2 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400`}
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        {loading ? "" : <Save />}
+                        {loading ? <Loader title={"Saving..."} /> : "Save"}
+                      </span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
