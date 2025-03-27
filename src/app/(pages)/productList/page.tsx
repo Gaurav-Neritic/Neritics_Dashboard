@@ -14,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import placeholderImg from "../../../../public/placeholder.jpg";
 
 interface productDataProps {
   _id: string;
@@ -33,6 +34,7 @@ const ProductList = () => {
   const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
   const [loading, setLoading] = useState(false);
+  const [imgDummy, setImgDummy] = useState("/placeholder.jpg");
 
   async function getProducts() {
     try {
@@ -149,7 +151,7 @@ const ProductList = () => {
 
       {/* Products List */}
       <div className="py-2">
-        <div className="p-1 h-screen border border-lightBorder dark:border-darkBorder  rounded ">
+        <div className="p-1  border border-lightBorder dark:border-darkBorder  rounded ">
           <div
             className={` ${
               listView ? "block" : "hidden py-0 px-0"
@@ -202,13 +204,8 @@ const ProductList = () => {
                             <Image
                               src={
                                 image.length >= 0
-<<<<<<< HEAD
-                                  ? "/placeholder.jpg"
-                                  : image[0]
-=======
                                   ? image[0]
                                   : "/placeholder.jpg"
->>>>>>> 74721d21f76007abe2ad1c2d1027a85e5edce8dc
                               }
                               width={20}
                               height={20}
@@ -275,7 +272,7 @@ const ProductList = () => {
 
           {/* Grid View */}
           <div className={`${listView ? "hidden" : "block"}`}>
-            <div className="grid grid-cols-4 gap-5 p-5">
+            <div className="grid grid-cols-3 gap-5 p-5">
               {filteredProducts.length !== 0 &&
                 filteredProducts.map(
                   ({

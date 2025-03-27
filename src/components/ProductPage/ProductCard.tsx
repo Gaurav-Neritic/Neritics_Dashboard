@@ -24,27 +24,30 @@ const ProductCard = ({
 }: productDataProps) => {
   const [deletePopup, setDeletePopup] = useState(false);
   return (
-    <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-2">
-      <Image
+    <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5">
+      <img
         width={20}
         height={20}
         alt="image"
-        src={image.length >= 0 ? image[0] : "/placeholder.jpg"}
+        src={image[0] || "/placeholder.jpg"}
         className="w-[500px] h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
       />
       <div className="flex flex-col flex-grow pb-2">
-        <h1 className="mt-2 line-clamp-2 capitalize font-semibold h-12">
+        <h1 className="mt-2 line-clamp-2 capitalize text-xl font-semibold h-12">
           {title}
         </h1>
         <h1 className="mt-2 text-md font-normal">
-          <span className="font-light"> Status </span> :{" "}
+          <span className="font-light dark:text-gray-300"> Status </span> :{" "}
           {listingStatus ? "✅ Published " : "❌ Un-Listed"}
         </h1>
         <h1 className="mt-2 text-md font-normal">
-          <span className="font-light">Stock</span> :{" "}
+          <span className="font-light dark:text-gray-300">Stock</span> :{" "}
           {stock <= 0 ? `❌ ${stock}` : `✅ ${stock}`}
         </h1>
-        <h1 className="mt-2 text-md font-semibold">Price : ₹{price}</h1>
+        <h1 className="mt-2 text-md font-semibold">
+          <span className="font-light dark:text-gray-300">Price</span> : ₹
+          {price}
+        </h1>
       </div>
       <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder dark:border-darkBorder">
         <Link

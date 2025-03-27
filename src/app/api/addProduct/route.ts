@@ -54,10 +54,11 @@ export async function POST(request: NextRequest) {
 
         if (!mainImg || !primImg || !secImg || !thirdImg || !fourthImg) {
             return NextResponse.json(
-                { error: "Failed to upload the images on cloudinary" },
-                { status: 405 }
+                { error: "Failed to upload image on cloudinary " },
+                { status: 403 }
             );
         }
+
 
         const imageArray = [mainImg?.secure_url, primImg?.secure_url, secImg?.secure_url, thirdImg?.secure_url, fourthImg?.secure_url]
 

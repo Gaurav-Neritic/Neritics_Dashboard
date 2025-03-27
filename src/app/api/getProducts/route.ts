@@ -15,6 +15,7 @@ export async function GET() {
             return NextResponse.json({ error: "No Products Found" }, { status: 401 })
         }
 
+
         if (!getProducts) {
             return NextResponse.json({ error: "Failed to get produccts" }, { status: 402 })
         }
