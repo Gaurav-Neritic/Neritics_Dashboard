@@ -75,11 +75,14 @@ npm run dev
 
 ### Dashboard
 
-![Dashboard](/public/ReadmeImages//AddProducts.png)
+![Dashboard]()
 
 ### Add Products
 
-![Add Products](/public/ReadmeImages/AddProducts.png)
+![Add Products]()
+
+### Products Lits 
+![Product Lits]()
 
 ## Contributing
 
