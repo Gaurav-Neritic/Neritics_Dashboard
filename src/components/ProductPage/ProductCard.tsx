@@ -29,10 +29,10 @@ const ProductCard = ({
         height={20}
         alt="image"
         src={image[0] || "/placeholder.jpg"}
-        className="w-[500px] h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
+        className="w-auto h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
       />
       <div className="flex flex-col flex-grow pb-2">
-        <h1 className="mt-2 line-clamp-2 capitalize text-xl font-semibold h-12">
+        <h1 className="mt-2 line-clamp-2 capitalize text-xl font-semibold h-14">
           {title}
         </h1>
         <h1 className="mt-2 text-md font-normal">
