@@ -95,14 +95,14 @@ const EditImagePopup = ({
               * 4 <sup>th</sup> Fourth Image{" "}
             </label>
           )}
-          <div className="flex justify-start items-center gap-6">
+          <div className="flex justify-start items-center py-3 gap-6">
             <input
               type="file"
               required
               onChange={(e: any) => {
                 setEditImage(e.target.files[0]);
               }}
-              className="p-2 w-fit cursor-pointer rounded border border-lightBorder dark:border-darkBorder"
+              className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-300 file:hover:bg-gray-200 file:text-black rounded"
             />
             <button
               onClick={handelEditUpload}

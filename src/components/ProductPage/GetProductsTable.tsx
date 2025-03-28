@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const GetProductsTable = () => {
-    return (
-        <div>GetProductsTable</div>
-    )
-}
+    return <div>GetProductsTable</div>;
+};
 
-export default GetProductsTable
+export default GetProductsTable;

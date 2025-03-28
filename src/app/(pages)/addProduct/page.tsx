@@ -343,7 +343,7 @@ const AddProduct = () => {
                   <div className="flex items-center justify-center gap-4 mt-2">
                     {/* Main Image */}
                     <div className="relative">
-                      <label className="text-red-500 dark:text-red-300">
+                      <label className="text-neutral-700 dark:text-gray-300">
                         * Main Image
                       </label>
                       <input
@@ -353,7 +353,8 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setMainImage(e.target.files[0]);
                         }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                        className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
                       />
                       {mainImage && (
                         <img
@@ -366,8 +367,8 @@ const AddProduct = () => {
                     </div>
                     {/*  First Image */}
                     <div className="relative">
-                      <label className="text-red-500 dark:text-red-300 z-20 ">
-                        * First Image
+                      <label className="text-neutral-700 dark:text-gray-300 z-20 ">
+                        * 1<sup>st</sup> Image
                       </label>
                       <input
                         type="file"
@@ -375,7 +376,8 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setPrimaryImage(e.target.files[0]);
                         }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                        className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
                       />
                       {primaryImage && (
                         <img
@@ -390,8 +392,8 @@ const AddProduct = () => {
                   <div className="flex items-center justify-center gap-4 mt-2">
                     {/* Second Image */}
                     <div className="relative">
-                      <label className="text-red-500 dark:text-red-300 z-20">
-                        * Second Image
+                      <label className="text-neutral-700 dark:text-gray-300 z-20">
+                        * 2<sup>nd</sup> Image
                       </label>
                       <input
                         type="file"
@@ -399,7 +401,8 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setSecondImage(e.target.files[0]);
                         }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                        className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
                       />
                       {secondImage && (
                         <img
@@ -412,8 +415,8 @@ const AddProduct = () => {
                     </div>
                     {/* Third Image */}
                     <div className="relative">
-                      <label className="text-red-500 dark:text-red-300">
-                        * Third Image
+                      <label className="text-neutral-700 dark:text-gray-300">
+                        * 3<sup>rd</sup> Image
                       </label>
                       <input
                         placeholder="Main Image"
@@ -422,7 +425,8 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setThirdImage(e.target.files[0]);
                         }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                        className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
                       />
                       {thirdImage && (
                         <img
@@ -436,8 +440,8 @@ const AddProduct = () => {
                   </div>
                   {/* Fourth Image  */}
                   <div className="relative mt-2">
-                    <label className="text-red-500 dark:text-red-300">
-                      * Fourth Image
+                    <label className="text-neutral-700 dark:text-gray-300">
+                      * 4<sup>th</sup> Image
                     </label>
                     <input
                       placeholder="Main Image"
@@ -446,7 +450,8 @@ const AddProduct = () => {
                       onChange={(e: any) => {
                         setFourthImage(e.target.files[0]);
                       }}
-                      className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded cursor-pointer bg-gray-00 "
+                      className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
                     />
                     {fourthImage && (
                       <img

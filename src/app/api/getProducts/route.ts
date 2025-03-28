@@ -9,7 +9,6 @@ export async function GET() {
 
         const getProducts = await Product.find();
 
-        console.log(getProducts.length);
 
         if (getProducts.length === 0) {
             return NextResponse.json({ error: "No Products Found" }, { status: 401 })

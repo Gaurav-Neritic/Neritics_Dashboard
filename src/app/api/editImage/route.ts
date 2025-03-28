@@ -10,7 +10,6 @@ export async function PUT(request: NextRequest) {
         const imageFile = formData.get('editImage');
         const imageIndex = formData.get('imgIndex');
         const id = formData.get('productId');
-
         const index = Number(imageIndex);
 
         if (!imageFile || !imageIndex) {

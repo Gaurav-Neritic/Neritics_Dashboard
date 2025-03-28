@@ -32,7 +32,6 @@ const ProductList = () => {
   const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
   const [loading, setLoading] = useState(false);
-  const [imgDummy, setImgDummy] = useState("/placeholder.jpg");
 
   async function getProducts() {
     try {
@@ -151,9 +150,8 @@ const ProductList = () => {
       <div className="py-2">
         <div className="p-1 min-h-screen border border-lightBorder dark:border-darkBorder  rounded ">
           <div
-            className={` ${
-              listView ? "block" : "hidden py-0 px-0"
-            } m-5  border border-lightBorder dark:border-darkBorder  rounded`}
+            className={` ${listView ? "block" : "hidden py-0 px-0"
+              } m-5  border border-lightBorder dark:border-darkBorder  rounded`}
           >
             <div
               className={` py-3 px-5 gap-5 grid grid-cols-9 place-items-center `}
@@ -204,7 +202,7 @@ const ProductList = () => {
                               width={20}
                               height={20}
                               alt="img"
-                              className=" h-7 w-7 rounded"
+                              className=" h-10 w-10 rounded bg-lightBorder dark:bg-darkBorder"
                             />
                           </div>
 

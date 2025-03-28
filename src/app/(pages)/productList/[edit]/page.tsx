@@ -556,11 +556,11 @@ export default function Page({ params }: any) {
                 {/* Add Product Button */}
                 <div className="py-3">
                   {category === "Select Category" ||
-                  type === "Select Type" ||
-                  isAyurvedic === "Nature Of Medicine" ||
-                  container === "Container Type" ||
-                  suitableFor === "Edible For" ||
-                  publish === "Publishing Status" ? (
+                    type === "Select Type" ||
+                    isAyurvedic === "Nature Of Medicine" ||
+                    container === "Container Type" ||
+                    suitableFor === "Edible For" ||
+                    publish === "Publishing Status" ? (
                     <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
                       Note : Please Select Valid Options Only
                     </div>
