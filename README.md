@@ -37,10 +37,9 @@ Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provide
 - Analyze customer demographics and order frequency.
 - Download analytics reports for strategic planning.
 
-### 🔐 User Authentication & Roles
+### 🔐 User Authentication
 
 - Secure login with OAuth authentication.
-- Role-based access control to manage admin privileges.
 - Multi-factor authentication (MFA) support.
 - Activity logs to track administrative actions.
 
@@ -73,9 +72,9 @@ Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provide
 
 ### Deployment & Hosting
 
-- **Hosting Platforms:** AWS / Vercel
+- **Hosting Platforms:**  Hostinger / Vercel
 - **CI/CD Integration:** GitHub Actions
-- **Performance Monitoring:** LogRocket, Sentry
+- **Performance Monitoring:**  Vercel, LogRocket, Sentry
 
 ---
 
@@ -86,13 +85,13 @@ Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provide
 - Node.js (v16 or higher)
 - MongoDB Atlas or local MongoDB instance
 - Cloudinary account (for image uploads)
-- AWS / Vercel account for hosting
+- Hostinger / Vercel account for hosting
 
 ### Setup
 
 ```
 # Clone the repository
-git clone https://github.com/your-repo/neritic-wellness-admin.git
+git clone https://github.com/Gaurav-Neritic/Neritics_Dashboard
 cd neritic-wellness-admin
 
 # Install dependencies
@@ -110,11 +109,10 @@ npm run dev
 Ensure you configure the `.env` file with the required API keys and database credentials:
 
 ```
-MONGODB_URI=your_mongodb_connection_string
-CLOUDINARY_URL=your_cloudinary_url
-NEXT_PUBLIC_API_BASE_URL=your_backend_api_url
-OAUTH_CLIENT_ID=your_oauth_client_id
-OAUTH_CLIENT_SECRET=your_oauth_client_secret
+MONGO_CLOUD_URL=" "
+CLOUDINARY_CLOUD_NAME=" "
+CLOUDINARY_API_KEY=" "
+CLOUDINARY_SECRET_KEY=" "
 ```
 
 ---
