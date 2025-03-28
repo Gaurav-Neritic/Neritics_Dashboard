@@ -132,7 +132,101 @@ CLOUDINARY_SECRET_KEY=" "
 ![Product Lists](/public/ReadmeImages/ProductLists.png)
 
 ---
+## 📌 API Documentation
 
+
+### **Create Product**
+
+**Endpoint:**  `/api/products`  **Method:**  `POST`  **Content-Type:**  `multipart/form-data`
+
+#### **Request Parameters**
+
+The API expects a `multipart/form-data` request containing the following fields:
+
+### **Response Format**  
+
+| Field             | Type    | Description                                  |
+|------------------|--------|----------------------------------------------|
+| ✅ **success**      | Boolean | Indicates whether the request was successful |
+| 💬 **message**      | String  | A message describing the request status     |
+| 📦 **product**      | Object  | Contains the details of the created product |
+| 🆔 **product.id**   | String  | Unique identifier for the product          |
+| 🏷️ **product.title**  | String  | Title of the created product             |
+| 📖 **product.description** | String  | Detailed description of the product |
+| 💰 **product.price**  | Number  | Price of the product                     |
+| 📊 **product.quantity** | Number  | Available quantity                     |
+| 🔖 **product.discount** | Number  | Discount applied                      |
+| 📂 **product.category** | String  | Category of the product               |
+| 📌 **product.type** | String  | Subcategory of the product (if applicable) |
+| 📦 **product.stock** | Number  | Stock count                              |
+| 🏭 **product.brandName** | String  | Brand of the product                |
+| 💊 **product.form** | String  | Form of the product (e.g., tablet, liquid) |
+| 🏷️ **product.gst** | Number  | GST applicable on the product             |
+| 🔢 **product.hsnCode** | String  | HSN code for tax purposes             |
+| 🌍 **product.coo** | String  | Country of origin                        |
+| ⏳ **product.shelfLife** | String  | Shelf life of the product             |
+| 🌿 **product.isAyurvedic** | Boolean | Whether the product is Ayurvedic   |
+| 🥦 **product.suitableFor** | String  | Suitable for Vegetarians (Vegetarian/Non-Vegetarian) |
+| 📢 **product.publish** | String  | Publish status (Publish/Draft)         |
+| 🏺 **product.container** | String  | Container type                       |
+| 🖼️ **product.mainImage** | String  | URL of the main product image        |
+| 🖼️ **product.primaryImage** | String  | URL of the primary product image  |
+| 🖼️ **product.secondImage** | String  | URL of the secondary product image |
+| 🖼️ **product.thirdImage** | String  | URL of the third product image     |
+| 🖼️ **product.fourthImage** | String  | URL of the fourth product image    |
+| ⏰ **createdAt**   | String  | Timestamp when the product was created    |
+| 🔄 **updatedAt**   | String  | Timestamp when the product was last updated |
+
+
+
+#### **Response**
+
+-   **Success (200 OK):**
+    
+
+```json
+{
+  "data": {
+    "_id": "65abc12345d678ef90gh1234",
+    "title": "Herbal Tea",
+    "description": "Organic herbal tea with Ayurvedic ingredients",
+    "price": 499,
+    "discount": 10,
+    "quantity": 50,
+    "category": "Beverages",
+    "brand": "Neritic Wellness",
+    "image": [
+      "https://res.cloudinary.com/demo/image/upload/mainImage.jpg",
+      "https://res.cloudinary.com/demo/image/upload/primaryImage.jpg",
+      "https://res.cloudinary.com/demo/image/upload/secondImage.jpg",
+      "https://res.cloudinary.com/demo/image/upload/thirdImage.jpg",
+      "https://res.cloudinary.com/demo/image/upload/fourthImage.jpg"
+    ],
+    "listingStatus": true,
+    "hsnCode": "123456",
+    "gstOnProduct": 5,
+    "countryOfOrigin": "India",
+    "shelfLife": "12 months",
+    "suitableForVegeterian": true,
+    "ayurvedic": true,
+    "containerType": "Box"
+  }
+}
+
+```
+
+-   **Error Responses:**
+    
+    -   `402` - Missing required fields
+        
+    -   `403` - Image upload failure
+        
+    -   `401` - Database insertion failure
+        
+    -   `500` - Internal server error
+        
+
+----------
 ## 🤝 Contributing
 
 We welcome contributions from the community! If you'd like to contribute:
