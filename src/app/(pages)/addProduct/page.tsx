@@ -357,8 +357,7 @@ const AddProduct = () => {
                       />
                       {mainImage && (
                         <img
-                          /* @ts-ignore */
-                          src={getPreviewUrl(mainImage)}
+                          src={getPreviewUrl(mainImage) || ""}
                           alt="Main Image Preview"
                           className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                         />
@@ -379,8 +378,7 @@ const AddProduct = () => {
                       />
                       {primaryImage && (
                         <img
-                          /* @ts-ignore */
-                          src={getPreviewUrl(primaryImage)}
+                          src={getPreviewUrl(primaryImage) || ""}
                           alt="Main Image Preview"
                           className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                         />
@@ -403,8 +401,7 @@ const AddProduct = () => {
                       />
                       {secondImage && (
                         <img
-                          /* @ts-ignore */
-                          src={getPreviewUrl(secondImage)}
+                          src={getPreviewUrl(secondImage) || ""}
                           alt="Main Image Preview"
                           className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                         />
@@ -426,8 +423,7 @@ const AddProduct = () => {
                       />
                       {thirdImage && (
                         <img
-                          /* @ts-ignore */
-                          src={getPreviewUrl(thirdImage)}
+                          src={getPreviewUrl(thirdImage) || ""}
                           alt="Main Image Preview"
                           className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                         />
@@ -450,8 +446,7 @@ const AddProduct = () => {
                     />
                     {fourthImage && (
                       <img
-                        /* @ts-ignore */
-                        src={getPreviewUrl(fourthImage)}
+                        src={getPreviewUrl(fourthImage) || ""}
                         alt="Main Image Preview"
                         className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                       />
