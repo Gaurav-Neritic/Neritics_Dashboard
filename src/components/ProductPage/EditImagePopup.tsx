@@ -95,7 +95,7 @@ const EditImagePopup = ({
               * 4 <sup>th</sup> Fourth Image{" "}
             </label>
           )}
-          <div className="flex justify-start items-start gap-6 my-4 ">
+          <div className="flex justify-start items-center gap-6">
             <input
               type="file"
               required
@@ -114,11 +114,12 @@ const EditImagePopup = ({
                 <ImageUp />
               )}
             </button>
-
             {editImage && (
               <img
-                /* @ts-ignore */
-                src={getPreviewUrl(editImage)}
+                src={
+                  getPreviewUrl(editImage) ||
+                  "https://dummyimage.com/600x400/000/fff"
+                }
                 alt="Main Image Preview"
                 className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
               />

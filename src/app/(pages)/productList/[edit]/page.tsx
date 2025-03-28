@@ -45,8 +45,6 @@ export default function Page({ params }: any) {
 
       if (response.data.data) {
         setDetails(response.data.data);
-        toast.success("Data fetched");
-        console.log(details);
       } else {
         toast.error("Error Fetching Data");
       }
@@ -370,7 +368,7 @@ export default function Page({ params }: any) {
                               <img
                                 src={img}
                                 alt="saved images"
-                                className="h-10 w-10 rounded-full border border-lightBorder dark:border-darkBorder"
+                                className="h-18 w-18 rounded border border-lightBorder dark:border-darkBorder"
                               />
                             </div>
 
