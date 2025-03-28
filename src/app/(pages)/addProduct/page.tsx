@@ -354,7 +354,7 @@ const AddProduct = () => {
                           setMainImage(e.target.files[0]);
                         }}
                         className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {mainImage && (
                         <img
@@ -376,7 +376,7 @@ const AddProduct = () => {
                           setPrimaryImage(e.target.files[0]);
                         }}
                         className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {primaryImage && (
                         <img
@@ -400,7 +400,7 @@ const AddProduct = () => {
                           setSecondImage(e.target.files[0]);
                         }}
                         className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {secondImage && (
                         <img
@@ -423,7 +423,7 @@ const AddProduct = () => {
                           setThirdImage(e.target.files[0]);
                         }}
                         className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {thirdImage && (
                         <img
@@ -447,7 +447,7 @@ const AddProduct = () => {
                         setFourthImage(e.target.files[0]);
                       }}
                       className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-400 dark:file:text-white"
+                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                     />
                     {fourthImage && (
                       <img

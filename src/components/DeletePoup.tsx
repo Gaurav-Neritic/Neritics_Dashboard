@@ -30,7 +30,6 @@ const DeletePoup = ({
       if (response.data.data) {
         toast.success("Product Deleted Successfully");
         setLoading(false);
-        await axios.get("../api/getProducts");
         onClose();
       }
     } catch (error) {

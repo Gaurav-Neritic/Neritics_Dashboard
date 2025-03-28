@@ -75,7 +75,33 @@ const productSchema = new Schema(
         },
         containerType: {
             type: String,
-        }
+        },
+        targetedGender: {
+            type: String,
+            enum: ['male', 'female', 'both'],
+            required: true
+        },
+        ageRange: {
+            type: Number,
+            required: true
+        },
+        benifits: [{
+            type: String,
+            required: true
+        }],
+        specialIngrediens: [{
+            type: String,
+            required: true
+        }],
+        allergyInformation: [{
+            type: String,
+        }],
+        coating: [{
+            type: String
+        }],
+        dimensions: [{
+            type: String
+        }]
     },
     {
         timestamps: true
@@ -83,4 +109,4 @@ const productSchema = new Schema(
 )
 
 
-export const Product = mongoose.model("Product", productSchema);
+export const Product = mongoose.model("Product", productSchema); 

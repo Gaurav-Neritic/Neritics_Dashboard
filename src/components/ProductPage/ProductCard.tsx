@@ -11,6 +11,7 @@ interface productDataProps {
   stock: number;
   image: [string];
   listingStatus: boolean;
+  reRender: () => {}
 }
 
 const ProductCard = ({
@@ -19,6 +20,7 @@ const ProductCard = ({
   title,
   price,
   stock,
+  reRender,
   listingStatus,
 }: productDataProps) => {
   const [deletePopup, setDeletePopup] = useState(false);
@@ -51,14 +53,15 @@ const ProductCard = ({
       <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder dark:border-darkBorder">
         <Link
           href={`/productList/${_id}`}
-          className="flex justify-center items-center gap-2 text-green-500 hover:text-green-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm"
+          className="flex justify-center items-center gap-2 text-green-500 hover:text-green-600 bg-green-100 hover:bg-green-200 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm"
         >
           <FilePenLine className="h-5 w-5 cursor-pointer" />
           Edit
         </Link>
         <button
+          type="button"
           onClick={() => setDeletePopup(true)}
-          className="flex justify-center items-center gap-2 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer"
+          className="flex justify-center items-center gap-2 bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer bg-red-2"
         >
           <Trash2 className="h-5 w-5 cursor-pointer" />
           Delete

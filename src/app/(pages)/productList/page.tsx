@@ -237,8 +237,7 @@ const ProductList = () => {
                               prodName={title}
                               onClose={() => {
                                 setDeletePopup(false);
-                              }}
-                            />
+                              }} />
                           }
                         </div>
                       );
@@ -279,6 +278,7 @@ const ProductList = () => {
                   }: productDataProps) => {
                     return (
                       <ProductCard
+                        reRender={() => { return getProducts() }}
                         key={_id}
                         _id={_id}
                         image={image}
