@@ -53,7 +53,7 @@ Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provide
 
 ---
 
-## 🏗️ Tech Stack
+## 💻 Tech Stack
 
 ### Frontend
 
