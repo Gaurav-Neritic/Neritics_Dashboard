@@ -127,9 +127,9 @@ CLOUDINARY_SECRET_KEY=" "
 
 ![Add Products](/public/ReadmeImages/AddProducts.png)
 
-### Products Lits
+### Products Lists
 
-![Product Lits](/public/ReadmeImages/ProductLists.png)
+![Product Lists](/public/ReadmeImages/ProductLists.png)
 
 ---
 
