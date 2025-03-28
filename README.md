@@ -1,58 +1,92 @@
 # Neritic Wellness - eCommerce Admin Panel
 
-Welcome to the **Neritic Wellness Admin Panel**. This dashboard provides administrators with complete control over the eCommerce platform, allowing for product management, order tracking, customer management, and insightful analytics.
+Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provides administrators with complete control over the eCommerce platform, allowing for efficient product management, order tracking, customer oversight, and insightful analytics to drive business decisions.
 
-## Features
+---
+
+## 🚀 Features
 
 ### 🛍️ Product Management
 
-- Add, edit, and delete products.
-- Manage product categories and attributes.
-- Upload product images and descriptions.
+- Add, edit, and delete products with ease.
+- Manage product categories, attributes, and variations.
+- Upload high-quality product images and detailed descriptions.
+- Configure product pricing, discounts, and stock availability.
+- Support for bulk product uploads and edits.
 
 ### 📦 Order Management
 
-- View and manage customer orders.
-- Update order statuses (pending, shipped, delivered, etc.).
-- Generate invoices and reports.
+- View and process customer orders efficiently.
+- Update order statuses (pending, shipped, delivered, canceled, etc.).
+- Generate invoices and detailed transaction reports.
+- Filter and search orders based on date, status, or customer.
+- Send automated email notifications for order updates.
 
 ### 👥 Customer Management
 
-- View registered customers.
-- Manage user accounts and roles.
+- View and manage registered customers.
+- Assign roles and permissions (admin, manager, support, etc.).
 - Monitor customer activity and order history.
+- Export customer data for analysis and marketing campaigns.
 
 ### 📊 Dashboard & Analytics
 
-- Sales performance insights.
-- Graphical representation of revenue trends.
-- Top-selling products and customer insights.
+- Real-time sales performance insights.
+- Graphical representation of revenue trends and customer behavior.
+- View top-selling products and categories.
+- Analyze customer demographics and order frequency.
+- Download analytics reports for strategic planning.
 
 ### 🔐 User Authentication & Roles
 
-- Secure login with role-based access control.
-- Assign admin, manager, and support roles.
+- Secure login with OAuth authentication.
+- Role-based access control to manage admin privileges.
+- Multi-factor authentication (MFA) support.
+- Activity logs to track administrative actions.
 
 ### 🔧 Settings & Customization
 
-- Update store information.
-- Manage payment and shipping settings.
-- Configure tax and discount rules.
+- Update store information, including branding and contact details.
+- Manage payment gateway and shipping configurations.
+- Configure tax rates, discount codes, and promotional offers.
+- Enable push notifications and email alerts for important updates.
 
-## Tech Stack
+---
 
-- **Frontend**: Next.js, Tailwind CSS, Typescript
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Authentication**: OAuth
-- **Hosting**: AWS / Vercel
+## 🏗️ Tech Stack
 
-## Installation
+### Frontend
+
+- **Framework:** Next.js
+- **Styling:** Tailwind CSS
+- **Language:** TypeScript
+- **UI Components:** @mui/material, @mui/x-charts
+- **Icons:** Lucide Icons
+
+### Backend
+
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** MongoDB
+- **Image Storage:** Cloudinary
+- **Authentication:** OAuth
+
+### Deployment & Hosting
+
+- **Hosting Platforms:** AWS / Vercel
+- **CI/CD Integration:** GitHub Actions
+- **Performance Monitoring:** LogRocket, Sentry
+
+---
+
+## 📦 Installation Guide
 
 ### Prerequisites
 
-- Node.js & npm installed
-- MongoDB database
+- Node.js (v16 or higher)
+- MongoDB Atlas or local MongoDB instance
+- Cloudinary account (for image uploads)
+- AWS / Vercel account for hosting
 
 ### Setup
 
@@ -71,6 +105,20 @@ cp .env.example .env
 npm run dev
 ```
 
+### Environment Variables
+
+Ensure you configure the `.env` file with the required API keys and database credentials:
+
+```
+MONGODB_URI=your_mongodb_connection_string
+CLOUDINARY_URL=your_cloudinary_url
+NEXT_PUBLIC_API_BASE_URL=your_backend_api_url
+OAUTH_CLIENT_ID=your_oauth_client_id
+OAUTH_CLIENT_SECRET=your_oauth_client_secret
+```
+
+---
+
 ## Screenshots
 
 ### Dashboard
@@ -81,16 +129,27 @@ npm run dev
 
 ![Add Products](/public/ReadmeImages/AddProducts.png)
 
-### Products Lits 
+### Products Lits
+
 ![Product Lits](/public/ReadmeImages/ProductLists.png)
 
-## Contributing
+---
 
-We welcome contributions! Please submit a pull request or report issues in the repository.
+## 🤝 Contributing
 
-## License
+We welcome contributions from the community! If you'd like to contribute:
 
-This project is licensed under the MIT License.
+1.  Fork the repository.
+2.  Create a new branch (`feature-branch-name`).
+3.  Commit your changes with clear messages.
+4.  Submit a pull request for review.
+5.  Report bugs and suggest features via GitHub Issues.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
 
 ---
 
