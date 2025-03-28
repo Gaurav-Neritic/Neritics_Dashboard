@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { Images, ImageUp, X } from "lucide-react";
+import { Images, ImageUp, RotateCw, X } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -9,6 +9,7 @@ interface editImageProps {
   onClose: () => void;
   imgIndex: number;
   id: string;
+  reRender: () => {};
 }
 
 const EditImagePopup = ({
@@ -16,8 +17,10 @@ const EditImagePopup = ({
   onClose,
   imgIndex,
   id,
+  reRender,
 }: editImageProps) => {
   const [editImage, setEditImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handelEditUpload = async () => {
     const formData = new FormData();
@@ -25,16 +28,24 @@ const EditImagePopup = ({
     formData.append("imgIndex", imgIndex.toString());
     formData.append("productId", id);
     try {
+      setLoading(true);
       const response = await axios.put("../api/editImage", formData);
 
       if (response.data.data) {
         toast.success("Image Updated Successfully");
+        setLoading(false);
+        reRender();
+        onClose();
       } else {
+        setLoading(false);
         toast.error("Error Updating the image");
+        onClose();
       }
     } catch (error) {
+      setLoading(false);
       console.log("Error Updating the image");
       toast.error("Failed to upload try again!");
+      onClose();
     }
   };
 
@@ -56,11 +67,27 @@ const EditImagePopup = ({
         {/* Main Image */}
         <div className="p-5">
           {imgIndex === 0 && <label>* Main Image </label>}
-          {imgIndex === 1 && <label>* First Image </label>}
-          {imgIndex === 2 && <label>* Second Image </label>}
-          {imgIndex === 3 && <label>* Third Image </label>}
-          {imgIndex === 4 && <label>* Fourth Image </label>}
-          <div className="flex justify-start items-start gap-6 mb-2 ">
+          {imgIndex === 1 && (
+            <label>
+              * 1 <sup>st</sup> Image{" "}
+            </label>
+          )}
+          {imgIndex === 2 && (
+            <label>
+              * 2 <sup>nd</sup> Second Image{" "}
+            </label>
+          )}
+          {imgIndex === 3 && (
+            <label>
+              * 3 <sup>rd</sup> Third Image{" "}
+            </label>
+          )}
+          {imgIndex === 4 && (
+            <label>
+              * 4 <sup>th</sup> Fourth Image{" "}
+            </label>
+          )}
+          <div className="flex justify-start items-start gap-6 my-4 ">
             <input
               type="file"
               required
@@ -73,7 +100,11 @@ const EditImagePopup = ({
               onClick={handelEditUpload}
               className="p-2 border border-lightBorder dark:border-darkBorder text-green-500 hover:text-green-600  rounded cursor-pointer"
             >
-              <ImageUp />
+              {loading ? (
+                <RotateCw className="animate-spin text-darkMode" />
+              ) : (
+                <ImageUp />
+              )}
             </button>
           </div>
         </div>

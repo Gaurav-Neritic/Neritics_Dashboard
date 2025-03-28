@@ -40,6 +40,98 @@ export async function PUT(request: NextRequest) {
 
         }
 
+        if (index === 1) {
+            const mainImage: any = await uploadAssetOnCloudinary(imageFile, "Neritic_Testing");
+
+            if (!mainImage) {
+                return NextResponse.json({ error: "Failed to upload the image on cloudinary" }, { status: 402 })
+            }
+
+            const mainImageUrl = mainImage?.secure_url;
+
+            const updated = await Product.findByIdAndUpdate(id, {
+                $set: {
+                    "image.1": mainImageUrl
+                }
+            },
+                {
+                    new: true
+                }
+            )
+
+            return NextResponse.json({ data: updated }, { status: 200 })
+
+        }
+
+        if (index === 2) {
+            const mainImage: any = await uploadAssetOnCloudinary(imageFile, "Neritic_Testing");
+
+            if (!mainImage) {
+                return NextResponse.json({ error: "Failed to upload the image on cloudinary" }, { status: 402 })
+            }
+
+            const mainImageUrl = mainImage?.secure_url;
+
+            const updated = await Product.findByIdAndUpdate(id, {
+                $set: {
+                    "image.2": mainImageUrl
+                }
+            },
+                {
+                    new: true
+                }
+            )
+
+            return NextResponse.json({ data: updated }, { status: 200 })
+
+        }
+
+        if (index === 3) {
+            const mainImage: any = await uploadAssetOnCloudinary(imageFile, "Neritic_Testing");
+
+            if (!mainImage) {
+                return NextResponse.json({ error: "Failed to upload the image on cloudinary" }, { status: 402 })
+            }
+
+            const mainImageUrl = mainImage?.secure_url;
+
+            const updated = await Product.findByIdAndUpdate(id, {
+                $set: {
+                    "image.3": mainImageUrl
+                }
+            },
+                {
+                    new: true
+                }
+            )
+
+            return NextResponse.json({ data: updated }, { status: 200 })
+
+        }
+
+        if (index === 4) {
+            const mainImage: any = await uploadAssetOnCloudinary(imageFile, "Neritic_Testing");
+
+            if (!mainImage) {
+                return NextResponse.json({ error: "Failed to upload the image on cloudinary" }, { status: 402 })
+            }
+
+            const mainImageUrl = mainImage?.secure_url;
+
+            const updated = await Product.findByIdAndUpdate(id, {
+                $set: {
+                    "image.4": mainImageUrl
+                }
+            },
+                {
+                    new: true
+                }
+            )
+
+            return NextResponse.json({ data: updated }, { status: 200 })
+
+        }
+
     } catch (error) {
         return NextResponse.json({ error: "Failed to update the images in database" }, { status: 500 })
     }

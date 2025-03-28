@@ -393,6 +393,9 @@ export default function Page({ params }: any) {
                                 isVisible={popup}
                                 onClose={() => setPopup(false)}
                                 imgIndex={imgIndex}
+                                reRender={() => {
+                                  return getEditableProduct();
+                                }}
                               />
                             )}
                           </div>
