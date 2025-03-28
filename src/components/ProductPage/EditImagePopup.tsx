@@ -24,7 +24,7 @@ const EditImagePopup = ({
 
   const handelEditUpload = async () => {
     const formData = new FormData();
-    formData.append("editImage", editImage);
+    if (editImage) formData.append("editImage", editImage);
     formData.append("imgIndex", imgIndex.toString());
     formData.append("productId", id);
     try {
@@ -47,6 +47,14 @@ const EditImagePopup = ({
       toast.error("Failed to upload try again!");
       onClose();
     }
+  };
+
+  // Image Preview
+  const getPreviewUrl = (file: any) => {
+    if (!file) {
+      return null;
+    }
+    return URL.createObjectURL(file);
   };
 
   if (!isVisible) return null;
@@ -106,6 +114,15 @@ const EditImagePopup = ({
                 <ImageUp />
               )}
             </button>
+
+            {editImage && (
+              <img
+                /* @ts-ignore */
+                src={getPreviewUrl(editImage)}
+                alt="Main Image Preview"
+                className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+              />
+            )}
           </div>
         </div>
       </div>
