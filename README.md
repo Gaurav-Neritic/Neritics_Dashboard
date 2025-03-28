@@ -1,6 +1,6 @@
-# Neritic Wellness - eCommerce Admin Panel
+# Neritic Wellness - eCommerce Admin Dashboard
 
-Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provides administrators with complete control over the eCommerce platform, allowing for efficient product management, order tracking, customer oversight, and insightful analytics to drive business decisions.
+Welcome to the **Neritic Wellness Admin Dashboard**. This powerful dashboard provides administrators with complete control over the eCommerce platform, allowing for efficient product management, order tracking, customer oversight, and insightful analytics to drive business decisions.
 
 ---
 
@@ -72,9 +72,9 @@ Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provide
 
 ### Deployment & Hosting
 
-- **Hosting Platforms:**  Hostinger / Vercel
+- **Hosting Platforms:** Hostinger / Vercel
 - **CI/CD Integration:** GitHub Actions
-- **Performance Monitoring:**  Vercel, LogRocket, Sentry
+- **Performance Monitoring:** Vercel, LogRocket, Sentry
 
 ---
 
