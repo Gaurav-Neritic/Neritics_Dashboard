@@ -140,6 +140,7 @@ const AddProduct = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-5 ">
+        {/* Grid col-1  */}
         <div className=" border-gray-400 rounded">
           {/* Product Description */}
           <div className="py-5">
@@ -328,6 +329,101 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
+
+          {/* Dimension OF Product*/}
+          <div className="py-5">
+            <div className="pb-2">
+              <h2 className="text-lg font-semibold antialiased">
+                Dimension of Product
+              </h2>
+            </div>
+            {/* height  */}
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+              <div>
+                <div className="w-full py-2">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label>Height ( In cm )</label>
+                      <input
+                        placeholder="Height in CM"
+                        required
+                        type="number"
+                        value={""}
+                        onChange={(e) => { }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                      />
+                    </div>
+                    <div>
+                      <label>Width ( In cm )</label>
+                      <input
+                        placeholder="Width in CM"
+                        required
+                        type="number"
+                        value={""}
+                        onChange={(e) => { }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                      />
+                    </div>
+                    <div>
+                      <label>Weight ( In gm )</label>
+                      <input
+                        placeholder="Weight in GM"
+                        required
+                        type="number"
+                        value={""}
+                        onChange={(e) => { }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                      />
+                    </div>
+                    {/*  */}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Pricing */}
+          <div className="py-5">
+            <div className="pb-2">
+              <h2 className="text-lg font-semibold antialiased">Pricing</h2>
+            </div>
+            {/*  Price (MRP)  */}
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+              <div>
+                <div className="w-full py-2">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label>Price (MRP)</label>
+                      <input
+                        placeholder="MRP Price"
+                        required
+                        type="number"
+                        value={price}
+                        onChange={(e) => {
+                          setPrice(e.target.value);
+                        }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                      />
+                    </div>
+                    {/* Discount */}
+                    <div>
+                      <label>Discount ( In ₹ )</label>
+                      <input
+                        placeholder="Discount Price"
+                        required
+                        type="number"
+                        value={discount}
+                        onChange={(e) => {
+                          setDiscount(e.target.value);
+                        }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Grid col-2 */}
@@ -462,46 +558,77 @@ const AddProduct = () => {
             </div>
           </div>
 
-          {/* Product Pricing */}
+
+
+          {/* Product Manufacturing */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">Pricing</h2>
+              <h2 className="text-lg font-semibold antialiased">Additional Info {"  "}( Separate by " , " )</h2>
             </div>
-            {/*  Price (MRP)  */}
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="flex items-center justify-center gap-4">
+                  <div className="grid grid-cols-2 gap-4 place-items-center ">
+                    {/* Benefit 1  */}
                     <div>
-                      <label>Price (MRP)</label>
-                      <input
-                        placeholder="MRP Price"
+                      <label>Benefits </label>
+                      <textarea
+                        placeholder="Enter Benefits "
                         required
-                        type="number"
-                        value={price}
+                        value={""}
+                        rows={3}
                         onChange={(e) => {
-                          setPrice(e.target.value);
+
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
-                    {/* Discount */}
+                    {/* Benefit 2  */}
                     <div>
-                      <label>Discount</label>
-                      <input
-                        placeholder="Discount Price"
+                      <label>Special Ingredients</label>
+                      <textarea
+                        placeholder="Enter Special Ingredients"
                         required
-                        type="number"
-                        value={discount}
+                        rows={3}
+                        value={""}
                         onChange={(e) => {
-                          setDiscount(e.target.value);
+
                         }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                      />
+                    </div>
+                    {/* Benefit 3  */}
+                    <div>
+                      <label>Allergy Info</label>
+                      <textarea
+                        placeholder="Enter Allergy Info"
+                        required
+                        rows={3}
+                        value={""}
+                        onChange={(e) => {
+
+                        }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                      />
+                    </div>
+                    {/* Benefit 4  */}
+                    <div>
+                      <label>Coating</label>
+                      <textarea
+                        placeholder="Enter Coating Info"
+                        required
+                        rows={3}
+                        value={""}
+                        onChange={(e) => {
+
+                        }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="flex items-center justify-center text-sm py-3 text-gray-600 animate-pulse"><sup>*</sup>Note ( Use "," comma for adding multiple values)</div>
             </div>
           </div>
 
@@ -562,7 +689,7 @@ const AddProduct = () => {
                     </div>
                     {/* Shelf Life */}
                     <div>
-                      <label>Shelf Life</label>
+                      <label>Shelf Life ( In Months )</label>
                       <input
                         placeholder="Shelf Life (Months) "
                         type="text"
