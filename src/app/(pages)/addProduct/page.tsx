@@ -21,7 +21,7 @@ const AddProduct = () => {
   const [secondImage, setSecondImage] = useState(null);
   const [thirdImage, setThirdImage] = useState(null);
   const [fourthImage, setFourthImage] = useState(null);
-
+  //image
   const [brandName, setBrandName] = useState("");
   const [form, setForm] = useState("");
   const [isAyurvedic, setIsAyurvedic] = useState("");
@@ -32,10 +32,34 @@ const AddProduct = () => {
   const [shelfLife, setShelfLife] = useState("");
   const [suitableFor, setSuitableFor] = useState("");
   const [publish, setPublish] = useState("");
+  // Additional Infformation
+  const [benefits, setBenefits] = useState("")
+  const [alergyInfo, setAlergyInfo] = useState("")
+  const [specialIngredients, setSpecialIngredients] = useState("")
+  const [coating, setCoating] = useState("")
+  const [height, setHeight] = useState("")
+  const [width, setWidth] = useState("")
+  const [weight, setWeight] = useState("")
+  // Additional Infformation
 
   const [loading, setLoading] = useState(false);
 
   const handelSubmit = async (e: React.FormEvent) => {
+
+    // Taking the addOn Info and setting it in an array
+    const benefitArray: any = benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
+
+    console.log("Array is : ", benefitArray);
+
+    const specialIngredientsArray: any = specialIngredients.split(",").map((splIngre: string) => splIngre.trim()).filter((splIngre: string) => splIngre.length > 0);
+
+    const alergyInfoArray: any = alergyInfo.split(",").map((allergy: string) => allergy.trim()).filter((allergy: string) => allergy.length > 0);
+
+    const coatingArray: any = coating.split(",").map((coate: string) => coate.trim()).filter((coate: string) => coate.length > 0);
+
+
+
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
@@ -62,6 +86,13 @@ const AddProduct = () => {
     formData.append("isAyurvedic", isAyurvedic);
     formData.append("suitableFor", suitableFor);
     formData.append("publish", publish);
+    formData.append("benefits", benefitArray);
+    formData.append("specialIngerdients", specialIngredientsArray);
+    formData.append("allergy", alergyInfoArray);
+    formData.append("coating", coatingArray);
+    formData.append("height", height);
+    formData.append("width", width);
+    formData.append("weight", weight);
     try {
       // Checks if the selected types and categorys are defaults
       if (category === "Select Category") return setCategory("");
@@ -348,8 +379,8 @@ const AddProduct = () => {
                         placeholder="Height in CM"
                         required
                         type="number"
-                        value={""}
-                        onChange={(e) => { }}
+                        value={height}
+                        onChange={(e) => { setHeight(e.target.value) }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
@@ -359,8 +390,8 @@ const AddProduct = () => {
                         placeholder="Width in CM"
                         required
                         type="number"
-                        value={""}
-                        onChange={(e) => { }}
+                        value={width}
+                        onChange={(e) => { setWidth(e.target.value) }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
@@ -370,8 +401,8 @@ const AddProduct = () => {
                         placeholder="Weight in GM"
                         required
                         type="number"
-                        value={""}
-                        onChange={(e) => { }}
+                        value={weight}
+                        onChange={(e) => { setWeight(e.target.value) }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
@@ -575,10 +606,10 @@ const AddProduct = () => {
                       <textarea
                         placeholder="Enter Benefits "
                         required
-                        value={""}
+                        value={benefits}
                         rows={3}
                         onChange={(e) => {
-
+                          setBenefits(e.target.value)
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
@@ -590,9 +621,9 @@ const AddProduct = () => {
                         placeholder="Enter Special Ingredients"
                         required
                         rows={3}
-                        value={""}
+                        value={specialIngredients}
                         onChange={(e) => {
-
+                          setSpecialIngredients(e.target.value)
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
@@ -604,9 +635,9 @@ const AddProduct = () => {
                         placeholder="Enter Allergy Info"
                         required
                         rows={3}
-                        value={""}
+                        value={alergyInfo}
                         onChange={(e) => {
-
+                          setAlergyInfo(e.target.value)
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
@@ -618,9 +649,9 @@ const AddProduct = () => {
                         placeholder="Enter Coating Info"
                         required
                         rows={3}
-                        value={""}
+                        value={coating}
                         onChange={(e) => {
-
+                          setCoating(e.target.value)
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />

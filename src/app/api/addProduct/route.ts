@@ -31,6 +31,13 @@ export async function POST(request: NextRequest) {
         const suitableFor = formData.get("suitableFor")
         const publish = formData.get("publish")
         const container = formData.get("container")
+        const benefits = formData.get("benefits");
+        const specialIngerdients = formData.get("specialIngerdients");
+        const allergy = formData.get("allergy");
+        const coating = formData.get("coating");
+        const height = formData.get("height")
+        const width = formData.get("width")
+        const weight = formData.get("weight")
 
         let ayurvedicCheck: boolean;
         let suitableForCheck: boolean;
@@ -100,7 +107,13 @@ export async function POST(request: NextRequest) {
             brand: brand,
             form: form,
             ayurvedic: ayurvedicCheck,
-            containerType: container
+            containerType: container,
+            benefits,
+            specialIngerdients,
+            allergyInformation: allergy,
+            coating,
+            'dimensions.0': height,
+            'dimensions.1': width,
         });
 
         if (!product) {
