@@ -79,19 +79,19 @@ const productSchema = new Schema(
         targetedGender: {
             type: String,
             enum: ['male', 'female', 'both'],
-            // required: true
+            required: true
         },
         ageRange: {
             type: Number,
-            // required: true
+            required: true
         },
         benifits: [{
             type: String,
-            // required: true
+            required: true
         }],
-        specialIngrediens: [{
+        specialIngredients: [{
             type: String,
-            // required: true
+            required: true
         }],
         allergyInformation: [{
             type: String,

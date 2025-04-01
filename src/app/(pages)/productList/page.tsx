@@ -35,7 +35,6 @@ const ProductList = () => {
   const [loading, setLoading] = useState(false);
   const [prodId, setProdId] = useState("")
   const [name, setName] = useState('')
-  const router = useRouter();
 
   async function getProducts() {
     try {
