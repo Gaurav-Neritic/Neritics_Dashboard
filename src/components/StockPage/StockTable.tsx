@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { X, SquarePen } from "lucide-react";
+import { X, SquarePen, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Loader from "../Loaders/Loader";
@@ -9,6 +9,10 @@ import Image from "next/image";
 const StocksTable = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  // Searchbar
+  const [searchText, setSearchText] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   //edit popup
   const [editPopup, setEditPopup] = useState(false);
@@ -81,7 +85,7 @@ const StocksTable = () => {
 
       if (response.data.data) {
         setProducts(response.data.data);
-        console.log(response.data.data);
+        setFilteredProducts(response.data.data);
       } else {
         toast.error("Failed to fetch the data");
         setProducts([]);
@@ -92,15 +96,41 @@ const StocksTable = () => {
     }
   }
 
+  //SearchBar Handle
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    const text = e.target.value;
+    setSearchText(text);
+    const filtered = products.filter(
+      (product: any) =>
+        product.title.toLowerCase().includes(text.toLowerCase()) ||
+        product._id.toLowerCase().includes(text.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
+
   useEffect(() => {
     getProductsStocks();
   }, []);
 
   return (
     <section className="p-5">
-      <h1 className="text-2xl font-bold mb-6">Stocks In Inventory</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Stocks In Inventory</h1>
+        {/* Search Bar */}
+        <div className="relative w-full max-w-md">
+          <input
+            type="text"
+            placeholder="Search by product name or ID..."
+            value={searchText}
+            onChange={handleSearch}
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700"
+          />
+          <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
+        </div>
+      </div>
       {/* Products List */}
-      <div className="border border-lightBorder dark:border-darkBorder  rounded">
+      <div className="border border-lightBorder dark:border-darkBorder rounded">
         <div className=" py-3 px-5 grid grid-cols-8 place-items-center ">
           <h1 className="col-span-1 w-full truncate">Id</h1>
           <div className="col-span-1 w-full place-items-center">
@@ -112,51 +142,47 @@ const StocksTable = () => {
           <h1 className="col-span-1 w-full truncate">Update</h1>
         </div>
         <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
-        {products.length !== 0 &&
-          products.map(
-            ({
-              _id,
-              title,
-              stock,
-              image,
-            }: {
-              _id: string;
-              title: string;
-              stock: number;
-              image: [string];
-            }) => (
-              <div
-                key={_id}
-                className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
-              >
-                <h1 className="col-span-1 w-full truncate">{_id}</h1>
-                <Image
-                  src={image[0] || ""}
-                  height={20}
-                  width={20}
-                  alt="img"
-                  className="col-span-1 truncate object-contain h-10 w-10 border border-lightBorder rounded"
-                />
-                <h1 className="col-span-3 w-full truncate">{title}</h1>
-                <h1 className="col-span-1 w-full truncate">
-                  {stock <= 0 ? (
-                    <span className="text-red-500">❌</span>
-                  ) : (
-                    <span className="text-green-500">✔️</span>
-                  )}
-                </h1>
-                <h1 className="col-span-1 w-full truncate">{stock}</h1>
-                <div className="col-span-1 w-full truncate">
-                  <button
-                    className="cursor-pointer flex items-center"
-                    onClick={() => handleEdit({ _id, title, stock })}
-                  >
-                    <SquarePen className="text-green-500 hover:text-green-600 " />
-                  </button>
-                </div>
+        {/* FilteredProduct */}
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map(({ _id, title, stock, image }) => (
+            <div
+              key={_id}
+              className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
+            >
+              <h1 className="col-span-1 w-full truncate" title={_id}>
+                {_id}
+              </h1>
+              <Image
+                src={image[0] || ""}
+                height={20}
+                width={20}
+                alt="img"
+                className="col-span-1 truncate object-contain h-10 w-10 border border-lightBorder rounded"
+              />
+              <h1 className="col-span-3 w-full truncate">{title}</h1>
+              <h1 className="col-span-1 w-full truncate">
+                {stock <= 0 ? (
+                  <span className="text-red-500">❌</span>
+                ) : (
+                  <span className="text-green-500">✔️</span>
+                )}
+              </h1>
+              <h1 className="col-span-1 w-full truncate">{stock}</h1>
+              <div className="col-span-1 w-full truncate">
+                <button
+                  className="cursor-pointer flex items-center"
+                  onClick={() => handleEdit({ _id, title, stock })}
+                >
+                  <SquarePen className="text-green-500 hover:text-green-600 " />
+                </button>
               </div>
-            )
-          )}
+            </div>
+          ))
+        ) : (
+          <div className="text-center text-lg py-6 text-gray-500 dark:text-gray-300 capitalize ">
+            🚫  No products found.
+          </div>
+        )}
       </div>
 
       {/* Edit Product Popup */}

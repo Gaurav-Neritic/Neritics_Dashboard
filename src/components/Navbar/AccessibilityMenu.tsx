@@ -1,4 +1,4 @@
-import { Bell, CircleHelp, PackageSearch } from "lucide-react";
+import { Bell, CircleHelp, PackageSearch, SquarePlus } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -22,13 +22,22 @@ const AccessibilityMenu = () => {
           <span className="text-gray-700 dark:text-white"> Need Help</span>
         </Link>
       </div>
-      <Link
-        href={"/productList"}
-        className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
-      >
-        <PackageSearch />
-        View Products
-      </Link>
+      <div className="flex gap-3">
+        <Link
+          href={"/addProduct"}
+          className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
+        >
+          <SquarePlus />
+          Add Product
+        </Link>
+        <Link
+          href={"/productList"}
+          className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
+        >
+          <PackageSearch />
+          View Products
+        </Link>
+      </div>
     </div>
   );
 };

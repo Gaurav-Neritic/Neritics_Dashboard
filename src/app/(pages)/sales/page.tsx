@@ -1,39 +1,64 @@
-import React from 'react'
+import { SquarePen } from "lucide-react";
+import React from "react";
 
 const SalesPage = () => {
   return (
-    <>
-      <div className='p-10'>
-        <div className="block w-full">
-          <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-600 w-full">Country</label>
-          <select id="countries" className="h-12 border border-gray-300 text-gray-600 text-base rounded-lg block w-full py-2.5 px-4 focus:outline-none">
-            <option selected>Choose a country</option>
-            <option value="US">India</option>
-            <option value="CA">Bharat</option>
-            <option value="FR">Hindustan</option>
-            <option value="DE">Aryavarta</option>
-          </select>
-        </div>
-
+    <section className="p-5">
+      <div className="">
+        <h1 className="text-2xl font-bold">Sale Lists</h1>
       </div>
-      <div className="relative">
-        <button className="flex items-center h-8 pl-3 pr-2 border border-black focus:outline-none">
-          <span className="text-sm leading-none">
-            Dropdown
-          </span>
-          <svg className="w-4 h-4 mt-px ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </button>
-        <div className="absolute flex flex-col w-40 mt-1 border border-black shadow-lg">
-          <a className="flex items-center h-8 px-3 text-sm hover:bg-gray-200" href="#">Item 1</a>
-          <a className="flex items-center h-8 px-3 text-sm hover:bg-gray-200" href="#">Item 2</a>
-          <a className="flex items-center h-8 px-3 text-sm hover:bg-gray-200" href="#">Item 3</a>
-          <a className="flex items-center h-8 px-3 text-sm hover:bg-gray-200" href="#">Item 4</a>
+      {/* Sale Lists */}
+      <div className=" mt-5 border border-lightBorder dark:border-darkBorder rounded">
+        <div className=" py-3 px-5 grid grid-cols-8 place-items-center ">
+          <h1>Order ID</h1>
+          <h1>Customer Name</h1>
+          <h1> Product</h1>
+          <h1> Amount</h1>
+          <h1>Payment Status</h1>
+          <h1>Order Status</h1>
+          <h1>Order Status</h1>
+          <h1>Action</h1>
+        </div>
+        <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
+        {/* order-1 */}
+        <div className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+          <h1 className="">#1020</h1>
+          <h1>Sanket</h1>
+          <h1>phone</h1>
+          <h1>90000.00</h1>
+          <div className=" flex gap-1 justify-between items-center">
+            <span className="">✔️</span>
+            <h1>Paid</h1>
+          </div>
+          <h1>Shipped</h1>
+          <h1>2025-03-25</h1>
+          <div className="">
+            <button className="cursor-pointer flex items-center">
+              <SquarePen className="text-green-500 hover:text-green-600 " />
+            </button>
+          </div>
+        </div>
+        {/* order-2 */}
+        <div className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+          <h1 className="">#1020</h1>
+          <h1>Yash </h1>
+          <h1>laptop</h1>
+          <h1>70000.00</h1>
+          <div className=" flex gap-1">
+            <span className="items-start">❌</span>
+            <h1>Canceled</h1>
+          </div>
+          <h1>Refunded</h1>
+          <h1>2025-03-25</h1>
+          <div className="">
+            <button className="cursor-pointer flex items-center">
+              <SquarePen className="text-green-500 hover:text-green-600 " />
+            </button>
+          </div>
         </div>
       </div>
-    </>
-  )
-}
+    </section>
+  );
+};
 
-export default SalesPage
+export default SalesPage;

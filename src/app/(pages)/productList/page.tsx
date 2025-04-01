@@ -150,8 +150,9 @@ const ProductList = () => {
       <div className="py-2">
         <div className="p-1 min-h-screen border border-lightBorder dark:border-darkBorder  rounded ">
           <div
-            className={` ${listView ? "block" : "hidden py-0 px-0"
-              } m-5  border border-lightBorder dark:border-darkBorder  rounded`}
+            className={` ${
+              listView ? "block" : "hidden py-0 px-0"
+            } m-5  border border-lightBorder dark:border-darkBorder  rounded`}
           >
             <div
               className={` py-3 px-5 gap-5 grid grid-cols-9 place-items-center `}
@@ -192,7 +193,12 @@ const ProductList = () => {
                           key={_id}
                           className="py-3 px-5 grid grid-cols-9 place-items-start gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
                         >
-                          <h1 className="col-span-1 w-full truncate">{_id}</h1>
+                          <h1
+                            className="col-span-1 w-full truncate"
+                            title={_id}
+                          >
+                            {_id}
+                          </h1>
                           <h1 className="col-span-2 line-clamp-2 capitalize">
                             {title}
                           </h1>
@@ -237,7 +243,8 @@ const ProductList = () => {
                               prodName={title}
                               onClose={() => {
                                 setDeletePopup(false);
-                              }} />
+                              }}
+                            />
                           }
                         </div>
                       );
@@ -278,7 +285,9 @@ const ProductList = () => {
                   }: productDataProps) => {
                     return (
                       <ProductCard
-                        reRender={() => { return getProducts() }}
+                        reRender={() => {
+                          return getProducts();
+                        }}
                         key={_id}
                         _id={_id}
                         image={image}
