@@ -5,13 +5,13 @@ export async function DELETE(request: NextRequest) {
     try {
         const reqBody = await request.json();
 
-        const { prodId } = reqBody;
+        const { id } = reqBody;
 
-        if (!prodId) {
+        if (!id) {
             return NextResponse.json({ error: "Product id not found" }, { status: 402 })
         }
 
-        const deletedProduct = await Product.findByIdAndDelete(prodId);
+        const deletedProduct = await Product.findByIdAndDelete(id);
 
         if (!deletedProduct) {
             return NextResponse.json({ error: "Error Deleting The Product" }, { status: 403 })

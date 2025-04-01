@@ -11,6 +11,7 @@ import {
   Logs,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -32,10 +33,15 @@ const ProductList = () => {
   const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
   const [loading, setLoading] = useState(false);
+  const [prodId, setProdId] = useState("")
+  const [name, setName] = useState('')
+  const router = useRouter();
 
   async function getProducts() {
     try {
-      const response = await axios.get("api/getProducts");
+      const response = await axios.get("api/getProducts",
+        { fetchOptions: { cache: "no-store" } }
+      );
       if (response.data.data) {
         setLoading(true);
         setProductData(response.data.data);
@@ -46,17 +52,25 @@ const ProductList = () => {
         toast.error("Failed to fetch the product data");
       }
     } catch (error: any) {
-      if (error.response.status === 401) {
-        setLoading(true);
-        setTimeout(() => {
-          toast.success("No Products Found");
-          setLoading(false);
-        }, 2000);
-      } else if (error.response.status === 500) {
-        setLoading(false);
-        console.log("Error Fetching the products", error);
-        toast.error("Failed to fetch the product data");
+      setLoading(false);
+      error.response.status === 401 ? toast.success("No Products Found") : toast.error("Failed to fetch the product data");
+    }
+  }
+
+  async function handelDelete(id: string) {
+    try {
+      const response = await axios.delete("api/deleteProduct", {
+        data: { id },
+        fetchOptions: { cache: "no-store" }
+      });
+
+      if (response.data.data) {
+        toast.success("Product Deleted Successfully");
+        setProductData(prevProducts => prevProducts.filter((product: any) => product._id !== prodId));
       }
+    } catch (error) {
+      console.log("Error Deleting the product", error);
+      toast.error("Error: Try after few minutes");
     }
   }
 
@@ -69,12 +83,15 @@ const ProductList = () => {
       setFilteredProducts(
         productData.filter((product: any) => product.listingStatus === true)
       );
+      setLoading(false)
     } else if (filter === "UnListed") {
       setFilteredProducts(
         productData.filter((product: any) => product.listingStatus === false)
       );
+      setLoading(false)
     } else {
       setFilteredProducts(productData);
+      setLoading(false)
     }
   }, [filter, productData]);
 
@@ -224,20 +241,22 @@ const ProductList = () => {
                             </Link>
                             <button
                               className="text-red-400 hover:text-red-500"
-                              onClick={() => setDeletePopup(true)}
+                              onClick={() => {
+                                setProdId(_id);
+                                setName(title);
+                                setDeletePopup(true);
+                              }}
                             >
                               <Trash2 className="text-sm cursor-pointer" />
                             </button>
                           </div>
-                          {/* Delete Confirmation Popup */}
                           {
                             <DeletePoup
                               isVisible={deletePopup}
-                              prodId={_id}
-                              prodName={title}
-                              onClose={() => {
-                                setDeletePopup(false);
-                              }} />
+                              prodId={prodId}
+                              prodName={name}
+                              handelDelete={() => { return handelDelete(_id); }}
+                              onClose={() => { setDeletePopup(false) }} />
                           }
                         </div>
                       );
@@ -278,7 +297,7 @@ const ProductList = () => {
                   }: productDataProps) => {
                     return (
                       <ProductCard
-                        reRender={() => { return getProducts() }}
+                        handelDelete={() => { return handelDelete(_id) }}
                         key={_id}
                         _id={_id}
                         image={image}
@@ -290,7 +309,8 @@ const ProductList = () => {
                       />
                     );
                   }
-                )}
+                )
+              }
             </div>
             {filteredProducts.length === 0 && (
               <div className="place-items-center uppercase text-gray-600 font-semibold py-10">

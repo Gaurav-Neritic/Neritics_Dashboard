@@ -1,7 +1,6 @@
 import { FilePenLine, Trash2 } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import DeletePoup from "../DeletePoup";
 
 interface productDataProps {
   _id: string;
@@ -11,7 +10,7 @@ interface productDataProps {
   stock: number;
   image: [string];
   listingStatus: boolean;
-  reRender: () => {}
+  handelDelete: () => {}
 }
 
 const ProductCard = ({
@@ -20,10 +19,11 @@ const ProductCard = ({
   title,
   price,
   stock,
-  reRender,
   listingStatus,
+  handelDelete
 }: productDataProps) => {
-  const [deletePopup, setDeletePopup] = useState(false);
+
+
   return (
     <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5">
       <img
@@ -60,23 +60,13 @@ const ProductCard = ({
         </Link>
         <button
           type="button"
-          onClick={() => setDeletePopup(true)}
+          onClick={handelDelete}
           className="flex justify-center items-center gap-2 bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer bg-red-2"
         >
           <Trash2 className="h-5 w-5 cursor-pointer" />
           Delete
         </button>
       </div>
-      {
-        <DeletePoup
-          isVisible={deletePopup}
-          prodId={_id}
-          prodName={title}
-          onClose={() => {
-            setDeletePopup(false);
-          }}
-        />
-      }
     </div>
   );
 };
