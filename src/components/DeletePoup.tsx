@@ -1,7 +1,6 @@
-import axios from "axios";
+
 import { AlertCircle } from "lucide-react";
 import React, { useState } from "react";
-import toast from "react-hot-toast";
 import Loader from "./Loaders/Loader";
 
 interface DeletePopupProps {
@@ -9,6 +8,7 @@ interface DeletePopupProps {
   onClose: () => void;
   prodId: string;
   prodName: string;
+  handelDelete: () => {}
 }
 
 const DeletePoup = ({
@@ -16,28 +16,11 @@ const DeletePoup = ({
   onClose,
   prodId,
   prodName,
+  handelDelete
 }: DeletePopupProps) => {
   const [loading, setLoading] = useState(false);
 
-  const handelDelete = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      const response = await axios.delete("api/deleteProduct", {
-        data: { prodId },
-      });
 
-      if (response.data.data) {
-        toast.success("Product Deleted Successfully");
-        setLoading(false);
-        onClose();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log("Error Deleting the product", error);
-      toast.error("Error: Try after few minutes");
-    }
-  };
 
   if (!isVisible) return null;
   return (
