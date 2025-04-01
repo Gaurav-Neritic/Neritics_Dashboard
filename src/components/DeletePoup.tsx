@@ -43,7 +43,7 @@ const DeletePoup = ({
             Cancel
           </button>
           <button
-            onClick={handelDelete}
+            onClick={() => { handelDelete(); onClose() }}
             className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 cursor-pointer"
           >
             {loading ? <Loader title="Deleting..." /> : <span>Delete</span>}

@@ -47,7 +47,7 @@ const AddProduct = () => {
   const handelSubmit = async (e: React.FormEvent) => {
 
     // Taking the addOn Info and setting it in an array
-    const benefitArray: any = benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
+    const benefitArray = benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
 
     console.log("Array is : ", benefitArray);
 
@@ -86,7 +86,7 @@ const AddProduct = () => {
     formData.append("isAyurvedic", isAyurvedic);
     formData.append("suitableFor", suitableFor);
     formData.append("publish", publish);
-    formData.append("benefits", benefitArray);
+    formData.append("benefits", JSON.stringify(benefitArray));
     formData.append("specialIngerdients", specialIngredientsArray);
     formData.append("allergy", alergyInfoArray);
     formData.append("coating", coatingArray);
