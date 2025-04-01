@@ -37,7 +37,7 @@ Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provide
 - Analyze customer demographics and order frequency.
 - Download analytics reports for strategic planning.
 
-### 🔐 User Authentication
+### 🔐 Authentication
 
 - Secure login with OAuth authentication.
 - Multi-factor authentication (MFA) support.
