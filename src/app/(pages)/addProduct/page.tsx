@@ -15,6 +15,8 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
   const [stock, setStock] = useState("");
+  const [gender, setGender] = useState("");
+  const [ageRange, setAgeRange] = useState("")
   //image
   const [mainImage, setMainImage] = useState(null);
   const [primaryImage, setPrimaryImage] = useState(null);
@@ -49,15 +51,11 @@ const AddProduct = () => {
     // Taking the addOn Info and setting it in an array
     const benefitArray = benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
 
-    console.log("Array is : ", benefitArray);
-
-    const specialIngredientsArray: any = specialIngredients.split(",").map((splIngre: string) => splIngre.trim()).filter((splIngre: string) => splIngre.length > 0);
+    const specialIngredientsArray: any = specialIngredients.split(",").map((special: string) => special.trim()).filter((special: string) => special.length > 0);
 
     const alergyInfoArray: any = alergyInfo.split(",").map((allergy: string) => allergy.trim()).filter((allergy: string) => allergy.length > 0);
 
     const coatingArray: any = coating.split(",").map((coate: string) => coate.trim()).filter((coate: string) => coate.length > 0);
-
-
 
 
     const formData = new FormData();
@@ -86,13 +84,15 @@ const AddProduct = () => {
     formData.append("isAyurvedic", isAyurvedic);
     formData.append("suitableFor", suitableFor);
     formData.append("publish", publish);
-    formData.append("benefits", JSON.stringify(benefitArray));
+    formData.append("benefits", benefitArray);
     formData.append("specialIngerdients", specialIngredientsArray);
     formData.append("allergy", alergyInfoArray);
     formData.append("coating", coatingArray);
     formData.append("height", height);
     formData.append("width", width);
     formData.append("weight", weight);
+    formData.append("gender", gender)
+    formData.append("ageRange", ageRange)
     try {
       // Checks if the selected types and categorys are defaults
       if (category === "Select Category") return setCategory("");
@@ -101,6 +101,8 @@ const AddProduct = () => {
       if (container === "Container Type") return setContainer("");
       if (suitableFor === "Edible For") return setSuitableFor("");
       if (publish === "Publishing Status") return setPublish("");
+      if (ageRange === "Select Age Range") return setPublish("");
+      if (form === "Select Form") return setForm("");
 
       e.preventDefault();
       setLoading(true);
@@ -141,6 +143,15 @@ const AddProduct = () => {
       setGst("");
       setShelfLife("");
       setPublish("");
+      setBenefits("");
+      setSpecialIngredients("");
+      setAlergyInfo("");
+      setCoating("");
+      setGender("");
+      setAgeRange("");
+      setHeight("");
+      setWidth("");
+      setWeight("")
       toast.success("All Fields Cleared");
     } catch (error) {
       setLoading(false);
@@ -227,7 +238,7 @@ const AddProduct = () => {
                       setCategory(e.target.value);
                     }}
                     required
-                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
+                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                   >
                     <option>Select Category</option>
                     <option>Category 2</option>
@@ -243,7 +254,7 @@ const AddProduct = () => {
                       setType(e.target.value);
                     }}
                     required
-                    className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
+                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                   >
                     <option>Select Type</option>
                     <option>Type 2</option>
@@ -287,8 +298,9 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setForm(e.target.value);
                         }}
-                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
+                        <option>Select Form</option>
                         <option>Capsules</option>
                         <option>Oil</option>
                         <option>Tablets</option>
@@ -303,7 +315,7 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setIsAyurvedic(e.target.value);
                         }}
-                        className=" w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded mt-2"
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Nature Of Medicine</option>
                         <option>True</option>
@@ -319,7 +331,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setContainer(e.target.value);
                         }}
-                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Container Type</option>
                         <option>Bottle</option>
@@ -412,7 +424,6 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
-
           {/* Product Pricing */}
           <div className="py-5">
             <div className="pb-2">
@@ -455,6 +466,7 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
+
         </div>
 
         {/* Grid col-2 */}
@@ -589,9 +601,54 @@ const AddProduct = () => {
             </div>
           </div>
 
+          {/* Gender and AgeRange */}
+          <div className="py-5">
+            <div className="pb-2">
+              <h2 className="text-lg font-semibold antialiased">Targeted For</h2>
+            </div>
+            {/*  Price (MRP)  */}
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+              <div>
+                <div className="w-full py-2">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label>Gender (Both/Male/Female)</label>
+                      <select
+                        required
+                        onChange={(e) => {
+                          setGender(e.target.value)
+                        }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
+                      >
+                        <option>Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Both</option>
+                      </select>
+                    </div>
+                    {/* Discount */}
+                    <div>
+                      <label>Age Range (From 18 )</label>
+                      <select
+                        required
+                        onChange={(e) => {
+                          setAgeRange(e.target.value)
+                        }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
+                      >
+                        <option>Select Age Range</option>
+                        <option>1 to 18</option>
+                        <option>18 to 65</option>
+                        <option>65 and Above</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-
-          {/* Product Manufacturing */}
+          {/* Product Additional Info  */}
           <div className="py-5">
             <div className="pb-2">
               <h2 className="text-lg font-semibold antialiased">Additional Info {"  "}( Separate by " , " )</h2>
@@ -682,7 +739,7 @@ const AddProduct = () => {
                           setCoo(e.target.value);
                         }}
                         required
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>India</option>
                         <option>USA</option>
@@ -740,7 +797,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setSuitableFor(e.target.value);
                         }}
-                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Edible For</option>
                         <option>Vegeterian</option>
@@ -756,7 +813,7 @@ const AddProduct = () => {
                           onChange={(e) => {
                             setPublish(e.target.value);
                           }}
-                          className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 placeholder:text-gray-300 "
+                          className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                         >
                           <option>Publishing Status</option>
                           <option>Publish</option>
@@ -768,7 +825,10 @@ const AddProduct = () => {
                 </div>
               </div>
             </div>
+
           </div>
+
+
 
           {/* Add Product Button */}
           <div className="py-5 flex gap-3">

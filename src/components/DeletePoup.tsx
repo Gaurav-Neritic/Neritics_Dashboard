@@ -6,7 +6,6 @@ import Loader from "./Loaders/Loader";
 interface DeletePopupProps {
   isVisible: boolean;
   onClose: () => void;
-  prodId: string;
   prodName: string;
   handelDelete: () => {}
 }
@@ -14,7 +13,6 @@ interface DeletePopupProps {
 const DeletePoup = ({
   isVisible,
   onClose,
-  prodId,
   prodName,
   handelDelete
 }: DeletePopupProps) => {

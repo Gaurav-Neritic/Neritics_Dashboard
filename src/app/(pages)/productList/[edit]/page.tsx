@@ -34,6 +34,15 @@ export default function Page({ params }: any) {
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const [imgIndex, setImgIndex] = useState(0);
+  const [benefits, setBenefits] = useState("");
+  const [alergyInfo, setAlergyInfo] = useState("");
+  const [specialIngredients, setSpecialIngredients] = useState("");
+  const [coating, setCoating] = useState("");
+  const [height, setHeight] = useState("");
+  const [width, setWidth] = useState("");
+  const [weight, setWeight] = useState("");
+  const [gender, setGender] = useState("");
+  const [ageRange, setAgeRange] = useState("");
 
   // image edit popup
   const [popup, setPopup] = useState(false);
@@ -54,30 +63,43 @@ export default function Page({ params }: any) {
     }
   }
 
+  // Taking the addOn Info and setting it in an array
+
   const handelUpdate = async (e: React.FormEvent) => {
-    const data = {
-      edit,
-      name,
-      description,
-      price,
-      quantity,
-      stock,
-      discount,
-      category,
-      type,
-      brandName,
-      form,
-      isAyurvedic,
-      container,
-      coo,
-      hsnCode,
-      gst,
-      shelfLife,
-      suitableFor,
-      publish,
-    };
     try {
+
       e.preventDefault();
+
+      const data = {
+        edit,
+        name,
+        description,
+        price,
+        quantity,
+        stock,
+        discount,
+        category,
+        type,
+        brandName,
+        form,
+        isAyurvedic,
+        container,
+        coo,
+        hsnCode,
+        gst,
+        shelfLife,
+        suitableFor,
+        publish,
+        benefits,
+        specialIngredients,
+        alergyInfo,
+        coating,
+        height,
+        width,
+        weight,
+        gender,
+        ageRange
+      };
       setLoading(true);
       const response = await axios.put("../api/editProduct", { data });
 
@@ -129,6 +151,15 @@ export default function Page({ params }: any) {
       );
       setCoo(details?.countryOfOrigin);
       setImages(details?.image);
+      setHeight(details?.dimensions[0]);
+      setWidth(details?.dimensions[1]);
+      setWeight(details?.dimensions[2]);
+      setBenefits(details?.benefits);
+      setAlergyInfo(details?.allergyInformation);
+      setSpecialIngredients(details?.specialIngredients);
+      setCoating(details?.coating);
+      setAgeRange(details?.ageRange);
+      setGender(details?.targetedGender);
     }
   }, [details]);
 
@@ -274,6 +305,7 @@ export default function Page({ params }: any) {
                               }}
                               className=" w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2 "
                             >
+                              <option>Select Form</option>
                               <option>Capsules</option>
                               <option>Oil</option>
                               <option>Tablets</option>
@@ -344,6 +376,101 @@ export default function Page({ params }: any) {
                     </div>
                   </div>
                 </div>
+
+                {/* Dimension OF Product*/}
+                <div className="py-5">
+                  <div className="pb-2">
+                    <h2 className="text-lg font-semibold antialiased">
+                      Dimension of Product
+                    </h2>
+                  </div>
+                  {/* height  */}
+                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                    <div>
+                      <div className="w-full py-2">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label>Height ( In cm )</label>
+                            <input
+                              placeholder="Height in CM"
+                              required
+                              type="number"
+                              value={height}
+                              onChange={(e) => { setHeight(e.target.value) }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          <div>
+                            <label>Width ( In cm )</label>
+                            <input
+                              placeholder="Width in CM"
+                              required
+                              type="number"
+                              value={width}
+                              onChange={(e) => { setWidth(e.target.value) }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          <div>
+                            <label>Weight ( In gm )</label>
+                            <input
+                              placeholder="Weight in GM"
+                              required
+                              type="number"
+                              value={weight}
+                              onChange={(e) => { setWeight(e.target.value) }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
+                            />
+                          </div>
+                          {/*  */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Product Pricing */}
+                <div className="py-5">
+                  <div className="pb-2">
+                    <h2 className="text-lg font-semibold antialiased">
+                      Pricing
+                    </h2>
+                  </div>
+
+                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                    <div>
+                      <div className="w-full py-2">
+                        <div className="flex items-center justify-center gap-4">
+                          <div>
+                            <label>Price (MRP)</label>
+                            <input
+                              placeholder="MRP Price"
+                              value={price}
+                              onChange={(e) => {
+                                setPrice(e.target.value);
+                              }}
+                              required
+                              type="number"
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          <div>
+                            <label>Discount</label>
+                            <input
+                              placeholder="Discount Price"
+                              value={discount}
+                              onChange={(e) => setDiscount(e.target.value)}
+                              required
+                              type="number"
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
               {/* Grid col-2 */}
@@ -403,41 +530,48 @@ export default function Page({ params }: any) {
                   </div>
                 </div>
 
-                {/* Product Pricing */}
+                {/* Gender and AgeRange */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
-                      Pricing
-                    </h2>
+                    <h2 className="text-lg font-semibold antialiased">Targeted For</h2>
                   </div>
-
+                  {/*  Price (MRP)  */}
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="flex items-center justify-center gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <label>Price (MRP)</label>
-                            <input
-                              placeholder="MRP Price"
-                              value={price}
+                            <label>Gender (Both/Male/Female)</label>
+                            <select
+                              required
+                              value={gender}
                               onChange={(e) => {
-                                setPrice(e.target.value);
+                                setGender(e.target.value);
                               }}
-                              required
-                              type="number"
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                            />
+                            >
+                              <option>Select Gender</option>
+                              <option>Male</option>
+                              <option>Female</option>
+                              <option>Both</option>
+                            </select>
                           </div>
+                          {/* Discount */}
                           <div>
-                            <label>Discount</label>
-                            <input
-                              placeholder="Discount Price"
-                              value={discount}
-                              onChange={(e) => setDiscount(e.target.value)}
+                            <label>Age Range (From 18 )</label>
+                            <select
                               required
-                              type="number"
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
-                            />
+                              value={ageRange}
+                              onChange={(e) => {
+                                setAgeRange(e.target.value)
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            >
+                              <option>Select Age Range</option>
+                              <option>1 to 18</option>
+                              <option>18 to 65</option>
+                              <option>65 and Above</option>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -445,6 +579,77 @@ export default function Page({ params }: any) {
                   </div>
                 </div>
 
+                {/* Product Additional Info  */}
+                <div className="py-5">
+                  <div className="pb-2">
+                    <h2 className="text-lg font-semibold antialiased">Additional Info {"  "}( Separate by " , " )</h2>
+                  </div>
+                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                    <div>
+                      <div className="w-full py-2">
+                        <div className="grid grid-cols-2 gap-4 place-items-center ">
+                          {/* Benefit 1  */}
+                          <div>
+                            <label>Benefits </label>
+                            <textarea
+                              placeholder="Enter Benefits "
+                              required
+                              value={benefits}
+                              rows={3}
+                              onChange={(e) => {
+                                setBenefits(e.target.value)
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          {/* Benefit 2  */}
+                          <div>
+                            <label>Special Ingredients</label>
+                            <textarea
+                              placeholder="Enter Special Ingredients"
+                              required
+                              rows={3}
+                              value={specialIngredients}
+                              onChange={(e) => {
+                                setSpecialIngredients(e.target.value)
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          {/* Benefit 3  */}
+                          <div>
+                            <label>Allergy Info</label>
+                            <textarea
+                              placeholder="Enter Allergy Info"
+                              required
+                              rows={3}
+                              value={alergyInfo}
+                              onChange={(e) => {
+                                setAlergyInfo(e.target.value)
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          {/* Benefit 4  */}
+                          <div>
+                            <label>Coating</label>
+                            <textarea
+                              placeholder="Enter Coating Info"
+                              required
+                              rows={3}
+                              value={coating}
+                              onChange={(e) => {
+                                setCoating(e.target.value)
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-center text-sm py-3 text-gray-600 animate-pulse"><sup>*</sup>Note ( Use "," comma for adding multiple values)</div>
+                  </div>
+                </div>
                 {/* Product Manufacturing */}
                 <div className="py-5">
                   <div className="pb-2">
@@ -560,6 +765,9 @@ export default function Page({ params }: any) {
                     isAyurvedic === "Nature Of Medicine" ||
                     container === "Container Type" ||
                     suitableFor === "Edible For" ||
+                    gender === "Select Gender" ||
+                    form === "Select Form" ||
+                    ageRange === "Select Age Range" ||
                     publish === "Publishing Status" ? (
                     <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
                       Note : Please Select Valid Options Only

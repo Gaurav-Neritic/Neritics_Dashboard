@@ -8,8 +8,6 @@ export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
 
-        console.log("requested body is ", reqBody);
-
         const { id } = reqBody;
 
         if (!id) {
