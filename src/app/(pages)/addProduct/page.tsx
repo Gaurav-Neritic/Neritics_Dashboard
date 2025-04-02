@@ -15,6 +15,8 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
   const [stock, setStock] = useState("");
+  const [gender, setGender] = useState("");
+  const [ageRange, setAgeRange] = useState("")
   //image
   const [mainImage, setMainImage] = useState(null);
   const [primaryImage, setPrimaryImage] = useState(null);
@@ -89,6 +91,8 @@ const AddProduct = () => {
     formData.append("height", height);
     formData.append("width", width);
     formData.append("weight", weight);
+    formData.append("gender", gender)
+    formData.append("ageRange", ageRange)
     try {
       // Checks if the selected types and categorys are defaults
       if (category === "Select Category") return setCategory("");
@@ -97,6 +101,8 @@ const AddProduct = () => {
       if (container === "Container Type") return setContainer("");
       if (suitableFor === "Edible For") return setSuitableFor("");
       if (publish === "Publishing Status") return setPublish("");
+      if (ageRange === "Select Age Range") return setPublish("");
+      if (form === "Select Form") return setForm("");
 
       e.preventDefault();
       setLoading(true);
@@ -137,6 +143,15 @@ const AddProduct = () => {
       setGst("");
       setShelfLife("");
       setPublish("");
+      setBenefits("");
+      setSpecialIngredients("");
+      setAlergyInfo("");
+      setCoating("");
+      setGender("");
+      setAgeRange("");
+      setHeight("");
+      setWidth("");
+      setWeight("")
       toast.success("All Fields Cleared");
     } catch (error) {
       setLoading(false);
@@ -285,6 +300,7 @@ const AddProduct = () => {
                         }}
                         className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
                       >
+                        <option>Select Form</option>
                         <option>Capsules</option>
                         <option>Oil</option>
                         <option>Tablets</option>
@@ -585,7 +601,52 @@ const AddProduct = () => {
             </div>
           </div>
 
-
+          {/* Gender and AgeRange */}
+          <div className="py-5">
+            <div className="pb-2">
+              <h2 className="text-lg font-semibold antialiased">Targeted For</h2>
+            </div>
+            {/*  Price (MRP)  */}
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+              <div>
+                <div className="w-full py-2">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label>Gender (Both/Male/Female)</label>
+                      <select
+                        required
+                        onChange={(e) => {
+                          setGender(e.target.value)
+                        }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                      >
+                        <option>Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Both</option>
+                      </select>
+                    </div>
+                    {/* Discount */}
+                    <div>
+                      <label>Age Range (From 18 )</label>
+                      <select
+                        required
+                        onChange={(e) => {
+                          setAgeRange(e.target.value)
+                        }}
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                      >
+                        <option>Select Age Range</option>
+                        <option>1 to 18</option>
+                        <option>18 to 65</option>
+                        <option>65 and Above</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Product Manufacturing */}
           <div className="py-5">
@@ -765,6 +826,8 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
+
+
 
           {/* Add Product Button */}
           <div className="py-5 flex gap-3">

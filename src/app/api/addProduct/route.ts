@@ -35,9 +35,11 @@ export async function POST(request: NextRequest) {
         const specialIngerdients: any = formData.get("specialIngerdients");
         const allergy: any = formData.get("allergy");
         const coating: any = formData.get("coating");
-        const height = formData.get("height")
-        const width = formData.get("width")
-        const weight = formData.get("weight")
+        const height = formData.get("height");
+        const width = formData.get("width");
+        const weight = formData.get("weight");
+        const gender = formData.get("gender")
+        const ageRange = formData.get("ageRange")
 
         let ayurvedicCheck: boolean;
         let suitableForCheck: boolean;
@@ -48,7 +50,7 @@ export async function POST(request: NextRequest) {
         const allergyArray = JSON.parse(allergy)
         const coatingArray = JSON.parse(coating)
 
-        if (!title || !description || !price || !quantity || !discount || !category) {
+        if (!title || !description || !price || !quantity || !discount || !category ) {
             return NextResponse.json(
                 { error: "All the marked fields are required" },
                 { status: 402 }
@@ -60,7 +62,7 @@ export async function POST(request: NextRequest) {
         if (benefitArray.length <= 0 || specialArray.length <= 0 || allergyArray.length <= 0 || coatingArray.length <= 0) {
             return NextResponse.json(
                 { error: "Atleast one field is  required  for the additional info" },
-                { status: 405 }
+                { status: 400 }
             );
         }
 
@@ -122,6 +124,8 @@ export async function POST(request: NextRequest) {
             form: form,
             ayurvedic: ayurvedicCheck,
             containerType: container,
+            targetedGender: gender,
+            ageRange: ageRange,
             benefits: benefitArray,
             specialIngredients: specialArray,
             allergyInformation: allergyArray,
