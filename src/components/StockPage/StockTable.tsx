@@ -91,7 +91,7 @@ const StocksTable = () => {
         toast.error("Failed to fetch the data");
         setProducts([]);
       }
-    } catch (error:any) {
+    } catch (error: any) {
       error.response.status === 401
         ? toast.success("No Products Found")
         : toast.error("Failed to fetch the product data");
