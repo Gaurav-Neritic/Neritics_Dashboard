@@ -10,6 +10,7 @@ import {
   LayoutGrid,
   Logs,
   Download,
+  Search,
 } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -36,6 +37,7 @@ const ProductList = () => {
   const [loading, setLoading] = useState(false);
   const [prodId, setProdId] = useState("");
   const [name, setName] = useState("");
+  const [searchText, setSearchText] = useState("")
 
   async function getProducts() {
     try {
@@ -58,6 +60,18 @@ const ProductList = () => {
         : toast.error("Failed to fetch the product data");
     }
   }
+
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    const text = e.target.value;
+    setSearchText(text);
+    const filtered = productData.filter(
+      (product: any) =>
+        product.title.toLowerCase().includes(text.toLowerCase()) ||
+        product._id.toLowerCase().includes(text.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
 
   async function handelDelete(id: string) {
     try {
@@ -185,30 +199,40 @@ const ProductList = () => {
         <div>
           <h1 className="text-xl uppercase font-semibold">Product Lists</h1>
         </div>
-        <div className="flex gap-3">
+        <div className="flex items-center justify-center gap-3">
+          <input
+            type="text"
+            placeholder="Search by product name or ID..."
+            value={searchText}
+            onChange={handleSearch}
+            className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
+          />
           <button
             onClick={handleExcelExport}
-            className={`flex items-center gap-2 px-3 py-1 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
+            className={`flex items-center justify-center  gap-2 px-3 py-2 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
             disabled={filteredProducts.length === 0}
             title="Download Excel"
           >
             <Download className="h-4 w-4" />
             <span>Export Excel</span>
           </button>
+
+
+
           <div className="flex gap-3">
             <button
               title="Grid View"
               onClick={() => setListView(false)}
-              className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+              className=" flex gap-2 p-2 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
             >
-              <LayoutGrid className="h-5 w-5" />
+              <LayoutGrid className="h-[20px] w-[20px]" />
             </button>
             <button
               title="List View"
               onClick={() => setListView(true)}
-              className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+              className=" flex gap-2 p-2 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
             >
-              <Logs className="h-5 w-5" />
+              <Logs className="h-[20px] w-[20px]" />
             </button>
           </div>
         </div>
@@ -310,8 +334,7 @@ const ProductList = () => {
                               }}
                               onClose={() => {
                                 setDeletePopup(false);
-                              }}
-                            />
+                              }} />
                           }
                         </div>
                       );

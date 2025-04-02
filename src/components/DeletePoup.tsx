@@ -7,7 +7,6 @@ interface DeletePopupProps {
   isVisible: boolean;
   onClose: () => void;
   prodName: string;
-  prodId: string
   handelDelete: () => {}
 }
 
