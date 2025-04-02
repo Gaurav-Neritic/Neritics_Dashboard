@@ -1,10 +1,11 @@
 "use client";
 import axios from "axios";
-import { X, SquarePen, Search } from "lucide-react";
+import { X, SquarePen, Search, Download } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Loader from "../Loaders/Loader";
 import Image from "next/image";
+import * as XLSX from "xlsx";
 
 const StocksTable = () => {
   const [products, setProducts] = useState([]);
@@ -113,10 +114,37 @@ const StocksTable = () => {
     getProductsStocks();
   }, []);
 
+
+  // Excel Download handle
+  const handleExcelExport = () => {
+    try {
+      const excelData = filteredProducts.map((product: any) => ({
+        ID: product._id,
+        Title: product.title,
+        Stock: product.stock,
+      }));
+      const worksheet = XLSX.utils.json_to_sheet(excelData);
+      const columnWidths = [
+        { wch: 24 },
+        { wch: 40 },
+        { wch: 10 },
+      ];
+      worksheet["!cols"] = columnWidths;
+
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "StockTable");
+
+      XLSX.writeFile(workbook, "Stock_Data.xlsx");
+      toast.success("Excel file downloaded successfully");
+    } catch (error) {
+      toast.error("Failed to download Excel file");
+    }
+  };
+
   return (
     <section className="p-5">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Stocks In Inventory</h1>
+      <h1 className="text-2xl font-bold">Stocks In Inventory</h1>
+      <div className="flex justify-between items-center mb-6 mt-4">
         {/* Search Bar */}
         <div className="relative w-full max-w-md">
           <input
@@ -127,6 +155,18 @@ const StocksTable = () => {
             className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700"
           />
           <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
+        </div>
+        <div>
+          {/* Export Excel */}
+          <button
+            onClick={handleExcelExport}
+            className={`flex items-center gap-2 px-3 py-1 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
+            disabled={filteredProducts.length === 0}
+            title="Download Excel"
+          >
+            <Download className="h-4 w-4" />
+            <span>Export Excel</span>
+          </button>
         </div>
       </div>
       {/* Products List */}
@@ -180,7 +220,7 @@ const StocksTable = () => {
           ))
         ) : (
           <div className="text-center text-lg py-6 text-gray-500 dark:text-gray-300 capitalize ">
-            🚫  No products found.
+            🚫 No products found.
           </div>
         )}
       </div>
