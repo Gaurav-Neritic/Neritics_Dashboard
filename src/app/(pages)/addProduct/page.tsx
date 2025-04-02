@@ -87,9 +87,9 @@ const AddProduct = () => {
     formData.append("suitableFor", suitableFor);
     formData.append("publish", publish);
     formData.append("benefits", JSON.stringify(benefitArray));
-    formData.append("specialIngerdients", specialIngredientsArray);
-    formData.append("allergy", alergyInfoArray);
-    formData.append("coating", coatingArray);
+    formData.append("specialIngerdients", JSON.stringify(specialIngredientsArray));
+    formData.append("allergy", JSON.stringify(alergyInfoArray));
+    formData.append("coating", JSON.stringify(coatingArray));
     formData.append("height", height);
     formData.append("width", width);
     formData.append("weight", weight);
