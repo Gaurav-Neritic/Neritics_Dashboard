@@ -86,7 +86,7 @@ const AddProduct = () => {
     formData.append("isAyurvedic", isAyurvedic);
     formData.append("suitableFor", suitableFor);
     formData.append("publish", publish);
-    formData.append("benefits", benefitArray);
+    formData.append("benefits", JSON.stringify(benefitArray));
     formData.append("specialIngerdients", specialIngredientsArray);
     formData.append("allergy", alergyInfoArray);
     formData.append("coating", coatingArray);

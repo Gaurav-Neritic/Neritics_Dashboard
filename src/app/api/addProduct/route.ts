@@ -31,10 +31,10 @@ export async function POST(request: NextRequest) {
         const suitableFor = formData.get("suitableFor")
         const publish = formData.get("publish")
         const container = formData.get("container")
-        const benefits = formData.get("benefits");
-        const specialIngerdients = formData.get("specialIngerdients");
-        const allergy = formData.get("allergy");
-        const coating = formData.get("coating");
+        const benefits: any = formData.get("benefits");
+        const specialIngerdients: any = formData.get("specialIngerdients");
+        const allergy: any = formData.get("allergy");
+        const coating: any = formData.get("coating");
         const height = formData.get("height")
         const width = formData.get("width")
         const weight = formData.get("weight")
@@ -43,6 +43,10 @@ export async function POST(request: NextRequest) {
         let suitableForCheck: boolean;
         let publishCheck: boolean;
 
+        const benefitArray = JSON.parse(benefits)
+        const specialArray = JSON.parse(specialIngerdients)
+        const allergyArray = JSON.parse(allergy)
+        const coatingArray = JSON.parse(coating)
 
         if (!title || !description || !price || !quantity || !discount || !category) {
             return NextResponse.json(
@@ -50,6 +54,16 @@ export async function POST(request: NextRequest) {
                 { status: 402 }
             );
         }
+
+        // Check if the array are not empty
+
+        if (benefitArray.length <= 0 || specialArray.length <= 0 || allergyArray.length <= 0 || coatingArray.length <= 0) {
+            return NextResponse.json(
+                { error: "Atleast one field is  required  for the additional info" },
+                { status: 405 }
+            );
+        }
+
 
         // Upload the image on clouinary
 
@@ -108,10 +122,10 @@ export async function POST(request: NextRequest) {
             form: form,
             ayurvedic: ayurvedicCheck,
             containerType: container,
-            benefits,
-            specialIngerdients,
-            allergyInformation: allergy,
-            coating,
+            benefits: benefitArray,
+            specialIngerdients: specialArray,
+            allergyInformation: allergyArray,
+            coating: coatingArray,
             'dimensions.0': height,
             'dimensions.1': width,
         });
