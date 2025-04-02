@@ -424,7 +424,6 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
-
           {/* Product Pricing */}
           <div className="py-5">
             <div className="pb-2">
@@ -467,6 +466,7 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
+
         </div>
 
         {/* Grid col-2 */}
@@ -648,7 +648,7 @@ const AddProduct = () => {
             </div>
           </div>
 
-          {/* Product Manufacturing */}
+          {/* Product Additional Info  */}
           <div className="py-5">
             <div className="pb-2">
               <h2 className="text-lg font-semibold antialiased">Additional Info {"  "}( Separate by " , " )</h2>
@@ -825,6 +825,7 @@ const AddProduct = () => {
                 </div>
               </div>
             </div>
+
           </div>
 
 

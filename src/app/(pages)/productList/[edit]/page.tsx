@@ -344,6 +344,99 @@ export default function Page({ params }: any) {
                     </div>
                   </div>
                 </div>
+                {/* Dimension OF Product*/}
+                <div className="py-5">
+                  <div className="pb-2">
+                    <h2 className="text-lg font-semibold antialiased">
+                      Dimension of Product
+                    </h2>
+                  </div>
+                  {/* height  */}
+                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                    <div>
+                      <div className="w-full py-2">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <label>Height ( In cm )</label>
+                            <input
+                              placeholder="Height in CM"
+                              required
+                              type="number"
+                              value={""}
+                              onChange={(e) => { }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          <div>
+                            <label>Width ( In cm )</label>
+                            <input
+                              placeholder="Width in CM"
+                              required
+                              type="number"
+                              value={""}
+                              onChange={(e) => { }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          <div>
+                            <label>Weight ( In gm )</label>
+                            <input
+                              placeholder="Weight in GM"
+                              required
+                              type="number"
+                              value={""}
+                              onChange={(e) => { }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          {/*  */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Product Pricing */}
+                <div className="py-5">
+                  <div className="pb-2">
+                    <h2 className="text-lg font-semibold antialiased">
+                      Pricing
+                    </h2>
+                  </div>
+
+                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                    <div>
+                      <div className="w-full py-2">
+                        <div className="flex items-center justify-center gap-4">
+                          <div>
+                            <label>Price (MRP)</label>
+                            <input
+                              placeholder="MRP Price"
+                              value={price}
+                              onChange={(e) => {
+                                setPrice(e.target.value);
+                              }}
+                              required
+                              type="number"
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          <div>
+                            <label>Discount</label>
+                            <input
+                              placeholder="Discount Price"
+                              value={discount}
+                              onChange={(e) => setDiscount(e.target.value)}
+                              required
+                              type="number"
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
               {/* Grid col-2 */}
@@ -402,42 +495,46 @@ export default function Page({ params }: any) {
                     </div>
                   </div>
                 </div>
-
-                {/* Product Pricing */}
+                {/* Gender and AgeRange */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
-                      Pricing
-                    </h2>
+                    <h2 className="text-lg font-semibold antialiased">Targeted For</h2>
                   </div>
-
+                  {/*  Price (MRP)  */}
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="flex items-center justify-center gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <label>Price (MRP)</label>
-                            <input
-                              placeholder="MRP Price"
-                              value={price}
+                            <label>Gender (Both/Male/Female)</label>
+                            <select
+                              required
                               onChange={(e) => {
-                                setPrice(e.target.value);
+
                               }}
-                              required
-                              type="number"
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                            />
+                            >
+                              <option>Select Gender</option>
+                              <option>Male</option>
+                              <option>Female</option>
+                              <option>Both</option>
+                            </select>
                           </div>
+                          {/* Discount */}
                           <div>
-                            <label>Discount</label>
-                            <input
-                              placeholder="Discount Price"
-                              value={discount}
-                              onChange={(e) => setDiscount(e.target.value)}
+                            <label>Age Range (From 18 )</label>
+                            <select
                               required
-                              type="number"
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
-                            />
+                              onChange={(e) => {
+
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            >
+                              <option>Select Age Range</option>
+                              <option>1 to 18</option>
+                              <option>18 to 65</option>
+                              <option>65 and Above</option>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -445,6 +542,77 @@ export default function Page({ params }: any) {
                   </div>
                 </div>
 
+                {/* Product Additional Info  */}
+                <div className="py-5">
+                  <div className="pb-2">
+                    <h2 className="text-lg font-semibold antialiased">Additional Info {"  "}( Separate by " , " )</h2>
+                  </div>
+                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                    <div>
+                      <div className="w-full py-2">
+                        <div className="grid grid-cols-2 gap-4 place-items-center ">
+                          {/* Benefit 1  */}
+                          <div>
+                            <label>Benefits </label>
+                            <textarea
+                              placeholder="Enter Benefits "
+                              required
+                              value={""}
+                              rows={3}
+                              onChange={(e) => {
+
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          {/* Benefit 2  */}
+                          <div>
+                            <label>Special Ingredients</label>
+                            <textarea
+                              placeholder="Enter Special Ingredients"
+                              required
+                              rows={3}
+                              value={""}
+                              onChange={(e) => {
+
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          {/* Benefit 3  */}
+                          <div>
+                            <label>Allergy Info</label>
+                            <textarea
+                              placeholder="Enter Allergy Info"
+                              required
+                              rows={3}
+                              value={""}
+                              onChange={(e) => {
+
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                          {/* Benefit 4  */}
+                          <div>
+                            <label>Coating</label>
+                            <textarea
+                              placeholder="Enter Coating Info"
+                              required
+                              rows={3}
+                              value={""}
+                              onChange={(e) => {
+
+                              }}
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-center text-sm py-3 text-gray-600 animate-pulse"><sup>*</sup>Note ( Use "," comma for adding multiple values)</div>
+                  </div>
+                </div>
                 {/* Product Manufacturing */}
                 <div className="py-5">
                   <div className="pb-2">
