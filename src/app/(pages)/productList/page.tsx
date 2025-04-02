@@ -11,7 +11,6 @@ import {
   Logs,
 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -252,7 +251,6 @@ const ProductList = () => {
                           {
                             <DeletePoup
                               isVisible={deletePopup}
-                              prodId={prodId}
                               prodName={name}
                               handelDelete={() => { return handelDelete(_id); }}
                               onClose={() => { setDeletePopup(false) }} />
