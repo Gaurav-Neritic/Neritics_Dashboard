@@ -51,6 +51,7 @@ const AddProduct = () => {
       .map((benefit: string) => benefit.trim())
       .filter((benefit: string) => benefit.length > 0);
 
+<<<<<<< HEAD
     console.log("Array is : ", benefitArray);
 
     const specialIngredientsArray: any = specialIngredients
@@ -68,6 +69,15 @@ const AddProduct = () => {
       .map((coate: string) => coate.trim())
       .filter((coate: string) => coate.length > 0);
 
+=======
+    const specialIngredientsArray: any = specialIngredients.split(",").map((special: string) => special.trim()).filter((special: string) => special.length > 0);
+
+    const alergyInfoArray: any = alergyInfo.split(",").map((allergy: string) => allergy.trim()).filter((allergy: string) => allergy.length > 0);
+
+    const coatingArray: any = coating.split(",").map((coate: string) => coate.trim()).filter((coate: string) => coate.length > 0);
+
+
+>>>>>>> 8f95a93c293cbcfb8f19c6f70190089fcfdf019f
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
