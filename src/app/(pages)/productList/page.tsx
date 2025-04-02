@@ -304,7 +304,6 @@ const ProductList = () => {
                           {
                             <DeletePoup
                               isVisible={deletePopup}
-                              prodId={prodId}
                               prodName={name}
                               handelDelete={() => {
                                 return handelDelete(_id);

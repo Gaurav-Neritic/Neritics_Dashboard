@@ -238,7 +238,7 @@ const AddProduct = () => {
                       setCategory(e.target.value);
                     }}
                     required
-                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
+                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                   >
                     <option>Select Category</option>
                     <option>Category 2</option>
@@ -254,7 +254,7 @@ const AddProduct = () => {
                       setType(e.target.value);
                     }}
                     required
-                    className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
+                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                   >
                     <option>Select Type</option>
                     <option>Type 2</option>
@@ -298,7 +298,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setForm(e.target.value);
                         }}
-                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Select Form</option>
                         <option>Capsules</option>
@@ -315,7 +315,7 @@ const AddProduct = () => {
                         onChange={(e: any) => {
                           setIsAyurvedic(e.target.value);
                         }}
-                        className=" w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 rounded mt-2"
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Nature Of Medicine</option>
                         <option>True</option>
@@ -331,7 +331,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setContainer(e.target.value);
                         }}
-                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Container Type</option>
                         <option>Bottle</option>
@@ -618,7 +618,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setGender(e.target.value)
                         }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Select Gender</option>
                         <option>Male</option>
@@ -634,7 +634,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setAgeRange(e.target.value)
                         }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Select Age Range</option>
                         <option>1 to 18</option>
@@ -739,7 +739,7 @@ const AddProduct = () => {
                           setCoo(e.target.value);
                         }}
                         required
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>India</option>
                         <option>USA</option>
@@ -797,7 +797,7 @@ const AddProduct = () => {
                         onChange={(e) => {
                           setSuitableFor(e.target.value);
                         }}
-                        className=" w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                       >
                         <option>Edible For</option>
                         <option>Vegeterian</option>
@@ -813,7 +813,7 @@ const AddProduct = () => {
                           onChange={(e) => {
                             setPublish(e.target.value);
                           }}
-                          className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 placeholder:text-gray-300 "
+                          className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                         >
                           <option>Publishing Status</option>
                           <option>Publish</option>

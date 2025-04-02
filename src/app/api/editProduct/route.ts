@@ -27,7 +27,18 @@ export async function PUT(request: NextRequest) {
             shelfLife,
             suitableFor,
             publish,
+            benefits,
+            specialIngredients,
+            alergyInfo,
+            coating,
+            height,
+            width,
+            weight,
+            gender,
+            ageRange
         } = reqBody.data;
+
+        console.log("Edit Request body is ", reqBody);
 
         let ayurvedicCheck: boolean;
         let suitableForCheck: boolean;
@@ -52,6 +63,46 @@ export async function PUT(request: NextRequest) {
             publishCheck = false;
         }
 
+        let benefitArray: any
+        let specialIngredientsArray: any
+        let alergyInfoArray: any
+        let coatingArray: any
+
+        if (typeof benefits === "string") {
+            benefitArray = benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
+        } else {
+            benefitArray = benefits
+        }
+
+
+        if (typeof specialIngredients === "string") {
+            specialIngredientsArray = specialIngredients.split(",").map((special: string) => special.trim()).filter((special: string) => special.length > 0);
+        } else {
+            specialIngredientsArray = specialIngredients
+        }
+
+        if (typeof alergyInfo === "string") {
+            alergyInfoArray = alergyInfo.split(",").map((allergy: string) => allergy.trim()).filter((allergy: string) => allergy.length > 0);
+        } else {
+            alergyInfoArray = alergyInfo
+        }
+
+        if (typeof coating === "string") {
+            coatingArray = coating.split(",").map((coate: string) => coate.trim()).filter((coate: string) => coate.length > 0);
+        } else {
+            coatingArray = coating
+        }
+
+        // Check if the array are not empty
+
+        if (benefitArray.length <= 0 || specialIngredientsArray.length <= 0 || alergyInfoArray.length <= 0 || coatingArray.length <= 0) {
+            return NextResponse.json(
+                { error: "Atleast one field is  required  for the additional info" },
+                { status: 400 }
+            );
+        }
+
+
         const updatedProduct = await Product.findByIdAndUpdate(edit,
             {
                 $set: {
@@ -73,6 +124,15 @@ export async function PUT(request: NextRequest) {
                     shelfLife,
                     suitableForVegeterian: suitableForCheck || false,
                     listingStatus: publishCheck || false,
+                    'dimensions.0': height,
+                    'dimensions.1': width,
+                    'dimensions.2': weight,
+                    targetedGender: gender,
+                    ageRange: ageRange,
+                    benefits: benefitArray,
+                    specialIngredients: specialIngredientsArray,
+                    allergyInformation: alergyInfoArray,
+                    coating: coatingArray,
                 }
             },
             {
