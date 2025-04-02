@@ -33,29 +33,31 @@ const AddProduct = () => {
   const [suitableFor, setSuitableFor] = useState("");
   const [publish, setPublish] = useState("");
   // Additional Infformation
-  const [benefits, setBenefits] = useState("");
-  const [alergyInfo, setAlergyInfo] = useState("");
-  const [specialIngredients, setSpecialIngredients] = useState("");
-  const [coating, setCoating] = useState("");
-  const [height, setHeight] = useState("");
-  const [width, setWidth] = useState("");
-  const [weight, setWeight] = useState("");
+  const [benefits, setBenefits] = useState("")
+  const [alergyInfo, setAlergyInfo] = useState("")
+  const [specialIngredients, setSpecialIngredients] = useState("")
+  const [coating, setCoating] = useState("")
+  const [height, setHeight] = useState("")
+  const [width, setWidth] = useState("")
+  const [weight, setWeight] = useState("")
   // Additional Infformation
 
   const [loading, setLoading] = useState(false);
 
   const handelSubmit = async (e: React.FormEvent) => {
-    // Taking the addOn Info and setting it in an array
-    const benefitArray: any = benefits
-      .split(",")
-      .map((benefit: string) => benefit.trim())
-      .filter((benefit: string) => benefit.length > 0);
 
-    const specialIngredientsArray: any = specialIngredients.split(",").map((special: string) => special.trim()).filter((special: string) => special.length > 0);
+    // Taking the addOn Info and setting it in an array
+    const benefitArray: any = benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
+
+    console.log("Array is : ", benefitArray);
+
+    const specialIngredientsArray: any = specialIngredients.split(",").map((splIngre: string) => splIngre.trim()).filter((splIngre: string) => splIngre.length > 0);
 
     const alergyInfoArray: any = alergyInfo.split(",").map((allergy: string) => allergy.trim()).filter((allergy: string) => allergy.length > 0);
 
     const coatingArray: any = coating.split(",").map((coate: string) => coate.trim()).filter((coate: string) => coate.length > 0);
+
+
 
 
     const formData = new FormData();
@@ -85,10 +87,7 @@ const AddProduct = () => {
     formData.append("suitableFor", suitableFor);
     formData.append("publish", publish);
     formData.append("benefits", JSON.stringify(benefitArray));
-    formData.append(
-      "specialIngerdients",
-      JSON.stringify(specialIngredientsArray)
-    );
+    formData.append("specialIngerdients", JSON.stringify(specialIngredientsArray));
     formData.append("allergy", JSON.stringify(alergyInfoArray));
     formData.append("coating", JSON.stringify(coatingArray));
     formData.append("height", height);
@@ -381,9 +380,7 @@ const AddProduct = () => {
                         required
                         type="number"
                         value={height}
-                        onChange={(e) => {
-                          setHeight(e.target.value);
-                        }}
+                        onChange={(e) => { setHeight(e.target.value) }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
@@ -394,9 +391,7 @@ const AddProduct = () => {
                         required
                         type="number"
                         value={width}
-                        onChange={(e) => {
-                          setWidth(e.target.value);
-                        }}
+                        onChange={(e) => { setWidth(e.target.value) }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
@@ -407,9 +402,7 @@ const AddProduct = () => {
                         required
                         type="number"
                         value={weight}
-                        onChange={(e) => {
-                          setWeight(e.target.value);
-                        }}
+                        onChange={(e) => { setWeight(e.target.value) }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
                     </div>
@@ -596,12 +589,12 @@ const AddProduct = () => {
             </div>
           </div>
 
+
+
           {/* Product Manufacturing */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">
-                Additional Info {"  "}( Separate by " , " )
-              </h2>
+              <h2 className="text-lg font-semibold antialiased">Additional Info {"  "}( Separate by " , " )</h2>
             </div>
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
@@ -616,7 +609,7 @@ const AddProduct = () => {
                         value={benefits}
                         rows={3}
                         onChange={(e) => {
-                          setBenefits(e.target.value);
+                          setBenefits(e.target.value)
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
@@ -630,7 +623,7 @@ const AddProduct = () => {
                         rows={3}
                         value={specialIngredients}
                         onChange={(e) => {
-                          setSpecialIngredients(e.target.value);
+                          setSpecialIngredients(e.target.value)
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
@@ -644,7 +637,7 @@ const AddProduct = () => {
                         rows={3}
                         value={alergyInfo}
                         onChange={(e) => {
-                          setAlergyInfo(e.target.value);
+                          setAlergyInfo(e.target.value)
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
@@ -658,7 +651,7 @@ const AddProduct = () => {
                         rows={3}
                         value={coating}
                         onChange={(e) => {
-                          setCoating(e.target.value);
+                          setCoating(e.target.value)
                         }}
                         className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                       />
@@ -666,9 +659,7 @@ const AddProduct = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-center text-sm py-3 text-gray-600 animate-pulse">
-                <sup>*</sup>Note ( Use "," comma for adding multiple values)
-              </div>
+              <div className="flex items-center justify-center text-sm py-3 text-gray-600 animate-pulse"><sup>*</sup>Note ( Use "," comma for adding multiple values)</div>
             </div>
           </div>
 
@@ -778,49 +769,7 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
-          {/*  Target Generation*/}
-          <div className="py-5">
-            <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">
-                Target Generation
-              </h2>
-            </div>
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
-              <div>
-                <div className="w-full py-2">
-                  <div className="grid grid-cols-2 gap-4  place-items-center ">
-                    {/* Target Generation */}
-                    <div>
-                      {/* Gender */}
-                      <label>Gender (Both/Male/Female)</label>
-                      <select
-                        onChange={(e) => {}}
-                        required
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      >
-                        <option>Both</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                      </select>
-                    </div>
 
-                    <div>
-                      <label>Age Limit</label>
-                      <select
-                        onChange={(e) => {}}
-                        required
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      >
-                        <option>18-24</option>
-                        <option>24-30</option>
-                        <option>30-60</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           {/* Add Product Button */}
           <div className="py-5 flex gap-3">
             <button
