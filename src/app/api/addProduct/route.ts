@@ -123,11 +123,12 @@ export async function POST(request: NextRequest) {
             ayurvedic: ayurvedicCheck,
             containerType: container,
             benefits: benefitArray,
-            specialIngerdients: specialArray,
+            specialIngredients: specialArray,
             allergyInformation: allergyArray,
             coating: coatingArray,
             'dimensions.0': height,
             'dimensions.1': width,
+            'dimensions.2': weight
         });
 
         if (!product) {

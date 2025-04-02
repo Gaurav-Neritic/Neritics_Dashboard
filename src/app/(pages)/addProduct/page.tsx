@@ -49,15 +49,11 @@ const AddProduct = () => {
     // Taking the addOn Info and setting it in an array
     const benefitArray: any = benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
 
-    console.log("Array is : ", benefitArray);
-
-    const specialIngredientsArray: any = specialIngredients.split(",").map((splIngre: string) => splIngre.trim()).filter((splIngre: string) => splIngre.length > 0);
+    const specialIngredientsArray: any = specialIngredients.split(",").map((special: string) => special.trim()).filter((special: string) => special.length > 0);
 
     const alergyInfoArray: any = alergyInfo.split(",").map((allergy: string) => allergy.trim()).filter((allergy: string) => allergy.length > 0);
 
     const coatingArray: any = coating.split(",").map((coate: string) => coate.trim()).filter((coate: string) => coate.length > 0);
-
-
 
 
     const formData = new FormData();
