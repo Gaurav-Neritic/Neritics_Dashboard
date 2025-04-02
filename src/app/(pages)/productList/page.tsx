@@ -9,11 +9,12 @@ import {
   FilePenLine,
   LayoutGrid,
   Logs,
+  Download,
 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import * as XLSX from "xlsx";
 
 interface productDataProps {
   _id: string;
@@ -33,14 +34,14 @@ const ProductList = () => {
   const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
   const [loading, setLoading] = useState(false);
-  const [prodId, setProdId] = useState("")
-  const [name, setName] = useState('')
+  const [prodId, setProdId] = useState("");
+  const [name, setName] = useState("");
 
   async function getProducts() {
     try {
-      const response = await axios.get("api/getProducts",
-        { fetchOptions: { cache: "no-store" } }
-      );
+      const response = await axios.get("api/getProducts", {
+        fetchOptions: { cache: "no-store" },
+      });
       if (response.data.data) {
         setLoading(true);
         setProductData(response.data.data);
@@ -52,7 +53,9 @@ const ProductList = () => {
       }
     } catch (error: any) {
       setLoading(false);
-      error.response.status === 401 ? toast.success("No Products Found") : toast.error("Failed to fetch the product data");
+      error.response.status === 401
+        ? toast.success("No Products Found")
+        : toast.error("Failed to fetch the product data");
     }
   }
 
@@ -60,12 +63,14 @@ const ProductList = () => {
     try {
       const response = await axios.delete("api/deleteProduct", {
         data: { id },
-        fetchOptions: { cache: "no-store" }
+        fetchOptions: { cache: "no-store" },
       });
 
       if (response.data.data) {
         toast.success("Product Deleted Successfully");
-        setProductData(prevProducts => prevProducts.filter((product: any) => product._id !== prodId));
+        setProductData((prevProducts) =>
+          prevProducts.filter((product: any) => product._id !== prodId)
+        );
       }
     } catch (error) {
       console.log("Error Deleting the product", error);
@@ -82,17 +87,53 @@ const ProductList = () => {
       setFilteredProducts(
         productData.filter((product: any) => product.listingStatus === true)
       );
-      setLoading(false)
+      setLoading(false);
     } else if (filter === "UnListed") {
       setFilteredProducts(
         productData.filter((product: any) => product.listingStatus === false)
       );
-      setLoading(false)
+      setLoading(false);
     } else {
       setFilteredProducts(productData);
-      setLoading(false)
+      setLoading(false);
     }
   }, [filter, productData]);
+
+  // Excel Download handle
+  const handleExcelExport = () => {
+    try {
+      const excelData = filteredProducts.map((product: any) => ({
+        ID: product._id,
+        Title: product.title,
+        Images: product.image[0],
+        Price: product.price,
+        Stock: product.stock,
+        Discount: product.discount,
+        Status: product.listingStatus ? "Listed" : "Unlisted",
+      }));
+      const worksheet = XLSX.utils.json_to_sheet(excelData);
+      const columnWidths = [
+        { wch: 24 },
+        { wch: 40 },
+        { wch: 100 },
+        { wch: 10 },
+        { wch: 15 },
+        { wch: 10 },
+        { wch: 10 },
+        { wch: 15 },
+      ];
+      worksheet["!cols"] = columnWidths;
+      worksheet["!rows"] = Array(excelData.length).fill({ hpt: 40 });
+
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Product Lists");
+
+      XLSX.writeFile(workbook, "Product_Lists.xlsx");
+      toast.success("Excel file downloaded successfully");
+    } catch (error) {
+      toast.error("Failed to download Excel file");
+    }
+  };
 
   return (
     <section className="p-5">
@@ -146,19 +187,30 @@ const ProductList = () => {
         </div>
         <div className="flex gap-3">
           <button
-            title="Grid View"
-            onClick={() => setListView(false)}
-            className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+            onClick={handleExcelExport}
+            className={`flex items-center gap-2 px-3 py-1 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
+            disabled={filteredProducts.length === 0}
+            title="Download Excel"
           >
-            <LayoutGrid className="h-5 w-5" />
+            <Download className="h-4 w-4" />
+            <span>Export Excel</span>
           </button>
-          <button
-            title="List View"
-            onClick={() => setListView(true)}
-            className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
-          >
-            <Logs className="h-5 w-5" />
-          </button>
+          <div className="flex gap-3">
+            <button
+              title="Grid View"
+              onClick={() => setListView(false)}
+              className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+            >
+              <LayoutGrid className="h-5 w-5" />
+            </button>
+            <button
+              title="List View"
+              onClick={() => setListView(true)}
+              className=" flex gap-2 p-1 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+            >
+              <Logs className="h-5 w-5" />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -254,8 +306,13 @@ const ProductList = () => {
                               isVisible={deletePopup}
                               prodId={prodId}
                               prodName={name}
-                              handelDelete={() => { return handelDelete(_id); }}
-                              onClose={() => { setDeletePopup(false) }} />
+                              handelDelete={() => {
+                                return handelDelete(_id);
+                              }}
+                              onClose={() => {
+                                setDeletePopup(false);
+                              }}
+                            />
                           }
                         </div>
                       );
@@ -296,7 +353,9 @@ const ProductList = () => {
                   }: productDataProps) => {
                     return (
                       <ProductCard
-                        handelDelete={() => { return handelDelete(_id) }}
+                        handelDelete={() => {
+                          return handelDelete(_id);
+                        }}
                         key={_id}
                         _id={_id}
                         image={image}
@@ -308,8 +367,7 @@ const ProductList = () => {
                       />
                     );
                   }
-                )
-              }
+                )}
             </div>
             {filteredProducts.length === 0 && (
               <div className="place-items-center uppercase text-gray-600 font-semibold py-10">

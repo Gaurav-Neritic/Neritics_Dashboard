@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { X, SquarePen, Search } from "lucide-react";
+import { X, SquarePen, Search, Download } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Loader from "../Loaders/Loader";
@@ -159,10 +159,13 @@ const StocksTable = () => {
         <div>
           {/* Export Excel */}
           <button
-            className="bg-green-500 hover:bg-green-600 text-white py-1 px-4 rounded"
             onClick={handleExcelExport}
+            className={`flex items-center gap-2 px-3 py-1 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
+            disabled={filteredProducts.length === 0}
+            title="Download Excel"
           >
-            Export to Excel
+            <Download className="h-4 w-4" />
+            <span>Export Excel</span>
           </button>
         </div>
       </div>
