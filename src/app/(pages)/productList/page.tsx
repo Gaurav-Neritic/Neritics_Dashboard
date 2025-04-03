@@ -202,7 +202,7 @@ const ProductList = () => {
         <div className="flex items-center justify-center gap-3">
           <input
             type="text"
-            placeholder="Search by product name or ID..."
+            placeholder="Search by product name..."
             value={searchText}
             onChange={handleSearch}
             className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
@@ -284,7 +284,7 @@ const ProductList = () => {
                           key={_id}
                           className="py-3 px-5 grid grid-cols-9 place-items-start gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
                         >
-                          <h1 className="col-span-1 w-full truncate">{_id}</h1>
+                          <h1 className="col-span-1 w-full truncate " title={_id}>{_id}</h1>
                           <h1 className="col-span-2 line-clamp-2 capitalize">
                             {title}
                           </h1>

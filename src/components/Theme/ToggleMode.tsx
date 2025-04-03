@@ -23,6 +23,7 @@ const ToggleMode = () => {
   }, [mode]);
 
   return (
+    <>
     <button
       onClick={handelMode}
       className="p-2 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
@@ -37,6 +38,7 @@ const ToggleMode = () => {
         </span>
       )}
     </button>
+    </>
   );
 };
 
