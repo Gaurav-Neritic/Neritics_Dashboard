@@ -6,8 +6,23 @@ import React, { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 
 const SettingsPage = () => {
+  const [category, setCategory] = useState("")
 
+  const handelCategory = async () => {
+    try {
+      const response = await axios.post('api/addCategory', { category });
 
+      if (response.data.data) {
+        toast.success("Category Added Successfully")
+        setCategory("")
+      } else {
+        toast.error("Failed to add category")
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Failed to add category")
+    }
+  }
   return (
     <div className="p-5">
       <div className="">
@@ -27,14 +42,14 @@ const SettingsPage = () => {
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    value={""}
-                    onChange={(e) => { }}
+                    value={category}
+                    onChange={(e) => { setCategory(e.target.value) }}
                     className={`w-full px-3 py-2 border border-lightBorder dark:border-darkBorder  rounded outline-none `}
                     placeholder="Add new Product category"
                   />
                   <button
                     className={`px-3 py-2 bg-green-600 text-white rounded  transition `}>
-                    <SquarePlus className="w-6 h-6" onClick={() => { }} />
+                    <SquarePlus className="w-6 h-6" onClick={handelCategory} />
                   </button>
                 </div>
               </div>

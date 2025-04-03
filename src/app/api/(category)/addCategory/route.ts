@@ -9,16 +9,14 @@ export async function POST(request: NextRequest) {
 
         const { category } = reqBody;
 
-        console.log(category);
+        if (!category) {
+            return NextResponse.json({ error: "Category Name is required" }, { status: 400 })
+        }
 
         const existingCategory = await Category.findOne({ label: category })
 
         if (existingCategory) {
             return NextResponse.json({ error: "Category Already Exists" }, { status: 403 })
-        }
-
-        if (!category) {
-            return NextResponse.json({ error: "Category Name is required" }, { status: 400 })
         }
 
         const newCategory = await Category.create({ label: category })

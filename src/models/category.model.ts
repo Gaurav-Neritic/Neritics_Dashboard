@@ -6,6 +6,7 @@ const typeSchema = new Schema(
             type: String,
             required: [true, "Category Name is required"],
             unique: true,
+            sparse: true,
             trim: true,
             lowerCase: true
         }
