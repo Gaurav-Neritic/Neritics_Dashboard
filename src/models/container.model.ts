@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const typeSchema = new Schema(
     {
-        containerTypeName: {
+        label: {
             type: String,
             required: [true, "Container Name is required"],
             unique: true,

@@ -28,6 +28,7 @@ const AddProduct = () => {
       alergyInfo: "", specialIngredients: "",
       coating: "", height: "",
       width: "", weight: "",
+      categoryData: [],
     }
   )
   //image
@@ -38,6 +39,7 @@ const AddProduct = () => {
   const [fourthImage, setFourthImage] = useState<File | null>(null);
 
   const [loading, setLoading] = useState(false);
+
 
   const handelSubmit = async (e: FormEvent) => {
 
@@ -90,10 +92,10 @@ const AddProduct = () => {
       // Checks if the selected types and categorys are defaults
       if (productData.category === "Select Category") return productData.category = "";
       if (productData.type === "Select Type") return productData.type = "";
-      if (productData.isAyurvedic === "Nature Of Medicine") return productData.isAyurvedic = "";
-      if (productData.container === "Container Type") return productData.container = "";
-      if (productData.suitableFor === "Edible For") return productData.suitableFor = "";
-      if (productData.publish === "Publishing Status") return productData.publish = "";
+      if (productData.isAyurvedic === "Select Nature Of Med") return productData.isAyurvedic = "";
+      if (productData.container === "Select Container Type") return productData.container = "";
+      if (productData.suitableFor === "Select Edible For") return productData.suitableFor = "";
+      if (productData.publish === "Select Listing Status") return productData.publish = "";
       if (productData.ageRange === "Select Age Range") return productData.ageRange = "";
       if (productData.form === "Select Form") return productData.form = "";
 
@@ -151,6 +153,7 @@ const AddProduct = () => {
     return URL.createObjectURL(file);
   };
 
+
   const handelChange = (e: FormEvent) => {
     const { name, value } = e.target as HTMLInputElement;
     setProductData({
@@ -159,6 +162,24 @@ const AddProduct = () => {
     })
   }
 
+  useEffect(() => {
+    async function getCategories() {
+      try {
+        const response = await axios.get('api/getCategory');
+
+        if (response.data.data) {
+          setProductData({ ...productData, categoryData: response.data.data })
+        } else {
+          toast.error("Error Fetching the category");
+        }
+      } catch (error) {
+        console.log("Error Fetching the category", error);
+        toast.error("Error Fetching the category");
+      }
+    }
+
+    getCategories()
+  }, [])
 
 
   return (
@@ -210,12 +231,12 @@ const AddProduct = () => {
               <div>
                 <div className="w-full py-2">
                   <label>Product Category</label>
-                  <Select name={'category'} value={productData.category} onChange={handelChange} options={[{ label: "Select Your Category" }, { label: "Category 1" }, { label: "Category 2" }, { label: "Category 3" }]} />
+                  <Select name={'category'} value={productData.category} onChange={handelChange} options={productData.categoryData} defaultOption="Category" />
                 </div>
 
                 <div className="w-full py-2">
                   <label>Product Type</label>
-                  <Select name={'type'} value={productData.type} onChange={handelChange} options={[{ label: "Select Your Type" }, { label: "Type 1" }, { label: "Type 2" }, { label: "Type 3" }]} />
+                  <Select name={'type'} value={productData.type} onChange={handelChange} options={[{ label: "Select Your Type" }, { label: "Type 1" }, { label: "Type 2" }, { label: "Type 3" }]} defaultOption={"Type"} />
                 </div>
               </div>
             </div>
@@ -238,18 +259,18 @@ const AddProduct = () => {
                     {/* Form */}
                     <div className="w-full">
                       <label>Form</label>
-                      <Select name={'form'} value={productData.form} onChange={handelChange} options={[{ label: "Select Form" }, { label: "Capsules" }, { label: "Oil" }, { label: "Tablets" }]} />
+                      <Select name={'form'} value={productData.form} onChange={handelChange} options={[{ label: "Select Form" }, { label: "Capsules" }, { label: "Oil" }, { label: "Tablets" }]} defaultOption={"Form"} />
                     </div>
 
                     {/* HSN Code and GST  */}
                     <div>
                       <label>Ayurvedic</label>
-                      <Select name={'isAyurvedic'} value={productData.isAyurvedic} onChange={handelChange} options={[{ label: "Nature Of Medicine" }, { label: "True" }, { label: "False" }]} />
+                      <Select name={'isAyurvedic'} value={productData.isAyurvedic} onChange={handelChange} options={[{ label: "Nature Of Medicine" }, { label: "True" }, { label: "False" }]} defaultOption={"Nature of Med"} />
                     </div>
                     {/* Container */}
                     <div>
                       <label>Container</label>
-                      <Select name={'container'} value={productData.container} onChange={handelChange} options={[{ label: "Container Type" }, { label: "Bottle" }, { label: "Strip" }]} />
+                      <Select name={'container'} value={productData.container} onChange={handelChange} options={[{ label: "Container Type" }, { label: "Bottle" }, { label: "Strip" }]} defaultOption={"Container Type"} />
                     </div>
                     {/* Quantity In Container */}
                     <div>
@@ -468,12 +489,12 @@ const AddProduct = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label>Gender (Both/Male/Female)</label>
-                      <Select name={'gender'} value={productData.gender} onChange={handelChange} options={[{ label: "Select Gender" }, { label: "Male" }, { label: "Female" }, { label: "Both" }]} />
+                      <Select name={'gender'} value={productData.gender} onChange={handelChange} options={[{ label: "Select Gender" }, { label: "Male" }, { label: "Female" }, { label: "Both" }]} defaultOption={"Gender"} />
                     </div>
                     {/* Discount */}
                     <div>
                       <label>Age Range (From 18 )</label>
-                      <Select name={'ageRange'} value={productData.ageRange} onChange={handelChange} options={[{ label: "Select Age Range" }, { label: "1 to 18" }, { label: "18 to 65" }, { label: "65 and Above" }]} />
+                      <Select name={'ageRange'} value={productData.ageRange} onChange={handelChange} options={[{ label: "Select Age Range" }, { label: "1 to 18" }, { label: "18 to 65" }, { label: "65 and Above" }]} defaultOption={"Age Range"} />
                     </div>
                   </div>
                 </div>
@@ -531,7 +552,7 @@ const AddProduct = () => {
                     {/* Country Of Origin */}
                     <div>
                       <label>Country Of Origin</label>
-                      <Select name={'coo'} value={productData.coo} onChange={handelChange} options={[{ label: "Select Country" }, { label: "India" }, { label: "USA" }, { label: "China" }]} />
+                      <Select name={'coo'} value={productData.coo} onChange={handelChange} options={[{ label: "Select Country" }, { label: "India" }, { label: "USA" }, { label: "China" }]} defaultOption={"Country"} />
                     </div>
 
                     {/* HSN Code and GST  */}
@@ -552,13 +573,13 @@ const AddProduct = () => {
                     {/* Suitable For */}
                     <div>
                       <label>Suitable For</label>
-                      <Select name={'suitableFor'} value={productData.suitableFor} onChange={handelChange} options={[{ label: "Edible For" }, { label: "Vegeterian" }, { label: "Non Vegeterian" }]} />
+                      <Select name={'suitableFor'} value={productData.suitableFor} onChange={handelChange} options={[{ label: "Vegeterian" }, { label: "Non Vegeterian" }]} defaultOption="Edible For" />
                     </div>
                     {/* List Product */}
                     <div className="w-full">
                       <div className="relative">
                         <label>List Product</label>
-                        <Select name={'publish'} value={productData.publish} onChange={handelChange} options={[{ label: "Publishing Status" }, { label: "Publish" }, { label: "UnList" }]} />
+                        <Select name={'publish'} value={productData.publish} onChange={handelChange} options={[{ label: "Publish" }, { label: "UnList" }]} defaultOption="Listing Status" />
                       </div>
                     </div>
                   </div>

@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const typeSchema = new Schema(
     {
-        countryName: {
+        label: {
             type: String,
             required: [true, "Country Name is required"],
             unique: true,

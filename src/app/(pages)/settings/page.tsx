@@ -9,6 +9,12 @@ const SettingsPage = () => {
   const [category, setCategory] = useState("")
 
   const handelCategory = async () => {
+
+    if (category.trim() === "" || category.length <= 0) {
+      return toast.success("Category Can't Be Empty", {
+        icon: "⛔"
+      })
+    }
     try {
       const response = await axios.post('api/addCategory', { category });
 
@@ -48,7 +54,7 @@ const SettingsPage = () => {
                     placeholder="Add new Product category"
                   />
                   <button
-                    className={`px-3 py-2 bg-green-600 text-white rounded  transition `}>
+                    className={`px-3 py-2 bg-green-600 text-white rounded  transition cursor-pointer hover:bg-green-700`}>
                     <SquarePlus className="w-6 h-6" onClick={handelCategory} />
                   </button>
                 </div>

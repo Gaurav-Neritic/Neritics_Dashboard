@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const typeSchema = new Schema(
     {
-        typeName: {
+        label: {
             type: String,
             required: [true, "Product Type Name is required"],
             unique: true,

@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const typeSchema = new Schema(
     {
-        formTypeName: {
+        label: {
             type: String,
             required: [true, "formType Name is required"],
             unique: true,
