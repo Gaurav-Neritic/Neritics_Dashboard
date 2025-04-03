@@ -91,9 +91,10 @@ const StocksTable = () => {
         toast.error("Failed to fetch the data");
         setProducts([]);
       }
-    } catch (error) {
-      console.log("Error Fetching Data: ", error);
-      toast.error("Failed to fetch the data");
+    } catch (error: any) {
+      error.response.status === 401
+        ? toast.success("No Products Found")
+        : toast.error("Failed to fetch the product data");
     }
   }
 
@@ -160,7 +161,7 @@ const StocksTable = () => {
           {/* Export Excel */}
           <button
             onClick={handleExcelExport}
-            className={`flex items-center gap-2 px-3 py-1 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
+            className={`flex items-center gap-2 px-3 py-2 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
             disabled={filteredProducts.length === 0}
             title="Download Excel"
           >
