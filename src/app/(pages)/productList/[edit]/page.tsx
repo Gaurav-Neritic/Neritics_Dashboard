@@ -67,9 +67,7 @@ export default function Page({ params }: any) {
 
   const handelUpdate = async (e: React.FormEvent) => {
     try {
-
       e.preventDefault();
-
       const data = {
         edit,
         name,

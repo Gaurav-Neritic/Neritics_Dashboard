@@ -1,72 +1,65 @@
 "use client";
 
 import Loader from "@/components/Loaders/Loader";
+import Input from "@/components/ProductForm/Input";
+import InputNumber from "@/components/ProductForm/InputNumber";
+import Select from "@/components/ProductForm/Select";
+import TextArea from "@/components/ProductForm/TextArea";
 import axios from "axios";
 import { AppWindowMac, Eraser, Plus } from "lucide-react";
-import { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 
+
 const AddProduct = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [category, setCategory] = useState("");
-  const [type, setType] = useState("");
-  const [stock, setStock] = useState("");
-  const [gender, setGender] = useState("");
-  const [ageRange, setAgeRange] = useState("")
+
+  const [productData, setProductData] = useState(
+    {
+      title: "", description: "",
+      price: "", discount: "",
+      quantity: "", category: "",
+      type: "", stock: "", gender: "",
+      ageRange: "", brandName: "",
+      form: "", isAyurvedic: "",
+      container: "", coo: "",
+      hsnCode: "", gst: "",
+      shelfLife: "", suitableFor: "",
+      publish: "", benefits: "",
+      alergyInfo: "", specialIngredients: "",
+      coating: "", height: "",
+      width: "", weight: "",
+    }
+  )
   //image
-  const [mainImage, setMainImage] = useState(null);
-  const [primaryImage, setPrimaryImage] = useState(null);
-  const [secondImage, setSecondImage] = useState(null);
-  const [thirdImage, setThirdImage] = useState(null);
-  const [fourthImage, setFourthImage] = useState(null);
-  //image
-  const [brandName, setBrandName] = useState("");
-  const [form, setForm] = useState("");
-  const [isAyurvedic, setIsAyurvedic] = useState("");
-  const [container, setContainer] = useState("");
-  const [coo, setCoo] = useState("India");
-  const [hsnCode, setHsnCode] = useState("");
-  const [gst, setGst] = useState("");
-  const [shelfLife, setShelfLife] = useState("");
-  const [suitableFor, setSuitableFor] = useState("");
-  const [publish, setPublish] = useState("");
-  // Additional Infformation
-  const [benefits, setBenefits] = useState("")
-  const [alergyInfo, setAlergyInfo] = useState("")
-  const [specialIngredients, setSpecialIngredients] = useState("")
-  const [coating, setCoating] = useState("")
-  const [height, setHeight] = useState("")
-  const [width, setWidth] = useState("")
-  const [weight, setWeight] = useState("")
-  // Additional Infformation
+  const [mainImage, setMainImage] = useState<File | null>(null);
+  const [primaryImage, setPrimaryImage] = useState<File | null>(null);
+  const [secondImage, setSecondImage] = useState<File | null>(null);
+  const [thirdImage, setThirdImage] = useState<File | null>(null);
+  const [fourthImage, setFourthImage] = useState<File | null>(null);
 
   const [loading, setLoading] = useState(false);
 
-  const handelSubmit = async (e: React.FormEvent) => {
+  const handelSubmit = async (e: FormEvent) => {
 
     // Taking the addOn Info and setting it in an array
-    const benefitArray: any = benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
+    const benefitArray: string[] = productData.benefits.split(",").map((benefit: string) => benefit.trim()).filter((benefit: string) => benefit.length > 0);
 
-    const specialIngredientsArray: any = specialIngredients.split(",").map((special: string) => special.trim()).filter((special: string) => special.length > 0);
+    const specialIngredientsArray: string[] = productData.specialIngredients.split(",").map((special: string) => special.trim()).filter((special: string) => special.length > 0);
 
-    const alergyInfoArray: any = alergyInfo.split(",").map((allergy: string) => allergy.trim()).filter((allergy: string) => allergy.length > 0);
+    const alergyInfoArray: string[] = productData.alergyInfo.split(",").map((allergy: string) => allergy.trim()).filter((allergy: string) => allergy.length > 0);
 
-    const coatingArray: any = coating.split(",").map((coate: string) => coate.trim()).filter((coate: string) => coate.length > 0);
+    const coatingArray: string[] = productData.coating.split(",").map((coate: string) => coate.trim()).filter((coate: string) => coate.length > 0);
 
 
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("discount", discount);
-    formData.append("quantity", quantity);
-    formData.append("category", category);
-    formData.append("type", type);
-    formData.append("stock", stock);
+    formData.append("title", productData.title);
+    formData.append("description", productData.description);
+    formData.append("price", productData.price);
+    formData.append("discount", productData.discount);
+    formData.append("quantity", productData.quantity);
+    formData.append("category", productData.category);
+    formData.append("type", productData.type);
+    formData.append("stock", productData.stock);
     //image
     if (mainImage) formData.append("mainImage", mainImage);
     if (primaryImage) formData.append("primaryImage", primaryImage);
@@ -74,35 +67,35 @@ const AddProduct = () => {
     if (thirdImage) formData.append("thirdImage", thirdImage);
     if (fourthImage) formData.append("fourthImage", fourthImage);
 
-    formData.append("brandName", brandName);
-    formData.append("form", form);
-    formData.append("container", container);
-    formData.append("gst", gst);
-    formData.append("hsnCode", hsnCode);
-    formData.append("coo", coo);
-    formData.append("shelfLife", shelfLife);
-    formData.append("isAyurvedic", isAyurvedic);
-    formData.append("suitableFor", suitableFor);
-    formData.append("publish", publish);
+    formData.append("brandName", productData.brandName);
+    formData.append("form", productData.form);
+    formData.append("container", productData.container);
+    formData.append("gst", productData.gst);
+    formData.append("hsnCode", productData.hsnCode);
+    formData.append("coo", productData.coo);
+    formData.append("shelfLife", productData.shelfLife);
+    formData.append("isAyurvedic", productData.isAyurvedic);
+    formData.append("suitableFor", productData.suitableFor);
+    formData.append("publish", productData.publish);
     formData.append("benefits", JSON.stringify(benefitArray));
     formData.append("specialIngerdients", JSON.stringify(specialIngredientsArray));
     formData.append("allergy", JSON.stringify(alergyInfoArray));
     formData.append("coating", JSON.stringify(coatingArray));
-    formData.append("height", height);
-    formData.append("width", width);
-    formData.append("weight", weight);
-    formData.append("gender", gender)
-    formData.append("ageRange", ageRange)
+    formData.append("height", productData.height);
+    formData.append("width", productData.width);
+    formData.append("weight", productData.weight);
+    formData.append("gender", productData.gender)
+    formData.append("ageRange", productData.ageRange)
     try {
       // Checks if the selected types and categorys are defaults
-      if (category === "Select Category") return setCategory("");
-      if (type === "Select Type") return setType("");
-      if (isAyurvedic === "Nature Of Medicine") return setIsAyurvedic("");
-      if (container === "Container Type") return setContainer("");
-      if (suitableFor === "Edible For") return setSuitableFor("");
-      if (publish === "Publishing Status") return setPublish("");
-      if (ageRange === "Select Age Range") return setPublish("");
-      if (form === "Select Form") return setForm("");
+      if (productData.category === "Select Category") return productData.category = "";
+      if (productData.type === "Select Type") return productData.type = "";
+      if (productData.isAyurvedic === "Nature Of Medicine") return productData.isAyurvedic = "";
+      if (productData.container === "Container Type") return productData.container = "";
+      if (productData.suitableFor === "Edible For") return productData.suitableFor = "";
+      if (productData.publish === "Publishing Status") return productData.publish = "";
+      if (productData.ageRange === "Select Age Range") return productData.ageRange = "";
+      if (productData.form === "Select Form") return productData.form = "";
 
       e.preventDefault();
       setLoading(true);
@@ -115,7 +108,7 @@ const AddProduct = () => {
         setLoading(false);
         toast.error("Failed to add the product");
       }
-    } catch (error) {
+    } catch (error: unknown) {
       setLoading(false);
       console.log("Error Adding the product !", error);
       toast.error("Error Adding the product !");
@@ -124,35 +117,26 @@ const AddProduct = () => {
 
   const handelClearFields = () => {
     try {
-      setTitle("");
-      setDescription("");
-      setPrice("");
-      setDiscount("");
-      setQuantity("");
-      setStock("");
-      setType("");
-      setCategory("");
-      setMainImage(null);
-      setPrimaryImage(null);
-      setSecondImage(null);
-      setThirdImage(null);
-      setFourthImage(null);
-      setPrice("");
-      setDiscount("");
-      setHsnCode("");
-      setGst("");
-      setShelfLife("");
-      setPublish("");
-      setBenefits("");
-      setSpecialIngredients("");
-      setAlergyInfo("");
-      setCoating("");
-      setGender("");
-      setAgeRange("");
-      setHeight("");
-      setWidth("");
-      setWeight("")
-      toast.success("All Fields Cleared");
+      productData.title = "",
+        productData.description = "",
+        productData.price = "", productData.discount = "",
+        productData.quantity = "", productData.category = "",
+        productData.type = "", productData.stock = "", productData.gender = "",
+        productData.ageRange = "", productData.brandName = "",
+        productData.form = "", productData.isAyurvedic = "",
+        productData.container = "", productData.coo = "",
+        productData.hsnCode = "", productData.gst = "",
+        productData.shelfLife = "", productData.suitableFor = "",
+        productData.publish = "", productData.benefits = "",
+        productData.alergyInfo = "", productData.specialIngredients = "",
+        productData.coating = "", productData.height = "",
+        productData.width = "", productData.weight = "",
+        setMainImage(null),
+        setPrimaryImage(null),
+        setSecondImage(null),
+        setThirdImage(null),
+        setFourthImage(null),
+        toast.success("All Fields Cleared");
     } catch (error) {
       setLoading(false);
       toast.error("Error Clearing The Fields");
@@ -160,12 +144,20 @@ const AddProduct = () => {
     }
   };
   // Image Preview
-  const getPreviewUrl = (file: any) => {
+  const getPreviewUrl = (file: File | null) => {
     if (!file) {
       return null;
     }
     return URL.createObjectURL(file);
   };
+
+  const handelChange = (e: FormEvent) => {
+    const { name, value } = e.target as HTMLInputElement;
+    setProductData({
+      ...productData,
+      [name]: value,
+    })
+  }
 
   return (
     <form className="p-5" onSubmit={handelSubmit}>
@@ -181,6 +173,7 @@ const AddProduct = () => {
           <h1 className="text-3xl font-semibold">Add A New Product</h1>
         </div>
       </div>
+
       <div className="grid grid-cols-2 gap-5 ">
         {/* Grid col-1  */}
         <div className=" border-gray-400 rounded">
@@ -194,30 +187,12 @@ const AddProduct = () => {
               <div>
                 <div className="w-full py-2">
                   <label className="mb-2">Product Name</label>
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    value={title}
-                    required
-                    onChange={(e) => {
-                      setTitle(e.target.value);
-                    }}
-                    className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded "
-                  />
+                  <Input name={"title"} value={productData.title} placeholder={"Enter Product Name"} onChange={handelChange} />
                 </div>
 
                 <div className="w-full py-2">
                   <label>Content ( Description )</label>
-                  <textarea
-                    placeholder="Content Details"
-                    rows={5}
-                    value={description}
-                    required
-                    onChange={(e) => {
-                      setDescription(e.target.value);
-                    }}
-                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 mt-2 rounded "
-                  />
+                  <TextArea name={"description"} value={productData.description} placeholder={"Enter Product Description"} onChange={handelChange} rows={8} />
                 </div>
               </div>
             </div>
@@ -233,34 +208,12 @@ const AddProduct = () => {
               <div>
                 <div className="w-full py-2">
                   <label>Product Category</label>
-                  <select
-                    onChange={(e) => {
-                      setCategory(e.target.value);
-                    }}
-                    required
-                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                  >
-                    <option>Select Category</option>
-                    <option>Category 2</option>
-                    <option>Category 3</option>
-                    <option>Category 4</option>
-                  </select>
+                  <Select name={'category'} value={productData.category} onChange={handelChange} options={[{ label: "Select Your Category" }, { label: "Category 1" }, { label: "Category 2" }, { label: "Category 3" }]} />
                 </div>
 
                 <div className="w-full py-2">
                   <label>Product Type</label>
-                  <select
-                    onChange={(e) => {
-                      setType(e.target.value);
-                    }}
-                    required
-                    className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                  >
-                    <option>Select Type</option>
-                    <option>Type 2</option>
-                    <option>Type 3</option>
-                    <option>Type 4</option>
-                  </select>
+                  <Select name={'type'} value={productData.type} onChange={handelChange} options={[{ label: "Select Your Type" }, { label: "Type 1" }, { label: "Type 2" }, { label: "Type 3" }]} />
                 </div>
               </div>
             </div>
@@ -278,94 +231,33 @@ const AddProduct = () => {
                     {/* Brand Name */}
                     <div>
                       <label>Brand Name</label>
-                      <input
-                        type="text"
-                        required
-                        value={brandName}
-                        onChange={(e) => {
-                          setBrandName(e.target.value);
-                        }}
-                        placeholder="Brand Name"
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
-                      />
+                      <Input name={"brandName"} value={productData.brandName} placeholder={"Enter Brand"} onChange={handelChange} />
                     </div>
                     {/* Form */}
                     <div className="w-full">
                       <label>Form</label>
-                      <select
-                        value={form}
-                        required
-                        onChange={(e) => {
-                          setForm(e.target.value);
-                        }}
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                      >
-                        <option>Select Form</option>
-                        <option>Capsules</option>
-                        <option>Oil</option>
-                        <option>Tablets</option>
-                      </select>
+                      <Select name={'form'} value={productData.form} onChange={handelChange} options={[{ label: "Select Form" }, { label: "Capsules" }, { label: "Oil" }, { label: "Tablets" }]} />
                     </div>
 
                     {/* HSN Code and GST  */}
                     <div>
                       <label>Ayurvedic</label>
-                      <select
-                        required
-                        onChange={(e: any) => {
-                          setIsAyurvedic(e.target.value);
-                        }}
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                      >
-                        <option>Nature Of Medicine</option>
-                        <option>True</option>
-                        <option>False</option>
-                      </select>
+                      <Select name={'isAyurvedic'} value={productData.isAyurvedic} onChange={handelChange} options={[{ label: "Nature Of Medicine" }, { label: "True" }, { label: "False" }]} />
                     </div>
                     {/* Container */}
                     <div>
                       <label>Container</label>
-                      <select
-                        required
-                        value={container}
-                        onChange={(e) => {
-                          setContainer(e.target.value);
-                        }}
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                      >
-                        <option>Container Type</option>
-                        <option>Bottle</option>
-                        <option>Strip</option>
-                      </select>
+                      <Select name={'container'} value={productData.container} onChange={handelChange} options={[{ label: "Container Type" }, { label: "Bottle" }, { label: "Strip" }]} />
                     </div>
                     {/* Quantity In Container */}
                     <div>
                       <label>Quantity In Container </label>
-                      <input
-                        type="number"
-                        required
-                        value={quantity}
-                        onChange={(e) => {
-                          setQuantity(e.target.value);
-                        }}
-                        placeholder="Quantity"
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <InputNumber name={"quantity"} value={productData.quantity} placeholder={"Quantity"} onChange={handelChange} />
                     </div>
                     {/* Total Stock */}
                     <div>
                       <label>Total Stock</label>
-                      <input
-                        type="number"
-                        required
-                        value={stock}
-                        min={0}
-                        onChange={(e) => {
-                          setStock(e.target.value);
-                        }}
-                        placeholder="Stock Available"
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <InputNumber name={"stock"} value={productData.stock} placeholder={"Stock"} onChange={handelChange} />
                     </div>
                   </div>
                 </div>
@@ -387,36 +279,15 @@ const AddProduct = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label>Height ( In cm )</label>
-                      <input
-                        placeholder="Height in CM"
-                        required
-                        type="number"
-                        value={height}
-                        onChange={(e) => { setHeight(e.target.value) }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <InputNumber name={"height"} value={productData.height} placeholder={"Height"} onChange={handelChange} />
                     </div>
                     <div>
                       <label>Width ( In cm )</label>
-                      <input
-                        placeholder="Width in CM"
-                        required
-                        type="number"
-                        value={width}
-                        onChange={(e) => { setWidth(e.target.value) }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <InputNumber name={"width"} value={productData.width} placeholder={"Width"} onChange={handelChange} />
                     </div>
                     <div>
                       <label>Weight ( In gm )</label>
-                      <input
-                        placeholder="Weight in GM"
-                        required
-                        type="number"
-                        value={weight}
-                        onChange={(e) => { setWeight(e.target.value) }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <InputNumber name={"weight"} value={productData.weight} placeholder={"Weight"} onChange={handelChange} />
                     </div>
                     {/*  */}
                   </div>
@@ -424,6 +295,7 @@ const AddProduct = () => {
               </div>
             </div>
           </div>
+
           {/* Product Pricing */}
           <div className="py-5">
             <div className="pb-2">
@@ -436,37 +308,18 @@ const AddProduct = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label>Price (MRP)</label>
-                      <input
-                        placeholder="MRP Price"
-                        required
-                        type="number"
-                        value={price}
-                        onChange={(e) => {
-                          setPrice(e.target.value);
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <InputNumber name={"price"} value={productData.price} placeholder={"Price"} onChange={handelChange} />
                     </div>
                     {/* Discount */}
                     <div>
                       <label>Discount ( In ₹ )</label>
-                      <input
-                        placeholder="Discount Price"
-                        required
-                        type="number"
-                        value={discount}
-                        onChange={(e) => {
-                          setDiscount(e.target.value);
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
-                      />
+                      <InputNumber name={"discount"} value={productData.discount} placeholder={"Discount"} onChange={handelChange} />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Grid col-2 */}
@@ -489,8 +342,8 @@ const AddProduct = () => {
                         placeholder="Main Image"
                         type="file"
                         required
-                        onChange={(e: any) => {
-                          setMainImage(e.target.files[0]);
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setMainImage(e.target.files?.[0] || null);
                         }}
                         className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
                         dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
@@ -511,8 +364,8 @@ const AddProduct = () => {
                       <input
                         type="file"
                         required
-                        onChange={(e: any) => {
-                          setPrimaryImage(e.target.files[0]);
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setPrimaryImage(e.target.files?.[0] || null);
                         }}
                         className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
                         dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
@@ -535,8 +388,8 @@ const AddProduct = () => {
                       <input
                         type="file"
                         required
-                        onChange={(e: any) => {
-                          setSecondImage(e.target.files[0]);
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setSecondImage(e.target.files?.[0] || null);
                         }}
                         className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
                         dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
@@ -558,8 +411,8 @@ const AddProduct = () => {
                         placeholder="Main Image"
                         type="file"
                         required
-                        onChange={(e: any) => {
-                          setThirdImage(e.target.files[0]);
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                          setThirdImage(e.target.files?.[0] || null);
                         }}
                         className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
                         dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
@@ -582,8 +435,8 @@ const AddProduct = () => {
                       placeholder="Main Image"
                       type="file"
                       required
-                      onChange={(e: any) => {
-                        setFourthImage(e.target.files[0]);
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        setFourthImage(e.target.files?.[0] || null);
                       }}
                       className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
                         dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
@@ -613,34 +466,12 @@ const AddProduct = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label>Gender (Both/Male/Female)</label>
-                      <select
-                        required
-                        onChange={(e) => {
-                          setGender(e.target.value)
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                      >
-                        <option>Select Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Both</option>
-                      </select>
+                      <Select name={'gender'} value={productData.gender} onChange={handelChange} options={[{ label: "Select Gender" }, { label: "Male" }, { label: "Female" }, { label: "Both" }]} />
                     </div>
                     {/* Discount */}
                     <div>
                       <label>Age Range (From 18 )</label>
-                      <select
-                        required
-                        onChange={(e) => {
-                          setAgeRange(e.target.value)
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                      >
-                        <option>Select Age Range</option>
-                        <option>1 to 18</option>
-                        <option>18 to 65</option>
-                        <option>65 and Above</option>
-                      </select>
+                      <Select name={'ageRange'} value={productData.ageRange} onChange={handelChange} options={[{ label: "Select Age Range" }, { label: "1 to 18" }, { label: "18 to 65" }, { label: "65 and Above" }]} />
                     </div>
                   </div>
                 </div>
@@ -660,58 +491,22 @@ const AddProduct = () => {
                     {/* Benefit 1  */}
                     <div>
                       <label>Benefits </label>
-                      <textarea
-                        placeholder="Enter Benefits "
-                        required
-                        value={benefits}
-                        rows={3}
-                        onChange={(e) => {
-                          setBenefits(e.target.value)
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <TextArea name={"benefits"} value={productData.benefits} placeholder={"Enter Benefits"} onChange={handelChange} rows={3} />
                     </div>
                     {/* Benefit 2  */}
                     <div>
                       <label>Special Ingredients</label>
-                      <textarea
-                        placeholder="Enter Special Ingredients"
-                        required
-                        rows={3}
-                        value={specialIngredients}
-                        onChange={(e) => {
-                          setSpecialIngredients(e.target.value)
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <TextArea name={"specialIngredients"} value={productData.specialIngredients} placeholder={"Enter Special Ingredients"} onChange={handelChange} rows={3} />
                     </div>
                     {/* Benefit 3  */}
                     <div>
                       <label>Allergy Info</label>
-                      <textarea
-                        placeholder="Enter Allergy Info"
-                        required
-                        rows={3}
-                        value={alergyInfo}
-                        onChange={(e) => {
-                          setAlergyInfo(e.target.value)
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <TextArea name={"alergyInfo"} value={productData.alergyInfo} placeholder={"Enter Allergy Info "} onChange={handelChange} rows={3} />
                     </div>
                     {/* Benefit 4  */}
                     <div>
                       <label>Coating</label>
-                      <textarea
-                        placeholder="Enter Coating Info"
-                        required
-                        rows={3}
-                        value={coating}
-                        onChange={(e) => {
-                          setCoating(e.target.value)
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <TextArea name={"coating"} value={productData.coating} placeholder={"Enter Coating"} onChange={handelChange} rows={3} />
                     </div>
                   </div>
                 </div>
@@ -734,91 +529,34 @@ const AddProduct = () => {
                     {/* Country Of Origin */}
                     <div>
                       <label>Country Of Origin</label>
-                      <select
-                        onChange={(e) => {
-                          setCoo(e.target.value);
-                        }}
-                        required
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                      >
-                        <option>India</option>
-                        <option>USA</option>
-                        <option>China</option>
-                      </select>
+                      <Select name={'coo'} value={productData.coo} onChange={handelChange} options={[{ label: "Select Country" }, { label: "India" }, { label: "USA" }, { label: "China" }]} />
                     </div>
 
                     {/* HSN Code and GST  */}
                     <div>
                       <label>HSN Code</label>
-                      <input
-                        placeholder="HSN Code"
-                        required
-                        type="number"
-                        value={hsnCode}
-                        onChange={(e) => {
-                          setHsnCode(e.target.value);
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                      />
+                      <InputNumber name={"hsnCode"} value={productData.hsnCode} placeholder={"HSN Code"} onChange={handelChange} />
                     </div>
                     {/* GST  */}
                     <div>
                       <label>GST (%)</label>
-                      <input
-                        placeholder="GST "
-                        required
-                        type="number"
-                        value={gst}
-                        onChange={(e) => {
-                          setGst(e.target.value);
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
-                      />
+                      <InputNumber name={"gst"} value={productData.gst} placeholder={"GST"} onChange={handelChange} />
                     </div>
                     {/* Shelf Life */}
                     <div>
                       <label>Shelf Life ( In Months )</label>
-                      <input
-                        placeholder="Shelf Life (Months) "
-                        type="text"
-                        required
-                        value={shelfLife}
-                        onChange={(e) => {
-                          setShelfLife(e.target.value);
-                        }}
-                        className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
-                      />
+                      <Input name={"shelfLife"} value={productData.shelfLife} placeholder={"Shelf Life"} onChange={handelChange} />
                     </div>
                     {/* Suitable For */}
                     <div>
                       <label>Suitable For</label>
-                      <select
-                        required
-                        onChange={(e) => {
-                          setSuitableFor(e.target.value);
-                        }}
-                        className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                      >
-                        <option>Edible For</option>
-                        <option>Vegeterian</option>
-                        <option>Non Vegeterian</option>
-                      </select>
+                      <Select name={'suitableFor'} value={productData.suitableFor} onChange={handelChange} options={[{ label: "Edible For" }, { label: "Vegeterian" }, { label: "Non Vegeterian" }]} />
                     </div>
                     {/* List Product */}
                     <div className="w-full">
                       <div className="relative">
                         <label>List Product</label>
-                        <select
-                          required
-                          onChange={(e) => {
-                            setPublish(e.target.value);
-                          }}
-                          className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
-                        >
-                          <option>Publishing Status</option>
-                          <option>Publish</option>
-                          <option>UnList</option>
-                        </select>
+                        <Select name={'publish'} value={productData.publish} onChange={handelChange} options={[{ label: "Publishing Status" }, { label: "Publish" }, { label: "UnList" }]} />
                       </div>
                     </div>
                   </div>
@@ -827,8 +565,6 @@ const AddProduct = () => {
             </div>
 
           </div>
-
-
 
           {/* Add Product Button */}
           <div className="py-5 flex gap-3">
@@ -854,7 +590,7 @@ const AddProduct = () => {
           </div>
         </div>
       </div>
-    </form>
+    </form >
   );
 };
 
