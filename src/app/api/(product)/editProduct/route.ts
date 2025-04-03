@@ -38,7 +38,6 @@ export async function PUT(request: NextRequest) {
             ageRange
         } = reqBody.data;
 
-        console.log("Edit Request body is ", reqBody);
 
         let ayurvedicCheck: boolean;
         let suitableForCheck: boolean;
