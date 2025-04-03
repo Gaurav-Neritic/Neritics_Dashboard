@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react'
 
 const ReportPage = () => {
-    return <div>ReportPage</div>;
-};
+    return (
+        <div>
+            Report Bugs Page
+        </div>
+    )
+}
 
-export default ReportPage;
+export default ReportPage

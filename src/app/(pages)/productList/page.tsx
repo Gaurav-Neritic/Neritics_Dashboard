@@ -301,7 +301,7 @@ const ProductList = () => {
                           <h1 className="col-span-1">₹ {price}</h1>
                           <h1 className="col-span-1">{category}</h1>
                           <div className="col-span-1 w-full place-items-center">
-                            <h1>{listingStatus ? "✔️" : "❌"}</h1>
+                            <h1>{listingStatus ? "🟢" : "🔴"}</h1>
                           </div>
                           <div className="col-span-1 w-full place-items-center">
                             <h1 className="col-span-1">{stock}</h1>

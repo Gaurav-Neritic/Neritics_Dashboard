@@ -1,5 +1,5 @@
 "use client";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { X, SquarePen, Search, Download } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -33,7 +33,6 @@ const StocksTable = () => {
   }: {
     _id: string;
     title: string;
-    // Make the stock type number in model
     stock: number;
   }) => {
     setProductToEdit(_id);
@@ -203,9 +202,9 @@ const StocksTable = () => {
               <h1 className="col-span-3 w-full truncate">{title}</h1>
               <h1 className="col-span-1 w-full truncate">
                 {stock <= 0 ? (
-                  <span className="text-red-500">❌</span>
+                  <span className="text-red-500">🔴</span>
                 ) : (
-                  <span className="text-green-500">✔️</span>
+                  <span className="text-green-500">🟢</span>
                 )}
               </h1>
               <h1 className="col-span-1 w-full truncate">{stock}</h1>

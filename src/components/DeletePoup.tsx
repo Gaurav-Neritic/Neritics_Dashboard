@@ -18,8 +18,6 @@ const DeletePoup = ({
 }: DeletePopupProps) => {
   const [loading, setLoading] = useState(false);
 
-
-
   if (!isVisible) return null;
   return (
     <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
@@ -41,7 +39,7 @@ const DeletePoup = ({
             Cancel
           </button>
           <button
-            onClick={() => { handelDelete(); onClose() }}
+            onClick={() => { setLoading(true); handelDelete(); setLoading(false); onClose() }}
             className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 cursor-pointer"
           >
             {loading ? <Loader title="Deleting..." /> : <span>Delete</span>}
