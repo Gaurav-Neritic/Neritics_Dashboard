@@ -17,7 +17,7 @@ const CustomInput = ({ label, placeholder, apiEndPoint }: customInputTypes) => {
 
     const handelAddItem = async () => {
         if (category.trim() === "") {
-            toast.success("Invalid Input Value", { icon: "⛔" })
+            return toast.success("Invalid Value", { icon: "⛔" })
         }
         setLoading(true);
         try {
