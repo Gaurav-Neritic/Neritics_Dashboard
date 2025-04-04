@@ -130,6 +130,8 @@ const StocksTable = () => {
         { wch: 10 },
       ];
       worksheet["!cols"] = columnWidths;
+      worksheet["!rows"] = Array(excelData.length).fill({ hpt: 30 });
+
 
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "StockTable");

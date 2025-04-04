@@ -12,6 +12,7 @@ import {
   House,
   Mail,
   MessageCircleQuestion,
+  MessageSquareMore,
   PackagePlus,
   Settings,
   SquarePlus,
@@ -110,12 +111,12 @@ const SidebarNav = () => {
         </Link>
 
         <Link
-          href={"/report"}
+          href={"/enquiry"}
           className="w-full bg-red-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-red-200 hover:text-red-500 transition-all ease-linear duration-200"
         >
           <span className="flex gap-3">
-            <Bug className="text-red-500" />
-            Report Bug
+            <MessageSquareMore className="text-red-500" />
+            Enquiry
           </span>
         </Link>
 
