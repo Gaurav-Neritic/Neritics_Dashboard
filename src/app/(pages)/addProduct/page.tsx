@@ -29,6 +29,10 @@ const AddProduct = () => {
       coating: "", height: "",
       width: "", weight: "",
       categoryData: [],
+      typeData: [],
+      formData: [],
+      containerData: [],
+      countryData: []
     }
   )
   //image
@@ -90,14 +94,14 @@ const AddProduct = () => {
     formData.append("ageRange", productData.ageRange)
     try {
       // Checks if the selected types and categorys are defaults
-      if (productData.category === "Select Category") return productData.category = "";
-      if (productData.type === "Select Type") return productData.type = "";
-      if (productData.isAyurvedic === "Select Nature Of Med") return productData.isAyurvedic = "";
-      if (productData.container === "Select Container Type") return productData.container = "";
-      if (productData.suitableFor === "Select Edible For") return productData.suitableFor = "";
-      if (productData.publish === "Select Listing Status") return productData.publish = "";
-      if (productData.ageRange === "Select Age Range") return productData.ageRange = "";
-      if (productData.form === "Select Form") return productData.form = "";
+      if (productData.category === "Category") return productData.category = "";
+      if (productData.type === "Type") return productData.type = "";
+      if (productData.isAyurvedic === "Nature Of Med") return productData.isAyurvedic = "";
+      if (productData.container === "Container Type") return productData.container = "";
+      if (productData.suitableFor === "Edible For") return productData.suitableFor = "";
+      if (productData.publish === "Listing Status") return productData.publish = "";
+      if (productData.ageRange === "Age Range") return productData.ageRange = "";
+      if (productData.form === "Form") return productData.form = "";
 
       e.preventDefault();
       setLoading(true);
@@ -168,7 +172,10 @@ const AddProduct = () => {
         const response = await axios.get('api/getCategory');
 
         if (response.data.data) {
-          setProductData({ ...productData, categoryData: response.data.data })
+          setProductData(prevState => ({
+            ...prevState,
+            categoryData: response.data.data
+          }))
         } else {
           toast.error("Error Fetching the category");
         }
@@ -178,7 +185,83 @@ const AddProduct = () => {
       }
     }
 
-    getCategories()
+    async function getTypes() {
+      try {
+        const response = await axios.get('api/getTypes');
+
+        if (response.data.data) {
+          setProductData(prevState => ({
+            ...prevState,
+            typeData: response.data.data
+          }))
+        } else {
+          toast.error("Error Fetching the type");
+        }
+      } catch (error) {
+        console.log("Error Fetching the type", error);
+        toast.error("Error Fetching the type");
+      }
+    }
+
+    async function getProductForms() {
+      try {
+        const response = await axios.get('api/getFormTypes');
+
+        if (response.data.data) {
+          setProductData(prevState => ({
+            ...prevState,
+            formData: response.data.data
+          }))
+        } else {
+          toast.error("Error Fetching the type");
+        }
+      } catch (error) {
+        console.log("Error Fetching the type", error);
+        toast.error("Error Fetching the type");
+      }
+    }
+
+    async function getContainerTypes() {
+      try {
+        const response = await axios.get('api/getContainerTypes');
+
+        if (response.data.data) {
+          setProductData(prevState => ({
+            ...prevState,
+            containerData: response.data.data
+          }))
+        } else {
+          toast.error("Error Fetching the container type");
+        }
+      } catch (error) {
+        console.log("Error Fetching the container type", error);
+        toast.error("Error Fetching the container type");
+      }
+    }
+
+    async function getCountries() {
+      try {
+        const response = await axios.get('api/getCountries');
+
+        if (response.data.data) {
+          setProductData(prevState => ({
+            ...prevState,
+            countryData: response.data.data
+          }))
+        } else {
+          toast.error("Error Fetching the country");
+        }
+      } catch (error) {
+        console.log("Error Fetching the country ", error);
+        toast.error("Error Fetching the country ");
+      }
+    }
+
+    getTypes();
+    getCategories();
+    getProductForms();
+    getContainerTypes();
+    getCountries();
   }, [])
 
 
@@ -236,7 +319,7 @@ const AddProduct = () => {
 
                 <div className="w-full py-2">
                   <label>Product Type</label>
-                  <Select name={'type'} value={productData.type} onChange={handelChange} options={[{ label: "Select Your Type" }, { label: "Type 1" }, { label: "Type 2" }, { label: "Type 3" }]} defaultOption={"Type"} />
+                  <Select name={'type'} value={productData.type} onChange={handelChange} options={productData.typeData} defaultOption={"Type"} />
                 </div>
               </div>
             </div>
@@ -259,18 +342,18 @@ const AddProduct = () => {
                     {/* Form */}
                     <div className="w-full">
                       <label>Form</label>
-                      <Select name={'form'} value={productData.form} onChange={handelChange} options={[{ label: "Select Form" }, { label: "Capsules" }, { label: "Oil" }, { label: "Tablets" }]} defaultOption={"Form"} />
+                      <Select name={'form'} value={productData.form} onChange={handelChange} options={productData.formData} defaultOption={"Form"} />
                     </div>
 
                     {/* HSN Code and GST  */}
                     <div>
                       <label>Ayurvedic</label>
-                      <Select name={'isAyurvedic'} value={productData.isAyurvedic} onChange={handelChange} options={[{ label: "Nature Of Medicine" }, { label: "True" }, { label: "False" }]} defaultOption={"Nature of Med"} />
+                      <Select name={'isAyurvedic'} value={productData.isAyurvedic} onChange={handelChange} options={[{ label: "True" }, { label: "False" }]} defaultOption={"Nature of Med"} />
                     </div>
                     {/* Container */}
                     <div>
                       <label>Container</label>
-                      <Select name={'container'} value={productData.container} onChange={handelChange} options={[{ label: "Container Type" }, { label: "Bottle" }, { label: "Strip" }]} defaultOption={"Container Type"} />
+                      <Select name={'container'} value={productData.container} onChange={handelChange} options={productData.containerData} defaultOption={"Container Type"} />
                     </div>
                     {/* Quantity In Container */}
                     <div>
@@ -489,12 +572,12 @@ const AddProduct = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label>Gender (Both/Male/Female)</label>
-                      <Select name={'gender'} value={productData.gender} onChange={handelChange} options={[{ label: "Select Gender" }, { label: "Male" }, { label: "Female" }, { label: "Both" }]} defaultOption={"Gender"} />
+                      <Select name={'gender'} value={productData.gender} onChange={handelChange} options={[{ label: "Male" }, { label: "Female" }, { label: "Both" }]} defaultOption={"Gender"} />
                     </div>
                     {/* Discount */}
                     <div>
                       <label>Age Range (From 18 )</label>
-                      <Select name={'ageRange'} value={productData.ageRange} onChange={handelChange} options={[{ label: "Select Age Range" }, { label: "1 to 18" }, { label: "18 to 65" }, { label: "65 and Above" }]} defaultOption={"Age Range"} />
+                      <Select name={'ageRange'} value={productData.ageRange} onChange={handelChange} options={[{ label: "1 to 18" }, { label: "18 to 65" }, { label: "65 and Above" }]} defaultOption={"Age Range"} />
                     </div>
                   </div>
                 </div>
@@ -552,7 +635,7 @@ const AddProduct = () => {
                     {/* Country Of Origin */}
                     <div>
                       <label>Country Of Origin</label>
-                      <Select name={'coo'} value={productData.coo} onChange={handelChange} options={[{ label: "Select Country" }, { label: "India" }, { label: "USA" }, { label: "China" }]} defaultOption={"Country"} />
+                      <Select name={'coo'} value={productData.coo} onChange={handelChange} options={productData.countryData} defaultOption={"Country"} />
                     </div>
 
                     {/* HSN Code and GST  */}

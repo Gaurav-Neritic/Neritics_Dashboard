@@ -44,6 +44,13 @@ export default function Page({ params }: any) {
   const [gender, setGender] = useState("");
   const [ageRange, setAgeRange] = useState("");
 
+
+  const [categoryData, setCategoryData] = useState([]);
+  const [typeData, setTypeData] = useState([]);
+  const [formData, setFormData] = useState([]);
+  const [containerData, setContainerData] = useState([])
+  const [countryData, setCountryData] = useState([])
+
   // image edit popup
   const [popup, setPopup] = useState(false);
 
@@ -116,9 +123,89 @@ export default function Page({ params }: any) {
     }
   };
 
+  async function getCategories() {
+    try {
+      const response = await axios.get('../api/getCategory');
+
+      if (response.data.data) {
+        setCategoryData(response.data.data)
+      } else {
+        toast.error("Error Fetching the category");
+      }
+    } catch (error) {
+      console.log("Error Fetching the category", error);
+      toast.error("Error Fetching the category");
+    }
+  }
+
+  async function getTypes() {
+    try {
+      const response = await axios.get('../api/getTypes');
+
+      if (response.data.data) {
+        setTypeData(response.data.data)
+      } else {
+        toast.error("Error Fetching the type");
+      }
+    } catch (error) {
+      console.log("Error Fetching the type", error);
+      toast.error("Error Fetching the type");
+    }
+  }
+
+  async function getProductForms() {
+    try {
+      const response = await axios.get('../api/getFormTypes');
+
+      if (response.data.data) {
+        setFormData(response.data.data)
+      } else {
+        toast.error("Error Fetching the form types");
+      }
+    } catch (error) {
+      console.log("Error Fetching the form types", error);
+      toast.error("Error Fetching the form types");
+    }
+  }
+
+  async function getContainerTypes() {
+    try {
+      const response = await axios.get('../api/getContainerTypes');
+
+      if (response.data.data) {
+        setContainerData(response.data.data)
+      } else {
+        toast.error("Error Fetching the container type");
+      }
+    } catch (error) {
+      console.log("Error Fetching the container type", error);
+      toast.error("Error Fetching the container type");
+    }
+  }
+
+  async function getCountries() {
+    try {
+      const response = await axios.get('../api/getCountries');
+
+      if (response.data.data) {
+        setCountryData(response.data.data)
+      } else {
+        toast.error("Error Fetching the country");
+      }
+    } catch (error) {
+      console.log("Error Fetching the country ", error);
+      toast.error("Error Fetching the country ");
+    }
+  }
+
   useEffect(() => {
     try {
       getEditableProduct();
+      getCategories();
+      getTypes();
+      getProductForms();
+      getContainerTypes();
+      getCountries();
     } catch (error) {
       console.log("Error Fetching products data : ", error);
       toast.error("Error Fetching Data");
@@ -160,6 +247,8 @@ export default function Page({ params }: any) {
       setGender(details?.targetedGender);
     }
   }, [details]);
+
+
 
   return (
     <section className="p-5">
@@ -243,9 +332,12 @@ export default function Page({ params }: any) {
                           className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
                         >
                           <option>Select Category</option>
-                          <option>Category 2</option>
-                          <option>Category 3</option>
-                          <option>Category 4</option>
+
+                          {categoryData.map(({ _id, label }) => {
+                            return (
+                              <option key={_id}>{label}</option>
+                            )
+                          })}
                         </select>
                       </div>
 
@@ -259,9 +351,11 @@ export default function Page({ params }: any) {
                           className="block w-full border border-lightBorder dark:border-darkBorder dark:bg-darkMode outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
                         >
                           <option>Select Type</option>
-                          <option>Type 2</option>
-                          <option>Type 3</option>
-                          <option>Type 4</option>
+                          {typeData.map(({ _id, label }) => {
+                            return (
+                              <option key={_id}>{label}</option>
+                            )
+                          })}
                         </select>
                       </div>
                     </div>
@@ -304,9 +398,11 @@ export default function Page({ params }: any) {
                               className=" w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2 "
                             >
                               <option>Select Form</option>
-                              <option>Capsules</option>
-                              <option>Oil</option>
-                              <option>Tablets</option>
+                              {formData.map(({ _id, label }) => {
+                                return (
+                                  <option key={_id}>{label}</option>
+                                )
+                              })}
                             </select>
                           </div>
 
@@ -338,8 +434,11 @@ export default function Page({ params }: any) {
                               className=" w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2 "
                             >
                               <option>Container Type</option>
-                              <option>Bottle</option>
-                              <option>Strip</option>
+                              {containerData.map(({ _id, label }) => {
+                                return (
+                                  <option key={_id}>{label}</option>
+                                )
+                              })}
                             </select>
                           </div>
 
@@ -670,9 +769,12 @@ export default function Page({ params }: any) {
                               required
                               className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:bg-darkMode"
                             >
-                              <option>India</option>
-                              <option>USA</option>
-                              <option>China</option>
+                              <option>Select Country</option>
+                              {countryData.map(({ _id, label }) => {
+                                return (
+                                  <option key={_id}>{label}</option>
+                                )
+                              })}
                             </select>
                           </div>
 
@@ -766,7 +868,7 @@ export default function Page({ params }: any) {
                     gender === "Select Gender" ||
                     form === "Select Form" ||
                     ageRange === "Select Age Range" ||
-                    publish === "Publishing Status" ? (
+                    publish === "Publishing Status" || coo === "Select Country" ? (
                     <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
                       Note : Please Select Valid Options Only
                     </div>

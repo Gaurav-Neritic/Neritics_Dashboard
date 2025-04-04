@@ -1,23 +1,35 @@
 "use client"
 
 import axios from 'axios'
-import { RotateCw, SquarePlus } from 'lucide-react'
-import React, { useState } from 'react'
+import { RotateCw, SquarePlus, Trash2 } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import Loader from '../Loaders/Loader'
+import { useRouter } from 'next/navigation'
+
+type Label = {
+    _id: string,
+    label: string;
+};
 
 interface customInputTypes {
     label: string,
     placeholder: string,
-    apiEndPoint: string
+    apiEndPoint: string,
+    deleteApiEndpoint: string,
+    getApi: () => void,
+    categoryArray: Array<Label>,
 }
 
-const CustomInput = ({ label, placeholder, apiEndPoint }: customInputTypes) => {
+const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApiEndpoint, getApi }: customInputTypes) => {
     const [category, setCategory] = useState("")
     const [loading, setLoading] = useState(false)
+    const [deleteLoading, setDeleteLoading] = useState<{ [key: number | string]: boolean }>({})
+    const router = useRouter();
 
     const handelAddItem = async () => {
         if (category.trim() === "") {
-            return toast.success("Invalid Value", { icon: "⛔" })
+            return toast.success("Invalid Value", { icon: "▄︻デ══━一💥" })
         }
         setLoading(true);
         try {
@@ -25,14 +37,40 @@ const CustomInput = ({ label, placeholder, apiEndPoint }: customInputTypes) => {
             if (response.data.data) {
                 toast.success("Added Successfully");
                 setCategory("");
+                getApi();
                 setLoading(false)
             } else {
                 toast.error("Failed");
                 setLoading(false)
             }
-        } catch (error) {
-            console.log("Error adding", error)
+        } catch (error: any) {
             setLoading(false)
+            error.status === 403 ? toast.success("Aleary Exist In Database", { icon: "🖥" }) : ""
+            console.log("Error adding", error)
+        }
+    }
+
+    useEffect(() => {
+        categoryArray
+    }, [handelAddItem])
+
+
+    const handelDelete = async (_id: string) => {
+        try {
+            setDeleteLoading((prev) => ({ ...prev, [_id]: true }))
+            const response = await axios.delete(deleteApiEndpoint, { data: { _id } });
+            if (response.data.data) {
+                toast.success("Deleted !")
+                setDeleteLoading((prev) => ({ ...prev, [_id]: false }))
+                getApi()
+            } else {
+                setDeleteLoading((prev) => ({ ...prev, [_id]: false }))
+                toast.error("Failed to Delete !")
+            }
+        } catch (error) {
+            setDeleteLoading((prev) => ({ ...prev, [_id]: false }))
+            console.log("Error Deleting", error)
+            toast.error("Failed to Delete !")
         }
     }
     return (
@@ -54,6 +92,21 @@ const CustomInput = ({ label, placeholder, apiEndPoint }: customInputTypes) => {
                         {loading ? <RotateCw className='animate-spin' /> : <SquarePlus className="w-6 h-6" />}
                     </button>
                 </div>
+                {/* MAP all categories from DB */}
+
+                {categoryArray.length > 0 && categoryArray.map((category, index) => {
+                    return (
+                        <div key={category?._id} className='flex items-center justify-between p-2 rounded border-lightBorder  border dark:border-darkBorder  my-4'>
+                            <div>
+                                <h1 className='list-none'><span>{index + 1}.</span> {category?.label}</h1>
+                            </div>
+                            <button type='button' className='flex items-center gap-4 justify-center cursor-pointer focus:outline-1 outline-lightBorder'>
+                                {deleteLoading[category?._id] ? <RotateCw className='animate-spin text-red-500 transition-transform ease-linear duration-200' /> : <Trash2 onClick={() => { handelDelete(category?._id) }} className='text-red-500 hover:fill-red-100' />}
+                            </button>
+                        </div>
+                    )
+                })}
+
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
 import connectDB from "@/db/dbConfig";
-import { Category } from "@/models/category.model";
+import { Type } from "@/models/type.model";
 import { NextRequest, NextResponse } from "next/server";
 
 connectDB()
@@ -13,19 +13,19 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Category Name is required" }, { status: 400 })
         }
 
-        const existingCategory = await Category.findOne({ label: category })
+        const existingType = await Type.findOne({ label: category })
 
-        if (existingCategory) {
+        if (existingType) {
             return NextResponse.json({ error: "Category Already Exists" }, { status: 403 })
         }
 
-        const newCategory = await Category.create({ label: category })
+        const newType = await Type.create({ label: category })
 
-        if (!newCategory) {
+        if (!newType) {
             return NextResponse.json({ error: "Failed to Add the category in DB" }, { status: 402 })
         }
 
-        return NextResponse.json({ data: newCategory }, { status: 200 })
+        return NextResponse.json({ data: newType }, { status: 200 })
 
     } catch (error) {
         console.log("Error Adding Category : ", error)

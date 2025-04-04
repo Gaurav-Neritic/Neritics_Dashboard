@@ -24,20 +24,20 @@ const ToggleMode = () => {
 
   return (
     <>
-    <button
-      onClick={handelMode}
-      className="p-2 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
-    >
-      {mode === "" ? (
-        <span>
-          <Sun />
-        </span>
-      ) : (
-        <span>
-          <MoonStar />
-        </span>
-      )}
-    </button>
+      <button
+        onClick={handelMode}
+        className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
+      >
+        {mode === "" ? (
+          <span className="text-2xl" title="day-time">
+            🌞
+          </span>
+        ) : (
+          <span className="text-2xl" title="night-time">
+            🌚
+          </span>
+        )}
+      </button>
     </>
   );
 };

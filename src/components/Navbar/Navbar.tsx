@@ -8,9 +8,7 @@ import {
   Blocks,
   Bug,
   ChartPie,
-  Globe,
   House,
-  Mail,
   MessageCircleQuestion,
   PackagePlus,
   Settings,
@@ -136,16 +134,20 @@ const SidebarNav = () => {
         <Link
           href={"https://gmail.com"}
           target="_blank"
-          className="p-2 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
+          className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
         >
-          <Mail />
+          <span className="text-2xl" title="mail">
+            ✉️
+          </span>
         </Link>
         <Link
           href={"https://neriticwellness.com/"}
           target="_blank"
-          className="p-2 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
+          className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
         >
-          <Globe />
+          <span className="text-2xl" title="mail">
+            🌐
+          </span>
         </Link>
       </div>
     </section>
