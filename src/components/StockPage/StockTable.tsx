@@ -130,6 +130,8 @@ const StocksTable = () => {
         { wch: 10 },
       ];
       worksheet["!cols"] = columnWidths;
+      worksheet["!rows"] = Array(excelData.length).fill({ hpt: 30 });
+
 
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "StockTable");
@@ -152,7 +154,7 @@ const StocksTable = () => {
             placeholder="Search by product name or ID..."
             value={searchText}
             onChange={handleSearch}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700"
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none"
           />
           <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
         </div>

@@ -137,7 +137,7 @@ const ProductList = () => {
         { wch: 15 },
       ];
       worksheet["!cols"] = columnWidths;
-      worksheet["!rows"] = Array(excelData.length).fill({ hpt: 40 });
+      worksheet["!rows"] = Array(excelData.length).fill({ hpt: 30 });
 
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Product Lists");
