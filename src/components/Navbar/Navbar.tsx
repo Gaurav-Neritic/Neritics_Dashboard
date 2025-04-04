@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   BadgeIndianRupee,
   Blocks,
-  Bug,
   ChartPie,
   House,
   MessageCircleQuestion,
@@ -28,9 +27,11 @@ const SidebarNav = () => {
         >
           <Image
             src={"/holi logo_12.png"}
+            priority
             width={120}
             height={120}
             alt="logo"
+            className="h-auto w-auto"
           />
           {/* <span className="text-cyan-600">Neri</span>tic's */}
         </Link>
