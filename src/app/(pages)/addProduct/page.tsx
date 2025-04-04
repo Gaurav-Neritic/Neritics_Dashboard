@@ -7,7 +7,7 @@ import Select from "@/components/ProductForm/Select";
 import TextArea from "@/components/ProductForm/TextArea";
 import axios from "axios";
 import { AppWindowMac, Eraser, Plus } from "lucide-react";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 
@@ -158,6 +158,8 @@ const AddProduct = () => {
       [name]: value,
     })
   }
+
+
 
   return (
     <form className="p-5" onSubmit={handelSubmit}>

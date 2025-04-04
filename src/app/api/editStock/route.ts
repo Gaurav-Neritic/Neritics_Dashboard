@@ -9,8 +9,6 @@ export async function PUT(request: NextRequest) {
 
         const reqBody = await request.json();
 
-        console.log(reqBody)
-
         const { _id, newStock } = reqBody;
 
         if (!newStock) {
