@@ -2,10 +2,9 @@
 
 import axios from 'axios'
 import { RotateCw, SquarePlus, Trash2 } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import Loader from '../Loaders/Loader'
-import { useRouter } from 'next/navigation'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 type Label = {
     _id: string,
@@ -17,17 +16,25 @@ interface customInputTypes {
     placeholder: string,
     apiEndPoint: string,
     deleteApiEndpoint: string,
-    getApi: () => void,
     categoryArray: Array<Label>,
+    name: string
 }
 
-const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApiEndpoint, getApi }: customInputTypes) => {
+const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApiEndpoint, name }: customInputTypes) => {
     const [category, setCategory] = useState("")
     const [loading, setLoading] = useState(false)
     const [deleteLoading, setDeleteLoading] = useState<{ [key: number | string]: boolean }>({})
-    const router = useRouter();
+    const queryClient = useQueryClient()
 
-    const handelAddItem = async () => {
+    // Add the category
+    const addMutation = useMutation({
+        mutationFn: addCategory,
+        onSuccess: (_, variableName) => {
+            queryClient.invalidateQueries({ queryKey: [variableName] })
+        }
+    })
+
+    async function addCategory() {
         if (category.trim() === "") {
             return toast.success("Invalid Value", { icon: "▄︻デ══━一💥" })
         }
@@ -37,8 +44,8 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
             if (response.data.data) {
                 toast.success("Added Successfully");
                 setCategory("");
-                getApi();
                 setLoading(false)
+                return response.data.data
             } else {
                 toast.error("Failed");
                 setLoading(false)
@@ -50,19 +57,30 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
         }
     }
 
-    useEffect(() => {
-        categoryArray
-    }, [handelAddItem])
+    const handelAddItem = async (name: string) => {
+        addMutation.mutate(name as any);
+    }
 
+    // Delete the category
+    const deleteMutation = useMutation({
+        mutationFn: deleteCategory,
+        onSuccess: (_, variables) => {
+            queryClient.invalidateQueries({ queryKey: [variables.name] })
+        }
+    })
 
-    const handelDelete = async (_id: string) => {
+    const handelDelete = async (_id: string, name: string) => {
+        deleteMutation.mutate({ _id, name })
+    }
+
+    async function deleteCategory({ _id }: { _id: string; name: string }) {
         try {
             setDeleteLoading((prev) => ({ ...prev, [_id]: true }))
             const response = await axios.delete(deleteApiEndpoint, { data: { _id } });
             if (response.data.data) {
                 toast.success("Deleted !")
                 setDeleteLoading((prev) => ({ ...prev, [_id]: false }))
-                getApi()
+                return response.data.data
             } else {
                 setDeleteLoading((prev) => ({ ...prev, [_id]: false }))
                 toast.error("Failed to Delete !")
@@ -73,6 +91,8 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
             toast.error("Failed to Delete !")
         }
     }
+
+
     return (
         <div className="w-full">
             {/*Product Category */}
@@ -87,7 +107,7 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
                         placeholder={placeholder}
                     />
                     <button
-                        onClick={handelAddItem}
+                        onClick={(e) => { e.preventDefault(); handelAddItem(name) }}
                         className="px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition cursor-pointer">
                         {loading ? <RotateCw className='animate-spin' /> : <SquarePlus className="w-6 h-6" />}
                     </button>
@@ -101,7 +121,7 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
                                 <h1 className='list-none'><span>{index + 1}.</span> {category?.label}</h1>
                             </div>
                             <button type='button' className='flex items-center gap-4 justify-center cursor-pointer focus:outline-1 outline-lightBorder'>
-                                {deleteLoading[category?._id] ? <RotateCw className='animate-spin text-red-500 transition-transform ease-linear duration-200' /> : <Trash2 onClick={() => { handelDelete(category?._id) }} className='text-red-500 hover:fill-red-100' />}
+                                {deleteLoading[category?._id] ? <RotateCw className='animate-spin text-red-500 transition-transform ease-linear duration-200' /> : <Trash2 onClick={(e) => { e.preventDefault(); handelDelete(category?._id, name) }} className='text-red-500 hover:fill-red-100' />}
                             </button>
                         </div>
                     )
