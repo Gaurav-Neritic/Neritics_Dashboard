@@ -1,6 +1,10 @@
-import { FilePenLine, Trash2 } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { FilePenLine, LoaderCircle, Trash2 } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import Loader from "../Loaders/Loader";
 
 interface productDataProps {
   _id: string;
@@ -10,7 +14,6 @@ interface productDataProps {
   stock: number;
   image: [string];
   listingStatus: boolean;
-  handelDelete: () => {}
 }
 
 const ProductCard = ({
@@ -20,12 +23,50 @@ const ProductCard = ({
   price,
   stock,
   listingStatus,
-  handelDelete
 }: productDataProps) => {
+  const [loading, setLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const queryClient = useQueryClient();
 
+
+  const deleteMutation = useMutation(
+    {
+      mutationFn: deleteProduct,
+      onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['getProductsData'] }) },
+      onError: () => { setIsError(true) }
+    }
+  )
+
+  const handelDelete = (id: string) => {
+    deleteMutation.mutate(id);
+  }
+
+  async function deleteProduct(id: string) {
+    try {
+      setLoading(true)
+      console.log("Id to delete ", id)
+      const response = await axios.delete("api/deleteProduct", {
+        data: { id },
+        fetchOptions: { cache: "no-store" },
+      });
+
+      if (response.data.data) {
+        setLoading(false)
+        toast.success("Product Deleted Successfully");
+        return response.data.data
+      }
+    } catch (error) {
+      setLoading(false)
+      console.log("Error Deleting the product", error);
+      toast.error("Error: Try after few minutes");
+    }
+  }
 
   return (
     <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5">
+      {isError && <div className="p-5 flex items-center justify-center">
+        <h1>Something Went Wrong</h1>
+      </div>}
       <img
         width={20}
         height={20}
@@ -60,11 +101,12 @@ const ProductCard = ({
         </Link>
         <button
           type="button"
-          onClick={handelDelete}
-          className="flex justify-center items-center gap-2 bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer bg-red-2"
+          onClick={(e) => { e.preventDefault(); handelDelete(_id) }}
+          className=" bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer bg-red-2"
         >
-          <Trash2 className="h-5 w-5 cursor-pointer" />
-          Delete
+          {loading ? <span className="flex justify-center items-center gap-2 animate-spin"><LoaderCircle className="h-5 w-5 cursor-pointer" />
+            Deleting...</span> : <span className="flex justify-center items-center gap-2"><Trash2 className="h-5 w-5 cursor-pointer" />
+            Delete</span>}
         </button>
       </div>
     </div>

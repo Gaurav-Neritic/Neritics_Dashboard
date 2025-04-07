@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Fira_Code, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import SidebarNav from "@/components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";
@@ -11,7 +11,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const geistMono = Fira_Code({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });

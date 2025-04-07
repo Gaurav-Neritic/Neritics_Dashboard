@@ -2,6 +2,7 @@
 import DeletePoup from "@/components/DeletePoup";
 import Loader from "@/components/Loaders/Loader";
 import ProductCard from "@/components/ProductPage/ProductCard";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import {
   SlidersHorizontal,
@@ -29,7 +30,6 @@ interface productDataProps {
 
 const ProductList = () => {
   const [deletePopup, setDeletePopup] = useState(false);
-  const [productData, setProductData] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
@@ -45,9 +45,8 @@ const ProductList = () => {
       });
       if (response.data.data) {
         setLoading(true);
-        setProductData(response.data.data);
         setFilteredProducts(response.data.data);
-        console.log(response.data.data);
+        return response.data.data
       } else {
         setLoading(false);
         toast.error("Failed to fetch the product data");
@@ -64,7 +63,7 @@ const ProductList = () => {
     e.preventDefault();
     const text = e.target.value;
     setSearchText(text);
-    const filtered = productData.filter(
+    const filtered = getProductsData.filter(
       (product: any) =>
         product.title.toLowerCase().includes(text.toLowerCase()) ||
         product._id.toLowerCase().includes(text.toLowerCase())
@@ -72,45 +71,26 @@ const ProductList = () => {
     setFilteredProducts(filtered);
   };
 
-  async function handelDelete(id: string) {
-    try {
-      const response = await axios.delete("api/deleteProduct", {
-        data: { id },
-        fetchOptions: { cache: "no-store" },
-      });
-
-      if (response.data.data) {
-        toast.success("Product Deleted Successfully");
-        setProductData((prevProducts) =>
-          prevProducts.filter((product: any) => product._id !== prodId)
-        );
-      }
-    } catch (error) {
-      console.log("Error Deleting the product", error);
-      toast.error("Error: Try after few minutes");
-    }
-  }
-
-  useEffect(() => {
-    getProducts();
-  }, [deletePopup]);
+  const { data: getProductsData = [], isLoading, isError } = useQuery({
+    queryFn: getProducts, queryKey: ['getProductsData'], refetchOnWindowFocus: false
+  })
 
   useEffect(() => {
     if (filter === "Listed") {
       setFilteredProducts(
-        productData.filter((product: any) => product.listingStatus === true)
+        getProductsData.filter((product: any) => product.listingStatus === true)
       );
       setLoading(false);
     } else if (filter === "UnListed") {
       setFilteredProducts(
-        productData.filter((product: any) => product.listingStatus === false)
+        getProductsData.filter((product: any) => product.listingStatus === false)
       );
       setLoading(false);
     } else {
-      setFilteredProducts(productData);
+      setFilteredProducts(getProductsData);
       setLoading(false);
     }
-  }, [filter, productData]);
+  }, [filter, getProductsData]);
 
   // Excel Download handle
   const handleExcelExport = () => {
@@ -208,8 +188,8 @@ const ProductList = () => {
           />
           <button
             onClick={handleExcelExport}
-            className={`flex items-center justify-center  gap-2 px-3 py-2 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
-            disabled={filteredProducts.length === 0}
+            className={`flex items-center justify-center  gap-2 px-3 py-2 bg-green-700  text-white rounded ${filteredProducts?.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
+            disabled={filteredProducts?.length === 0}
             title="Download Excel"
           >
             <Download className="h-4 w-4" />
@@ -267,8 +247,10 @@ const ProductList = () => {
               {/* Product Item */}
               <div className={`${listView ? "block" : "hidden"}`}>
                 {/*  */}
-                {filteredProducts.length !== 0 &&
-                  filteredProducts.map(
+                {isLoading && <div className="p-5"><Loader title="Fetching" /></div>}
+                {isError && <div className="p-5"><h1>Something Went Wrong</h1></div>}
+                {filteredProducts?.length !== 0 &&
+                  filteredProducts?.map(
                     ({
                       _id,
                       title,
@@ -326,11 +308,9 @@ const ProductList = () => {
                           </div>
                           {
                             <DeletePoup
+                              id={prodId}
                               isVisible={deletePopup}
                               prodName={name}
-                              handelDelete={() => {
-                                return handelDelete(_id);
-                              }}
                               onClose={() => {
                                 setDeletePopup(false);
                               }} />
@@ -339,18 +319,6 @@ const ProductList = () => {
                       );
                     }
                   )}
-
-                {filteredProducts.length === 0 && (
-                  <div className="place-items-center uppercase text-gray-600 font-semibold py-10">
-                    <h1>
-                      {loading ? (
-                        <Loader title="Fetching...." />
-                      ) : (
-                        "No Products Found"
-                      )}
-                    </h1>
-                  </div>
-                )}
 
                 {/*  */}
               </div>
@@ -374,9 +342,6 @@ const ProductList = () => {
                   }: productDataProps) => {
                     return (
                       <ProductCard
-                        handelDelete={() => {
-                          return handelDelete(_id);
-                        }}
                         key={_id}
                         _id={_id}
                         image={image}
@@ -384,8 +349,7 @@ const ProductList = () => {
                         price={price}
                         stock={stock}
                         category={category}
-                        listingStatus={listingStatus}
-                      />
+                        listingStatus={listingStatus} />
                     );
                   }
                 )}

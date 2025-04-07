@@ -1,5 +1,4 @@
 "use client"
-import Loader from "@/components/Loaders/Loader";
 import CustomInput from "@/components/SettingsPage/CustomInput";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";

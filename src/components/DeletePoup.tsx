@@ -2,21 +2,59 @@
 import { AlertCircle } from "lucide-react";
 import React, { useState } from "react";
 import Loader from "./Loaders/Loader";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface DeletePopupProps {
   isVisible: boolean;
   onClose: () => void;
   prodName: string;
-  handelDelete: () => {}
+  id: string
 }
 
 const DeletePoup = ({
   isVisible,
   onClose,
   prodName,
-  handelDelete
+  id
 }: DeletePopupProps) => {
   const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation(
+    {
+      mutationFn: deleteProduct,
+      onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['getProductsData'] }) }
+    }
+  )
+
+  async function handelDelete(id: string) {
+    deleteMutation.mutate(id);
+    onClose();
+  }
+
+  async function deleteProduct(id: string) {
+    try {
+      setLoading(true)
+      const response = await axios.delete("api/deleteProduct", {
+        data: { id },
+        fetchOptions: { cache: "no-store" },
+      });
+
+      if (response.data.data) {
+        toast.success("Product Deleted Successfully");
+        setLoading(false)
+        return response.data.data
+      }
+    } catch (error) {
+      setLoading(false)
+      console.log("Error Deleting the product", error);
+      toast.error("Error: Try after few minutes");
+    }
+  }
+
+
 
   if (!isVisible) return null;
   return (
@@ -39,7 +77,7 @@ const DeletePoup = ({
             Cancel
           </button>
           <button
-            onClick={() => { setLoading(true); handelDelete(); setLoading(false); onClose() }}
+            onClick={(e) => { e.preventDefault(); handelDelete(id) }}
             className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 cursor-pointer"
           >
             {loading ? <Loader title="Deleting..." /> : <span>Delete</span>}
