@@ -1,23 +1,18 @@
 "use client"
 import CustomInput from "@/components/SettingsPage/CustomInput";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 const SettingsPage = () => {
-
-  const [category, setCategory] = useState([]);
-  const [type, setType] = useState([]);
-  const [form, setForm] = useState([]);
-  const [container, setContainer] = useState([])
-  const [country, setCountry] = useState([])
 
   async function getCategories() {
     try {
       const response = await axios.get('api/getCategory');
 
       if (response.data.data) {
-        setCategory(response.data.data)
+        return response.data.data
       } else {
         toast.error("Error Fetching the category");
       }
@@ -32,7 +27,7 @@ const SettingsPage = () => {
       const response = await axios.get('api/getTypes');
 
       if (response.data.data) {
-        setType(response.data.data)
+        return response.data.data
       } else {
         toast.error("Error Fetching the type");
       }
@@ -47,7 +42,8 @@ const SettingsPage = () => {
       const response = await axios.get('api/getFormTypes');
 
       if (response.data.data) {
-        setForm(response.data.data)
+        return response.data.data
+
       } else {
         toast.error("Error Fetching the form types");
       }
@@ -62,7 +58,8 @@ const SettingsPage = () => {
       const response = await axios.get('api/getContainerTypes');
 
       if (response.data.data) {
-        setContainer(response.data.data)
+        return response.data.data
+
       } else {
         toast.error("Error Fetching the container type");
       }
@@ -77,7 +74,7 @@ const SettingsPage = () => {
       const response = await axios.get('api/getCountries');
 
       if (response.data.data) {
-        setCountry(response.data.data)
+        return response.data.data
       } else {
         toast.error("Error Fetching the country");
       }
@@ -87,8 +84,13 @@ const SettingsPage = () => {
     }
   }
 
+  const { data: category = [] } = useQuery({ queryKey: ["category"], queryFn: getCategories, refetchOnWindowFocus: false, })
+  const { data: types = [] } = useQuery({ queryKey: ["types"], queryFn: getTypes, refetchOnWindowFocus: false, })
+  const { data: productForm = [] } = useQuery({ queryKey: ["productForm"], queryFn: getProductForms, refetchOnWindowFocus: false, })
+  const { data: containerType = [] } = useQuery({ queryKey: ["containerType"], queryFn: getContainerTypes, refetchOnWindowFocus: false, })
+  const { data: countries = [] } = useQuery({ queryKey: ["countries"], queryFn: getCountries, refetchOnWindowFocus: false, })
+
   useEffect(() => {
-    getCategories();
     getTypes();
     getProductForms();
     getContainerTypes();
@@ -108,20 +110,44 @@ const SettingsPage = () => {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {/* Add Category */}
-            <CustomInput label={"Add Category"} placeholder={"Add New Product Category"}
-              apiEndPoint={"api/addCategory"} categoryArray={category}
-              deleteApiEndpoint={"api/deleteCategory"} getApi={() => { return getCategories() }} />
+            <CustomInput
+              label={"Add Category"}
+              placeholder={"Add New Product Category"}
+              apiEndPoint={"api/addCategory"}
+              categoryArray={category}
+              deleteApiEndpoint={"api/deleteCategory"}
+              name={"category"} />
             {/* Add Product Type */}
-            <CustomInput label={"Add Product Type"} placeholder={"Add New Product Type"}
-              apiEndPoint={"api/addType"} categoryArray={type} deleteApiEndpoint={"api/deleteType"} getApi={() => { return getTypes() }} />
+            <CustomInput
+              label={"Add Product Type"}
+              placeholder={"Add New Product Type"}
+              apiEndPoint={"api/addType"}
+              categoryArray={types}
+              deleteApiEndpoint={"api/deleteType"}
+              name={"types"} />
             {/* Add Product From */}
-            <CustomInput label={"Add Product Form"} placeholder={"Add New Product Form"}
-              apiEndPoint={"api/addFormType"} categoryArray={form} deleteApiEndpoint={"api/deleteFormType"} getApi={() => { return getProductForms() }} />
+            <CustomInput
+              label={"Add Product Form"}
+              placeholder={"Add New Product Form"}
+              apiEndPoint={"api/addFormType"}
+              categoryArray={productForm}
+              deleteApiEndpoint={"api/deleteFormType"}
+              name={"productForm"} />
             {/* Add Container Type */}
-            <CustomInput label={"Add Container Type"} placeholder={"Add New Container Type"} apiEndPoint={"api/addContainerType"} categoryArray={container} deleteApiEndpoint={"api/deleteContainerType"} getApi={() => { return getContainerTypes() }} />
+            <CustomInput
+              label={"Add Container Type"}
+              placeholder={"Add New Container Type"} apiEndPoint={"api/addContainerType"}
+              categoryArray={containerType}
+              deleteApiEndpoint={"api/deleteContainerType"}
+              name={"containerType"} />
             {/* Country Of Origin */}
-            <CustomInput label={"Add Country"} placeholder={"Add New Country"}
-              apiEndPoint={"api/addCountry"} categoryArray={country} deleteApiEndpoint={"api/deleteCountry"} getApi={() => { return getCountries() }} />
+            <CustomInput
+              label={"Add Country"}
+              placeholder={"Add New Country"}
+              apiEndPoint={"api/addCountry"}
+              categoryArray={countries}
+              deleteApiEndpoint={"api/deleteCountry"}
+              name={"countries"} />
           </div>
         </div>
       </div>
