@@ -1,4 +1,5 @@
 "use client"
+import Loader from "@/components/Loaders/Loader";
 import CustomInput from "@/components/SettingsPage/CustomInput";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -84,7 +85,7 @@ const SettingsPage = () => {
     }
   }
 
-  const { data: category = [] } = useQuery({ queryKey: ["category"], queryFn: getCategories, refetchOnWindowFocus: false, })
+  const { data: category = [], isLoading, isError } = useQuery({ queryKey: ["category"], queryFn: getCategories, refetchOnWindowFocus: false, })
   const { data: types = [] } = useQuery({ queryKey: ["types"], queryFn: getTypes, refetchOnWindowFocus: false, })
   const { data: productForm = [] } = useQuery({ queryKey: ["productForm"], queryFn: getProductForms, refetchOnWindowFocus: false, })
   const { data: containerType = [] } = useQuery({ queryKey: ["containerType"], queryFn: getContainerTypes, refetchOnWindowFocus: false, })
@@ -110,13 +111,13 @@ const SettingsPage = () => {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {/* Add Category */}
-            <CustomInput
+            {isLoading ? <div className="p-5"><Loader title="Fetching.." /></div> : <CustomInput
               label={"Add Category"}
               placeholder={"Add New Product Category"}
               apiEndPoint={"api/addCategory"}
               categoryArray={category}
               deleteApiEndpoint={"api/deleteCategory"}
-              name={"category"} />
+              name={"category"} />}
             {/* Add Product Type */}
             <CustomInput
               label={"Add Product Type"}
