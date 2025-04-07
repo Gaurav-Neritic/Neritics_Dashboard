@@ -90,7 +90,7 @@ const ProductList = () => {
       setFilteredProducts(getProductsData);
       setLoading(false);
     }
-  }, [filter, getProductsData]);
+  }, [filter]);
 
   // Excel Download handle
   const handleExcelExport = () => {
