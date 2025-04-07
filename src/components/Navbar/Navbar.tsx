@@ -7,6 +7,7 @@ import {
   BadgeIndianRupee,
   Blocks,
   ChartPie,
+  FileText,
   House,
   MessageCircleQuestion,
   MessageSquareMore,
@@ -66,6 +67,17 @@ const SidebarNav = () => {
           <span className="flex gap-3">
             <PackagePlus className="text-yellow-500" />
             Orders
+          </span>
+        </Link>
+
+
+        <Link
+          href={"/addBlog"}
+          className="w-full bg-sky-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-sky-200 hover:text-sky-600 transition-all ease-linear duration-200"
+        >
+          <span className="flex gap-3">
+            <FileText  className="text-sky-500" />
+          Add Blog
           </span>
         </Link>
 
