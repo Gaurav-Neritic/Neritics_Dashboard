@@ -85,11 +85,11 @@ const SettingsPage = () => {
     }
   }
 
-  const { data: category = [], isLoading, isError } = useQuery({ queryKey: ["category"], queryFn: getCategories, refetchOnWindowFocus: false, })
-  const { data: types = [] } = useQuery({ queryKey: ["types"], queryFn: getTypes, refetchOnWindowFocus: false, })
-  const { data: productForm = [] } = useQuery({ queryKey: ["productForm"], queryFn: getProductForms, refetchOnWindowFocus: false, })
-  const { data: containerType = [] } = useQuery({ queryKey: ["containerType"], queryFn: getContainerTypes, refetchOnWindowFocus: false, })
-  const { data: countries = [] } = useQuery({ queryKey: ["countries"], queryFn: getCountries, refetchOnWindowFocus: false, })
+  const { data: category = [], isLoading, isError } = useQuery({ queryKey: ["category"], queryFn: getCategories, refetchOnWindowFocus: false })
+  const { data: types = [] } = useQuery({ queryKey: ["types"], queryFn: getTypes, refetchOnWindowFocus: false })
+  const { data: productForm = [] } = useQuery({ queryKey: ["productForm"], queryFn: getProductForms, refetchOnWindowFocus: false })
+  const { data: containerType = [] } = useQuery({ queryKey: ["containerType"], queryFn: getContainerTypes, refetchOnWindowFocus: false })
+  const { data: countries = [] } = useQuery({ queryKey: ["countries"], queryFn: getCountries, refetchOnWindowFocus: false })
 
   useEffect(() => {
     getTypes();
@@ -111,13 +111,14 @@ const SettingsPage = () => {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {/* Add Category */}
-            {isLoading ? <div className="p-5"><Loader title="Fetching.." /></div> : <CustomInput
+            <CustomInput
               label={"Add Category"}
               placeholder={"Add New Product Category"}
               apiEndPoint={"api/addCategory"}
               categoryArray={category}
               deleteApiEndpoint={"api/deleteCategory"}
-              name={"category"} />}
+              name={"category"}
+              loadingData={isLoading} />
             {/* Add Product Type */}
             <CustomInput
               label={"Add Product Type"}
@@ -125,7 +126,7 @@ const SettingsPage = () => {
               apiEndPoint={"api/addType"}
               categoryArray={types}
               deleteApiEndpoint={"api/deleteType"}
-              name={"types"} />
+              name={"types"} loadingData={isLoading} />
             {/* Add Product From */}
             <CustomInput
               label={"Add Product Form"}
@@ -133,14 +134,14 @@ const SettingsPage = () => {
               apiEndPoint={"api/addFormType"}
               categoryArray={productForm}
               deleteApiEndpoint={"api/deleteFormType"}
-              name={"productForm"} />
+              name={"productForm"} loadingData={isLoading} />
             {/* Add Container Type */}
             <CustomInput
               label={"Add Container Type"}
               placeholder={"Add New Container Type"} apiEndPoint={"api/addContainerType"}
               categoryArray={containerType}
               deleteApiEndpoint={"api/deleteContainerType"}
-              name={"containerType"} />
+              name={"containerType"} loadingData={isLoading} />
             {/* Country Of Origin */}
             <CustomInput
               label={"Add Country"}
@@ -148,7 +149,7 @@ const SettingsPage = () => {
               apiEndPoint={"api/addCountry"}
               categoryArray={countries}
               deleteApiEndpoint={"api/deleteCountry"}
-              name={"countries"} />
+              name={"countries"} loadingData={isLoading} />
           </div>
         </div>
       </div>

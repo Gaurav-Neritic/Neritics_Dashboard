@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
         const allergyArray = JSON.parse(allergy)
         const coatingArray = JSON.parse(coating)
 
-        if (!title || !description || !price || !quantity || !discount || !category ) {
+        if (!title || !description || !price || !quantity || !discount || !category) {
             return NextResponse.json(
                 { error: "All the marked fields are required" },
                 { status: 402 }

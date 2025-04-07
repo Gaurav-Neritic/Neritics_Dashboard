@@ -5,6 +5,7 @@ import { RotateCw, SquarePlus, Trash2 } from 'lucide-react'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import Loader from '../Loaders/Loader'
 
 type Label = {
     _id: string,
@@ -17,10 +18,11 @@ interface customInputTypes {
     apiEndPoint: string,
     deleteApiEndpoint: string,
     categoryArray: Array<Label>,
-    name: string
+    name: string,
+    loadingData: boolean
 }
 
-const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApiEndpoint, name }: customInputTypes) => {
+const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApiEndpoint, name, loadingData }: customInputTypes) => {
     const [category, setCategory] = useState("")
     const [loading, setLoading] = useState(false)
     const [deleteLoading, setDeleteLoading] = useState<{ [key: number | string]: boolean }>({})
@@ -35,9 +37,7 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
     })
 
     async function addCategory() {
-        if (category.trim() === "") {
-            return toast.success("Invalid Value", { icon: "▄︻デ══━一💥" })
-        }
+
         setLoading(true);
         try {
             const response = await axios.post(apiEndPoint, { category })
@@ -58,6 +58,9 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
     }
 
     const handelAddItem = async (name: string) => {
+        if (category.trim() === "") {
+            return toast.success("Invalid Value", { icon: "▄︻デ══━一💥" })
+        }
         addMutation.mutate(name as any);
     }
 
@@ -113,6 +116,8 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
                     </button>
                 </div>
                 {/* MAP all categories from DB */}
+
+                {loadingData && <div className='p-2 my-5 border border-lightBorder rounded dark:border-darkBorder'><Loader title='Fetching...' /></div>}
 
                 {categoryArray.length > 0 && categoryArray.map((category, index) => {
                     return (
