@@ -21,9 +21,11 @@ const page = () => {
       <form>
         {/* grid - 1 */}
         <div>
-          <h1 className="text-lg font-semibold antialiased">
-            Blog Title & Author
-          </h1>
+          <div className="pb-2">
+            <h2 className="text-lg font-semibold antialiased">
+              Blog Title & Author
+            </h2>
+          </div>
           <div
             className="  p-4  border rounded 
         border-lightBorder dark:border-darkBorder "
@@ -55,7 +57,9 @@ const page = () => {
         </div>
         {/* grid - 2 */}
         <div className="my-5">
-          <h1 className="text-lg font-semibold antialiased">Blog Images</h1>
+          <div className="pb-2">
+            <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
+          </div>
           <div
             className="  p-4  border rounded 
         border-lightBorder dark:border-darkBorder "
@@ -66,8 +70,8 @@ const page = () => {
                 <input
                   type="file"
                   required
-                  className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500 "
+                  className="w-full text-gray-700 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder  file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
+                        dark:bg-darkMode  dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500 "
                 />
               </div>
 
@@ -76,8 +80,8 @@ const page = () => {
                 <input
                   type="file"
                   required
-                  className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:border-darkBorder dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
+                  className="w-full text-gray-700 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder  file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
+                        dark:bg-darkMode  dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                 />
               </div>
             </div>
@@ -85,9 +89,9 @@ const page = () => {
         </div>
         {/* grid -3 */}
         <div className="my-5">
-          <h1 className="text-lg font-semibold antialiased">
-            Blog Description
-          </h1>
+          <div className="pb-2">
+            <h2 className="text-lg font-semibold antialiased">Description</h2>
+          </div>
           <div
             className="  p-4  border rounded 
         border-lightBorder dark:border-darkBorder "
