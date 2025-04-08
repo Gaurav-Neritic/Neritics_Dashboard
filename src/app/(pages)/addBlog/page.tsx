@@ -38,8 +38,8 @@ const AddBlogsPage = () => {
   });
   const [description, setDescription] = useState({});
   const [blogImage, setBlogImage] = useState<File | null>(null);
-  const [isLoading, setIsLoading] = useState(false)
-  const [publish, setPublish] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+  const [publish, setPublish] = useState("");
   const router = useRouter();
 
   const editor: any = useEditor({
@@ -51,7 +51,13 @@ const AddBlogsPage = () => {
     extensions: [
       StarterKit.configure({
         history: false,
-      }), Underline, Italic, Bold, Code, Strike, History,
+      }),
+      Underline,
+      Italic,
+      Bold,
+      Code,
+      Strike,
+      History,
       Heading.configure({
         levels: [1, 2, 3, 4, 5, 6],
       }),
@@ -85,54 +91,67 @@ const AddBlogsPage = () => {
     setBlogData({ ...blogData, [name]: value });
   };
 
-
   async function addBlog() {
-
     const formData = new FormData();
 
     formData.append("title", blogData.title);
     formData.append("author", blogData.author);
-    formData.append("blogImage", blogImage || "");
+    if (blogImage) formData.append("blogImage", blogImage || "");
     formData.append("description", JSON.stringify(description || {}));
-    formData.append("publish", publish)
+    formData.append("publish", publish);
     try {
-      setIsLoading(true)
-      const response = await axios.post('api/addBlog', formData);
+      setIsLoading(true);
+      const response = await axios.post("api/addBlog", formData);
       if (response.data.data) {
-        setIsLoading(false)
-        toast.success("Blog Added!")
-        return response.data.data
+        setIsLoading(false);
+        toast.success("Blog Added!");
+        return response.data.data;
       } else {
-        setIsLoading(false)
+        setIsLoading(false);
         console.log("Data Addition Failed");
       }
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
       console.log("Error adding blog : ", error);
       toast.error("Error adding blog");
     }
   }
 
-  const addBlogMutation = useMutation({ mutationFn: addBlog, onSuccess: () => { clearFields() } })
+  const addBlogMutation = useMutation({
+    mutationFn: addBlog,
+    onSuccess: () => {
+      clearFields();
+    },
+  });
 
   const clearFields = () => {
-    console.log("clicked")
+    console.log("clicked");
     blogData.title = "";
     blogData.author = "";
     setBlogImage(null);
-    editor.commands.clearContent(true)
-  }
+    editor.commands.clearContent(true);
+  };
 
   const handelSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (publish === "Select Status" || publish.trim() === "") {
-      return toast.success("Select publishing status", { icon: "▄︻テ══‐一💥" })
+      return toast.success("Select publishing status", {
+        icon: "▄︻テ══‐一💥",
+      });
     }
     addBlogMutation.mutate();
-    router.push('/blogList')
+    router.push("/blogList");
   };
 
-  addBlogMutation.isError ? toast.error("Something went wrong") : ""
+  addBlogMutation.isError ? toast.error("Something went wrong") : "";
+
+  // Image Preview
+  const getPreviewUrl = (file: File | null) => {
+    if (!file) {
+      return null;
+    }
+    return URL.createObjectURL(file);
+  };
 
   return (
     <div className="px-5">
@@ -202,9 +221,7 @@ const AddBlogsPage = () => {
           <div className="pb-2">
             <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
           </div>
-          <div
-            className="p-4 border rounded border-lightBorder dark:border-darkBorder"
-          >
+          <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
             <div className="grid grid-cols-2 gap-10 ">
               <div>
                 <label>Blog Image:</label>
@@ -217,14 +234,23 @@ const AddBlogsPage = () => {
                   required
                   className="w-full text-gray-700 my-2 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-[9.3px] file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral dark:file:text-white dark:hover:file:text-gray-500"
                 />
+                {blogImage && (
+                  <img
+                    src={getPreviewUrl(blogImage) || ""}
+                    alt="Main Image Preview"
+                    className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                  />
+                )}
               </div>
-
               <div>
                 <label>Publishing Status:</label>
                 <select
                   value={publish}
-                  onChange={(e) => { setPublish(e.target.value) }}
-                  className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-[9px] rounded text-gray-400 mt-2 dark:bg-darkMode">
+                  onChange={(e) => {
+                    setPublish(e.target.value);
+                  }}
+                  className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-[9px] rounded text-gray-400 mt-2 dark:bg-darkMode"
+                >
                   <option>Select Status</option>
                   <option>Publish</option>
                   <option>Un-List</option>
@@ -241,7 +267,8 @@ const AddBlogsPage = () => {
           <Toolbar editor={editor} />
           <EditorContent
             editor={editor}
-            className="p-4 border border-lightBorder dark:border-darkBorder rounded" />
+            className="p-4 border border-lightBorder dark:border-darkBorder rounded"
+          />
         </div>
         {/* Add Blog Button */}
         <div className="py-5 flex gap-3 justify-end">
@@ -250,13 +277,22 @@ const AddBlogsPage = () => {
             disabled={isLoading ? true : false}
             className="px-4 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
           >
-            {isLoading ? <span className="flex items-center justify-center"><Loader title="Adding..." /></span> : <span className="flex items-center justify-center gap-2">
-              Add Blog
-            </span>}
+            {isLoading ? (
+              <span className="flex items-center justify-center">
+                <Loader title="Adding..." />
+              </span>
+            ) : (
+              <span className="flex items-center justify-center gap-2">
+                Add Blog
+              </span>
+            )}
           </button>
           <button
             type="reset"
-            onClick={() => { clearFields(); toast.success("Fields Cleared") }}
+            onClick={() => {
+              clearFields();
+              toast.success("Fields Cleared");
+            }}
             className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
           >
             <span className="flex items-center justify-center gap-2">
@@ -265,8 +301,8 @@ const AddBlogsPage = () => {
             </span>
           </button>
         </div>
-      </form >
-    </div >
+      </form>
+    </div>
   );
 };
 
