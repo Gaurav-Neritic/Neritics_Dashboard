@@ -18,6 +18,8 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
 import { common, createLowlight } from "lowlight";
+import BulletList from "@tiptap/extension-bullet-list";
+import OrderedList from "@tiptap/extension-ordered-list";
 
 import Toolbar from "@/components/BlogPage/Toolbar";
 
@@ -58,6 +60,8 @@ const AddBlogsPage = () => {
       }),
       TextStyle,
       Color,
+      BulletList,
+      OrderedList,
     ],
     editorProps: {
       attributes: {

@@ -7,3 +7,21 @@
   --color-darkBorder: #404040;
   --color-lightBorder: #d1d5dc;
 }
+ol, ul, menu {
+  list-style: disc;
+}
+
+ol, menu {
+  list-style: decimal;
+}
+
+ul,
+ol {
+  padding: 0 1rem;
+  margin: 1.25rem 1rem 1.25rem 0.4rem;
+
+  li p {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+}
