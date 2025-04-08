@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Failed to add the blog to DB" }, { status: 406 })
         }
 
-        return NextResponse.json({ data: blog }, { status: 200 })
+        return NextResponse.json({ data: "Data Added Successfully" }, { status: 200 })
 
     } catch (error) {
         return NextResponse.json({ error: "Failed to Add the bolg to database" }, { status: 500 })

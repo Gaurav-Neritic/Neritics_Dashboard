@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Loader from "../Loaders/Loader";
+import Image from "next/image";
 
 interface productDataProps {
   _id: string;
@@ -67,9 +68,9 @@ const ProductCard = ({
       {isError && <div className="p-5 flex items-center justify-center">
         <h1>Something Went Wrong</h1>
       </div>}
-      <img
-        width={20}
-        height={20}
+      <Image
+        width={300}
+        height={300}
         alt="image"
         src={image[0] || "/placeholder.jpg"}
         className="w-auto h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"

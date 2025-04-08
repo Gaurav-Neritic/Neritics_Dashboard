@@ -174,7 +174,7 @@ const ProductList = () => {
       </div>
 
       {/*    Product Button (ListView & CardView) */}
-      <div className="p-5 flex justify-between items-center">
+      <div className="py-5 flex justify-between items-center">
         <div>
           <h1 className="text-xl uppercase font-semibold">Product Lists</h1>
         </div>
@@ -248,7 +248,7 @@ const ProductList = () => {
               <div className={`${listView ? "block" : "hidden"}`}>
                 {/*  */}
                 {isLoading && <div className="p-5"><Loader title="Fetching" /></div>}
-                {(!isLoading && filteredProducts.length) === 0 && <div className="flex items-center justify-center py-5 uppercase font-semibold"><h1>Products Not Found</h1></div>}
+                {(!isLoading && filteredProducts.length === 0) && <div className="flex items-center justify-center py-5 uppercase font-semibold"><h1>Products Not Found</h1></div>}
                 {isError && <div className="p-5"><h1>Something Went Wrong</h1></div>}
                 {filteredProducts?.length !== 0 &&
                   filteredProducts?.map(

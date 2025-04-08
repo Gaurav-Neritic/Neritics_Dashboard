@@ -101,6 +101,7 @@ const AddBlogsPage = () => {
       if (response.data.data) {
         setIsLoading(false)
         toast.success("Blog Added!")
+        router.push('/blogList')
         return response.data.data
       } else {
         setIsLoading(false)
@@ -129,7 +130,6 @@ const AddBlogsPage = () => {
       return toast.success("Select publishing status", { icon: "▄︻テ══‐一💥" })
     }
     addBlogMutation.mutate();
-    router.push('/blogList')
   };
 
   addBlogMutation.isError ? toast.error("Something went wrong") : ""
