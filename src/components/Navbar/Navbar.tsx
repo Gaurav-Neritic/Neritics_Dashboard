@@ -70,9 +70,6 @@ const SidebarNav = () => {
           </span>
         </Link>
 
-
-      
-
         <Link
           href={"/queries"}
           className="w-full bg-indigo-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-indigo-200 hover:text-indigo-600 transition-all ease-linear duration-200"
@@ -82,7 +79,6 @@ const SidebarNav = () => {
             Queries
           </span>
         </Link>
-
 
         <Link
           href={"/sales"}
@@ -96,14 +92,14 @@ const SidebarNav = () => {
 
         <Link
           href={"/addBlog"}
-          className="w-full bg-lime-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-lime-200 hover:text-lime-600 transition-all ease-linear duration-200"
+          className="w-full bg-cyan-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-cyan-200 hover:text-cyan-600 transition-all ease-linear duration-200"
         >
           <span className="flex gap-3">
-            <FileText  className="text-lime-500" />
-          Add Blog
+            <FileText className="text-cyan-500" />
+            Add Blog
           </span>
         </Link>
-        
+
         <Link
           href={"/sales"}
           className="w-full bg-fuchsia-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-fuchsia-200 hover:text-fuchsia-600 transition-all ease-linear duration-200"

@@ -248,6 +248,7 @@ const ProductList = () => {
               <div className={`${listView ? "block" : "hidden"}`}>
                 {/*  */}
                 {isLoading && <div className="p-5"><Loader title="Fetching" /></div>}
+                {(!isLoading && filteredProducts.length) === 0 && <div className="flex items-center justify-center py-5 uppercase font-semibold"><h1>Products Not Found</h1></div>}
                 {isError && <div className="p-5"><h1>Something Went Wrong</h1></div>}
                 {filteredProducts?.length !== 0 &&
                   filteredProducts?.map(
@@ -362,7 +363,7 @@ const ProductList = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 

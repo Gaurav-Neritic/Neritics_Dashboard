@@ -15,7 +15,7 @@ interface selectProps {
 const Select = ({ name, value, onChange, options, defaultOption }: selectProps) => {
     return (
         <select
-            className='w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode'
+            className='w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-[9px] rounded text-gray-400 mt-2 dark:bg-darkMode'
             name={name} value={value} onChange={onChange}>
             <option >{defaultOption}</option>
             {

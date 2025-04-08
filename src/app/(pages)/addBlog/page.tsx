@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Eraser, Files, FileText } from "lucide-react";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -20,27 +20,36 @@ import TextStyle from "@tiptap/extension-text-style";
 import { common, createLowlight } from "lowlight";
 
 import Toolbar from "@/components/BlogPage/Toolbar";
+import Input from "@/components/ProductForm/Input";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import Loader from "@/components/Loaders/Loader";
 
 const lowlight = createLowlight(common);
 
 const AddBlogsPage = () => {
+  const [blogData, setBlogData] = useState({
+    title: "",
+    author: "",
+  });
   const [description, setDescription] = useState({});
-  const editor = useEditor({
+  const [blogImage, setBlogImage] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false)
+  const [publish, setPublish] = useState("")
+  const router = useRouter();
+
+  const editor: any = useEditor({
     content: "",
+    immediatelyRender: false,
     onUpdate: ({ editor }) => {
       setDescription(editor.getJSON());
-      console.log("Description is : ", description);
     },
     extensions: [
       StarterKit.configure({
         history: false,
-      }),
-      Underline,
-      Italic,
-      Bold,
-      Code,
-      Strike,
-      History,
+      }), Underline, Italic, Bold, Code, Strike, History,
       Heading.configure({
         levels: [1, 2, 3, 4, 5, 6],
       }),
@@ -55,9 +64,7 @@ const AddBlogsPage = () => {
       }),
       CodeBlockLowlight.configure({
         lowlight,
-      }),
-      TextStyle,
-      Color,
+      }), TextStyle, Color,
     ],
     editorProps: {
       attributes: {
@@ -67,10 +74,62 @@ const AddBlogsPage = () => {
     },
   });
 
-  console.log("Description is : ", description);
+  const handelChange = (e: FormEvent) => {
+    const { name, value } = e.target as HTMLInputElement;
+    setBlogData({ ...blogData, [name]: value });
+  };
+
+
+  async function addBlog() {
+
+    const formData = new FormData();
+
+    formData.append("title", blogData.title);
+    formData.append("author", blogData.author);
+    formData.append("blogImage", blogImage || "");
+    formData.append("description", JSON.stringify(description || {}));
+    formData.append("publish", publish)
+    try {
+      setIsLoading(true)
+      const response = await axios.post('api/addBlog', formData);
+      if (response.data.data) {
+        setIsLoading(false)
+        toast.success("Blog Added!")
+        return response.data.data
+      } else {
+        setIsLoading(false)
+        console.log("Data Addition Failed");
+      }
+    } catch (error) {
+      setIsLoading(false)
+      console.log("Error adding blog : ", error);
+      toast.error("Error adding blog");
+    }
+  }
+
+  const addBlogMutation = useMutation({ mutationFn: addBlog, onSuccess: () => { clearFields() } })
+
+  const clearFields = () => {
+    console.log("clicked")
+    blogData.title = "";
+    blogData.author = "";
+    setBlogImage(null);
+    editor.commands.clearContent(true)
+  }
+
+  const handelSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (publish === "Select Status" || publish.trim() === "") {
+      return toast.success("Select publishing status", { icon: "▄︻テ══‐一💥" })
+    }
+    addBlogMutation.mutate();
+    router.push('/blogList')
+  };
+
+  addBlogMutation.isError ? toast.error("Something went wrong") : ""
 
   return (
-    <div className="p-5">
+    <div className="px-5">
       <div className="flex justify-between items-center">
         {/* Page Title */}
         <div className="flex items-center justify-start gap-3 py-5">
@@ -97,7 +156,7 @@ const AddBlogsPage = () => {
       </div>
 
       {/* Blog Form  */}
-      <form>
+      <form onSubmit={handelSubmit}>
         {/* grid - 1 */}
         <div>
           <div className="pb-2">
@@ -112,23 +171,21 @@ const AddBlogsPage = () => {
             <div className="grid grid-cols-2 gap-10 ">
               {/* title */}
               <div className="w-full">
-                <label className="">Blog Title:</label>
-                <input
-                  type="text"
-                  required
-                  placeholder=" Enter Blog Title "
-                  className=" w-full  py-3 px-2 border rounded 
-        border-lightBorder dark:border-darkBorder outline-none "
+                <label>Blog Title:</label>
+                <Input
+                  name={"title"}
+                  value={blogData.title}
+                  placeholder={"Enter Blog Title"}
+                  onChange={handelChange}
                 />
               </div>
               <div className="w-full">
                 <label>Blog Author:</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Enter Blog Author"
-                  className=" w-full py-3 px-2 border rounded 
-        border-lightBorder dark:border-darkBorder outline-none"
+                <Input
+                  name={"author"}
+                  value={blogData.author}
+                  placeholder={"Enter Blog Author"}
+                  onChange={handelChange}
                 />
               </div>
             </div>
@@ -140,19 +197,32 @@ const AddBlogsPage = () => {
             <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
           </div>
           <div
-            className="  p-4  border rounded 
-        border-lightBorder dark:border-darkBorder "
+            className="p-4 border rounded border-lightBorder dark:border-darkBorder"
           >
-            <div className="grid grid-cols gap-10 ">
-              <div className="">
+            <div className="grid grid-cols-2 gap-10 ">
+              <div>
                 <label>Blog Image:</label>
                 <br />
                 <input
                   type="file"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setBlogImage(e.target.files?.[0] || null);
+                  }}
                   required
-                  className=" text-gray-700 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder  file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode  dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500 "
+                  className="w-full text-gray-700 my-2 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-[9.3px] file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral dark:file:text-white dark:hover:file:text-gray-500"
                 />
+              </div>
+
+              <div>
+                <label>Publishing Status:</label>
+                <select
+                  value={publish}
+                  onChange={(e) => { setPublish(e.target.value) }}
+                  className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-[9px] rounded text-gray-400 mt-2 dark:bg-darkMode">
+                  <option>Select Status</option>
+                  <option>Publish</option>
+                  <option>Un-List</option>
+                </select>
               </div>
             </div>
           </div>
@@ -165,21 +235,22 @@ const AddBlogsPage = () => {
           <Toolbar editor={editor} />
           <EditorContent
             editor={editor}
-            className="p-4 border border-lightBorder dark:border-darkBorder rounded "
-          />
+            className="p-4 border border-lightBorder dark:border-darkBorder rounded" />
         </div>
         {/* Add Blog Button */}
         <div className="py-5 flex gap-3 justify-end">
           <button
             type="submit"
+            disabled={isLoading ? true : false}
             className="px-4 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
           >
-            <span className="flex items-center justify-center gap-2">
+            {isLoading ? <span className="flex items-center justify-center"><Loader title="Adding..." /></span> : <span className="flex items-center justify-center gap-2">
               Add Blog
-            </span>
+            </span>}
           </button>
           <button
             type="reset"
+            onClick={() => { clearFields(); toast.success("Fields Cleared") }}
             className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
           >
             <span className="flex items-center justify-center gap-2">
@@ -188,8 +259,8 @@ const AddBlogsPage = () => {
             </span>
           </button>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 };
 

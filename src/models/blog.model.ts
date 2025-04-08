@@ -5,8 +5,9 @@ const blogSchema = new Schema(
     title: {
       type: String,
       required: true,
+      unique: true,
     },
-    author: {
+    description: {
       type: String,
       required: true,
     },
@@ -14,10 +15,14 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
-    description: {
+    author: {
       type: String,
       required: true,
     },
+    publish: {
+      type: Boolean,
+      required: true
+    }
   },
   {
     timestamps: true,
