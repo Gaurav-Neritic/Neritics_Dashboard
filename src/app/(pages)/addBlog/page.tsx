@@ -232,7 +232,7 @@ const AddBlogsPage = () => {
                     setBlogImage(e.target.files?.[0] || null);
                   }}
                   required
-                  className="w-full text-gray-700 my-2 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-[9.3px] file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral dark:file:text-white dark:hover:file:text-gray-500"
+                  className="w-full text-gray-700 my-2 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-[9.3px] file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                 />
                 {blogImage && (
                   <img
