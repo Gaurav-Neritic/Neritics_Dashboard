@@ -24,35 +24,35 @@ const Toolbar = ({ editor }: any) => {
 
     return (
       <div className="flex gap-2 px-5 py-2 border mb-2  border-lightBorder dark:border-darkBorder ">
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200 cursor-pointer "
           title="Bold"
         >
           <Bold />
         </button>
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200  cursor-pointer "
           title="Italic"
         >
           <Italic />
         </button>
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200 cursor-pointer "
           title="Underline"
         >
           <Underline />
         </button>
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().toggleStrike().run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200 cursor-pointer "
           title="Strike Throught"
         >
           <Strikethrough />
         </button>
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().toggleCode().run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200  cursor-pointer "
           title="Code"
@@ -66,7 +66,7 @@ const Toolbar = ({ editor }: any) => {
         >
           <Undo />
         </button>
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().redo().run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
           title="Redo"
@@ -80,21 +80,21 @@ const Toolbar = ({ editor }: any) => {
         >
           <AlignLeft />
         </button>
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
           title="Align Center"
         >
           <AlignCenter />
         </button>
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
           title="Align Right"
         >
           <AlignRight />
         </button>
-        <button
+        <button type="button"
           onClick={() => editor.chain().focus().setTextAlign("justify").run()}
           className="px-2 py-1 rounded hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
           title="Align Justify"
