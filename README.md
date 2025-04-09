@@ -59,7 +59,7 @@ Welcome to the **Neritic Wellness Admin Panel**. This powerful dashboard provide
 - **Framework:** Next.js
 - **Styling:** Tailwind CSS
 - **Language:** TypeScript
-- **UI Components:** @mui/material, @mui/x-charts
+- **UI Components:** Self Made Customized UI Components
 - **Icons:** Lucide Icons
 
 ### Backend
