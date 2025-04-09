@@ -32,7 +32,7 @@ const BlogList = () => {
 
 
   return (
-    <div className="p-5  min-h-screen">
+    <div className="p-5">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-xl uppercase font-semibold">Blog Lists</h1>
@@ -68,11 +68,11 @@ const BlogList = () => {
 
         {/* Blog items */}
         {blogs.map((blog: any) => (
-          <div key={blog?._id} className=" px-5 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder ">
+          <div key={blog?._id} className="p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder">
             <div className="p-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
               {blog._id}
             </div>
-            <div className="p-2 w-4/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
+            <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
               {blog.title}
             </div>
             <div className="p-2 w-2/12 text-gray-500 dark:text-gray-50 text-center capitalize">

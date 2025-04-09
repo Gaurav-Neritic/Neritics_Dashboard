@@ -25,7 +25,7 @@ import Toolbar from "@/components/BlogPage/Toolbar";
 import Input from "@/components/ProductForm/Input";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/Loaders/Loader";
 
@@ -36,17 +36,18 @@ const AddBlogsPage = () => {
     title: "",
     author: "",
   });
-  const [description, setDescription] = useState({});
+  const [description, setDescription]: any = useState({});
   const [blogImage, setBlogImage] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false)
   const [publish, setPublish] = useState("")
   const router = useRouter();
+  const queryClient = useQueryClient()
 
   const editor: any = useEditor({
     content: "",
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
-      setDescription(editor.getJSON());
+      setDescription(editor.getHTML());
     },
     extensions: [
       StarterKit.configure({
@@ -93,7 +94,7 @@ const AddBlogsPage = () => {
     formData.append("title", blogData.title);
     formData.append("author", blogData.author);
     formData.append("blogImage", blogImage || "");
-    formData.append("description", JSON.stringify(description || {}));
+    formData.append("description", description || {});
     formData.append("publish", publish)
     try {
       setIsLoading(true)
@@ -114,7 +115,12 @@ const AddBlogsPage = () => {
     }
   }
 
-  const addBlogMutation = useMutation({ mutationFn: addBlog, onSuccess: () => { clearFields() } })
+  const addBlogMutation = useMutation({
+    mutationFn: addBlog, onSuccess: () => {
+      clearFields();
+      queryClient.invalidateQueries({ queryKey: ['blogs'] })
+    }
+  })
 
   const clearFields = () => {
     console.log("clicked")
@@ -255,7 +261,7 @@ const AddBlogsPage = () => {
             </span>}
           </button>
           <button
-            type="reset"
+            type="button"
             onClick={() => { clearFields(); toast.success("Fields Cleared") }}
             className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
           >
