@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import BlogCard from "@/components/BlogPage/BlogCard";
-import DeletePoup from "@/components/Popups/DeletePoup";
 import DeleteBlogPoup from "@/components/Popups/DeleteBlogPopup";
+import Loader from "@/components/Loaders/Loader";
 
 const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
@@ -29,7 +29,7 @@ const BlogList = () => {
     }
   }
 
-  const { data: blogs = [] } = useQuery({
+  const { data: blogs = [], isLoading, isError } = useQuery({
     queryFn: getBlogs,
     queryKey: ["blogs"],
   });
@@ -81,7 +81,16 @@ const BlogList = () => {
           <div className="p-2 w-1/12 font-medium text-center">Publish</div>
           <div className="p-2 w-2/12 text-center font-medium">Actions</div>
         </div>
-
+        {isLoading && <div className="flex items-center justify-center py-10"><Loader title="Fetching...." /></div>}
+        {isError && <div className="flex items-center justify-center py-10"><h1>Something Went Wrong...</h1></div>}
+        {(!isLoading && blogs?.length <= 0) &&
+          <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
+            <h1 className="text-2xl"> No Blogs !</h1>
+            <div>
+              <Link href={'/addBlog'} className="text-teal-800 rounded capitalize  underline underline-offset-2 hover:underline-offset-4">Add One</Link>
+            </div>
+          </div>
+        }
         {/* Blog items */}
         {blogs.map((blog: any) => (
           <div key={blog?._id} className="p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder ">
@@ -140,6 +149,16 @@ const BlogList = () => {
         className={`h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5 ${viewMode === "card" ? "block" : "hidden"
           } `}
       >
+        {isLoading && <div className="flex items-center justify-center py-10"><Loader title="Fetching...." /></div>}
+        {isError && <div className="flex items-center justify-center py-10"><h1>Something Went Wrong...</h1></div>}
+        {(!isLoading && blogs?.length <= 0) &&
+          <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
+            <h1 className="text-2xl"> No Blogs !</h1>
+            <div>
+              <Link href={'/addBlog'} className="text-teal-800 rounded capitalize  underline underline-offset-2 hover:underline-offset-4">Add One</Link>
+            </div>
+          </div>
+        }
         <div className="grid grid-cols-3 gap-5">
           {blogs.map((blog: any) => (
             <div key={blog?._id}>
@@ -154,12 +173,6 @@ const BlogList = () => {
         </div>
       </div>
 
-      {/* Empty state */}
-      {blogs.length === 0 && (
-        <div className="place-items-center  border rounded border-lightBorder my-2 dark:border-darkBorder  uppercase text-gray-500 font-semibold py-10">
-          <h1>No Blogs to display</h1>
-        </div>
-      )}
     </div>
   );
 };
