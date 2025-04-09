@@ -12,6 +12,7 @@ import {
   Logs,
   Download,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -271,7 +272,7 @@ const ProductList = () => {
                             {title}
                           </h1>
                           <div className="col-span-1 w-full place-items-center">
-                            <img
+                            <Image
                               src={image[0] || "/placeholder.jpg"}
                               width={20}
                               height={20}

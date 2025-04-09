@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Loader from "@/components/Loaders/Loader";
 import Input from "@/components/ProductForm/Input";
 import InputNumber from "@/components/ProductForm/InputNumber";
@@ -578,8 +578,10 @@ const AddProduct = () => {
                         dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {mainImage && (
-                        <img
+                        <Image
                           src={getPreviewUrl(mainImage) || ""}
+                          width={20}
+                          height={20}
                           alt="Main Image Preview"
                           className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                         />
@@ -600,8 +602,10 @@ const AddProduct = () => {
                         dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {primaryImage && (
-                        <img
+                        <Image
                           src={getPreviewUrl(primaryImage) || ""}
+                          width={20}
+                          height={20}
                           alt="Main Image Preview"
                           className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                         />
@@ -624,8 +628,10 @@ const AddProduct = () => {
                         dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {secondImage && (
-                        <img
+                        <Image
                           src={getPreviewUrl(secondImage) || ""}
+                          width={20}
+                          height={20}
                           alt="Main Image Preview"
                           className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                         />
@@ -647,8 +653,10 @@ const AddProduct = () => {
                         dark:bg-darkMode  dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {thirdImage && (
-                        <img
+                        <Image
                           src={getPreviewUrl(thirdImage) || ""}
+                          width={20}
+                          height={20}
                           alt="Main Image Preview"
                           className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                         />
@@ -671,8 +679,10 @@ const AddProduct = () => {
                         dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                     />
                     {fourthImage && (
-                      <img
+                      <Image
                         src={getPreviewUrl(fourthImage) || ""}
+                        width={20}
+                        height={20}
                         alt="Main Image Preview"
                         className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                       />
