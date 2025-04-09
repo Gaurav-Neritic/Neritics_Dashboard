@@ -9,27 +9,26 @@ import BlogCard from "@/components/BlogPage/BlogCard";
 const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
 
-
   async function getBlogs() {
     try {
-      const response = await axios.get('api/getBlogs');
+      const response = await axios.get("api/getBlogs");
 
       if (response.data.data) {
-        return response.data.data
+        return response.data.data;
       } else {
-        console.log("Error fetching blogs")
+        console.log("Error fetching blogs");
       }
       return [];
     } catch (error) {
-      console.log("Error fetching blogs", error)
+      console.log("Error fetching blogs", error);
       return [];
     }
   }
 
-
-  const { data: blogs = [] } = useQuery({ queryFn: getBlogs, queryKey: ['blogs'] });
-
-
+  const { data: blogs = [] } = useQuery({
+    queryFn: getBlogs,
+    queryKey: ["blogs"],
+  });
 
   return (
     <div className="p-5  min-h-screen">
@@ -55,11 +54,15 @@ const BlogList = () => {
 
       {/* List View */}
 
-      <div className={` w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"}`}>
+      <div
+        className={` w-full rounded border border-lightBorder dark:border-darkBorder ${
+          viewMode === "list" ? "block" : "hidden"
+        }`}
+      >
         {/* Header */}
         <div className=" px-5 flex w-full justify-between items-center border-b border-lightBorder dark:border-darkBorder">
           <div className="p-2 w-2/12 font-medium text-center">Blog Id</div>
-          <div className="p-2 w-4/12 font-medium text-center">Title</div>
+          <div className="p-2 w-3/12 font-medium text-center">Title</div>
           <div className="p-2 w-2/12 font-medium text-center">Author</div>
           <div className="p-2 w-2/12 font-medium text-center">Image</div>
           <div className="p-2 w-1/12 font-medium text-center">Publish</div>
@@ -68,25 +71,36 @@ const BlogList = () => {
 
         {/* Blog items */}
         {blogs.map((blog: any) => (
-          <div key={blog?._id} className=" px-5 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder ">
-            <div className="p-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
+          <div
+            key={blog?._id}
+            className=" p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder "
+          >
+            <div
+              className="p-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center "
+              title={blog._id}
+            >
               {blog._id}
             </div>
-            <div className="p-2 w-4/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
+            <div
+              className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md "
+              title={blog.title}
+            >
               {blog.title}
             </div>
-            <div className="p-2 w-2/12 text-gray-500 dark:text-gray-50 text-center capitalize">
+            <div className="px-2 w-2/12 text-gray-500 dark:text-gray-50 text-center capitalize">
               {blog.author}
             </div>
-            <div className="p-2 w-2/12 flex justify-center items-center">
+            <div className="px-2 w-2/12 flex justify-center items-center">
               <img
                 src={blog.image}
                 alt={blog.title}
                 className="w-14 h-10 object-cover rounded"
               />
             </div>
-            <div className="p-4 w-1/12 text-center">{blog.publish ? "🟢" : "🔴"}</div>
-            <div className="p-4 w-2/12">
+            <div className="px-4 w-1/12 text-center">
+              {blog.publish ? "🟢" : "🔴"}
+            </div>
+            <div className="px-4 w-2/12">
               <div className="flex justify-center space-x-2">
                 <Link
                   href={`/blogList/${blog?._id}`}
@@ -105,11 +119,20 @@ const BlogList = () => {
 
       {/* Card View */}
 
-      <div className={`h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5 ${viewMode === "card" ? "block" : "hidden"} `}>
+      <div
+        className={`h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5 ${
+          viewMode === "card" ? "block" : "hidden"
+        } `}
+      >
         <div className="grid grid-cols-3 gap-5">
           {blogs.map((blog: any) => (
             <div key={blog?._id}>
-              <BlogCard _id={blog?._id} image={blog.image} title={blog?.title} author={blog?.author} />
+              <BlogCard
+                _id={blog?._id}
+                image={blog.image}
+                title={blog?.title}
+                author={blog?.author}
+              />
             </div>
           ))}
         </div>
@@ -117,8 +140,8 @@ const BlogList = () => {
 
       {/* Empty state */}
       {blogs.length === 0 && (
-        <div className="text-center py-12 bg-white rounded-lg shadow">
-          <p className="text-gray-500 text-lg">No blog posts available</p>
+          <div className="place-items-center  border rounded border-lightBorder my-2 dark:border-darkBorder  uppercase text-gray-500 font-semibold py-10">
+          <h1>No Blogs to display</h1>
         </div>
       )}
     </div>
