@@ -25,39 +25,40 @@ const ProductCard = ({
   stock,
   listingStatus,
 }: productDataProps) => {
-  const [loading, setLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const queryClient = useQueryClient();
 
-
-  const deleteMutation = useMutation(
-    {
-      mutationFn: deleteProduct,
-      onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['getProductsData'] }) },
-      onError: () => { setIsError(true) }
-    }
-  )
+  const deleteMutation = useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getProductsData"] });
+    },
+    onError: () => {
+      setIsError(true);
+    },
+  });
 
   const handelDelete = (id: string) => {
     deleteMutation.mutate(id);
-  }
+  };
 
   async function deleteProduct(id: string) {
     try {
-      setLoading(true)
-      console.log("Id to delete ", id)
+      setLoading(true);
+      console.log("Id to delete ", id);
       const response = await axios.delete("api/deleteProduct", {
         data: { id },
         fetchOptions: { cache: "no-store" },
       });
 
       if (response.data.data) {
-        setLoading(false)
+        setLoading(false);
         toast.success("Product Deleted Successfully");
-        return response.data.data
+        return response.data.data;
       }
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log("Error Deleting the product", error);
       toast.error("Error: Try after few minutes");
     }
@@ -68,9 +69,9 @@ const ProductCard = ({
       {isError && <div className="p-5 flex items-center justify-center">
         <h1>Something Went Wrong</h1>
       </div>}
-      <Image
-        width={300}
-        height={300}
+      <img
+        width={20}
+        height={20}
         alt="image"
         src={image[0] || "/placeholder.jpg"}
         className="w-auto h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
@@ -102,12 +103,23 @@ const ProductCard = ({
         </Link>
         <button
           type="button"
-          onClick={(e) => { e.preventDefault(); handelDelete(_id) }}
+          onClick={(e) => {
+            e.preventDefault();
+            handelDelete(_id);
+          }}
           className=" bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer bg-red-2"
         >
-          {loading ? <span className="flex justify-center items-center gap-2 animate-spin"><LoaderCircle className="h-5 w-5 cursor-pointer" />
-            Deleting...</span> : <span className="flex justify-center items-center gap-2"><Trash2 className="h-5 w-5 cursor-pointer" />
-            Delete</span>}
+          {loading ? (
+            <span className="flex justify-center items-center gap-2 animate-spin">
+              <LoaderCircle className="h-5 w-5 cursor-pointer" />
+              Deleting...
+            </span>
+          ) : (
+            <span className="flex justify-center items-center gap-2">
+              <Trash2 className="h-5 w-5 cursor-pointer" />
+              Delete
+            </span>
+          )}
         </button>
       </div>
     </div>
