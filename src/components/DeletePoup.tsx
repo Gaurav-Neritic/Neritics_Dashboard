@@ -1,4 +1,3 @@
-
 import { AlertCircle } from "lucide-react";
 import React, { useState } from "react";
 import Loader from "./Loaders/Loader";
@@ -10,24 +9,19 @@ interface DeletePopupProps {
   isVisible: boolean;
   onClose: () => void;
   prodName: string;
-  id: string
+  id: string;
 }
 
-const DeletePoup = ({
-  isVisible,
-  onClose,
-  prodName,
-  id
-}: DeletePopupProps) => {
+const DeletePoup = ({ isVisible, onClose, prodName, id }: DeletePopupProps) => {
   const [loading, setLoading] = useState(false);
   const queryClient = useQueryClient();
 
-  const deleteMutation = useMutation(
-    {
-      mutationFn: deleteProduct,
-      onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['getProductsData'] }) }
-    }
-  )
+  const deleteMutation = useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getProductsData"] });
+    },
+  });
 
   async function handelDelete(id: string) {
     deleteMutation.mutate(id);
@@ -36,7 +30,7 @@ const DeletePoup = ({
 
   async function deleteProduct(id: string) {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await axios.delete("api/deleteProduct", {
         data: { id },
         fetchOptions: { cache: "no-store" },
@@ -44,17 +38,15 @@ const DeletePoup = ({
 
       if (response.data.data) {
         toast.success("Product Deleted Successfully");
-        setLoading(false)
-        return response.data.data
+        setLoading(false);
+        return response.data.data;
       }
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log("Error Deleting the product", error);
       toast.error("Error: Try after few minutes");
     }
   }
-
-
 
   if (!isVisible) return null;
   return (
@@ -77,7 +69,10 @@ const DeletePoup = ({
             Cancel
           </button>
           <button
-            onClick={(e) => { e.preventDefault(); handelDelete(id) }}
+            onClick={(e) => {
+              e.preventDefault();
+              handelDelete(id);
+            }}
             className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 cursor-pointer"
           >
             {loading ? <Loader title="Deleting..." /> : <span>Delete</span>}

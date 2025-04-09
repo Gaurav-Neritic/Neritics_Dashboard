@@ -26,7 +26,7 @@ const BlogList = () => {
       return [];
     }
   }
-
+   
   const { data: blogs = [] } = useQuery({
     queryFn: getBlogs,
     queryKey: ["blogs"],
@@ -38,7 +38,15 @@ const BlogList = () => {
         <div>
           <h1 className="text-xl uppercase font-semibold">Blog Lists</h1>
         </div>
-        <div className="flex items-center gap-2 rounded-lg p-1">
+        <div className="flex items-center justify-center gap-3">
+        <input
+            type="text"
+            placeholder="Search by blog title..."
+            value={""}
+            className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
+          />
+          <div>
+          <div className="flex items-center gap-2 rounded-lg p-1">
           <button
             onClick={() => setViewMode("card")}
             className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer `}
@@ -52,6 +60,9 @@ const BlogList = () => {
             <List className="h-[20px] w-[20px]" />
           </button>
         </div>
+          </div>
+        </div>
+        
       </div>
 
       {/* List View */}
