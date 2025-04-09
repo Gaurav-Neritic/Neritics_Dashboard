@@ -19,7 +19,8 @@ const AddBlogsPage = () => {
   const [blogImage, setBlogImage] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [publish, setPublish] = useState("");
-  const router = useRouter();
+  const queryClient = useQueryClient();
+  const router = useRouter()
 
   const handelChange = (e: FormEvent) => {
     const { name, value } = e.target as HTMLInputElement;
@@ -51,7 +52,7 @@ const AddBlogsPage = () => {
     }
   }
 
-  const addBlogMutation = useMutation({ mutationFn: addBlog, onSuccess: () => { clearFields() } })
+  const addBlogMutation = useMutation({ mutationFn: addBlog, onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['blogs'] }); clearFields(); router.push('/blogList') } })
 
   const clearFields = () => {
     setBlogData({ title: "", author: "" });
@@ -67,7 +68,6 @@ const AddBlogsPage = () => {
       });
     }
     addBlogMutation.mutate();
-    router.push("/blogList");
   };
 
   const getPreviewUrl = (file: File | null) => {
@@ -175,7 +175,7 @@ const AddBlogsPage = () => {
           <div className="pb-2">
             <h2 className="text-lg font-semibold antialiased">Description</h2>
           </div>
-          <Editor description={setDescription}  />
+          <Editor description={setDescription} />
         </div>
 
         <div className="py-5 flex gap-3 justify-end">

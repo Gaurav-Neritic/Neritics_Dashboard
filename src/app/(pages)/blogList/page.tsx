@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import BlogCard from "@/components/BlogPage/BlogCard";
-import DeletePoup from "@/components/DeletePoup";
+import DeletePoup from "@/components/Popups/DeletePoup";
+import DeleteBlogPoup from "@/components/Popups/DeleteBlogPopup";
 
 const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
   const [deletePopup, setDeletePopup] = useState(false);
+  const [blogID, setBlogID] = useState("")
 
   async function getBlogs() {
     try {
@@ -42,7 +44,6 @@ const BlogList = () => {
           <input
             type="text"
             placeholder="Search by blog title..."
-            value={""}
             className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
           />
           <div>
@@ -83,20 +84,11 @@ const BlogList = () => {
 
         {/* Blog items */}
         {blogs.map((blog: any) => (
-          <div
-            key={blog?._id}
-            className=" p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder "
-          >
-            <div
-              className="p-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center "
-              title={blog._id}
-            >
+          <div key={blog?._id} className="p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder ">
+            <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
               {blog._id}
             </div>
-            <div
-              className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md "
-              title={blog.title}
-            >
+            <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
               {blog.title}
             </div>
             <div className="px-2 w-2/12 text-gray-500 dark:text-gray-50 text-center capitalize">
@@ -122,6 +114,7 @@ const BlogList = () => {
                 </Link>
                 <button
                   onClick={() => {
+                    setBlogID(blog?._id);
                     setDeletePopup(true);
                   }}
                   className="text-red-400 hover:text-red-500"
@@ -129,14 +122,11 @@ const BlogList = () => {
                   <Trash2 className="text-sm cursor-pointer" />
                 </button>
                 {
-                  <DeletePoup
-                    prodName={blog.title}
-                    id={blog._id}
+                  <DeleteBlogPoup
+                    id={blogID}
                     isVisible={deletePopup}
-                    onClose={() => {
-                      setDeletePopup(false);
-                    }}
-                  />
+                    onClose={() => { setDeletePopup(false) }}
+                    blogTitle={blog?.title} />
                 }
               </div>
             </div>

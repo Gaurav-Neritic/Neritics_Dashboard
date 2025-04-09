@@ -1,6 +1,6 @@
 import { AlertCircle } from "lucide-react";
 import React, { useState } from "react";
-import Loader from "./Loaders/Loader";
+import Loader from "../Loaders/Loader";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -22,6 +22,7 @@ const DeletePoup = ({ isVisible, onClose, prodName, id }: DeletePopupProps) => {
       queryClient.invalidateQueries({ queryKey: ["getProductsData"] });
     },
   });
+
 
   async function handelDelete(id: string) {
     deleteMutation.mutate(id);

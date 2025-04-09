@@ -1,10 +1,13 @@
+"use client"
 import { FilePenLine, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import DeleteBlogPoup from '../Popups/DeleteBlogPopup'
 interface blogProps { _id: string, image: string, title: string, author: string }
 
 const BlogCard = ({ _id, image, title, author }: blogProps) => {
+  const [deletePopup, setDeletePopup] = useState(false);
   return (
     <div>
       <div className="border border-lightBorder dark:border-darkBorder rounded p-5" >
@@ -32,6 +35,9 @@ const BlogCard = ({ _id, image, title, author }: blogProps) => {
             Edit
           </Link>
           <button
+            onClick={() => {
+              setDeletePopup(true)
+            }}
             type="button"
             className=" w-full bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer bg-red-2"
           >
@@ -40,6 +46,14 @@ const BlogCard = ({ _id, image, title, author }: blogProps) => {
               Delete
             </span>
           </button>
+
+          {
+            <DeleteBlogPoup
+              id={_id}
+              isVisible={deletePopup}
+              onClose={() => { setDeletePopup(false) }}
+              blogTitle={title} />
+          }
         </div>
       </div>
     </div >

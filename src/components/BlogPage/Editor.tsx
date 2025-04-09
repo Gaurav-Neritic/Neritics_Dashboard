@@ -32,7 +32,7 @@ const Editor = ({ description }: Props) => {
     content: "",
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
-    description(editor.getJSON());
+      description(editor.getHTML());
     },
     extensions: [
       StarterKit.configure({ history: false }),
@@ -63,7 +63,7 @@ const Editor = ({ description }: Props) => {
 
   return (
     <div>
-      <Toolbar editor={editor}  />
+      <Toolbar editor={editor} />
       <EditorContent
         editor={editor}
         className="p-4 border border-lightBorder dark:border-darkBorder rounded"
