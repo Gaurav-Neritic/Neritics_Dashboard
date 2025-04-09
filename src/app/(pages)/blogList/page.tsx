@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import BlogCard from "@/components/BlogPage/BlogCard";
-import DeletePoup from "@/components/DeletePoup";
+import DeletePoup from "@/components/Popups/DeletePoup";
+import DeleteBlogPoup from "@/components/Popups/DeleteBlogPopup";
 
 const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
   const [deletePopup, setDeletePopup] = useState(false);
+  const [blogID, setBlogID] = useState("")
 
   async function getBlogs() {
     try {
@@ -26,7 +28,7 @@ const BlogList = () => {
       return [];
     }
   }
-   
+
   const { data: blogs = [] } = useQuery({
     queryFn: getBlogs,
     queryKey: ["blogs"],
@@ -39,37 +41,36 @@ const BlogList = () => {
           <h1 className="text-xl uppercase font-semibold">Blog Lists</h1>
         </div>
         <div className="flex items-center justify-center gap-3">
-        <input
+          <input
             type="text"
             placeholder="Search by blog title..."
             className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
           />
           <div>
-          <div className="flex items-center gap-2 rounded-lg p-1">
-          <button
-            onClick={() => setViewMode("card")}
-            className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer `}
-          >
-            <LayoutGrid className="h-[20px] w-[20px]" />
-          </button>
-          <button
-            onClick={() => setViewMode("list")}
-            className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer`}
-          >
-            <List className="h-[20px] w-[20px]" />
-          </button>
-        </div>
+            <div className="flex items-center gap-2 rounded-lg p-1">
+              <button
+                onClick={() => setViewMode("card")}
+                className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer `}
+              >
+                <LayoutGrid className="h-[20px] w-[20px]" />
+              </button>
+              <button
+                onClick={() => setViewMode("list")}
+                className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer`}
+              >
+                <List className="h-[20px] w-[20px]" />
+              </button>
+            </div>
           </div>
         </div>
-        
+
       </div>
 
       {/* List View */}
 
       <div
-        className={` w-full rounded border border-lightBorder dark:border-darkBorder ${
-          viewMode === "list" ? "block" : "hidden"
-        }`}
+        className={` w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"
+          }`}
       >
         {/* Header */}
         <div className=" px-5 flex w-full justify-between items-center border-b border-lightBorder dark:border-darkBorder">
@@ -83,11 +84,11 @@ const BlogList = () => {
 
         {/* Blog items */}
         {blogs.map((blog: any) => (
-          <div key={blog?._id} className=" px-5 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder ">
-            <div className="p-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
+          <div key={blog?._id} className="p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder ">
+            <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
               {blog._id}
             </div>
-            <div className="p-2 w-4/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
+            <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
               {blog.title}
             </div>
             <div className="px-2 w-2/12 text-gray-500 dark:text-gray-50 text-center capitalize">
@@ -113,6 +114,7 @@ const BlogList = () => {
                 </Link>
                 <button
                   onClick={() => {
+                    setBlogID(blog?._id);
                     setDeletePopup(true);
                   }}
                   className="text-red-400 hover:text-red-500"
@@ -120,13 +122,11 @@ const BlogList = () => {
                   <Trash2 className="text-sm cursor-pointer" />
                 </button>
                 {
-                  <DeletePoup
-                    id={""}
+                  <DeleteBlogPoup
+                    id={blogID}
                     isVisible={deletePopup}
-                    onClose={() => {
-                      setDeletePopup(false);
-                    }}
-                  />
+                    onClose={() => { setDeletePopup(false) }}
+                    blogTitle={blog?.title} />
                 }
               </div>
             </div>
@@ -137,9 +137,8 @@ const BlogList = () => {
       {/* Card View */}
 
       <div
-        className={`h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5 ${
-          viewMode === "card" ? "block" : "hidden"
-        } `}
+        className={`h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5 ${viewMode === "card" ? "block" : "hidden"
+          } `}
       >
         <div className="grid grid-cols-3 gap-5">
           {blogs.map((blog: any) => (

@@ -1,5 +1,5 @@
 "use client";
-import DeletePoup from "@/components/DeletePoup";
+import DeletePoup from "@/components/Popups/DeletePoup";
 import Loader from "@/components/Loaders/Loader";
 import ProductCard from "@/components/ProductPage/ProductCard";
 import { useQuery } from "@tanstack/react-query";
