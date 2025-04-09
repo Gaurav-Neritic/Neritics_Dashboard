@@ -42,7 +42,6 @@ const BlogList = () => {
         <input
             type="text"
             placeholder="Search by blog title..."
-            value={""}
             className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
           />
           <div>

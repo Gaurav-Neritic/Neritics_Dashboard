@@ -21,44 +21,6 @@ const AddBlogsPage = () => {
   const [publish, setPublish] = useState("");
   const router = useRouter();
 
-  const editor: any = useEditor({
-    content: "",
-    immediatelyRender: false,
-    onUpdate: ({ editor }) => {
-      setDescription(editor.getJSON());
-    },
-    extensions: [
-      StarterKit.configure({
-        history: false,
-      }), Underline, Italic, Bold, Code, Strike, History,
-      Heading.configure({
-        levels: [1, 2, 3, 4, 5, 6],
-      }),
-      LinkExtension.configure({
-        openOnClick: false,
-      }),
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
-      Placeholder.configure({
-        placeholder: "Write something here...",
-      }),
-      CodeBlockLowlight.configure({
-        lowlight,
-      }),
-      TextStyle,
-      Color,
-      BulletList,
-      OrderedList,
-    ],
-    editorProps: {
-      attributes: {
-        class:
-          "shadow appearance-none min-h-[150px] border rounded w-full p-5 dark:text-white border border-lightBorder dark:border-darkBorder rounded text-black mt-0 md:mt-3 leading-tight focus:outline-none focus:shadow-outline",
-      },
-    },
-  });
-
   const handelChange = (e: FormEvent) => {
     const { name, value } = e.target as HTMLInputElement;
     setBlogData({ ...blogData, [name]: value });
