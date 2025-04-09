@@ -103,9 +103,9 @@ const AddBlogsPage = () => {
       setIsLoading(true);
       const response = await axios.post("api/addBlog", formData);
       if (response.data.data) {
-        setIsLoading(false);
-        toast.success("Blog Added!");
-        return response.data.data;
+        setIsLoading(false)
+        toast.success("Blog Added!")
+        return response.data.data
       } else {
         setIsLoading(false);
         console.log("Data Addition Failed");
@@ -140,7 +140,7 @@ const AddBlogsPage = () => {
       });
     }
     addBlogMutation.mutate();
-    router.push("/blogList");
+    router.push('/blogList')
   };
 
   addBlogMutation.isError ? toast.error("Something went wrong") : "";

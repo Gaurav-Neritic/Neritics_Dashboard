@@ -7,6 +7,7 @@ import Select from "@/components/ProductForm/Select";
 import TextArea from "@/components/ProductForm/TextArea";
 import axios from "axios";
 import { AppWindowMac, Eraser, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -51,6 +52,7 @@ const AddProduct = () => {
   const [secondImage, setSecondImage] = useState<File | null>(null);
   const [thirdImage, setThirdImage] = useState<File | null>(null);
   const [fourthImage, setFourthImage] = useState<File | null>(null);
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
 
@@ -138,6 +140,7 @@ const AddProduct = () => {
         toast.success("Product added");
         handelClearFields();
         setLoading(false);
+        router.push('/productList')
       } else {
         setLoading(false);
         toast.error("Failed to add the product");

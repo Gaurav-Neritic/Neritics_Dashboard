@@ -1,14 +1,14 @@
 "use client";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { X, SquarePen, Search, Download } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Loader from "../Loaders/Loader";
 import Image from "next/image";
 import * as XLSX from "xlsx";
+import { useQuery } from "@tanstack/react-query";
 
 const StocksTable = () => {
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // Searchbar
@@ -84,11 +84,10 @@ const StocksTable = () => {
       const response = await axios.get("api/getProducts");
 
       if (response.data.data) {
-        setProducts(response.data.data);
         setFilteredProducts(response.data.data);
+        return response.data.data
       } else {
         toast.error("Failed to fetch the data");
-        setProducts([]);
       }
     } catch (error: any) {
       error.response.status === 401
@@ -102,7 +101,7 @@ const StocksTable = () => {
     e.preventDefault();
     const text = e.target.value;
     setSearchText(text);
-    const filtered = products.filter(
+    const filtered = getStocks.filter(
       (product: any) =>
         product.title.toLowerCase().includes(text.toLowerCase()) ||
         product._id.toLowerCase().includes(text.toLowerCase())
@@ -110,9 +109,9 @@ const StocksTable = () => {
     setFilteredProducts(filtered);
   };
 
-  useEffect(() => {
-    getProductsStocks();
-  }, []);
+
+
+  const { data: getStocks = [], isLoading, isError } = useQuery({ queryFn: getProductsStocks, queryKey: ['getStocks'], refetchOnWindowFocus: false })
 
 
   // Excel Download handle
@@ -184,49 +183,42 @@ const StocksTable = () => {
           <h1 className="col-span-1 w-full truncate">Update</h1>
         </div>
         <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
+        {isLoading && <div className="p-5"><Loader title="Fetching" /></div>}
+        {isError && <div className="p-5"><h1>Something Went Wrong</h1></div>}
         {/* FilteredProduct */}
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(({ _id, title, stock, image }) => (
-            <div
-              key={_id}
-              className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
-            >
-              <h1 className="col-span-1 w-full truncate" title={_id}>
-                {_id}
-              </h1>
-              <Image
-                src={image[0] || ""}
-                height={20}
-                width={20}
-                alt="img"
-                className="col-span-1 truncate object-contain h-10 w-10 border border-lightBorder rounded"
-              />
-              <h1 className="col-span-3 w-full truncate">{title}</h1>
-              <h1 className="col-span-1 w-full truncate">
-                {stock <= 0 ? (
-                  <span className="text-red-500">🔴</span>
-                ) : (
-                  <span className="text-green-500">🟢</span>
-                )}
-              </h1>
-              <h1 className="col-span-1 w-full truncate">{stock}</h1>
-              <div className="col-span-1 w-full truncate">
-                <button
-                  className="cursor-pointer flex items-center"
-                  onClick={() => handleEdit({ _id, title, stock })}
-                >
-                  <SquarePen className="text-green-500 hover:text-green-600 " />
-                </button>
-              </div>
+        {(!isLoading && filteredProducts.length === 0) && <div className="flex items-center justify-center py-5 uppercase font-semibold"><h1>Products Not Found</h1></div>}
+        {filteredProducts.map(({ _id, title, stock, image }: { _id: string, title: string, stock: number, image: [string] }) => (
+          <div key={_id} className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+            <h1 className="col-span-1 w-full truncate" title={_id}>
+              {_id}
+            </h1>
+            <Image
+              src={image[0] || ""}
+              height={20}
+              width={20}
+              alt="img"
+              className="col-span-1 truncate object-contain h-10 w-10 border border-lightBorder rounded"
+            />
+            <h1 className="col-span-3 w-full truncate">{title}</h1>
+            <h1 className="col-span-1 w-full truncate">
+              {stock <= 0 ? (
+                <span className="text-red-500">🔴</span>
+              ) : (
+                <span className="text-green-500">🟢</span>
+              )}
+            </h1>
+            <h1 className="col-span-1 w-full truncate">{stock}</h1>
+            <div className="col-span-1 w-full truncate">
+              <button
+                className="cursor-pointer flex items-center"
+                onClick={() => handleEdit({ _id, title, stock })}
+              >
+                <SquarePen className="text-green-500 hover:text-green-600 " />
+              </button>
             </div>
-          ))
-        ) : (
-          <div className="text-center text-lg py-6 text-gray-500 dark:text-gray-300 capitalize ">
-            🚫 No products found.
           </div>
-        )}
+        ))}
       </div>
-
       {/* Edit Product Popup */}
       {editPopup && (
         <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
@@ -236,13 +228,8 @@ const StocksTable = () => {
                 Edit Product
               </h2>
               {/*cancel button */}
-              <button
-                onClick={() => {
-                  setEditPopup(false);
-                  setProductToEdit(null);
-                }}
-                className="text-gray-500 hover:text-gray-700 cursor-pointer dark:text-gray-300 dark:hover:text-white"
-              >
+              <button onClick={() => { setEditPopup(false); setProductToEdit(null); }}
+                className="text-gray-500 hover:text-gray-700 cursor-pointer dark:text-gray-300 dark:hover:text-white">
                 <X className="h-6 w-6" />
               </button>
             </div>
