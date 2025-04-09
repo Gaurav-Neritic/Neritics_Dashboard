@@ -48,6 +48,7 @@ const Toolbar = ({ editor }: any) => {
           <Underline />
         </button>
         <button
+           type="button"
             onClick={() => editor.chain().focus().toggleHighlight({ color: '#ffc078' }).run()}
             className="px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800  transition-colors duration-200 cursor-pointer "
           >
@@ -86,6 +87,7 @@ const Toolbar = ({ editor }: any) => {
         </button>
         <div className="border my-1 border-lightBorder dark:border-darkBorder"></div>
         <button
+          type="button"
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
           className="px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800  transition-colors duration-200"
           title="Align Left"
