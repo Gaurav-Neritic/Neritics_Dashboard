@@ -4,7 +4,7 @@ import { Eraser, Files, FileText } from "lucide-react";
 import React, { FormEvent, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import Editor from "@/components/BlogPage/Editor";
 import Input from "@/components/ProductForm/Input";
@@ -15,11 +15,49 @@ const AddBlogsPage = () => {
     title: "",
     author: "",
   });
-  const [description, setDescription] = useState({});
+  const [description, setDescription]: any = useState({});
   const [blogImage, setBlogImage] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [publish, setPublish] = useState("");
   const router = useRouter();
+
+  const editor: any = useEditor({
+    content: "",
+    immediatelyRender: false,
+    onUpdate: ({ editor }) => {
+      setDescription(editor.getJSON());
+    },
+    extensions: [
+      StarterKit.configure({
+        history: false,
+      }), Underline, Italic, Bold, Code, Strike, History,
+      Heading.configure({
+        levels: [1, 2, 3, 4, 5, 6],
+      }),
+      LinkExtension.configure({
+        openOnClick: false,
+      }),
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
+      Placeholder.configure({
+        placeholder: "Write something here...",
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
+      TextStyle,
+      Color,
+      BulletList,
+      OrderedList,
+    ],
+    editorProps: {
+      attributes: {
+        class:
+          "shadow appearance-none min-h-[150px] border rounded w-full p-5 dark:text-white border border-lightBorder dark:border-darkBorder rounded text-black mt-0 md:mt-3 leading-tight focus:outline-none focus:shadow-outline",
+      },
+    },
+  });
 
   const handelChange = (e: FormEvent) => {
     const { name, value } = e.target as HTMLInputElement;
@@ -30,10 +68,9 @@ const AddBlogsPage = () => {
     const formData = new FormData();
     formData.append("title", blogData.title);
     formData.append("author", blogData.author);
-    if (blogImage) formData.append("blogImage", blogImage);
-    formData.append("description", JSON.stringify(description));
-    formData.append("publish", publish);
-
+    formData.append("blogImage", blogImage || "");
+    formData.append("description", JSON.stringify(description || {}));
+    formData.append("publish", publish)
     try {
       setIsLoading(true);
       const response = await axios.post("api/addBlog", formData);
@@ -52,12 +89,7 @@ const AddBlogsPage = () => {
     }
   }
 
-  const addBlogMutation = useMutation({
-    mutationFn: addBlog,
-    onSuccess: () => {
-      clearFields();
-    },
-  });
+  const addBlogMutation = useMutation({ mutationFn: addBlog, onSuccess: () => { clearFields() } })
 
   const clearFields = () => {
     setBlogData({ title: "", author: "" });
@@ -202,10 +234,7 @@ const AddBlogsPage = () => {
           </button>
           <button
             type="reset"
-            onClick={() => {
-              clearFields();
-              toast.success("Fields Cleared");
-            }}
+            onClick={() => { clearFields(); toast.success("Fields Cleared") }}
             className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
           >
             <span className="flex items-center justify-center gap-2">
