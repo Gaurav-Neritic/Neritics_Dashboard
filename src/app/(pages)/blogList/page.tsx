@@ -5,9 +5,11 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import BlogCard from "@/components/BlogPage/BlogCard";
+import DeletePoup from "@/components/DeletePoup";
 
 const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
+  const [deletePopup, setDeletePopup] = useState(false);
 
   async function getBlogs() {
     try {
@@ -108,9 +110,23 @@ const BlogList = () => {
                 >
                   <FilePenLine className="text-sm cursor-pointer" />
                 </Link>
-                <button className="text-red-400 hover:text-red-500">
+                <button
+                  onClick={() => {
+                    setDeletePopup(true);
+                  }}
+                  className="text-red-400 hover:text-red-500"
+                >
                   <Trash2 className="text-sm cursor-pointer" />
                 </button>
+                {
+                  <DeletePoup
+                    id={""}
+                    isVisible={deletePopup}
+                    onClose={() => {
+                      setDeletePopup(false);
+                    }}
+                  />
+                }
               </div>
             </div>
           </div>
@@ -140,7 +156,7 @@ const BlogList = () => {
 
       {/* Empty state */}
       {blogs.length === 0 && (
-          <div className="place-items-center  border rounded border-lightBorder my-2 dark:border-darkBorder  uppercase text-gray-500 font-semibold py-10">
+        <div className="place-items-center  border rounded border-lightBorder my-2 dark:border-darkBorder  uppercase text-gray-500 font-semibold py-10">
           <h1>No Blogs to display</h1>
         </div>
       )}

@@ -19,6 +19,7 @@ import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import Placeholder from "@tiptap/extension-placeholder";
 import Toolbar from "./Toolbar";
+import Highlight from '@tiptap/extension-highlight'
 
 type Props = {
   description: (value: any) => void;
@@ -39,6 +40,7 @@ const Editor = ({ description }: Props) => {
       Italic,
       Bold,
       Code,
+      Highlight.configure({ multicolor: true }),
       Strike,
       History,
       Heading.configure({ levels: [1, 2, 3, 4, 5, 6] }),
@@ -61,7 +63,7 @@ const Editor = ({ description }: Props) => {
 
   return (
     <div>
-      <Toolbar editor={editor} />
+      <Toolbar editor={editor}  />
       <EditorContent
         editor={editor}
         className="p-4 border border-lightBorder dark:border-darkBorder rounded"
