@@ -15,4 +15,4 @@ const typeSchema = new Schema(
     }
 )
 
-export const Type = mongoose.model("Type", typeSchema)
+export const Type = mongoose.models.Type || mongoose.model("Type", typeSchema)

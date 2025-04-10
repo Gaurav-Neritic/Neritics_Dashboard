@@ -20,7 +20,7 @@ const AddBlogsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [publish, setPublish] = useState("");
   const queryClient = useQueryClient();
-  const router = useRouter()
+  const router = useRouter();
 
   const handelChange = (e: FormEvent) => {
     const { name, value } = e.target as HTMLInputElement;
@@ -33,7 +33,7 @@ const AddBlogsPage = () => {
     formData.append("author", blogData.author);
     formData.append("blogImage", blogImage || "");
     formData.append("description", JSON.stringify(description || {}));
-    formData.append("publish", publish)
+    formData.append("publish", publish);
     try {
       setIsLoading(true);
       const response = await axios.post("api/addBlog", formData);
@@ -52,7 +52,14 @@ const AddBlogsPage = () => {
     }
   }
 
-  const addBlogMutation = useMutation({ mutationFn: addBlog, onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['blogs'] }); clearFields(); router.push('/blogList') } })
+  const addBlogMutation = useMutation({
+    mutationFn: addBlog,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["blogs"] });
+      clearFields();
+      router.push("/blogList");
+    },
+  });
 
   const clearFields = () => {
     setBlogData({ title: "", author: "" });
@@ -196,7 +203,10 @@ const AddBlogsPage = () => {
           </button>
           <button
             type="reset"
-            onClick={() => { clearFields(); toast.success("Fields Cleared") }}
+            onClick={() => {
+              clearFields();
+              toast.success("Fields Cleared");
+            }}
             className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
           >
             <span className="flex items-center justify-center gap-2">
