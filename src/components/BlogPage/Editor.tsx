@@ -19,7 +19,7 @@ import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import Placeholder from "@tiptap/extension-placeholder";
 import Toolbar from "./Toolbar";
-import Highlight from '@tiptap/extension-highlight'
+import Highlight from "@tiptap/extension-highlight";
 
 type Props = {
   description: (value: any) => void;

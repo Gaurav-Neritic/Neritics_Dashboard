@@ -182,7 +182,7 @@ const AddBlogsPage = () => {
           <div className="pb-2">
             <h2 className="text-lg font-semibold antialiased">Description</h2>
           </div>
-          <Editor description={setDescription} />
+          <Editor description={setDescription}/>
         </div>
 
         <div className="py-5 flex gap-3 justify-end">
