@@ -1,4 +1,4 @@
-import { Images, X } from "lucide-react";
+import { Images, ImageUp, X } from "lucide-react";
 import React from "react";
 
 const ImagePopup = () => {
@@ -25,7 +25,7 @@ const ImagePopup = () => {
             className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-3 file:mr-4 file:bg-gray-300 file:hover:bg-gray-200 file:text-black rounded"
           />
           <button className="p-2 border border-lightBorder dark:border-darkBorder text-green-500 hover:text-green-600  rounded cursor-pointer">
-            Upload
+          <ImageUp />
           </button>
         </div>
       </div>
