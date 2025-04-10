@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
 import BlogEditor from '@/components/BlogPage/BlogEditor';
+import ImagePopup from '@/components/BlogPage/ImagePopup';
 import Loader from '@/components/Loaders/Loader';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { FileText } from 'lucide-react';
+import { FileText, ImagePlus } from 'lucide-react';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation'
 import React, { FormEvent, useEffect, useState } from 'react'
@@ -18,6 +19,7 @@ const page = () => {
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [publish, setPublish] = useState("")
+    const [popup, setPopup] = useState(false);
     const [image, setImage] = useState("")
     const [description, setDescription] = useState("")
     const queryClient = useQueryClient();
@@ -171,7 +173,7 @@ const page = () => {
                                 >
                                     <option>Select Status</option>
                                     <option>Publish</option>
-                                    <option>Un-List</option>
+                                    <option>Un-List </option>
                                 </select>
                             </div>
                         </div>
@@ -210,4 +212,4 @@ const page = () => {
     )
 }
 
-export default page
+export default page;
