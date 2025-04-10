@@ -13,7 +13,6 @@ import {
   Undo,
   ListOrdered,
   CircleSmall,
-  Tally1,
   Highlighter,
 } from "lucide-react";
 import React, { useMemo } from "react";
