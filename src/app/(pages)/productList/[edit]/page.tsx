@@ -44,12 +44,11 @@ export default function Page({ params }: any) {
   const [gender, setGender] = useState("");
   const [ageRange, setAgeRange] = useState("");
 
-
   const [categoryData, setCategoryData] = useState([]);
   const [typeData, setTypeData] = useState([]);
   const [formData, setFormData] = useState([]);
-  const [containerData, setContainerData] = useState([])
-  const [countryData, setCountryData] = useState([])
+  const [containerData, setContainerData] = useState([]);
+  const [countryData, setCountryData] = useState([]);
 
   // image edit popup
   const [popup, setPopup] = useState(false);
@@ -103,7 +102,7 @@ export default function Page({ params }: any) {
         width,
         weight,
         gender,
-        ageRange
+        ageRange,
       };
       setLoading(true);
       const response = await axios.put("../api/editProduct", { data });
@@ -125,10 +124,10 @@ export default function Page({ params }: any) {
 
   async function getCategories() {
     try {
-      const response = await axios.get('../api/getCategory');
+      const response = await axios.get("../api/getCategory");
 
       if (response.data.data) {
-        setCategoryData(response.data.data)
+        setCategoryData(response.data.data);
       } else {
         toast.error("Error Fetching the category");
       }
@@ -140,10 +139,10 @@ export default function Page({ params }: any) {
 
   async function getTypes() {
     try {
-      const response = await axios.get('../api/getTypes');
+      const response = await axios.get("../api/getTypes");
 
       if (response.data.data) {
-        setTypeData(response.data.data)
+        setTypeData(response.data.data);
       } else {
         toast.error("Error Fetching the type");
       }
@@ -155,10 +154,10 @@ export default function Page({ params }: any) {
 
   async function getProductForms() {
     try {
-      const response = await axios.get('../api/getFormTypes');
+      const response = await axios.get("../api/getFormTypes");
 
       if (response.data.data) {
-        setFormData(response.data.data)
+        setFormData(response.data.data);
       } else {
         toast.error("Error Fetching the form types");
       }
@@ -170,10 +169,10 @@ export default function Page({ params }: any) {
 
   async function getContainerTypes() {
     try {
-      const response = await axios.get('../api/getContainerTypes');
+      const response = await axios.get("../api/getContainerTypes");
 
       if (response.data.data) {
-        setContainerData(response.data.data)
+        setContainerData(response.data.data);
       } else {
         toast.error("Error Fetching the container type");
       }
@@ -185,10 +184,10 @@ export default function Page({ params }: any) {
 
   async function getCountries() {
     try {
-      const response = await axios.get('../api/getCountries');
+      const response = await axios.get("../api/getCountries");
 
       if (response.data.data) {
-        setCountryData(response.data.data)
+        setCountryData(response.data.data);
       } else {
         toast.error("Error Fetching the country");
       }
@@ -247,8 +246,6 @@ export default function Page({ params }: any) {
       setGender(details?.targetedGender);
     }
   }, [details]);
-
-
 
   return (
     <section className="p-5">
@@ -334,9 +331,7 @@ export default function Page({ params }: any) {
                           <option>Select Category</option>
 
                           {categoryData.map(({ _id, label }) => {
-                            return (
-                              <option key={_id}>{label}</option>
-                            )
+                            return <option key={_id}>{label}</option>;
                           })}
                         </select>
                       </div>
@@ -352,9 +347,7 @@ export default function Page({ params }: any) {
                         >
                           <option>Select Type</option>
                           {typeData.map(({ _id, label }) => {
-                            return (
-                              <option key={_id}>{label}</option>
-                            )
+                            return <option key={_id}>{label}</option>;
                           })}
                         </select>
                       </div>
@@ -399,9 +392,7 @@ export default function Page({ params }: any) {
                             >
                               <option>Select Form</option>
                               {formData.map(({ _id, label }) => {
-                                return (
-                                  <option key={_id}>{label}</option>
-                                )
+                                return <option key={_id}>{label}</option>;
                               })}
                             </select>
                           </div>
@@ -435,9 +426,7 @@ export default function Page({ params }: any) {
                             >
                               <option>Container Type</option>
                               {containerData.map(({ _id, label }) => {
-                                return (
-                                  <option key={_id}>{label}</option>
-                                )
+                                return <option key={_id}>{label}</option>;
                               })}
                             </select>
                           </div>
@@ -493,7 +482,9 @@ export default function Page({ params }: any) {
                               required
                               type="number"
                               value={height}
-                              onChange={(e) => { setHeight(e.target.value) }}
+                              onChange={(e) => {
+                                setHeight(e.target.value);
+                              }}
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             />
                           </div>
@@ -504,7 +495,9 @@ export default function Page({ params }: any) {
                               required
                               type="number"
                               value={width}
-                              onChange={(e) => { setWidth(e.target.value) }}
+                              onChange={(e) => {
+                                setWidth(e.target.value);
+                              }}
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             />
                           </div>
@@ -515,7 +508,9 @@ export default function Page({ params }: any) {
                               required
                               type="number"
                               value={weight}
-                              onChange={(e) => { setWeight(e.target.value) }}
+                              onChange={(e) => {
+                                setWeight(e.target.value);
+                              }}
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
                             />
                           </div>
@@ -567,7 +562,6 @@ export default function Page({ params }: any) {
                     </div>
                   </div>
                 </div>
-
               </div>
 
               {/* Grid col-2 */}
@@ -630,7 +624,9 @@ export default function Page({ params }: any) {
                 {/* Gender and AgeRange */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">Targeted For</h2>
+                    <h2 className="text-lg font-semibold antialiased">
+                      Targeted For
+                    </h2>
                   </div>
                   {/*  Price (MRP)  */}
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
@@ -660,7 +656,7 @@ export default function Page({ params }: any) {
                               required
                               value={ageRange}
                               onChange={(e) => {
-                                setAgeRange(e.target.value)
+                                setAgeRange(e.target.value);
                               }}
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             >
@@ -679,7 +675,9 @@ export default function Page({ params }: any) {
                 {/* Product Additional Info  */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">Additional Info {"  "}( Separate by " , " )</h2>
+                    <h2 className="text-lg font-semibold antialiased">
+                      Additional Info {"  "}( Separate by " , " )
+                    </h2>
                   </div>
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
                     <div>
@@ -694,7 +692,7 @@ export default function Page({ params }: any) {
                               value={benefits}
                               rows={3}
                               onChange={(e) => {
-                                setBenefits(e.target.value)
+                                setBenefits(e.target.value);
                               }}
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             />
@@ -708,7 +706,7 @@ export default function Page({ params }: any) {
                               rows={3}
                               value={specialIngredients}
                               onChange={(e) => {
-                                setSpecialIngredients(e.target.value)
+                                setSpecialIngredients(e.target.value);
                               }}
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             />
@@ -722,7 +720,7 @@ export default function Page({ params }: any) {
                               rows={3}
                               value={alergyInfo}
                               onChange={(e) => {
-                                setAlergyInfo(e.target.value)
+                                setAlergyInfo(e.target.value);
                               }}
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             />
@@ -736,7 +734,7 @@ export default function Page({ params }: any) {
                               rows={3}
                               value={coating}
                               onChange={(e) => {
-                                setCoating(e.target.value)
+                                setCoating(e.target.value);
                               }}
                               className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
                             />
@@ -744,7 +742,10 @@ export default function Page({ params }: any) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center justify-center text-sm py-3 text-gray-600 animate-pulse"><sup>*</sup>Note ( Use "," comma for adding multiple values)</div>
+                    <div className="flex items-center justify-center text-sm py-3 text-gray-600 animate-pulse">
+                      <sup>*</sup>Note ( Use "," comma for adding multiple
+                      values)
+                    </div>
                   </div>
                 </div>
                 {/* Product Manufacturing */}
@@ -771,9 +772,7 @@ export default function Page({ params }: any) {
                             >
                               <option>Select Country</option>
                               {countryData.map(({ _id, label }) => {
-                                return (
-                                  <option key={_id}>{label}</option>
-                                )
+                                return <option key={_id}>{label}</option>;
                               })}
                             </select>
                           </div>
@@ -861,14 +860,15 @@ export default function Page({ params }: any) {
                 {/* Add Product Button */}
                 <div className="py-3">
                   {category === "Select Category" ||
-                    type === "Select Type" ||
-                    isAyurvedic === "Nature Of Medicine" ||
-                    container === "Container Type" ||
-                    suitableFor === "Edible For" ||
-                    gender === "Select Gender" ||
-                    form === "Select Form" ||
-                    ageRange === "Select Age Range" ||
-                    publish === "Publishing Status" || coo === "Select Country" ? (
+                  type === "Select Type" ||
+                  isAyurvedic === "Nature Of Medicine" ||
+                  container === "Container Type" ||
+                  suitableFor === "Edible For" ||
+                  gender === "Select Gender" ||
+                  form === "Select Form" ||
+                  ageRange === "Select Age Range" ||
+                  publish === "Publishing Status" ||
+                  coo === "Select Country" ? (
                     <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
                       Note : Please Select Valid Options Only
                     </div>

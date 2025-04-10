@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
 import BlogEditor from '@/components/BlogPage/BlogEditor';
+import ImagePopup from '@/components/BlogPage/ImagePopup';
 import Loader from '@/components/Loaders/Loader';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { FileText } from 'lucide-react';
+import { FileText, ImagePlus } from 'lucide-react';
 import Image from 'next/image';
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -15,6 +16,7 @@ const page = () => {
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [publish, setPublish] = useState("")
+    const [popup, setPopup] = useState(false);
     const [image, setImage] = useState("")
     const [description, setDescription] = useState("")
 
@@ -26,49 +28,55 @@ const page = () => {
     })
 
 
-    async function getBlogDetails(id: string) {
-        try {
-            const response = await axios.get(`../api/getBlogDetails/${id}`);
-            if (response.data.data) {
-                console.log(response.data.data)
-                return response.data.data
-            }
-            return null
-        } catch (error) {
-            console.log("Error getting details", error)
-        }
+  async function getBlogDetails(id: string) {
+    try {
+      const response = await axios.get(`../api/getBlogDetails/${id}`);
+      if (response.data.data) {
+        console.log(response.data.data);
+        return response.data.data;
+      }
+      return null;
+    } catch (error) {
+      console.log("Error getting details", error);
     }
+  }
 
 
     const handelSubmit = () => {
 
     }
 
-    useEffect(() => {
-        setTitle(blogDetails?.title)
-        setAuthor(blogDetails?.author)
-        setPublish((blogDetails?.publish) ? "Publish" : "Un-List")
-        setImage(blogDetails?.image)
-        setDescription(blogDetails?.description)
-    }, [blogDetails])
+  useEffect(() => {
+    setTitle(blogDetails?.title);
+    setAuthor(blogDetails?.author);
+    setPublish(blogDetails?.publish ? "Publish" : "Un-List");
+    setImage(blogDetails?.image);
+    setDescription(blogDetails?.description);
+  }, [blogDetails]);
 
-    return (
-        <div className='p-5'>
-            {isLoading && <div className='flex items-center justify-center py-10'><Loader title='Fetching...' /></div>}
+  return (
+    <div className="p-5">
+      {isLoading && (
+        <div className="flex items-center justify-center py-10">
+          <Loader title="Fetching..." />
+        </div>
+      )}
 
-            <div className="flex justify-between items-center">
-                <div className="flex items-center justify-start gap-3 py-5">
-                    <div className="p-1 border border-gray-500 rounded">
-                        <FileText />
-                    </div>
-                    <div className="py-5">
-                        <p className="text-sm font-normal text-gray-500">
-                            All the fields are required
-                        </p>
-                        <h1 className="text-xl font-semibold"><span className='text-3xl'>Editing Blog:</span> {title} </h1>
-                    </div>
-                </div>
-            </div>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center justify-start gap-3 py-5">
+          <div className="p-1 border border-gray-500 rounded">
+            <FileText />
+          </div>
+          <div className="py-5">
+            <p className="text-sm font-normal text-gray-500">
+              All the fields are required
+            </p>
+            <h1 className="text-xl font-semibold">
+              <span className="text-3xl">Editing Blog:</span> {title}{" "}
+            </h1>
+          </div>
+        </div>
+      </div>
 
             <form onSubmit={handelSubmit}>
                 <div>
@@ -131,7 +139,7 @@ const page = () => {
                                 >
                                     <option>Select Status</option>
                                     <option>Publish</option>
-                                    <option>Un-List</option>
+                                    <option>Un-List </option>
                                 </select>
                             </div>
                         </div>
@@ -170,4 +178,4 @@ const page = () => {
     )
 }
 
-export default page
+export default page;

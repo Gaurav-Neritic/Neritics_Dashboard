@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fira_Code, Geist_Mono, Inter } from "next/font/google";
+import { Fira_Code, Inter } from "next/font/google";
 import "./globals.css";
 import SidebarNav from "@/components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";
@@ -17,8 +17,8 @@ const geistMono = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Neritics Ecommerce Dashboard",
-  description: "Developed With ❤️ By NeriticsIndustries & Team Pune",
+  title: "Neritic E-commerce Dashboard",
+  description: "Developed With ❤️ By Neritic Industries & Team Pune",
 };
 
 export default function RootLayout({
