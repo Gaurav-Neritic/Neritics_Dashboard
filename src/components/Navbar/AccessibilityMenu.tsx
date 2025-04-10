@@ -1,4 +1,4 @@
-import { Bell, CircleHelp, PackageSearch, SquarePlus } from "lucide-react";
+import { Bell, CircleHelp, File, FileText, PackageSearch, SquarePlus } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -24,11 +24,11 @@ const AccessibilityMenu = () => {
       </div>
       <div className="flex gap-3">
         <Link
-          href={"/addProduct"}
+          href={"/productList"}
           className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
         >
-          <SquarePlus />
-          Add Product
+          <FileText />
+          View Blogs
         </Link>
         <Link
           href={"/productList"}
