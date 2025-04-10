@@ -34,7 +34,6 @@ const ProductList = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [listView, setListView] = useState(true);
   const [filter, setFilter] = useState("");
-  const [loading, setLoading] = useState(false);
   const [prodId, setProdId] = useState("");
   const [name, setName] = useState("");
   const [searchText, setSearchText] = useState("")
@@ -45,15 +44,12 @@ const ProductList = () => {
         fetchOptions: { cache: "no-store" },
       });
       if (response.data.data) {
-        setLoading(true);
-        setFilteredProducts(response.data.data);
         return response.data.data
       } else {
-        setLoading(false);
         toast.error("Failed to fetch the product data");
       }
+      return [];
     } catch (error: any) {
-      setLoading(false);
       error.response.status === 401
         ? toast.success("No Products Found")
         : toast.error("Failed to fetch the product data");
@@ -81,15 +77,12 @@ const ProductList = () => {
       setFilteredProducts(
         getProductsData.filter((product: any) => product.listingStatus === true)
       );
-      setLoading(false);
     } else if (filter === "UnListed") {
       setFilteredProducts(
         getProductsData.filter((product: any) => product.listingStatus === false)
       );
-      setLoading(false);
     } else {
       setFilteredProducts(getProductsData);
-      setLoading(false);
     }
   }, [filter]);
 
@@ -128,6 +121,11 @@ const ProductList = () => {
       toast.error("Failed to download Excel file");
     }
   };
+
+  useEffect(() => {
+    setFilteredProducts(getProductsData);
+  }, [getProductsData])
+
 
   return (
     <section className="p-5">

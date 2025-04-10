@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LayoutGrid, List, Trash2, FilePenLine } from "lucide-react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
@@ -12,6 +12,8 @@ const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
   const [deletePopup, setDeletePopup] = useState(false);
   const [blogID, setBlogID] = useState("")
+  const [searchText, setSearchText] = useState("")
+  const [filteredBlogs, setFilteredBlogs] = useState([])
 
   async function getBlogs() {
     try {
@@ -29,10 +31,27 @@ const BlogList = () => {
     }
   }
 
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    const text = e.target.value;
+    setSearchText(text);
+    const filtered = blogs.filter(
+      (blog: any) =>
+        blog.title.toLowerCase().includes(text.toLowerCase()) ||
+        blog.author.toLowerCase().includes(text.toLowerCase())
+    );
+    setFilteredBlogs(filtered);
+  };
+
   const { data: blogs = [], isLoading, isError } = useQuery({
     queryFn: getBlogs,
     queryKey: ["blogs"],
   });
+
+  useEffect(() => {
+    setFilteredBlogs(blogs);
+  }, [blogs])
+
 
   return (
     <div className="p-5">
@@ -43,6 +62,8 @@ const BlogList = () => {
         <div className="flex items-center justify-center gap-3">
           <input
             type="text"
+            value={searchText}
+            onChange={handleSearch}
             placeholder="Search by blog title..."
             className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
           />
@@ -83,7 +104,7 @@ const BlogList = () => {
         </div>
         {isLoading && <div className="flex items-center justify-center py-10"><Loader title="Fetching...." /></div>}
         {isError && <div className="flex items-center justify-center py-10"><h1>Something Went Wrong...</h1></div>}
-        {(!isLoading && blogs?.length <= 0) &&
+        {(!isLoading && filteredBlogs?.length <= 0) &&
           <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
             <h1 className="text-2xl"> No Blogs !</h1>
             <div>
@@ -92,7 +113,7 @@ const BlogList = () => {
           </div>
         }
         {/* Blog items */}
-        {blogs.map((blog: any) => (
+        {filteredBlogs.map((blog: any) => (
           <div key={blog?._id} className="p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder ">
             <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
               {blog._id}
@@ -151,7 +172,7 @@ const BlogList = () => {
       >
         {isLoading && <div className="flex items-center justify-center py-10"><Loader title="Fetching...." /></div>}
         {isError && <div className="flex items-center justify-center py-10"><h1>Something Went Wrong...</h1></div>}
-        {(!isLoading && blogs?.length <= 0) &&
+        {(!isLoading && filteredBlogs?.length <= 0) &&
           <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
             <h1 className="text-2xl"> No Blogs !</h1>
             <div>
@@ -160,7 +181,7 @@ const BlogList = () => {
           </div>
         }
         <div className="grid grid-cols-3 gap-5">
-          {blogs.map((blog: any) => (
+          {filteredBlogs.map((blog: any) => (
             <div key={blog?._id}>
               <BlogCard
                 _id={blog?._id}

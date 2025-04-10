@@ -19,7 +19,7 @@ const EditImagePopup = ({
   id,
   reRender,
 }: editImageProps) => {
-  const [editImage, setEditImage] = useState("");
+  const [editImage, setEditImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handelEditUpload = async () => {
@@ -50,7 +50,7 @@ const EditImagePopup = ({
   };
 
   // Image Preview
-  const getPreviewUrl = (file: any) => {
+  const getPreviewUrl = (file: File) => {
     if (!file) {
       return null;
     }
