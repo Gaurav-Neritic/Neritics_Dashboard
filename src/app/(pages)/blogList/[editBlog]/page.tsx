@@ -142,7 +142,9 @@ const page = () => {
                     <div className="pb-2">
                         <h2 className="text-lg font-semibold antialiased">Description</h2>
                     </div>
-                    {blogDetails?.description && <BlogEditor content={blogDetails?.description || ""} onContentChange={setDescription} />}
+                    {
+                        blogDetails?.description && <BlogEditor content={blogDetails?.description.slice(1, -1) || ""} onContentChange={setDescription} />
+                    }
                 </div>
 
                 <div className="py-5 flex gap-3 justify-end">
