@@ -15,4 +15,4 @@ const typeSchema = new Schema(
     }
 )
 
-export const Form = mongoose.model("Form", typeSchema)
+export const Form = mongoose.models.Form || mongoose.model("Form", typeSchema)

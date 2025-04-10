@@ -1,35 +1,30 @@
 "use client";
 
-import BlogEditor from "@/components/BlogPage/BlogEditor";
-import ImagePopup from "@/components/BlogPage/ImagePopup";
-import Loader from "@/components/Loaders/Loader";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { FileText, ImagePlus } from "lucide-react";
-import Image from "next/image";
-
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import BlogEditor from '@/components/BlogPage/BlogEditor';
+import Loader from '@/components/Loaders/Loader';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { FileText } from 'lucide-react';
+import Image from 'next/image';
+import { useParams } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 
 const page = () => {
-  const { editBlog } = useParams();
-  const [popup, setPopup] = useState(false);
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [publish, setPublish] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
+    const { editBlog } = useParams();
 
-  const {
-    data: blogDetails = [],
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["blogDetails", editBlog],
-    queryFn: () => getBlogDetails(editBlog as string),
-    enabled: !!editBlog,
-    refetchOnWindowFocus: false,
-  });
+    const [title, setTitle] = useState("")
+    const [author, setAuthor] = useState("")
+    const [publish, setPublish] = useState("")
+    const [image, setImage] = useState("")
+    const [description, setDescription] = useState("")
+
+    const { data: blogDetails = [], isLoading, isError } = useQuery({
+        queryKey: ['blogDetails', editBlog],
+        queryFn: () => getBlogDetails(editBlog as string),
+        enabled: !!editBlog,
+        refetchOnWindowFocus: false
+    })
+
 
   async function getBlogDetails(id: string) {
     try {
@@ -44,7 +39,10 @@ const page = () => {
     }
   }
 
-  const handelSubmit = () => {};
+
+    const handelSubmit = () => {
+
+    }
 
   useEffect(() => {
     setTitle(blogDetails?.title);
@@ -169,38 +167,36 @@ const page = () => {
           </div>
         </div>
 
-        <div className="my-5">
-          <div className="pb-2">
-            <h2 className="text-lg font-semibold antialiased">Description</h2>
-          </div>
-          {blogDetails?.description && (
-            <BlogEditor
-              content={blogDetails?.description.slice(1, -1) || ""}
-              onContentChange={setDescription}
-            />
-          )}
-        </div>
+                <div className="my-5">
+                    <div className="pb-2">
+                        <h2 className="text-lg font-semibold antialiased">Description</h2>
+                    </div>
+                    {
+                        blogDetails?.description && <BlogEditor content={blogDetails?.description.slice(1, -1) || ""} onContentChange={setDescription} />
+                    }
+                </div>
 
-        <div className="py-5 flex gap-3 justify-end">
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="px-4 py-2 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
-          >
-            {isLoading ? (
-              <span className="flex items-center justify-center">
-                <Loader title="Saving..." />
-              </span>
-            ) : (
-              <span className="flex items-center justify-center gap-2">
-                Save
-              </span>
-            )}
-          </button>
+                <div className="py-5 flex gap-3 justify-end">
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className="px-4 py-2 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
+                    >
+                        {isLoading ? (
+                            <span className="flex items-center justify-center">
+                                <Loader title="Saving..." />
+                            </span>
+                        ) : (
+                            <span className="flex items-center justify-center gap-2">
+                                Save
+                            </span>
+                        )}
+                    </button>
+                </div>
+            </form>
+
         </div>
-      </form>
-    </div>
-  );
-};
+    )
+}
 
 export default page;
