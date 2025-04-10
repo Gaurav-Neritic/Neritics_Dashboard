@@ -28,7 +28,7 @@ const BlogEditor = ({ content, onContentChange }: { content: string, onContentCh
     const editor = useEditor({
         content,
         onUpdate: ({ editor }) => {
-            onContentChange(editor.getHTML()); // Send updated content to parent
+            onContentChange(editor.getHTML()); 
         },
         immediatelyRender: false,
         extensions: [

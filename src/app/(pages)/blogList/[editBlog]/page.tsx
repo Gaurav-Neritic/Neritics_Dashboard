@@ -212,8 +212,8 @@ const page = () => {
           </div>
           {blogDetails?.description && (
             <BlogEditor
-              content={blogDetails?.description.slice(0, -1) || " "}
-              onContentChange={setDescription}
+            content={blogDetails?.description?.replace(/^"(.*)"$/, "$1") || " "}
+            onContentChange={setDescription}
             />
           )}
         </div>
