@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fira_Code, Geist_Mono, Inter } from "next/font/google";
+import { Fira_Code, Inter } from "next/font/google";
 import "./globals.css";
 import SidebarNav from "@/components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";

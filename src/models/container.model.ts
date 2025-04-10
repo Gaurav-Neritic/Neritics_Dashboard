@@ -15,4 +15,4 @@ const typeSchema = new Schema(
     }
 )
 
-export const Container = mongoose.model("Container", typeSchema)
+export const Container = mongoose.models.Container || mongoose.model("Container", typeSchema)

@@ -2,12 +2,15 @@
 
 import BlogEditor from '@/components/BlogPage/BlogEditor';
 import Loader from '@/components/Loaders/Loader';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { FileText } from 'lucide-react';
 import Image from 'next/image';
-import { useParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import React, { FormEvent, useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
+
+export const dynamic = "force-dynamic"
 
 const page = () => {
     const { editBlog } = useParams();
@@ -17,6 +20,8 @@ const page = () => {
     const [publish, setPublish] = useState("")
     const [image, setImage] = useState("")
     const [description, setDescription] = useState("")
+    const queryClient = useQueryClient();
+    const router = useRouter();
 
     const { data: blogDetails = [], isLoading, isError } = useQuery({
         queryKey: ['blogDetails', editBlog],
@@ -40,9 +45,44 @@ const page = () => {
     }
 
 
-    const handelSubmit = () => {
-
+    async function updateBlogDetails() {
+        const formData = new FormData();
+        formData.append('id', editBlog as string)
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('publish', publish);
+        formData.append('image', image);
+        formData.append('author', author);
+        try {
+            const response = await axios.put("../api/editBlog", formData);
+            if (response.data.data) {
+                toast.success("Blog updated!")
+                return response.data.data
+            }
+            return []
+        } catch (error) {
+            console.log("Error Updating the blogs")
+        }
     }
+
+    const updateMutation = useMutation({
+        mutationFn: updateBlogDetails,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['blogs'] });
+            queryClient.invalidateQueries({ queryKey: ['blogDetails'] });
+            router.push('/blogList')
+        },
+        onError: () => {
+            toast.error("Something Went Wrong")
+        }
+    })
+
+    const handelSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        updateMutation.mutate();
+    }
+
+
 
     useEffect(() => {
         setTitle(blogDetails?.title)
@@ -143,7 +183,7 @@ const page = () => {
                         <h2 className="text-lg font-semibold antialiased">Description</h2>
                     </div>
                     {
-                        blogDetails?.description && <BlogEditor content={blogDetails?.description.slice(1, -1) || ""} onContentChange={setDescription} />
+                        blogDetails?.description && <BlogEditor content={blogDetails?.description.slice(0, -1) || " "} onContentChange={setDescription} />
                     }
                 </div>
 
@@ -153,7 +193,7 @@ const page = () => {
                         disabled={isLoading}
                         className="px-4 py-2 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
                     >
-                        {isLoading ? (
+                        {updateMutation.isPending ? (
                             <span className="flex items-center justify-center">
                                 <Loader title="Saving..." />
                             </span>
