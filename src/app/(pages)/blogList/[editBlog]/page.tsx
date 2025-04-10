@@ -46,6 +46,7 @@ const page = () => {
             return null;
         } catch (error) {
             console.log("Error getting details", error);
+            return [];
         }
     }
 
@@ -66,6 +67,7 @@ const page = () => {
             return [];
         } catch (error) {
             console.log("Error Updating the blogs");
+            return [];
         }
     }
 

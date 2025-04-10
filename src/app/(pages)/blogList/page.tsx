@@ -50,7 +50,7 @@ const BlogList = () => {
 
   useEffect(() => {
     setFilteredBlogs(blogs);
-  }, [blogs])
+  }, [blogs?.length !== 0])
 
 
   return (

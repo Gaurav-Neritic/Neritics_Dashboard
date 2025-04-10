@@ -1,5 +1,5 @@
 import { AlertCircle } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import Loader from "../Loaders/Loader";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -20,13 +20,13 @@ const DeleteBlogPoup = ({ isVisible, onClose, blogTitle, id }: DeletePopupProps)
         mutationFn: deleteBlog,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["blogs"] });
+            onClose();
         },
     });
 
 
     async function handelDelete(id: string) {
         deleteMutation.mutate(id);
-        onClose();
     }
 
     async function deleteBlog(id: string) {

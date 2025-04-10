@@ -40,19 +40,16 @@ const ProductList = () => {
 
   async function getProducts() {
     try {
-      const response = await axios.get("api/getProducts", {
-        fetchOptions: { cache: "no-store" },
-      });
+      const response = await axios.get("api/getProducts");
       if (response.data.data) {
         return response.data.data
-      } else {
-        toast.error("Failed to fetch the product data");
       }
       return [];
     } catch (error: any) {
       error.response.status === 401
         ? toast.success("No Products Found")
         : toast.error("Failed to fetch the product data");
+      return [];
     }
   }
 
@@ -218,7 +215,7 @@ const ProductList = () => {
 
       {/* Products List */}
       <div className="py-2">
-        <div className="p-1 min-h-screen border border-lightBorder dark:border-darkBorder  rounded ">
+        <div className="p-1 border border-lightBorder dark:border-darkBorder  rounded ">
           <div
             className={` ${listView ? "block" : "hidden py-0 px-0"
               } m-5  border border-lightBorder dark:border-darkBorder  rounded`}
@@ -248,7 +245,7 @@ const ProductList = () => {
                 {/*  */}
                 {isLoading && <div className="p-5"><Loader title="Fetching" /></div>}
                 {(!isLoading && filteredProducts.length === 0) && <div className="flex items-center justify-center py-5 uppercase font-semibold"><h1>Products Not Found</h1></div>}
-                {isError && <div className="p-5"><h1>Something Went Wrong</h1></div>}
+                {isError && <div className="p-5 flex items-center justify-center"><h1>Something Went Wrong</h1></div>}
                 {filteredProducts?.length !== 0 &&
                   filteredProducts?.map(
                     ({
