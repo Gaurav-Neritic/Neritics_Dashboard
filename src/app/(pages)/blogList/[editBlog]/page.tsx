@@ -78,96 +78,73 @@ const page = () => {
         </div>
       </div>
 
-      <form onSubmit={handelSubmit}>
-        <div>
-          <div className="pb-2">
-            <h2 className="text-lg font-semibold antialiased">
-              Blog Title & Author
-            </h2>
-          </div>
-          <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-            <div className="grid grid-cols-2 gap-10">
-              <div className="w-full">
-                <label>Blog Title:</label>
-                <input
-                  type="text"
-                  value={title || ""}
-                  className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded"
-                  placeholder="Enter Blog Title"
-                  required
-                  onChange={(e) => {
-                    setTitle(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="w-full">
-                <label>Blog Author:</label>
-                <input
-                  type="text"
-                  value={author || ""}
-                  className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded"
-                  placeholder="Enter Blog Author"
-                  required
-                  onChange={(e) => {
-                    setAuthor(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="my-5">
-          <div className="pb-2">
-            <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
-          </div>
-          <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-            <div className="grid grid-cols-2 gap-10">
-              <div>
-                <label>Blog Image:</label>
-                <br />
+            <form onSubmit={handelSubmit}>
                 <div>
-                  <div className="border border-lightBorder dark:border-darkBorder rounded p-1 relative ">
-                    <div className="">
-                      <Image
-                        height={200}
-                        width={200}
-                        src={image || "/placeholder.jpg"}
-                        alt="saved images"
-                        className="h-auto w-24 rounded border border-lightBorder dark:border-darkBorder object-cover"
-                      />
+                    <div className="pb-2">
+                        <h2 className="text-lg font-semibold antialiased">
+                            Blog Title & Author
+                        </h2>
                     </div>
-                    <div className="absolute top-1 right-1">
-                      <button
-                        onClick={() => {
-                          setPopup(!popup);
-                        }}
-                        className="text-lightBorder hover:text-darkBorder dark:hover:text-lightBorder dark:text-darkBorder cursor-pointer"
-                      >
-                        <ImagePlus />
-                      </button>
+                    <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
+                        <div className="grid grid-cols-2 gap-10">
+                            <div className="w-full">
+                                <label>Blog Title:</label>
+                                <input
+                                    type='text'
+                                    value={title || ""}
+                                    className='block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded'
+                                    placeholder="Enter Blog Title"
+                                    required
+                                    onChange={(e) => { setTitle(e.target.value) }}
+                                />
+                            </div>
+                            <div className="w-full">
+                                <label>Blog Author:</label>
+                                <input
+                                    type='text'
+                                    value={author || ""}
+                                    className='block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded'
+                                    placeholder="Enter Blog Author"
+                                    required
+                                    onChange={(e) => { setAuthor(e.target.value) }}
+                                />
+                            </div>
+                        </div>
                     </div>
-                    {popup && <ImagePopup />}
-                  </div>
                 </div>
-              </div>
-              <div>
-                <label>Publishing Status:</label>
-                <select
-                  value={publish}
-                  onChange={(e) => {
-                    setPublish(e.target.value);
-                  }}
-                  className="w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-[9px] rounded text-gray-400 mt-2 dark:bg-darkMode"
-                >
-                  <option>Select Status</option>
-                  <option>Publish</option>
-                  <option>Un-List</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
+
+                <div className="my-5">
+                    <div className="pb-2">
+                        <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
+                    </div>
+                    <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
+                        <div className="grid grid-cols-2 gap-10">
+                            <div>
+                                <label>Blog Image:</label>
+                                <br />
+                                <Image
+                                    height={200}
+                                    width={200}
+                                    src={image || '/placeholder.jpg'}
+                                    alt="Main Image Preview"
+                                    className="mt-2 p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                                />
+                            </div>
+                            <div>
+                                <label>Publishing Status:</label>
+                                <select
+                                    value={publish}
+                                    onChange={(e) => { setPublish(e.target.value) }}
+                                    className="w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-[9px] rounded text-gray-400 mt-2 dark:bg-darkMode"
+                                >
+                                    <option>Select Status</option>
+                                    <option>Publish</option>
+                                    <option>Un-List </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div className="my-5">
                     <div className="pb-2">
