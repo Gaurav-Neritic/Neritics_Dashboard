@@ -4,14 +4,7 @@ import Loader from "@/components/Loaders/Loader";
 import ProductCard from "@/components/ProductPage/ProductCard";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import {
-  SlidersHorizontal,
-  Trash2,
-  FilePenLine,
-  LayoutGrid,
-  Logs,
-  Download,
-} from "lucide-react";
+import { SlidersHorizontal, Trash2, FilePenLine, LayoutGrid, Logs, Download } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -156,12 +149,8 @@ const ProductList = () => {
             <option className="dark:text-black">Earlier</option>
           </select>
 
-          <select
-            onChange={(e) => {
-              setFilter(e.target.value);
-            }}
-            className="border  border-lightBorder dark:border-darkBorder px-3 py-1 rounded outline-none"
-          >
+          <select onChange={(e) => { setFilter(e.target.value); }}
+            className="border border-lightBorder dark:border-darkBorder px-3 py-1 rounded outline-none">
             <option className="dark:bg-neutral-600">All</option>
             <option className="dark:text-black">Listed</option>
             <option className="dark:text-black">UnListed</option>
