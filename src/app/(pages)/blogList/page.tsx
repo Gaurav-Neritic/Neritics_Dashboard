@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { LayoutGrid, List, Trash2, FilePenLine } from "lucide-react";
+import { LayoutGrid, List, Trash2, FilePenLine, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -14,6 +14,7 @@ const BlogList = () => {
   const [blogID, setBlogID] = useState("");
   const [searchText, setSearchText] = useState("");
   const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const [filter, setFilter] = useState("")
 
   async function getBlogs() {
     try {
@@ -53,6 +54,20 @@ const BlogList = () => {
   });
 
   useEffect(() => {
+    if (filter === "🟢 Live") {
+      setFilteredBlogs(
+        blogs.filter((blog: any) => blog.publish === true)
+      );
+    } else if (filter === "🔴 UnListed") {
+      setFilteredBlogs(
+        blogs.filter((blog: any) => blog.publish === false)
+      );
+    } else {
+      setFilteredBlogs(blogs);
+    }
+  }, [filter]);
+
+  useEffect(() => {
     setFilteredBlogs(blogs);
   }, [blogs.length]);
 
@@ -63,6 +78,7 @@ const BlogList = () => {
           <h1 className="text-xl uppercase font-semibold">Blog Lists</h1>
         </div>
         <div className="flex items-center justify-center gap-3">
+
           <input
             type="text"
             value={searchText}
@@ -70,6 +86,15 @@ const BlogList = () => {
             placeholder="Search by blog title..."
             className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
           />
+          <select className="p-2 px-4 border border-gray-300 dark:border-darkBorder rounded appearance-auto text-sm bg-transparent outline-none"
+            onChange={(e) => {
+              setFilter(e.target.value);
+            }}
+          >
+            <option>🌏 All</option>
+            <option>🟢 Live</option>
+            <option>🔴 UnListed</option>
+          </select>
           <div>
             <div className="flex items-center gap-2 rounded-lg p-1">
               <button
