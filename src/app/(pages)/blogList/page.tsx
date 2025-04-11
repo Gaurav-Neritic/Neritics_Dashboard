@@ -93,7 +93,7 @@ const BlogList = () => {
       <div className={`p-5 border border-lightBorder rounded `}>
         <div className={`w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"}`} >
           {/* Header */}
-          <div className=" px-5 flex w-full justify-between items-center border-b border-lightBorder dark:border-darkBorder">
+          <div className=" px-5 py-1 flex w-full justify-between items-center border-b border-lightBorder dark:border-darkBorder">
             <div className="p-2 w-2/12 font-medium text-center">Blog Id</div>
             <div className="p-2 w-3/12 font-medium text-center">Title</div>
             <div className="p-2 w-2/12 font-medium text-center">Author</div>
@@ -128,7 +128,7 @@ const BlogList = () => {
           {filteredBlogs.map((blog: any) => (
             <div
               key={blog?._id}
-              className="p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder "
+              className="p-3 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder "
             >
               <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
                 {blog._id}
