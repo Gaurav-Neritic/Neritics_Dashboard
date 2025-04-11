@@ -9,9 +9,10 @@ interface blogProps {
   image: string;
   title: string;
   author: string;
+  publish: boolean
 }
 
-const BlogCard = ({ _id, image, title, author }: blogProps) => {
+const BlogCard = ({ _id, image, title, author, publish }: blogProps) => {
   const [deletePopup, setDeletePopup] = useState(false);
   return (
     <div>
@@ -25,17 +26,17 @@ const BlogCard = ({ _id, image, title, author }: blogProps) => {
             className="w-full h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
           />
         </div>
-        <div className="py-2">
-          <h3 className="font-medium text-lg mb-1 line-clamp-1" title={title}>
+        <div className="py-2 flex items-start justify-center flex-col gap-y-1">
+          <h3 className="mt-2 line-clamp-2 capitalize text-xl font-semibold my-2" title={title}>
             {title}
           </h3>
-          <p className="text-gray-500 text-sm mb-4">Author: {author}</p>
+          <h1 className="text-md font-medium"> <span className="font-light dark:text-gray-300">Author:</span> {`✍️ ${author}`}</h1>
+          <h1 className="text-md font-medium"><span className="font-light dark:text-gray-300">Status:</span> {publish ? "🟢 Live " : "🔴 Un-Listed"}</h1>
         </div>
         <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder dark:border-darkBorder">
           <Link
             href={`/blogList/${_id}`}
-            className="w-full  flex justify-center items-center gap-2 text-green-500 hover:text-green-600 bg-green-100 hover:bg-green-200 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm"
-          >
+            className="w-full  flex justify-center items-center gap-2 text-green-500 hover:text-green-600 bg-green-100 hover:bg-green-200 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm">
             <FilePenLine className="h-5 w-5 cursor-pointer" />
             Edit
           </Link>

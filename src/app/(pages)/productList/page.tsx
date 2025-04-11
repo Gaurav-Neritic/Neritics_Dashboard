@@ -121,7 +121,7 @@ const ProductList = () => {
 
   useEffect(() => {
     setFilteredProducts(getProductsData);
-  }, [getProductsData])
+  }, [getProductsData.length])
 
 
   return (
@@ -216,13 +216,8 @@ const ProductList = () => {
       {/* Products List */}
       <div className="py-2">
         <div className="p-1 border border-lightBorder dark:border-darkBorder  rounded ">
-          <div
-            className={` ${listView ? "block" : "hidden py-0 px-0"
-              } m-5  border border-lightBorder dark:border-darkBorder  rounded`}
-          >
-            <div
-              className={` py-3 px-5 gap-5 grid grid-cols-9 place-items-center `}
-            >
+          <div className={` ${listView ? "block" : "hidden py-0 px-0"} m-5  border border-lightBorder dark:border-darkBorder  rounded`} >
+            <div className={`py-3 px-5 gap-5 grid grid-cols-9 place-items-center `} >
               <h1 className="w-full truncate col-span-1">Products Id</h1>
               <h1 className="w-full truncate col-span-2">Products Name</h1>
               <div className="w-full col-span-1 place-items-center">
@@ -323,7 +318,7 @@ const ProductList = () => {
           </div>
 
           {/* Grid View */}
-          <div className={`${listView ? "hidden" : "block"}`}>
+          <div className={`${listView ? "hidden" : "block "}`}>
             <div className="grid grid-cols-3 gap-5 p-5">
               {filteredProducts.length !== 0 &&
                 filteredProducts.map(

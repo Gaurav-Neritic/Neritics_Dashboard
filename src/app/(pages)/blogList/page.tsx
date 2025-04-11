@@ -11,9 +11,9 @@ import Loader from "@/components/Loaders/Loader";
 const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
   const [deletePopup, setDeletePopup] = useState(false);
-  const [blogID, setBlogID] = useState("")
-  const [searchText, setSearchText] = useState("")
-  const [filteredBlogs, setFilteredBlogs] = useState([])
+  const [blogID, setBlogID] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
 
   async function getBlogs() {
     try {
@@ -43,19 +43,22 @@ const BlogList = () => {
     setFilteredBlogs(filtered);
   };
 
-  const { data: blogs = [], isLoading, isError } = useQuery({
+  const {
+    data: blogs = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryFn: getBlogs,
     queryKey: ["blogs"],
   });
 
   useEffect(() => {
     setFilteredBlogs(blogs);
-  }, [blogs?.length !== 0])
-
+  }, [blogs.length]);
 
   return (
     <div className="p-5">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center py-5">
         <div>
           <h1 className="text-xl uppercase font-semibold">Blog Lists</h1>
         </div>
@@ -84,117 +87,146 @@ const BlogList = () => {
             </div>
           </div>
         </div>
-
       </div>
 
       {/* List View */}
-
-      <div
-        className={` w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"
-          }`}
-      >
-        {/* Header */}
-        <div className=" px-5 flex w-full justify-between items-center border-b border-lightBorder dark:border-darkBorder">
-          <div className="p-2 w-2/12 font-medium text-center">Blog Id</div>
-          <div className="p-2 w-3/12 font-medium text-center">Title</div>
-          <div className="p-2 w-2/12 font-medium text-center">Author</div>
-          <div className="p-2 w-2/12 font-medium text-center">Image</div>
-          <div className="p-2 w-1/12 font-medium text-center">Publish</div>
-          <div className="p-2 w-2/12 text-center font-medium">Actions</div>
-        </div>
-        {isLoading && <div className="flex items-center justify-center py-10"><Loader title="Fetching...." /></div>}
-        {isError && <div className="flex items-center justify-center py-10"><h1>Something Went Wrong...</h1></div>}
-        {(!isLoading && filteredBlogs?.length <= 0) &&
-          <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
-            <h1 className="text-2xl"> No Blogs !</h1>
-            <div>
-              <Link href={'/addBlog'} className="text-teal-800 rounded capitalize  underline underline-offset-2 hover:underline-offset-4">Add One</Link>
-            </div>
+      <div className={`p-5 border border-lightBorder rounded `}>
+        <div className={`w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"}`} >
+          {/* Header */}
+          <div className=" px-5 flex w-full justify-between items-center border-b border-lightBorder dark:border-darkBorder">
+            <div className="p-2 w-2/12 font-medium text-center">Blog Id</div>
+            <div className="p-2 w-3/12 font-medium text-center">Title</div>
+            <div className="p-2 w-2/12 font-medium text-center">Author</div>
+            <div className="p-2 w-2/12 font-medium text-center">Image</div>
+            <div className="p-2 w-1/12 font-medium text-center">Publish</div>
+            <div className="p-2 w-2/12 text-center font-medium">Actions</div>
           </div>
-        }
-        {/* Blog items */}
-        {filteredBlogs.map((blog: any) => (
-          <div key={blog?._id} className="p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder ">
-            <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
-              {blog._id}
+          {isLoading && (
+            <div className="flex items-center justify-center py-10">
+              <Loader title="Fetching...." />
             </div>
-            <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
-              {blog.title}
+          )}
+          {isError && (
+            <div className="flex items-center justify-center py-10">
+              <h1>Something Went Wrong...</h1>
             </div>
-            <div className="px-2 w-2/12 text-gray-500 dark:text-gray-50 text-center capitalize">
-              {blog.author}
-            </div>
-            <div className="px-2 w-2/12 flex justify-center items-center">
-              <img
-                src={blog.image}
-                alt={blog.title}
-                className="w-14 h-10 object-cover rounded"
-              />
-            </div>
-            <div className="px-4 w-1/12 text-center">
-              {blog.publish ? "🟢" : "🔴"}
-            </div>
-            <div className="px-4 w-2/12">
-              <div className="flex justify-center space-x-2">
+          )}
+          {!isLoading && filteredBlogs?.length <= 0 && (
+            <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
+              <h1 className="text-2xl"> No Blogs !</h1>
+              <div>
                 <Link
-                  href={`/blogList/${blog?._id}`}
-                  className="text-green-400 hover:text-green-500"
+                  href={"/addBlog"}
+                  className="text-teal-800 rounded capitalize  underline underline-offset-2 hover:underline-offset-4"
                 >
-                  <FilePenLine className="text-sm cursor-pointer" />
+                  Add One
                 </Link>
-                <button
-                  onClick={() => {
-                    setBlogID(blog?._id);
-                    setDeletePopup(true);
-                  }}
-                  className="text-red-400 hover:text-red-500"
-                >
-                  <Trash2 className="text-sm cursor-pointer" />
-                </button>
-                {
-                  <DeleteBlogPoup
-                    id={blogID}
-                    isVisible={deletePopup}
-                    onClose={() => { setDeletePopup(false) }}
-                    blogTitle={blog?.title} />
-                }
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Card View */}
-
-      <div
-        className={`h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5 ${viewMode === "card" ? "block" : "hidden"
-          } `}
-      >
-        {isLoading && <div className="flex items-center justify-center py-10"><Loader title="Fetching...." /></div>}
-        {isError && <div className="flex items-center justify-center py-10"><h1>Something Went Wrong...</h1></div>}
-        {(!isLoading && filteredBlogs?.length <= 0) &&
-          <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
-            <h1 className="text-2xl"> No Blogs !</h1>
-            <div>
-              <Link href={'/addBlog'} className="text-teal-800 rounded capitalize  underline underline-offset-2 hover:underline-offset-4">Add One</Link>
-            </div>
-          </div>
-        }
-        <div className="grid grid-cols-3 gap-5">
+          )}
+          {/* Blog items */}
           {filteredBlogs.map((blog: any) => (
-            <div key={blog?._id}>
-              <BlogCard
-                _id={blog?._id}
-                image={blog.image}
-                title={blog?.title}
-                author={blog?.author}
-              />
+            <div
+              key={blog?._id}
+              className="p-2 flex w-full justify-center items-center border-b border-lightBorder dark:border-darkBorder "
+            >
+              <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
+                {blog._id}
+              </div>
+              <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
+                {blog.title}
+              </div>
+              <div className="px-2 w-2/12 text-gray-500 dark:text-gray-50 text-center capitalize">
+                {blog.author}
+              </div>
+              <div className="px-2 w-2/12 flex justify-center items-center">
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="w-14 h-10 object-cover rounded"
+                />
+              </div>
+              <div className="px-4 w-1/12 text-center">
+                {blog.publish ? "🟢" : "🔴"}
+              </div>
+              <div className="px-4 w-2/12">
+                <div className="flex justify-center space-x-2">
+                  <Link
+                    href={`/blogList/${blog?._id}`}
+                    className="text-green-400 hover:text-green-500"
+                  >
+                    <FilePenLine className="text-sm cursor-pointer" />
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setBlogID(blog?._id);
+                      setDeletePopup(true);
+                    }}
+                    className="text-red-400 hover:text-red-500"
+                  >
+                    <Trash2 className="text-sm cursor-pointer" />
+                  </button>
+                  {
+                    <DeleteBlogPoup
+                      id={blogID}
+                      isVisible={deletePopup}
+                      onClose={() => {
+                        setDeletePopup(false);
+                      }}
+                      blogTitle={blog?.title}
+                    />
+                  }
+                </div>
+              </div>
             </div>
           ))}
         </div>
-      </div>
 
-    </div>
+        {/* Card View */}
+
+        <div
+          className={`h-full flex flex-col  ${viewMode === "card" ? "block" : "hidden"
+            } `}
+        >
+          {isLoading && (
+            <div className="flex items-center justify-center py-10">
+              <Loader title="Fetching...." />
+            </div>
+          )}
+          {isError && (
+            <div className="flex items-center justify-center py-10">
+              <h1>Something Went Wrong...</h1>
+            </div>
+          )}
+          {!isLoading && filteredBlogs?.length <= 0 && (
+            <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
+              <h1 className="text-2xl"> No Blogs !</h1>
+              <div>
+                <Link
+                  href={"/addBlog"}
+                  className="text-teal-800 rounded capitalize  underline underline-offset-2 hover:underline-offset-4"
+                >
+                  Add One
+                </Link>
+              </div>
+            </div>
+          )}
+          <div className="grid grid-cols-3 gap-5">
+            {filteredBlogs.map((blog: any) => (
+              <div key={blog?._id}>
+                <BlogCard
+                  _id={blog?._id}
+                  image={blog.image}
+                  title={blog?.title}
+                  author={blog?.author}
+                  publish={blog?.publish}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div >
   );
 };
 
