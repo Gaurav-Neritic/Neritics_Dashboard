@@ -9,7 +9,7 @@ export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
         const auth = JSON.parse(localStorage.getItem("auth") || "null");
 
         if (!auth || !auth.username) {
-            router.push("");
+            router.push("/login");
         }
     }, []);
 
