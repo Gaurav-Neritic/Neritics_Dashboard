@@ -114,7 +114,7 @@ const ProductList = () => {
 
   useEffect(() => {
     setFilteredProducts(getProductsData);
-  }, [getProductsData.length])
+  }, [getProductsData])
 
 
   return (
