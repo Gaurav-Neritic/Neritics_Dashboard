@@ -69,7 +69,7 @@ const BlogList = () => {
 
   useEffect(() => {
     setFilteredBlogs(blogs);
-  }, [blogs.length]);
+  }, [blogs]);
 
   return (
     <div className="p-5">

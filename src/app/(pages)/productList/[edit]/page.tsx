@@ -2,6 +2,7 @@
 
 import Loader from "@/components/Loaders/Loader";
 import EditImagePopup from "@/components/ProductPage/EditImagePopup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { FilePenLine, ImagePlus, Save } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -49,6 +50,7 @@ export default function Page({ params }: any) {
   const [formData, setFormData] = useState([]);
   const [containerData, setContainerData] = useState([]);
   const [countryData, setCountryData] = useState([]);
+  const queryClient = useQueryClient()
 
   // image edit popup
   const [popup, setPopup] = useState(false);
@@ -71,9 +73,8 @@ export default function Page({ params }: any) {
 
   // Taking the addOn Info and setting it in an array
 
-  const handelUpdate = async (e: React.FormEvent) => {
+  async function updateProduct() {
     try {
-      e.preventDefault();
       const data = {
         edit,
         name,
@@ -110,7 +111,6 @@ export default function Page({ params }: any) {
       if (response.data.data) {
         toast.success("Product Updated Successfully");
         setLoading(false);
-        router.push("/productList");
       } else {
         toast.error("Error Updating Data");
         setLoading(false);
@@ -120,7 +120,20 @@ export default function Page({ params }: any) {
       console.log("Error Updating products data : ", error);
       toast.error("Error Updating Data");
     }
+  }
+
+  const handelUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    updateMutation.mutate();
   };
+
+  const updateMutation = useMutation({
+    mutationFn: updateProduct,
+    onSuccess: () => {
+      router.push("/productList");
+      queryClient.invalidateQueries({ queryKey: ['getProductsData'] })
+    }
+  })
 
   async function getCategories() {
     try {
@@ -196,6 +209,8 @@ export default function Page({ params }: any) {
       toast.error("Error Fetching the country ");
     }
   }
+
+
 
   useEffect(() => {
     try {
@@ -860,15 +875,15 @@ export default function Page({ params }: any) {
                 {/* Add Product Button */}
                 <div className="py-3">
                   {category === "Select Category" ||
-                  type === "Select Type" ||
-                  isAyurvedic === "Nature Of Medicine" ||
-                  container === "Container Type" ||
-                  suitableFor === "Edible For" ||
-                  gender === "Select Gender" ||
-                  form === "Select Form" ||
-                  ageRange === "Select Age Range" ||
-                  publish === "Publishing Status" ||
-                  coo === "Select Country" ? (
+                    type === "Select Type" ||
+                    isAyurvedic === "Nature Of Medicine" ||
+                    container === "Container Type" ||
+                    suitableFor === "Edible For" ||
+                    gender === "Select Gender" ||
+                    form === "Select Form" ||
+                    ageRange === "Select Age Range" ||
+                    publish === "Publishing Status" ||
+                    coo === "Select Country" ? (
                     <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
                       Note : Please Select Valid Options Only
                     </div>
