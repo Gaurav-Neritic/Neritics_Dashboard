@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   BadgeIndianRupee,
@@ -16,8 +16,40 @@ import {
   SquarePlus,
 } from "lucide-react";
 import ToggleMode from "@/components/Theme/ToggleMode";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const SidebarNav = () => {
+
+  const [loggedUser, setLoggedUser]: any = useState({})
+  const router = useRouter();
+
+
+  async function clearCookies() {
+    try {
+      const response = await axios.get('api/clearCookies');
+      if (response.data?.data) {
+        router.push('/login')
+      }
+    } catch (error) {
+      console.log(`Erro clearing cookies : ${error}`)
+    }
+  }
+
+
+  useEffect(() => {
+    const localUser: any = localStorage.getItem("user");
+    const loggedUser = JSON.parse(localUser)
+
+    if (loggedUser?.isAdmin) {
+      setLoggedUser(loggedUser);
+    } else {
+      clearCookies();
+    }
+
+  }, [])
+
+
   return (
     <section className="p-5 border-lightBorder dark:border-darkBorder ">
       {/* logo Dashboard */}
@@ -144,7 +176,7 @@ const SidebarNav = () => {
       </nav>
 
       {/* Action Button Section */}
-      <div className="flex items-center justify-start gap-4">
+      <div className="grid grid-cols-4 gap-4 place-items-center">
         <ToggleMode />
         <Link
           href={"https://gmail.com"}
@@ -164,6 +196,15 @@ const SidebarNav = () => {
             🌐
           </span>
         </Link>
+        <div className="relative group">
+          <Image src={loggedUser?.avatar || "/placeholder.jpg"} alt="user-image" width={100} height={100} className="h-10 w-10 ring ring-darkMode rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer object-contain" />
+          <div className="absolute -left-20 hidden group-hover:block w-auto border border-lightBorder dark:border-darkBorder p-2 rounded z-10 bg-white dark:bg-darkMode dark:text-white">
+            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">{loggedUser?.name}</h1>
+            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">{loggedUser?.email}</h1>
+            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">isAdmin : {loggedUser?.isAdmin ? "✅" : "❌"}</h1>
+            <button onClick={() => { clearCookies(); localStorage.clear(); }} className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded cursor-pointer">Logout</button>
+          </div>
+        </div>
       </div>
     </section>
   );

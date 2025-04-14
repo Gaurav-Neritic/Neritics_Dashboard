@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "../../app/globals.css"
 import { Fira_Code, Inter } from "next/font/google";
+import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
     title: "Login | Neritic Dashboard",
@@ -25,7 +27,10 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${inter.className} ${geistMono.variable} antialiased max-w-[85rem] mx-auto dark:bg-darkMode dark:text-white`}>
-                {children}
+                <ReactQueryProvider>
+                    {children}
+                    <Toaster position="top-center" reverseOrder={false} />
+                </ReactQueryProvider>
             </body>
         </html>
     );
