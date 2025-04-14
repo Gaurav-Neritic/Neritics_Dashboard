@@ -33,9 +33,15 @@ export async function POST(request: NextRequest) {
         const accessToken = await user?.generateAccessToken();
         const refreshToken = await user?.generateRefreshToken();
 
+        user.refreshToken = refreshToken;
+
+        await user.save({ validateBeforeSave: true });
+
         if (!accessToken || !refreshToken) {
             return NextResponse.json({ error: "Failed to create the access and refresh Token" }, { status: 405 })
         }
+
+
 
         const loggedInUser = await User.findById(user?._id).select("-password -refreshToken");
 
