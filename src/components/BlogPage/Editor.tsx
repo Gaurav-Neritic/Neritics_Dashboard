@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -18,6 +18,7 @@ import { common, createLowlight } from "lowlight";
 import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import Placeholder from "@tiptap/extension-placeholder";
+import FontSize from "tiptap-extension-font-size";
 import Toolbar from "./Toolbar";
 import Highlight from "@tiptap/extension-highlight";
 
@@ -32,7 +33,8 @@ const Editor = ({ description }: Props) => {
     content: "",
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
-      description(editor.getHTML());
+      const html = editor.getHTML();
+      description(html);
     },
     extensions: [
       StarterKit.configure({ history: false }),
@@ -52,11 +54,14 @@ const Editor = ({ description }: Props) => {
       Color,
       BulletList,
       OrderedList,
+      FontSize.configure({
+        types: ["textStyle"],
+      }),
     ],
     editorProps: {
       attributes: {
         class:
-          "shadow appearance-none min-h-[150px] border rounded w-full p-5 dark:text-white border border-lightBorder dark:border-darkBorder text-black mt-0 md:mt-3 leading-tight focus:outline-none focus:shadow-outline",
+          "shadow appearance-none min-h-[150px] border rounded w-full p-5 dark:text-white border-lightBorder dark:border-darkBorder text-black mt-0 md:mt-3 leading-tight focus:outline-none focus:shadow-outline",
       },
     },
   });

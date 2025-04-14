@@ -214,10 +214,10 @@ const page = () => {
                         <h2 className="text-lg font-semibold antialiased">Description</h2>
                     </div>
                     {blogDetails?.description && (
-                        <BlogEditor
-                            content={blogDetails?.description.slice(0, -1) || " "}
-                            onContentChange={setDescription}
-                        />
+                       <BlogEditor
+                       content={blogDetails?.description?.replace(/^"(.*)"$/, "$1") || " "}
+                       onContentChange={setDescription}
+                     />
                     )}
                 </div>
 

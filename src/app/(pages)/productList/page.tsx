@@ -253,10 +253,10 @@ const ProductList = () => {
                           <div className="col-span-1 w-full place-items-center">
                             <Image
                               src={image[0] || "/placeholder.jpg"}
-                              width={20}
-                              height={20}
+                              width={50}
+                              height={50}
                               alt="img"
-                              className=" h-10 w-10 rounded bg-lightBorder dark:bg-darkBorder"
+                              className=" rounded bg-lightBorder dark:bg-darkBorder"
                             />
                           </div>
 

@@ -27,7 +27,7 @@ const SidebarNav = () => {
           className="flex items-center justify-center uppercase font-semibold text-lg text-green-600"
         >
           <Image
-            src={"/holi logo_12.png"}
+            src={"/logo-wellness.png"}
             priority
             width={120}
             height={120}

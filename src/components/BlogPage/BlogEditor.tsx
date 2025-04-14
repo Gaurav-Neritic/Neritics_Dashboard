@@ -20,6 +20,7 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import Placeholder from "@tiptap/extension-placeholder";
 import Toolbar from "./Toolbar";
 import Highlight from '@tiptap/extension-highlight'
+import FontSize from "tiptap-extension-font-size";
 
 
 const lowlight = createLowlight(common);
@@ -49,6 +50,9 @@ const BlogEditor = ({ content, onContentChange }: { content: string, onContentCh
             Color,
             BulletList,
             OrderedList,
+            FontSize.configure({
+                    types: ["textStyle"],
+                  }),
         ],
         editorProps: {
             attributes: {
