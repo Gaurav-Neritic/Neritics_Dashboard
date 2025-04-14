@@ -115,7 +115,7 @@ const BlogList = () => {
       </div>
 
       {/* List View */}
-      <div className={`p-5 border border-lightBorder rounded `}>
+      <div className={`p-5 border border-lightBorder dark:border-darkBorder rounded `}>
         <div className={`w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"}`} >
           {/* Header */}
           <div className=" px-5 py-1 flex w-full justify-between items-center border-b border-lightBorder dark:border-darkBorder">
