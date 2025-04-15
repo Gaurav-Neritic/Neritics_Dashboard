@@ -28,7 +28,7 @@ const AddAdmin = () => {
     }
   }
 
-  const { data: userRequests = [], isLoading } = useQuery({ queryFn: getAdminRequests, queryKey: ['userRequests'] })
+  const { data: userRequests = [], isLoading } = useQuery({ queryFn: getAdminRequests, queryKey: ['userRequests'], refetchOnWindowFocus: false })
 
   async function giveAdminAccess(_id: string) {
     try {
@@ -160,7 +160,7 @@ const AddAdmin = () => {
                           onClick={(e) => { e.preventDefault(); handelAccess(_id) }}
                           className={`bg-green-600  px-4 py-1 relative rounded text-white ${isAdmin ? "cursor-not-allowed" : "cursor-pointer hover:bg-green-700"}`}>
                           {isAdmin ? "Authorized" : "Authorize"}
-                          {isAdmin && <span className="absolute text-black text-[10px] -top-2 px-[3px] -right-1 bg-white rounded">Admin</span>}
+                          {isAdmin && <span className="absolute text-black text-[10px] -top-2 px-[4px] -right-1 bg-white rounded-full ring ring-lightBorder dark:ring-darkBorder">Admin</span>}
                         </button>
                         {!isSuperAdmin && <>
                           <button

@@ -1,25 +1,44 @@
 "use client";
 
-import { MoonStar, Sun } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 const ToggleMode = () => {
   const [mode, setMode] = useState("");
 
+  const theme = {
+    mode: 'dark'
+  }
+
   const handelMode = () => {
     if (document.body.classList.contains("dark")) {
       document.body.classList.remove("dark");
       setMode("");
+      localStorage.removeItem('siteMode')
     } else {
       document.body.classList.add("dark");
       setMode("dark");
+      localStorage.setItem('siteMode', JSON.stringify(theme));
     }
   };
 
+
   useEffect(() => {
-    mode === "dark"
-      ? document.body.classList.add("dark")
-      : document.body.classList.remove("dark");
+    const localModule: any = localStorage.getItem("siteMode");
+    if (localModule === null) {
+      setMode("")
+    }
+    if (localModule !== null) {
+      const localStoreMode = JSON.parse(localModule);
+      console.log(localStoreMode.mode)
+      if (localStoreMode.mode === "dark") {
+        setMode("dark")
+      } else {
+        setMode("")
+      }
+    }
+
+    mode === "dark" ? document.body.classList.add("dark") : document.body.classList.remove("dark")
+
   }, [mode]);
 
   return (
