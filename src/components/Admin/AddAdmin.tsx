@@ -9,7 +9,7 @@ const AddAdmin = () => {
     <div className="p-5 ">
       <div className="border border-lightBorder dark:border-darkBorder rounded">
         <div className="p-4 flex justify-between items-center">
-          <h1 className="text-lg mb-1">Admin Access Requests</h1>
+          <h1 className="text-lg mb-1">Admin Access Requests:</h1>
           <button
             onClick={() => setIsVisible(!isVisible)}
             className="cursor-pointer flex gap-2"
