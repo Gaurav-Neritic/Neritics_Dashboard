@@ -12,7 +12,7 @@ const AddAdmin = () => {
           <h1 className="text-lg mb-1">Admin Access Requests:</h1>
           <button
             onClick={() => setIsVisible(!isVisible)}
-            className="cursor-pointer flex gap-2"
+            className="cursor-pointer flex gap-2 text-gray-500 dark:text-white"
           >
             {isVisible ? "Show Less" : "Show More"}{" "}
             {isVisible ? <ChevronUp /> : <ChevronDown />}
