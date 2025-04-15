@@ -1,16 +1,15 @@
 "use client"
+import { useUser } from "@/app/context/UserContext";
 import axios from "axios";
-import { Bell, CircleHelp, File, FileText, PackageSearch, SquarePlus } from "lucide-react";
+import { Bell, CircleHelp, File, FileText, PackageSearch } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
 
 const AccessibilityMenu = () => {
 
-  const [loggedUser, setLoggedUser]: any = useState({})
+  const { user } = useUser();
   const router = useRouter();
-
 
   async function clearCookies() {
     try {
@@ -24,17 +23,7 @@ const AccessibilityMenu = () => {
   }
 
 
-  useEffect(() => {
-    const localUser: any = localStorage.getItem("user");
-    const loggedUser = JSON.parse(localUser)
 
-    if (loggedUser?.isAdmin) {
-      setLoggedUser(loggedUser);
-    } else {
-      clearCookies();
-    }
-
-  }, [])
   return (
     <div className="flex items-center justify-between p-5 gap-3 border-b border-lightBorder dark:border-darkBorder  m-5">
       <div className="flex gap-5 border  px-3 py-2 rounded border-lightBorder dark:border-darkBorder ">
@@ -69,12 +58,15 @@ const AccessibilityMenu = () => {
           <PackageSearch />
           View Products
         </Link>
-        <div className="relative group">
-          <Image src={loggedUser?.avatar || "/placeholder.jpg"} alt="user-image" width={100} height={100} className="h-10 w-10 ring ring-darkMode dark:ring-lightBorder rounded-md border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer object-contain" />
-          <div className="absolute -left-20 my-1 hidden group-hover:block w-auto border border-lightBorder dark:border-darkBorder p-2 rounded z-10 bg-white dark:bg-darkMode dark:text-white ">
-            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">{loggedUser?.name}</h1>
-            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">{loggedUser?.email}</h1>
-            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">isAdmin : {loggedUser?.isAdmin ? "✅" : "❌"}</h1>
+        <div className="relative group ">
+          <div className="relative">
+            <Image src={user?.avatar || "/placeholder.jpg"} alt="user-image" width={100} height={100} className="h-10 w-10 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer object-contain ring-2 ring-lightBorder" />
+            <span className="absolute -top-1 -right-1 text-[10px] animate-pulse">{user?.isAdmin ? "🟢" : "🔴"}</span>
+          </div>
+          <div className="absolute -right-10 my-[5px] hidden group-hover:block w-auto border border-lightBorder dark:border-darkBorder p-2 rounded z-10 bg-white dark:bg-darkMode dark:text-white ">
+            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">{user?.name}</h1>
+            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">{user?.email}</h1>
+            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">isAdmin : {user?.isAdmin ? "✅" : "❌"}</h1>
             <button onClick={() => { clearCookies(); localStorage.clear(); }} className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded cursor-pointer">Logout</button>
           </div>
         </div>

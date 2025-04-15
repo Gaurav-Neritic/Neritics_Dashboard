@@ -18,6 +18,7 @@ const LoginForm = () => {
 
   async function login() {
     const data = {
+
       email: email,
       password: password,
     };
@@ -26,6 +27,7 @@ const LoginForm = () => {
 
       if (response.data.data?.isAdmin) {
         localStorage.setItem("user", JSON.stringify(response.data.data));
+        toast.success("Logged In Successfully");
         router.push("/");
         return response.data.data;
       }
