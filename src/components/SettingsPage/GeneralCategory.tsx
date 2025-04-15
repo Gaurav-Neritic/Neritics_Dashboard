@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import CustomInput from "./CustomInput";
 
 const GeneralCategory = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   async function getCategories() {
     try {
