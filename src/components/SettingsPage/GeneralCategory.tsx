@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import CustomInput from "./CustomInput";
 
 const GeneralCategory = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   async function getCategories() {
     try {
@@ -116,73 +116,78 @@ const GeneralCategory = () => {
   });
 
   return (
-    <div className="p-5">
-      {/* Category Settings: */}
-      <div className="w-auto">
-        <div className="mt-5 border border-lightBorder dark:border-darkBorder rounded">
-          <div className="p-4 flex justify-between items-center">
-            <h1 className="text-lg mb-1">Category Settings:</h1>
-            <button onClick={() => setIsVisible(!isVisible)} className="cursor-pointer flex gap-2">
-              {isVisible ? "Show Less" : "Show More"} {isVisible ? <ChevronUp /> : <ChevronDown />}
-            </button>
-          </div>
-          {isVisible && (
-            <div className="grid grid-cols-2 gap-4">
-              {/* Add Category */}
-              <CustomInput
-                label={"Add Category"}
-                placeholder={"Add New Product Category"}
-                apiEndPoint={"api/addCategory"}
-                categoryArray={category}
-                deleteApiEndpoint={"api/deleteCategory"}
-                name={"category"}
-                loadingData={isLoading}
-              />
-              {/* Add Product Type */}
-              <CustomInput
-                label={"Add Product Type"}
-                placeholder={"Add New Product Type"}
-                apiEndPoint={"api/addType"}
-                categoryArray={types}
-                deleteApiEndpoint={"api/deleteType"}
-                name={"types"}
-                loadingData={isLoading}
-              />
-              {/* Add Product From */}
-              <CustomInput
-                label={"Add Product Form"}
-                placeholder={"Add New Product Form"}
-                apiEndPoint={"api/addFormType"}
-                categoryArray={productForm}
-                deleteApiEndpoint={"api/deleteFormType"}
-                name={"productForm"}
-                loadingData={isLoading}
-              />
-              {/* Add Container Type */}
-              <CustomInput
-                label={"Add Container Type"}
-                placeholder={"Add New Container Type"}
-                apiEndPoint={"api/addContainerType"}
-                categoryArray={containerType}
-                deleteApiEndpoint={"api/deleteContainerType"}
-                name={"containerType"}
-                loadingData={isLoading}
-              />
-              {/* Country Of Origin */}
-              <CustomInput
-                label={"Add Country"}
-                placeholder={"Add New Country"}
-                apiEndPoint={"api/addCountry"}
-                categoryArray={countries}
-                deleteApiEndpoint={"api/deleteCountry"}
-                name={"countries"}
-                loadingData={isLoading}
-              />
-            </div>
-          )}
-        </div>
+    <>
+      <div className="p-5">
+        <h1 className="text-2xl font-bold"> General Settings</h1>
       </div>
-    </div >
+      <div className="p-5">
+        {/* Category Settings: */}
+        <div className="w-auto">
+          <div className="mt-5 border border-lightBorder dark:border-darkBorder rounded">
+            <div className="p-4 flex justify-between items-center">
+              <h1 className="text-lg mb-1">Category Settings:</h1>
+              <button onClick={() => setIsVisible(!isVisible)} className="cursor-pointer flex gap-2">
+                {isVisible ? "Show Less" : "Show More"} {isVisible ? <ChevronUp /> : <ChevronDown />}
+              </button>
+            </div>
+            {isVisible && (
+              <div className="grid grid-cols-2 gap-4">
+                {/* Add Category */}
+                <CustomInput
+                  label={"Add Category"}
+                  placeholder={"Add New Product Category"}
+                  apiEndPoint={"api/addCategory"}
+                  categoryArray={category}
+                  deleteApiEndpoint={"api/deleteCategory"}
+                  name={"category"}
+                  loadingData={isLoading}
+                />
+                {/* Add Product Type */}
+                <CustomInput
+                  label={"Add Product Type"}
+                  placeholder={"Add New Product Type"}
+                  apiEndPoint={"api/addType"}
+                  categoryArray={types}
+                  deleteApiEndpoint={"api/deleteType"}
+                  name={"types"}
+                  loadingData={isLoading}
+                />
+                {/* Add Product From */}
+                <CustomInput
+                  label={"Add Product Form"}
+                  placeholder={"Add New Product Form"}
+                  apiEndPoint={"api/addFormType"}
+                  categoryArray={productForm}
+                  deleteApiEndpoint={"api/deleteFormType"}
+                  name={"productForm"}
+                  loadingData={isLoading}
+                />
+                {/* Add Container Type */}
+                <CustomInput
+                  label={"Add Container Type"}
+                  placeholder={"Add New Container Type"}
+                  apiEndPoint={"api/addContainerType"}
+                  categoryArray={containerType}
+                  deleteApiEndpoint={"api/deleteContainerType"}
+                  name={"containerType"}
+                  loadingData={isLoading}
+                />
+                {/* Country Of Origin */}
+                <CustomInput
+                  label={"Add Country"}
+                  placeholder={"Add New Country"}
+                  apiEndPoint={"api/addCountry"}
+                  categoryArray={countries}
+                  deleteApiEndpoint={"api/deleteCountry"}
+                  name={"countries"}
+                  loadingData={isLoading}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      </div >
+    </>
   );
 };
 

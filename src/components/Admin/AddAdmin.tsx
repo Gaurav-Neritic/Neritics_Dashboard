@@ -9,7 +9,7 @@ import { useUser } from "@/app/context/UserContext";
 import toast from "react-hot-toast";
 
 const AddAdmin = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const { user } = useUser();
   const queryClient = useQueryClient();
 
@@ -108,6 +108,7 @@ const AddAdmin = () => {
     deleteUserMutation.mutate(_id)
   }
 
+  const totalRequests = userRequests.filter((user: any) => user?.isAdmin === false)
   accessMutation?.isError ? toast.error("Something Went Wrong") : "";
   removeAccessMutation?.isError ? toast.error("Something Went Wrong") : "";
 
@@ -120,7 +121,11 @@ const AddAdmin = () => {
       <div className="p-5 ">
         <div className="border border-lightBorder dark:border-darkBorder rounded">
           <div className="p-4 flex justify-between items-center">
-            <h1 className="text-lg mb-1">Admin Access Requests:</h1>
+            <h1 className={`text-lg mb-1 flex`}>Admin Access Requests :
+              <span className={`ml-2 ${totalRequests.length > 0 ? "animate-pulse text-red-600 font-semibold bg-red-100 px-2 rounded" : ""}`}>
+                {totalRequests.length}
+              </span>
+            </h1>
             <button
               onClick={() => setIsVisible(!isVisible)}
               className="cursor-pointer flex gap-2"
