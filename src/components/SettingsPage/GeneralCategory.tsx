@@ -120,9 +120,9 @@ const GeneralCategory = () => {
       {/* Category Settings: */}
       <div className="w-auto">
         <div className="mt-5 border border-lightBorder dark:border-darkBorder rounded">
-          <div className="p-4 flex justify-between items-center">
+          <div className="p-3 flex justify-between items-center">
             <h1 className="text-lg mb-1">Category Settings:</h1>
-            <button onClick={() => setIsVisible(!isVisible)} className="cursor-pointer flex gap-2">
+            <button onClick={() => setIsVisible(!isVisible)} className="cursor-pointer flex gap-2 text-gray-500 dark:text-white">
               {isVisible ? "Show Less" : "Show More"} {isVisible ? <ChevronUp /> : <ChevronDown />}
             </button>
           </div>
