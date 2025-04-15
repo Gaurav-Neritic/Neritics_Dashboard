@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const AddAdmin = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   return (
     <div className="p-5 ">
       <div className="border border-lightBorder dark:border-darkBorder rounded">
