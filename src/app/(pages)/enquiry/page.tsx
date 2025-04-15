@@ -26,7 +26,7 @@ const page = () => {
         </div>
         <hr className=" my-1 text-gray-300 dark:border-neutral-700" />
         {/* enquiry-1 */}
-        <div className="px-5 py-3 grid grid-cols-6 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+        <div className="px-5 py-3 grid grid-cols-6 place-items-center gap-4 border-b last:border-b-0  border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
           <h1 className="text-sm w-full truncate">
             Sanketpathare8808@gmail.com
           </h1>
