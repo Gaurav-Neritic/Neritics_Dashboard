@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import CustomInput from "./CustomInput";
 
@@ -115,26 +115,15 @@ const GeneralCategory = () => {
     refetchOnWindowFocus: false,
   });
 
-  useEffect(() => {
-    getTypes();
-    getProductForms();
-    getContainerTypes();
-    getCountries();
-  }, []);
-
-  function handleClick() {
-    setIsVisible(!isVisible);
-  }
-
   return (
-    <div className="px-5">
+    <div className="p-5">
       {/* Category Settings: */}
       <div className="w-auto">
         <div className="mt-5 border border-lightBorder dark:border-darkBorder rounded">
           <div className="p-4 flex justify-between items-center">
             <h1 className="text-lg mb-1">Category Settings:</h1>
-            <button onClick={handleClick} className="cursor-pointer  flex gap-2 text-gray-500 dark:text-white">
-              {isVisible?"Show Less":"Show More"} {isVisible?<ChevronUp />:<ChevronDown />}
+            <button onClick={() => setIsVisible(!isVisible)} className="cursor-pointer flex gap-2">
+              {isVisible ? "Show Less" : "Show More"} {isVisible ? <ChevronUp /> : <ChevronDown />}
             </button>
           </div>
           {isVisible && (
@@ -193,7 +182,7 @@ const GeneralCategory = () => {
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

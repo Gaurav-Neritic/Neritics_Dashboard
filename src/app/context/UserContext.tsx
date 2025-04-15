@@ -9,7 +9,8 @@ type User = {
     email: string;
     avatar: string;
     _id: string;
-    isAdmin: boolean
+    isAdmin: boolean;
+    isSuperAdmin: boolean
 }
 
 const UserContext = createContext<{

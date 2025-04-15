@@ -66,7 +66,6 @@ const AccessibilityMenu = () => {
           <div className="absolute -right-10 my-[5px] hidden group-hover:block w-auto border border-lightBorder dark:border-darkBorder p-2 rounded z-10 bg-white dark:bg-darkMode dark:text-white ">
             <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">{user?.name}</h1>
             <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">{user?.email}</h1>
-            <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">isAdmin : {user?.isAdmin ? "✅" : "❌"}</h1>
             <button onClick={() => { clearCookies(); localStorage.clear(); }} className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded cursor-pointer">Logout</button>
           </div>
         </div>

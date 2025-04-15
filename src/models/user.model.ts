@@ -28,6 +28,11 @@ const userSchema = new Schema(
       default: false,
       required: true
     },
+    isSuperAdmin: {
+      type: Boolean,
+      default: false,
+      required: true
+    },
     refreshToken: {
       type: String,
     }
