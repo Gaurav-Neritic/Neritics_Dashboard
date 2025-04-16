@@ -77,7 +77,8 @@ const BlogList = () => {
         <div>
           <h1 className="text-xl uppercase font-semibold">Blog Lists</h1>
         </div>
-        <div className="flex items-center justify-center gap-3">
+
+        <div className="flex items-center justify-center gap-3 ">
 
           <input
             type="text"
@@ -115,16 +116,16 @@ const BlogList = () => {
       </div>
 
       {/* List View */}
-      <div className={`p-5 border border-lightBorder dark:border-darkBorder rounded `}>
+      <div className={`p-0 md:p-4 border border-lightBorder dark:border-darkBorder rounded `}>
         <div className={`w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"}`} >
           {/* Header */}
-          <div className=" px-5 py-1 flex w-full justify-between items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder">
-            <div className="p-2 w-2/12 font-medium text-center">Blog Id</div>
-            <div className="p-2 w-3/12 font-medium text-center">Title</div>
-            <div className="p-2 w-2/12 font-medium text-center">Author</div>
-            <div className="p-2 w-2/12 font-medium text-center">Image</div>
-            <div className="p-2 w-1/12 font-medium text-center">Publish</div>
-            <div className="p-2 w-2/12 text-center font-medium">Actions</div>
+          <div className="p-2 flex w-full justify-between items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder">
+            <div className="p-2 w-2/12 font-medium hidden md:block">Blog Id</div>
+            <div className="p-2 w-3/12 font-medium text-start truncate">Title</div>
+            <div className="p-2 w-3/12 font-medium text-start truncate">Author</div>
+            <div className="p-2 w-2/12 font-medium text-start truncate">Image</div>
+            <div className="p-2 w-1/12 font-medium text-start truncate">Status</div>
+            <div className="p-2 w-2/12 text-start font-medium truncate">Actions</div>
           </div>
           {isLoading && (
             <div className="flex items-center justify-center py-10">
@@ -137,7 +138,7 @@ const BlogList = () => {
             </div>
           )}
           {!isLoading && filteredBlogs?.length <= 0 && (
-            <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
+            <div className="flex flex-col gap-5 items-center justify-start py-10 uppercase font-semibold ">
               <h1 className="text-2xl"> No Blogs !</h1>
               <div>
                 <Link
@@ -153,34 +154,44 @@ const BlogList = () => {
           {filteredBlogs.map((blog: any) => (
             <div
               key={blog?._id}
-              className="p-3 flex w-full justify-center items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder "
+              className="p-2 flex w-full justify-start items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder "
             >
-              <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-center ">
+              <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-start hidden md:block">
                 {blog._id}
               </div>
-              <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-2 text-md ">
+
+
+
+              <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-1 lg:line-clamp-2 text-start ">
                 {blog.title}
               </div>
-              <div className="px-2 w-2/12 text-gray-500 dark:text-gray-50 text-center capitalize">
+
+
+
+              <div className="px-2 text-gray-500 dark:text-gray-50 capitalize w-3/12 truncate">
                 {blog.author}
               </div>
-              <div className="px-2 w-2/12 flex justify-center items-center">
+
+
+              <div className="px-2 w-2/12 flex items-start">
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="w-14 h-10 object-cover rounded"
+                  className="w-10 h-10 object-cover rounded"
                 />
               </div>
-              <div className="px-4 w-1/12 text-center">
+
+
+              <div className="px-4 w-1/12 flex">
                 {blog.publish ? "🟢" : "🔴"}
               </div>
-              <div className="px-4 w-2/12">
-                <div className="flex justify-center space-x-2">
+              <div className="px-4 w-2/12 items-start justify-start">
+                <div className="flex justify-start items-start space-x-2">
                   <Link
                     href={`/blogList/${blog?._id}`}
                     className="text-green-400 hover:text-green-500"
                   >
-                    <FilePenLine className="text-sm cursor-pointer" />
+                    <FilePenLine className="h-5 w-5 md:w-auto md:h-auto cursor-pointer" />
                   </Link>
                   <button
                     onClick={() => {
@@ -189,7 +200,7 @@ const BlogList = () => {
                     }}
                     className="text-red-400 hover:text-red-500"
                   >
-                    <Trash2 className="text-sm cursor-pointer" />
+                    <Trash2 className="h-5 w-5 md:w-auto md:h-auto cursor-pointer" />
                   </button>
                   {
                     <DeleteBlogPoup
