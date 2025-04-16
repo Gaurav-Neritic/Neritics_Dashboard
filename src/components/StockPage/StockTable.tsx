@@ -188,7 +188,7 @@ const StocksTable = () => {
         {/* FilteredProduct */}
         {(!isLoading && filteredProducts.length === 0) && <div className="flex items-center justify-center py-5 uppercase font-semibold"><h1>Products Not Found</h1></div>}
         {filteredProducts.map(({ _id, title, stock, image }: { _id: string, title: string, stock: number, image: [string] }) => (
-          <div key={_id} className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
+          <div key={_id} className="px-5 py-3 grid grid-cols-8 place-items-center gap-4 border-b last:border-b-0 border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
             <h1 className="col-span-1 w-full truncate" title={_id}>
               {_id}
             </h1>

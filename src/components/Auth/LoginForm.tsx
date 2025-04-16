@@ -53,14 +53,20 @@ const LoginForm = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center ">
-      <div className=" p-5 relative grid grid-cols-2 border border-lightBorder dark:border-darkBorder rounded">
+      <div className=" w-full mx-5 lg:max-w-fit p-0 lg:p-5  relative grid grid-cols-2 max-sm:grid-cols-1  border border-lightBorder dark:border-darkBorder rounded">
         {/* Image  */}
         <div className="">
-          <Image src="/login.svg" alt="image" width={400} height={400} />
+          <Image
+            src="/login.svg"
+            alt="image"
+            width={400}
+            height={400}
+            className="lg:block hidden"
+          />
         </div>
         {/* Login Login */}
-        <div className="p-5 border-l border-lightBorder dark:border-darkBorder">
-          <h1 className="text-2xl py-5 text-center font-semibold uppercase">
+        <div className="p-5 sm:border-l  border-lightBorder dark:border-darkBorder">
+          <h1 className="text-2xl  py-5 text-center font-semibold uppercase">
             Login
           </h1>
           <div>
@@ -68,7 +74,7 @@ const LoginForm = () => {
               onSubmit={handelLogin}
               className="flex items-start justify-center flex-col gap-2 "
             >
-              <label>Email:</label>
+              <label className="text-sm lg:text-base">Email:</label>
               <input
                 type="text"
                 value={email}
@@ -78,6 +84,7 @@ const LoginForm = () => {
                 className="p-2 w-full border border-lightBorder dark:border-darkBorder rounded outline-none placeholder:text-sm"
               />
 
+              <label className="text-sm lg:text-base">Password:</label>
               <div className="relative w-full">
                 <input
                   id="password"
@@ -100,7 +107,7 @@ const LoginForm = () => {
 
               <button
                 type="submit"
-                className="py-2 my-5 px-3 w-full border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+                className="text-sm lg:text- py-2 my-5 px-3 w-full border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
               >
                 {loginMutation.isPending ? (
                   <Loader title="Logging In...." />
@@ -108,7 +115,7 @@ const LoginForm = () => {
                   "Login"
                 )}
               </button>
-              <div className="text-center w-full">
+              <div className="text-center w-full text-sm lg:text-base">
                 Request Admin Access -{" "}
                 <Link
                   href={"/signup"}
@@ -117,7 +124,7 @@ const LoginForm = () => {
                   SignUp
                 </Link>
               </div>
-              <div className="text-center w-full animate-pulse">
+              <div className="text-center text-sm lg:text-base w-full animate-pulse ">
                 *Note : (Only Admin Access)
               </div>
             </form>

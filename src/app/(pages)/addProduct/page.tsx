@@ -322,7 +322,7 @@ const AddProduct = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-5 ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
         {/* Grid col-1  */}
         <div className=" border-gray-400 rounded">
           {/* Product Description */}
@@ -363,7 +363,7 @@ const AddProduct = () => {
               <h2 className="text-lg font-semibold antialiased">Category</h2>
             </div>
 
-            <div className="border  rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
                   <label>Product Category</label>
@@ -398,7 +398,7 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-2 gap-4 place-items-center ">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                     {/* Brand Name */}
                     <div>
                       <label>Brand Name</label>
@@ -480,7 +480,7 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className=" grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                     <div>
                       <label>Height ( In cm )</label>
                       <InputNumber
@@ -524,7 +524,7 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                     <div>
                       <label>Price (MRP)</label>
                       <InputNumber
@@ -561,7 +561,7 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="flex items-center justify-center gap-4 mt-2">
+                  <div className="flex items-center flex-wrap justify-center gap-4 mt-2">
                     {/* Main Image */}
                     <div className="relative">
                       <label className="text-neutral-700 dark:text-gray-300">
@@ -612,7 +612,7 @@ const AddProduct = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center justify-center gap-4 mt-2">
+                  <div className="flex items-center flex-wrap justify-center gap-4 mt-2">
                     {/* Second Image */}
                     <div className="relative">
                       <label className="text-neutral-700 dark:text-gray-300 z-20">
@@ -704,7 +704,7 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                     <div>
                       <label>Gender (Both/Male/Female)</label>
                       <Select
@@ -750,7 +750,7 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-2 gap-4 place-items-center ">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                     {/* Benefit 1  */}
                     <div>
                       <label>Benefits </label>
@@ -814,7 +814,7 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-2 gap-4 place-items-center ">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                     {/* Country Of Origin */}
                     <div>
                       <label>Country Of Origin</label>

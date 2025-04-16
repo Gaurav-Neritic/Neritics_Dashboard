@@ -244,7 +244,7 @@ const ProductList = () => {
                       return (
                         <div
                           key={_id}
-                          className="py-3 px-5 grid grid-cols-9 place-items-start gap-4 border-b border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
+                          className="py-3 px-5 grid grid-cols-9 place-items-start gap-4 border-b last:border-b-0 border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
                         >
                           <h1 className="col-span-1 w-full truncate " title={_id}>{_id}</h1>
                           <h1 className="col-span-2 line-clamp-2 capitalize">

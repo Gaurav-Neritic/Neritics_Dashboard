@@ -106,15 +106,15 @@ const page = () => {
 
             <div className="flex justify-between items-center">
                 <div className="flex items-center justify-start gap-3 py-5">
-                    <div className="p-1 border border-gray-500 rounded">
+                    <div className="p-1 border border-gray-500 rounded hidden lg:block">
                         <FileText />
                     </div>
                     <div className="py-5">
                         <p className="text-sm font-normal text-gray-500">
                             All the fields are required
                         </p>
-                        <h1 className="text-xl font-semibold">
-                            <span className="text-3xl">Editing Blog:</span> {title}{" "}
+                        <h1 className="text-md font-normal">
+                            <span className=" text-lg lg:text-3xl font-semibold">Editing Blog:</span> {title}{" "}
                         </h1>
                     </div>
                 </div>
@@ -128,7 +128,7 @@ const page = () => {
                         </h2>
                     </div>
                     <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-                        <div className="grid grid-cols-2 gap-10">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
                             <div className="w-full">
                                 <label>Blog Title:</label>
                                 <input
@@ -164,7 +164,7 @@ const page = () => {
                         <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
                     </div>
                     <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-                        <div className="grid grid-cols-2 gap-10">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
                             <div>
                                 <div className="border border-lightBorder dark:border-darkBorder rounded p-1 relative ">
                                     <div className="">
@@ -173,7 +173,7 @@ const page = () => {
                                             width={200}
                                             src={image || "/placeholder.jpg"}
                                             alt="saved images"
-                                            className="h-auto w-24 rounded border border-lightBorder dark:border-darkBorder object-cover"
+                                            className="h-auto lg:w-24 w-fit rounded border border-lightBorder dark:border-darkBorder object-cover"
                                         />
                                     </div>
 
