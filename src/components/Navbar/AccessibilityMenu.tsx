@@ -30,7 +30,7 @@ const AccessibilityMenu = () => {
             className="flex items-center justify-center gap-2 group cursor-pointer"
           >
             <Bell className="text-red-400 cursor-pointer dark:text-white group-hover:fill-red-200 dark:group-hover:fill-red-400" />
-            <span className="text-gray-700 dark:text-white">
+            <span className="text-gray-700 dark:text-white hidden lg:block">
               {" "}
               Notifications
             </span>
@@ -41,7 +41,7 @@ const AccessibilityMenu = () => {
             className="flex items-center justify-center gap-2 group cursor-pointer"
           >
             <CircleHelp className="text-blue-400 dark:text-white group-hover:fill-blue-200 dark:group-hover:fill-blue-400" />
-            <span className="text-gray-700 dark:text-white"> Need Help</span>
+            <span className="text-gray-700 dark:text-white hidden lg:block">Ask Help</span>
           </Link>
         </div>
         <div className="flex gap-3">
@@ -92,7 +92,7 @@ const AccessibilityMenu = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

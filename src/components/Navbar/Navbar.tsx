@@ -143,6 +143,16 @@ const SidebarNav = () => {
             Settings
           </span>
         </Link>
+
+        <Link
+          href={"/profile"}
+          className="w-full bg-gray-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-gray-200 hover:text-gray-700 transition-all ease-linear duration-200"
+        >
+          <span className="flex gap-3">
+            <Settings className="text-gray-700" />
+            Profile
+          </span>
+        </Link>
       </nav>
 
       {/* Action Button Section */}
