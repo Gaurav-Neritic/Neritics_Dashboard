@@ -7,11 +7,14 @@
   --color-darkBorder: #404040;
   --color-lightBorder: #d1d5dc;
 }
-ol, ul, menu {
+ol,
+ul,
+menu {
   list-style: disc;
 }
 
-ol, menu {
+ol,
+menu {
   list-style: decimal;
 }
 
@@ -23,5 +26,17 @@ ol {
   li p {
     margin-top: 0.25em;
     margin-bottom: 0.25em;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
