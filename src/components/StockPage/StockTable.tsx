@@ -147,7 +147,7 @@ const StocksTable = () => {
       <h1 className="text-2xl font-bold">Stocks In Inventory</h1>
       <div className="flex justify-between items-center mb-6 mt-4">
         {/* Search Bar */}
-        <div className="relative w-full max-w-md">
+        <div className="relative w-full md:max-w-md">
           <input
             type="text"
             placeholder="Search by product name or ID..."
@@ -161,12 +161,12 @@ const StocksTable = () => {
           {/* Export Excel */}
           <button
             onClick={handleExcelExport}
-            className={`flex items-center gap-2 px-3 py-2 bg-green-700  text-white rounded ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
+            className={`md:flex items-center gap-2 px-3 py-2 bg-green-700  text-white rounded hidden ${filteredProducts.length === 0 ? "hidden" : "block  cursor-pointer hover:bg-green-600"}`}
             disabled={filteredProducts.length === 0}
             title="Download Excel"
           >
             <Download className="h-4 w-4" />
-            <span>Export Excel</span>
+            <span>Export</span>
           </button>
         </div>
       </div>
