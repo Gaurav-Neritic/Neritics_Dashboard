@@ -48,7 +48,7 @@ const DeleteBlogPoup = ({ isVisible, onClose, blogTitle, id }: DeletePopupProps)
 
     if (!isVisible) return null;
     return (
-        <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 mx-5 lg:mx-0">
             <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
                 <div className="flex items-center mb-4 text-red-500">
                     <AlertCircle className="mr-2" />

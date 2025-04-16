@@ -89,7 +89,7 @@ export const data = {
 
 const OverView = () => {
   return (
-    <div className="grid-cols-2 grid gap-4">
+    <div className="grid-cols-1 lg:grid-cols-2 grid gap-4">
       <div className="border my-5 p-4 rounded border-lightBorder dark:border-darkBorder ">
         <div className="flex items-center justify-between pb-3 border-b border-lightBorder dark:border-darkBorder ">
           <h1 className="font-semibold uppercase text-gray-600 dark:text-gray-200">

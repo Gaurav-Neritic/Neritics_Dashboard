@@ -50,7 +50,7 @@ export default function Page({ params }: any) {
   const [formData, setFormData] = useState([]);
   const [containerData, setContainerData] = useState([]);
   const [countryData, setCountryData] = useState([]);
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   // image edit popup
   const [popup, setPopup] = useState(false);
@@ -131,9 +131,9 @@ export default function Page({ params }: any) {
     mutationFn: updateProduct,
     onSuccess: () => {
       router.push("/productList");
-      queryClient.invalidateQueries({ queryKey: ['getProductsData'] })
-    }
-  })
+      queryClient.invalidateQueries({ queryKey: ["getProductsData"] });
+    },
+  });
 
   async function getCategories() {
     try {
@@ -210,8 +210,6 @@ export default function Page({ params }: any) {
     }
   }
 
-
-
   useEffect(() => {
     try {
       getEditableProduct();
@@ -266,21 +264,22 @@ export default function Page({ params }: any) {
     <section className="p-5">
       <div>
         <div className="flex items-center justify-start gap-3 py-5">
-          <div className="p-1 border border-gray-500 rounded">
+          <div className="p-1 border border-gray-500 rounded hidden lg:block">
             <FilePenLine />
           </div>
           <div>
             <p className="text-sm font-normal text-gray-500">
               Product Id - {edit}
             </p>
-            <h1 className="text-[28px] font-semibold capitalize">
-              Editing - <span className="text-xl font-normal ">{name}</span>
+            <h1 className="text-lg lg:text-[28px] font-semibold capitalize">
+              Editing -{" "}
+              <span className=" text-sm lg:text-xl font-normal ">{name}</span>
             </h1>
           </div>
         </div>
         <form onSubmit={handelUpdate}>
           <div className="p-2">
-            <div className="grid grid-cols-2 gap-5 ">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
               <div className=" border-gray-400 rounded">
                 {/* Product Description */}
                 <div className="py-5">
@@ -381,7 +380,7 @@ export default function Page({ params }: any) {
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-2 gap-4 place-items-center ">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                           <div>
                             <label>Brand Name</label>
                             <input
@@ -489,7 +488,7 @@ export default function Page({ params }: any) {
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                           <div>
                             <label>Height ( In cm )</label>
                             <input
@@ -595,7 +594,7 @@ export default function Page({ params }: any) {
                         return (
                           <div
                             key={index}
-                            className="border border-lightBorder dark:border-darkBorder rounded py-2 place-items-center relative group"
+                            className="border border-lightBorder dark:border-darkBorder rounded py-2 place-items-center relative"
                           >
                             <div>
                               <img
@@ -605,7 +604,7 @@ export default function Page({ params }: any) {
                               />
                             </div>
 
-                            <div className="absolute top-1 right-1 hidden group-hover:block">
+                            <div className="absolute top-1 right-1">
                               <button
                                 onClick={() => {
                                   setImgIndex(index);
@@ -647,7 +646,7 @@ export default function Page({ params }: any) {
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                           <div>
                             <label>Gender (Both/Male/Female)</label>
                             <select
@@ -697,7 +696,7 @@ export default function Page({ params }: any) {
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-2 gap-4 place-items-center ">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                           {/* Benefit 1  */}
                           <div>
                             <label>Benefits </label>
@@ -774,7 +773,7 @@ export default function Page({ params }: any) {
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-2 gap-4 place-items-center ">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
                           <div>
                             <label>Country Of Origin</label>
                             <select
@@ -875,15 +874,15 @@ export default function Page({ params }: any) {
                 {/* Add Product Button */}
                 <div className="py-3">
                   {category === "Select Category" ||
-                    type === "Select Type" ||
-                    isAyurvedic === "Nature Of Medicine" ||
-                    container === "Container Type" ||
-                    suitableFor === "Edible For" ||
-                    gender === "Select Gender" ||
-                    form === "Select Form" ||
-                    ageRange === "Select Age Range" ||
-                    publish === "Publishing Status" ||
-                    coo === "Select Country" ? (
+                  type === "Select Type" ||
+                  isAyurvedic === "Nature Of Medicine" ||
+                  container === "Container Type" ||
+                  suitableFor === "Edible For" ||
+                  gender === "Select Gender" ||
+                  form === "Select Form" ||
+                  ageRange === "Select Age Range" ||
+                  publish === "Publishing Status" ||
+                  coo === "Select Country" ? (
                     <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
                       Note : Please Select Valid Options Only
                     </div>

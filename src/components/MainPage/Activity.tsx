@@ -16,7 +16,7 @@ const Activity = () => {
                 <h1 className="uppercase font-semibold text-gray-600 dark:text-gray-200">
                     Market Overview
                 </h1>
-                <div className="flex items-center justify-center gap-5">
+                <div className="items-center justify-center gap-5 hidden lg:flex">
 
                     <button type="button" className="flex gap-3 items-center justify-center cursor-pointer">
                         <CircleDot className="h-5 w-5 bg-blue-700 text-white rounded-full" />

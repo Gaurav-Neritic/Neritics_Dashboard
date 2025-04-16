@@ -22,7 +22,7 @@ const SidebarNav = () => {
 
 
   return (
-    <section className="p-5 border-lightBorder dark:border-darkBorder ">
+    <section className="p-5 border-lightBorder dark:border-darkBorder  ">
       {/* logo Dashboard */}
       <div className="flex items-center justify-center py-3 ">
         <Link

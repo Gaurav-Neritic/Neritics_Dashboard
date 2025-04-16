@@ -95,7 +95,7 @@ const AddBlogsPage = () => {
             <h1 className="text-3xl font-semibold">Add A New Blog</h1>
           </div>
         </div>
-        <div>
+        <div className="hidden lg:block">
           <Link
             href={"/blogList"}
             className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
@@ -114,7 +114,7 @@ const AddBlogsPage = () => {
             </h2>
           </div>
           <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
               <div className="w-full">
                 <label>Blog Title:</label>
                 <Input
@@ -142,7 +142,7 @@ const AddBlogsPage = () => {
             <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
           </div>
           <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-            <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
               <div>
                 <label>Blog Image:</label>
                 <br />
