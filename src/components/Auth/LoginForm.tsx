@@ -18,7 +18,6 @@ const LoginForm = () => {
 
   async function login() {
     const data = {
-
       email: email,
       password: password,
     };
@@ -36,7 +35,7 @@ const LoginForm = () => {
       }
     } catch (error) {
       console.log(`Error logging in : ${error}`);
-      toast.error("Failed to login ");
+      toast.error("Invalid Credentials");
     }
   }
 
@@ -46,6 +45,9 @@ const LoginForm = () => {
 
   const handelLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email.includes('@neriticindustries')) {
+      return toast.success("You aren't allowed", { icon: "🙅🏻‍♀️⚠️" })
+    }
     loginMutation.mutate();
   };
 
