@@ -9,7 +9,7 @@ import { useUser } from "@/app/context/UserContext";
 import toast from "react-hot-toast";
 
 const AddAdmin = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const { user } = useUser();
   const queryClient = useQueryClient();
 
@@ -28,7 +28,7 @@ const AddAdmin = () => {
     }
   }
 
-  const { data: userRequests = [], isLoading } = useQuery({ queryFn: getAdminRequests, queryKey: ['userRequests'] })
+  const { data: userRequests = [], isLoading } = useQuery({ queryFn: getAdminRequests, queryKey: ['userRequests'], refetchOnWindowFocus: false })
 
   async function giveAdminAccess(_id: string) {
     try {
@@ -108,6 +108,7 @@ const AddAdmin = () => {
     deleteUserMutation.mutate(_id)
   }
 
+  const totalRequests = userRequests.filter((user: any) => user?.isAdmin === false)
   accessMutation?.isError ? toast.error("Something Went Wrong") : "";
   removeAccessMutation?.isError ? toast.error("Something Went Wrong") : "";
 
@@ -119,8 +120,12 @@ const AddAdmin = () => {
       </div>
       <div className="p-5 ">
         <div className="border border-lightBorder dark:border-darkBorder rounded">
-          <div className="p-3 flex justify-between items-center">
-            <h1 className="text-lg mb-1">Admin Access Requests:</h1>
+          <div className="p-4 flex justify-between items-center">
+            <h1 className={`text-lg mb-1 flex`}>Admin Access Requests :
+              <span className={`ml-2 ${totalRequests.length > 0 ? "animate-pulse text-red-600 font-semibold bg-red-100 px-2 rounded" : ""}`}>
+                {totalRequests.length}
+              </span>
+            </h1>
             <button
               onClick={() => setIsVisible(!isVisible)}
               className="cursor-pointer flex gap-2 text-gray-500 dark:text-white"
@@ -160,7 +165,7 @@ const AddAdmin = () => {
                           onClick={(e) => { e.preventDefault(); handelAccess(_id) }}
                           className={`bg-green-600  px-4 py-1 relative rounded text-white ${isAdmin ? "cursor-not-allowed" : "cursor-pointer hover:bg-green-700"}`}>
                           {isAdmin ? "Authorized" : "Authorize"}
-                          {isAdmin && <span className="absolute text-black text-[10px] -top-2 px-[3px] -right-1 bg-white rounded">Admin</span>}
+                          {isAdmin && <span className="absolute text-black text-[10px] -top-2 px-[4px] -right-1 bg-white rounded-full ring ring-lightBorder dark:ring-darkBorder">Admin</span>}
                         </button>
                         {!isSuperAdmin && <>
                           <button
