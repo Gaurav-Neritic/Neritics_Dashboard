@@ -22,7 +22,7 @@ const AccessibilityMenu = () => {
   }
 
   return (
-    <div className="hidden sm:block">
+    <div className="hidden lg:block">
       <div className=" flex items-center justify-between p-5 gap-3 border-b border-lightBorder dark:border-darkBorder  m-5">
         <div className="flex gap-5 border  px-3 py-2 rounded border-lightBorder dark:border-darkBorder ">
           <Link
@@ -59,7 +59,7 @@ const AccessibilityMenu = () => {
             <PackageSearch />
             View Products
           </Link>
-          <div className="relative group ">
+          <div className="relative group hidden lg:block">
             <div className="relative">
               <Image
                 src={user?.avatar || "/placeholder.jpg"}
