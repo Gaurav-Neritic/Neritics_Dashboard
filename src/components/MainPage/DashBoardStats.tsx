@@ -26,7 +26,7 @@ const DashBoardStats = () => {
               25%
             </div>
             <div>
-              <ChartNoAxesCombined className="lg:h-12 lg:w-12 h-8 w-8 text-white bg-yellow-400 p-1 rounded" />
+              <ChartNoAxesCombined className="lg:h-12 lg:w-12 h-10 w-10 text-white bg-yellow-400 p-1 rounded" />
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@ const DashBoardStats = () => {
         {/* Total Sales Revenue */}
         <div className="border border-lightBorder dark:border-darkBorder lg:py-3 h-auto px-6 rounded">
           <div className="py-3">
-            <h1 className="lg:text-4xl text-2xl font-semibold pb-2">$35.50 +</h1>
+            <h1 className="lg:text-4xl text-2xl font-semibold pb-2">$35.50 </h1>
             <p className="text-gray-500 dark:text-gray-400">Sales Revenue</p>
           </div>
           <div className="flex items-end justify-between py-3">
@@ -43,7 +43,7 @@ const DashBoardStats = () => {
               15%
             </div>
             <div>
-              <IndianRupee className="lg:h-12 lg:w-12 h-8 w-8 text-white bg-green-400 p-1 rounded" />
+              <IndianRupee className="lg:h-12 lg:w-12 h-10 w-10 text-white bg-green-400 p-1 rounded" />
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@ const DashBoardStats = () => {
               5%
             </div>
             <div>
-              <PackagePlus className="lg:h-12 lg:w-12 h-8 w-8 text-white bg-blue-400 p-1 rounded" />
+              <PackagePlus className="lg:h-12 lg:w-12 h-10 w-10 text-white bg-blue-400 p-1 rounded" />
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ const DashBoardStats = () => {
               25%
             </div>
             <div>
-              <CircleHelp className="lg:h-12 lg:w-12 h-8 w-8 text-white bg-red-400 p-1 rounded" />
+              <CircleHelp className="lg:h-12 lg:w-12 h-10 w-10 text-white bg-red-400 p-1 rounded" />
             </div>
           </div>
         </div>

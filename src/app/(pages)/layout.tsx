@@ -36,14 +36,14 @@ export default function RootLayout({
         <UserContextProvider>
           <ReactQueryProvider>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_4fr] gap-4">
-              <div className=" my-5  h-fit rounded mx-4 md:mx-0 border border-lightBorder dark:border-darkBorder top-1 sticky hidden lg:block">
+              <div className=" my-5  h-fit rounded mx-4 md:mx-0 border border-lightBorder dark:border-darkBorder sticky top-0  hidden lg:block">
                 <SidebarNav />
               </div>
-             <div className="lg:hidden block my-5  h-fit rounded mx-4 md:mx-0 border border-lightBorder dark:border-darkBorder top-1 sticky p-2  bg-white z-10 dark:bg-darkMode dark:text-black">
-              <MobileNavbar/>
-             </div>
+              <div className="lg:hidden block mx-5  h-fit rounded lg:mx-0 border border-lightBorder dark:border-darkBorder top-0 sticky p-2 bg-white z-10 dark:bg-darkMode dark:text-black">
+                <MobileNavbar />
+              </div>
 
-              <div className=" my-5 max-sm:border-none lg:border border-lightBorder dark:border-darkBorder rounded">
+              <div className="my-5 max-sm:border-none lg:border border-lightBorder dark:border-darkBorder rounded">
                 <AccessibilityMenu />
                 {children}
                 <Toaster position="top-center" reverseOrder={false} />
