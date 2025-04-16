@@ -1,5 +1,4 @@
-
-
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -13,18 +12,19 @@ import {
   PackagePlus,
   Settings,
   SquarePlus,
+
 } from "lucide-react";
 import ToggleMode from "@/components/Theme/ToggleMode";
 
 
+
 const SidebarNav = () => {
 
-
-
   return (
-    <section className="p-5 border-lightBorder dark:border-darkBorder  ">
+    <section className=" p-5 ">
       {/* logo Dashboard */}
-      <div className="flex items-center justify-center py-3 ">
+      <div className="hidden lg:block ">
+      <div className="flex items-center justify-center py-3  ">
         <Link
           href={"/"}
           className="flex items-center justify-center uppercase font-semibold text-lg text-green-600"
@@ -40,9 +40,10 @@ const SidebarNav = () => {
           {/* <span className="text-cyan-600">Neri</span>tic's */}
         </Link>
       </div>
+      </div>
 
-      {/* navbar Section */}
-      <nav className="py-5 dark:text-black">
+      {/* desktop navbar Section */}
+      <nav className=" hidden lg:block py-5 dark:text-black ">
         <Link
           href={"/"}
           className="w-full bg-white border border-gray-200 rounded p-2 my-2 flex items-center justify-between gap-2 hover:bg-gray-200 transition-all ease-linear duration-200"
@@ -62,7 +63,6 @@ const SidebarNav = () => {
             Add Product
           </span>
         </Link>
-
 
         <Link
           href={"/addBlog"}
@@ -103,7 +103,6 @@ const SidebarNav = () => {
             Sales
           </span>
         </Link>
-
 
         <Link
           href={"/sales"}
@@ -147,7 +146,8 @@ const SidebarNav = () => {
       </nav>
 
       {/* Action Button Section */}
-      <div className="grid grid-cols-3 place-items-center">
+      <div className="hidden lg:block">
+      <div className=" grid grid-cols-3 place-items-center">
         <ToggleMode />
         <Link
           href={"https://gmail.com"}
@@ -167,6 +167,7 @@ const SidebarNav = () => {
             🌐
           </span>
         </Link>
+      </div>
       </div>
     </section>
   );

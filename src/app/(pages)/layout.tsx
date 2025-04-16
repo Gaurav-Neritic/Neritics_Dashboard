@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import AccessibilityMenu from "@/components/Navbar/AccessibilityMenu";
 import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
 import { UserContextProvider } from "../context/UserContext";
+import MobileNavbar from "@/components/Navbar/MobileNavbar";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -35,10 +36,14 @@ export default function RootLayout({
         <UserContextProvider>
           <ReactQueryProvider>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_4fr] gap-4">
-              <div className=" hidden lg:block my-5 border-lightBorder border h-fit dark:border-darkBorder rounded-xl top-1 sticky">
+              <div className=" my-5  h-fit rounded mx-4 md:mx-0 border border-lightBorder dark:border-darkBorder top-1 sticky hidden lg:block">
                 <SidebarNav />
               </div>
-              <div className=" my-5 max-sm:border-none lg:border border-lightBorder dark:border-darkBorder rounded-xl ">
+             <div className="lg:hidden block my-5  h-fit rounded mx-4 md:mx-0 border border-lightBorder dark:border-darkBorder top-1 sticky p-2  bg-white z-10 dark:bg-darkMode dark:text-black">
+              <MobileNavbar/>
+             </div>
+
+              <div className=" my-5 max-sm:border-none lg:border border-lightBorder dark:border-darkBorder rounded">
                 <AccessibilityMenu />
                 {children}
                 <Toaster position="top-center" reverseOrder={false} />
