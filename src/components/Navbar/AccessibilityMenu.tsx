@@ -17,7 +17,7 @@ const AccessibilityMenu = () => {
         router.push("/login");
       }
     } catch (error) {
-      console.log(`Erro clearing cookies : ${error}`);
+      console.log(`Error clearing cookies : ${error}`);
     }
   }
 
