@@ -6,6 +6,7 @@ import {
   Blocks,
   ChartPie,
   CircleUserRound,
+  FilePlus,
   FileText,
   House,
   MessageCircleQuestion,
@@ -66,7 +67,7 @@ const SidebarNav = () => {
           className="w-full bg-cyan-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-cyan-200 hover:text-cyan-600 transition-all ease-linear duration-200"
         >
           <span className="flex gap-3">
-            <FileText className="text-cyan-500" />
+            <FilePlus className="text-cyan-500" />
             Add Blog
           </span>
         </Link>
