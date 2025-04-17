@@ -9,7 +9,7 @@ import { useUser } from "@/app/context/UserContext";
 import toast from "react-hot-toast";
 
 const AddAdmin = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const { user } = useUser();
   const queryClient = useQueryClient();
 
@@ -128,7 +128,7 @@ const AddAdmin = () => {
             </h1>
             <button
               onClick={() => setIsVisible(!isVisible)}
-              className="cursor-pointer flex gap-2 text-gray-500 dark:text-white"
+              className="cursor-pointer flex gap-2 text-gray-500 "
             >
               {isVisible ? "Show Less" : "Show More"}{" "}
               {isVisible ? <ChevronUp /> : <ChevronDown />}
