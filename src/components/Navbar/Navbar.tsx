@@ -5,6 +5,7 @@ import {
   BadgeIndianRupee,
   Blocks,
   ChartPie,
+  CircleUserRound,
   FileText,
   House,
   MessageCircleQuestion,
@@ -12,14 +13,10 @@ import {
   PackagePlus,
   Settings,
   SquarePlus,
-
 } from "lucide-react";
 import ToggleMode from "@/components/Theme/ToggleMode";
 
-
-
 const SidebarNav = () => {
-
   return (
     <section className="p-5">
       {/* logo Dashboard */}
@@ -149,7 +146,7 @@ const SidebarNav = () => {
           className="w-full bg-gray-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-gray-200 hover:text-gray-700 transition-all ease-linear duration-200"
         >
           <span className="flex gap-3">
-            <Settings className="text-gray-700" />
+            <CircleUserRound className="text-gray-700" />
             Profile
           </span>
         </Link>

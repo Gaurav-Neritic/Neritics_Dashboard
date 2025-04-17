@@ -3,6 +3,7 @@ import {
   BadgeIndianRupee,
   Blocks,
   ChartPie,
+  CircleUserRound,
   FileText,
   House,
   Menu,
@@ -26,7 +27,7 @@ const MobileNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const { user } = useUser();
-  const router = useRouter()
+  const router = useRouter();
 
   async function clearCookies() {
     try {
@@ -41,7 +42,7 @@ const MobileNavbar = () => {
 
   return (
     <>
-      <div className="lg:hidden flex items-center justify-between" >
+      <div className="lg:hidden flex items-center justify-between">
         <div>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -73,7 +74,9 @@ const MobileNavbar = () => {
           <div className="relative">
             <div className="relative">
               <Image
-                onClick={() => { setDropDown((prev) => !prev) }}
+                onClick={() => {
+                  setDropDown((prev) => !prev);
+                }}
                 src={user?.avatar || "/placeholder.jpg"}
                 alt="user-image"
                 width={100}
@@ -84,29 +87,30 @@ const MobileNavbar = () => {
                 {user?.isAdmin ? "🟢" : "🔴"}
               </span>
             </div>
-            {dropDown && <div className="absolute -right-2 my-[5px] transition-all ease-linear duration-300 w-auto border border-lightBorder dark:border-darkBorder p-2 rounded z-10 bg-white dark:bg-darkMode dark:text-white ">
-              <h1 className="py-1 px-2 text-sm  border border-lightBorder dark:border-darkBorder my-1 rounded">
-                {user?.name}
-              </h1>
-              <h1 className="py-1 px-2 text-sm  border border-lightBorder dark:border-darkBorder my-1 rounded">
-                {user?.email}
-              </h1>
-              <button
-                onClick={() => {
-                  clearCookies();
-                  localStorage.clear();
-                }}
-                className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded cursor-pointer text-sm"
-              >
-                Logout
-              </button>
-            </div>}
+            {dropDown && (
+              <div className="absolute -right-2 my-[5px] transition-all ease-linear duration-300 w-auto border border-lightBorder dark:border-darkBorder p-2 rounded z-10 bg-white dark:bg-darkMode dark:text-white ">
+                <h1 className="py-1 px-2 text-sm  border border-lightBorder dark:border-darkBorder my-1 rounded">
+                  {user?.name}
+                </h1>
+                <h1 className="py-1 px-2 text-sm  border border-lightBorder dark:border-darkBorder my-1 rounded">
+                  {user?.email}
+                </h1>
+                <button
+                  onClick={() => {
+                    clearCookies();
+                    localStorage.clear();
+                  }}
+                  className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded cursor-pointer text-sm"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
       <nav>
         {/* nav buttons */}
-
 
         {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
@@ -233,7 +237,16 @@ const MobileNavbar = () => {
                     Enquiry
                   </span>
                 </Link>
-
+                <Link
+                  href={"/profile"}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full bg-gray-100 border border-gray-200 rounded p-2 my-2 flex items-start justify-between gap-2 hover:bg-gray-200 hover:text-gray-700 transition-all ease-linear duration-200"
+                >
+                  <span className="flex gap-3">
+                    <CircleUserRound className="text-gray-700" />
+                    Profile
+                  </span>
+                </Link>
                 <Link
                   href={"/settings"}
                   onClick={() => setIsMenuOpen(false)}
