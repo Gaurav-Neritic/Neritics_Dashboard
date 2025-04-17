@@ -45,9 +45,9 @@ const LoginForm = () => {
 
   const handelLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // if (!email.includes('@neriticindustries')) {
-    //   return toast.success("You aren't allowed", { icon: "🙅🏻‍♀️⚠️" })
-    // }
+    if (!email.includes('@neriticindustries')) {
+      return toast.success("You aren't allowed", { icon: "🙅🏻‍♀️⚠️" })
+    }
     loginMutation.mutate();
   };
 
