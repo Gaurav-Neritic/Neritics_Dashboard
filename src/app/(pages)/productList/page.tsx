@@ -159,7 +159,7 @@ const ProductList = () => {
       </div>
 
       {/*    Product Button (ListView & CardView) */}
-      <div className="py-5 flex justify-between items-center ">
+      <div className="py-5 flex justify-between items-center">
         <div>
           <h1 className="text-2xl lg:text-xl lg:py-0 py-5 uppercase font-semibold">Product Lists</h1>
         </div>
