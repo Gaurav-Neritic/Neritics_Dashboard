@@ -7,6 +7,7 @@ import axios from "axios";
 import BlogCard from "@/components/BlogPage/BlogCard";
 import DeleteBlogPoup from "@/components/Popups/DeleteBlogPopup";
 import Loader from "@/components/Loaders/Loader";
+import Image from "next/image";
 
 const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
@@ -73,19 +74,20 @@ const BlogList = () => {
 
   return (
     <div className="p-5">
-      <div className="flex justify-between items-center py-5">
+      <h1 className="text-2xl py-5 uppercase font-semibold max-sm:block hidden">All - Blogs</h1>
+      <div className="flex items-center justify-between py-5 text-wrap">
         <div>
-          <h1 className="text-xl uppercase font-semibold">Blog Lists</h1>
+          <h1 className="text-2xl lg:text-xl lg:py-0 py-5 max-sm:hidden uppercase font-semibold">All - Blogs</h1>
         </div>
 
-        <div className="flex items-center justify-center gap-3 ">
+        <div className="grid grid-cols-[3fr_1fr_0.5fr] max-md:grid-cols-[3fr_1fr] gap-3 max-lg:grid-cols-[3fr_1fr] max-sm:grid-cols-2 max-sm:w-full max-md:place-items-end ">
 
           <input
             type="text"
             value={searchText}
             onChange={handleSearch}
             placeholder="Search by blog title..."
-            className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
+            className="py-2 px-4 w-full border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
           />
           <select className="p-2 px-4 border border-gray-300 dark:border-darkBorder rounded appearance-auto text-sm bg-transparent outline-none"
             onChange={(e) => {
@@ -96,23 +98,36 @@ const BlogList = () => {
             <option>🟢 Live</option>
             <option>🔴 UnListed</option>
           </select>
-          <div>
-            <div className="flex items-center gap-2 rounded-lg p-1">
-              <button
-                onClick={() => setViewMode("card")}
-                className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer `}
-              >
-                <LayoutGrid className="h-[20px] w-[20px]" />
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer`}
-              >
-                <List className="h-[20px] w-[20px]" />
-              </button>
-            </div>
+          <div className="lg:flex gap-3 hidden">
+            <button
+              onClick={() => setViewMode("card")}
+              className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer `}
+            >
+              <LayoutGrid className="h-[20px] w-[20px]" />
+            </button>
+            <button
+              onClick={() => setViewMode("list")}
+              className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer`}
+            >
+              <List className="h-[20px] w-[20px]" />
+            </button>
           </div>
         </div>
+      </div>
+
+      <div className="flex gap-3 items-end w-full justify-end lg:hidden pb-4">
+        <button
+          onClick={() => setViewMode("card")}
+          className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer `}
+        >
+          <LayoutGrid className="h-[20px] w-[20px]" />
+        </button>
+        <button
+          onClick={() => setViewMode("list")}
+          className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer`}
+        >
+          <List className="h-[20px] w-[20px]" />
+        </button>
       </div>
 
       {/* List View */}
@@ -154,7 +169,7 @@ const BlogList = () => {
           {filteredBlogs.map((blog: any) => (
             <div
               key={blog?._id}
-              className="p-2 flex w-full justify-start items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder "
+              className="p-2 flex w-full justify-start items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder gap-3"
             >
               <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-start hidden md:block">
                 {blog._id}
@@ -168,30 +183,33 @@ const BlogList = () => {
 
 
 
-              <div className="px-2 text-gray-500 dark:text-gray-50 capitalize w-3/12 truncate">
+              <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 capitalize  line-clamp-1">
                 {blog.author}
               </div>
 
 
               <div className="px-2 w-2/12 flex items-start">
-                <img
+                <Image
+                  loading="lazy"
                   src={blog.image}
                   alt={blog.title}
-                  className="w-10 h-10 object-cover rounded"
+                  height={100}
+                  width={100}
+                  className="w-10 h-10  object-cover rounded"
                 />
               </div>
 
 
-              <div className="px-4 w-1/12 flex">
+              <div className="px-4 w-1/12 flex text-sm md:text-xl">
                 {blog.publish ? "🟢" : "🔴"}
               </div>
-              <div className="px-4 w-2/12 items-start justify-start">
-                <div className="flex justify-start items-start space-x-2">
+              <div className="px-4  w-2/12 items-start justify-start ">
+                <div className="flex justify-start items-start gap-2">
                   <Link
                     href={`/blogList/${blog?._id}`}
                     className="text-green-400 hover:text-green-500"
                   >
-                    <FilePenLine className="h-5 w-5 md:w-auto md:h-auto cursor-pointer" />
+                    <FilePenLine className="h-4 w-4 md:w-auto md:h-auto cursor-pointer" />
                   </Link>
                   <button
                     onClick={() => {
@@ -200,7 +218,7 @@ const BlogList = () => {
                     }}
                     className="text-red-400 hover:text-red-500"
                   >
-                    <Trash2 className="h-5 w-5 md:w-auto md:h-auto cursor-pointer" />
+                    <Trash2 className="h-4 w-4 md:w-auto md:h-auto cursor-pointer" />
                   </button>
                   {
                     <DeleteBlogPoup
@@ -247,7 +265,7 @@ const BlogList = () => {
               </div>
             </div>
           )}
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
             {filteredBlogs.map((blog: any) => (
               <div key={blog?._id}>
                 <BlogCard

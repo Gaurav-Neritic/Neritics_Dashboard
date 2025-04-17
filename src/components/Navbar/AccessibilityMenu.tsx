@@ -83,9 +83,7 @@ const AccessibilityMenu = () => {
                 onClick={() => {
                   clearCookies();
                   localStorage.clear();
-                }}
-                className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded cursor-pointer"
-              >
+                }} className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer bg-red-300 ">
                 Logout
               </button>
             </div>

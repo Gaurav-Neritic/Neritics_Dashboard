@@ -561,7 +561,7 @@ const AddProduct = () => {
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
               <div>
                 <div className="w-full py-2">
-                  <div className="flex items-center flex-wrap justify-center gap-4 mt-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                     {/* Main Image */}
                     <div className="relative">
                       <label className="text-neutral-700 dark:text-gray-300">
@@ -612,7 +612,7 @@ const AddProduct = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center flex-wrap justify-center gap-4 mt-2">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                     {/* Second Image */}
                     <div className="relative">
                       <label className="text-neutral-700 dark:text-gray-300 z-20">

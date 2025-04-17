@@ -118,10 +118,10 @@ const AddAdmin = () => {
       <div className="p-5">
         <h1 className="text-2xl font-bold"> Admin Settings</h1>
       </div>
-      <div className="p-5 ">
+      <div className="p-5">
         <div className="border border-lightBorder dark:border-darkBorder rounded">
-          <div className="p-4 flex justify-between items-center">
-            <h1 className={`text-lg mb-1 flex`}>Admin Access Requests :
+          <div className="p-4 flex justify-between items-center flex-wrap">
+            <h1 className={`text-lg mb-1 flex`}>Admin Requests :
               <span className={`ml-2 ${totalRequests.length > 0 ? "animate-pulse text-red-600 font-semibold bg-red-100 px-2 rounded" : ""}`}>
                 {totalRequests.length}
               </span>
@@ -144,7 +144,8 @@ const AddAdmin = () => {
               {
                 userRequests?.map(({ name, _id, avatar, email, isAdmin, isSuperAdmin }: { name: string, _id: string, avatar: string, email: string, isAdmin: boolean, isSuperAdmin: boolean }) => {
                   return (
-                    <div key={_id} className="grid grid-cols-[1fr_2fr_2fr_3fr] place-items-center m-5 py-2 border border-lightBorder dark:border-darkBorder rounded ">
+                    <div key={_id} className="grid  md:grid-cols-[1fr_2fr_2fr_3fr] 
+                    grid-cols-[1fr_1fr_3fr]  place-items-center m-5 py-2 border border-lightBorder dark:border-darkBorder rounded ">
                       <div>
                         <Image
                           src={avatar || "/placeholder.jpg"}
@@ -156,7 +157,7 @@ const AddAdmin = () => {
                       <div>
                         <h1 className="capitalize">{name}</h1>
                       </div>
-                      <div>
+                      <div className="hidden md:block">
                         <h1 className="">{email}</h1>
                       </div>
                       <div className="flex items-center justify-center gap-2 flex-wrap">
@@ -171,7 +172,7 @@ const AddAdmin = () => {
                           <button
                             onClick={(e) => { e.preventDefault(); handelRemoveAccess(_id) }} className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white"> Un-Set</button>
                           <button
-                            onClick={(e) => { e.preventDefault(); handelDeleteUser(_id) }} className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white">
+                            onClick={(e) => { e.preventDefault(); handelDeleteUser(_id) }} className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white w-auto">
                             <Trash2 />
                           </button>
                         </>
