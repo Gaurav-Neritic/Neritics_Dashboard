@@ -98,9 +98,9 @@ const MobileNavbar = () => {
 
       {/* Dropdown Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden ">
+        <div className="lg:hidden min-h-screen py-10">
           <div className="px-4 py-4">
-            <nav className="min-h-screen">
+            <nav className="   ">
               {navLinks.map((link) => (
                 <MobileNavLink
                   key={link.href}
@@ -115,8 +115,8 @@ const MobileNavbar = () => {
               ))}
 
               {/* Action Icons */}
-              <div className="p-2 my-5 rounded border border-lightBorder dark:border-darkBorder">
-                <div className="grid grid-cols-3 place-items-center">
+              <div className=" w-50  flex mx-auto p-2 my-5 rounded border border-lightBorder dark:border-darkBorder">
+                <div className="grid grid-cols-3 place-items-center  mx-auto gap-4">
                   <ToggleMode />
                   <Link
                     href="https://gmail.com"

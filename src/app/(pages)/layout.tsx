@@ -39,7 +39,7 @@ export default function RootLayout({
               <div className=" my-5  h-fit rounded mx-4 md:mx-0 border border-lightBorder dark:border-darkBorder sticky top-0  hidden lg:block">
                 <SidebarNav />
               </div>
-              <div className="lg:hidden block mx-5  h-fit rounded lg:mx-0 border border-lightBorder dark:border-darkBorder top-0 sticky p-2 bg-white z-10 dark:bg-darkMode dark:text-black">
+              <div className="lg:hidden block mx-5  h-fit rounded lg:mx-0 border border-lightBorder dark:border-darkBorder top-0 sticky p-2 bg-white z-10 dark:bg-darkMode dark:text-black ">
                 <MobileNavbar />
               </div>
 
