@@ -1,20 +1,5 @@
 "use client";
-import {
-  Blocks,
-  ChartPie,
-  CircleUserRound,
-  FilePlus,
-  FileText,
-  Home,
-  Menu,
-  MessageCircleQuestion,
-  MessageSquareMore,
-  PackagePlus,
-  PackageSearch,
-  Settings,
-  SquarePlus,
-  X,
-} from "lucide-react";
+import { FileText, Menu, PackageSearch, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import ToggleMode from "../../Theme/ToggleMode";
@@ -23,6 +8,7 @@ import { useUser } from "@/app/context/UserContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import MobileNavLink from "./MobileNavLink";
+import { navLinks } from "@/lib/navLinks";
 
 const MobileNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,19 +26,6 @@ const MobileNavbar = () => {
       console.log(`Error clearing cookies: ${error}`);
     }
   }
-
-  const navLinks = [
-    { href: "/", icon: Home, label: "Home" },
-    { href: "/addProduct", icon: FilePlus, label: "Add Product" },
-    { href: "/addBlog", icon: SquarePlus, label: " Add Blog" },
-    { href: "/orders", icon: PackagePlus, label: " Orders" },
-    { href: "/queries", icon: MessageCircleQuestion, label: "Queries" },
-    { href: "/sales", icon: ChartPie, label: "Sales" },
-    { href: "/stocks", icon: Blocks, label: " Stocks" },
-    { href: "/enquiry", icon: MessageSquareMore, label: "Enquiry" },
-    { href: "/profile", icon: CircleUserRound, label: "Profile" },
-    { href: "/settings", icon: Settings, label: "Settings" },
-  ];
 
   return (
     <>
