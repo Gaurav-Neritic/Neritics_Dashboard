@@ -72,9 +72,12 @@ const ProductList = () => {
         getProductsData.filter((product: any) => product.listingStatus === false)
       );
     } else {
-      setFilteredProducts(getProductsData);
+      if (getProductsData.length > 0) {
+        setFilteredProducts(getProductsData);
+      }
     }
-  }, [filter]);
+
+  }, [filter, getProductsData]);
 
   // Excel Download handle
   const handleExcelExport = () => {
@@ -111,10 +114,6 @@ const ProductList = () => {
       toast.error("Failed to download Excel file");
     }
   };
-
-  useEffect(() => {
-    setFilteredProducts(getProductsData);
-  }, [getProductsData])
 
 
   return (

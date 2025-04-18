@@ -64,13 +64,14 @@ const BlogList = () => {
         blogs.filter((blog: any) => blog.publish === false)
       );
     } else {
-      setFilteredBlogs(blogs);
+      if (blogs.length > 0) {
+        setFilteredBlogs(blogs);
+      }
     }
-  }, [filter]);
 
-  useEffect(() => {
-    setFilteredBlogs(blogs);
-  }, [blogs]);
+
+  }, [filter, blogs]);
+
 
   return (
     <div className="p-5">
@@ -94,9 +95,9 @@ const BlogList = () => {
               setFilter(e.target.value);
             }}
           >
-            <option>🌏 All</option>
-            <option>🟢 Live</option>
-            <option>🔴 UnListed</option>
+            <option className="dark:text-darkMode">🌏 All</option>
+            <option className="dark:text-darkMode">🟢 Live</option>
+            <option className="dark:text-darkMode">🔴 UnListed</option>
           </select>
           <div className="lg:flex gap-3 hidden">
             <button
@@ -203,13 +204,13 @@ const BlogList = () => {
               <div className="px-4 w-1/12 flex text-sm md:text-xl">
                 {blog.publish ? "🟢" : "🔴"}
               </div>
-              <div className="px-4  w-2/12 items-start justify-start ">
+              <div className="px-2  w-2/12 items-start justify-start ">
                 <div className="flex justify-start items-start gap-2">
                   <Link
                     href={`/blogList/${blog?._id}`}
                     className="text-green-400 hover:text-green-500"
                   >
-                    <FilePenLine className="h-4 w-4 md:w-auto md:h-auto cursor-pointer" />
+                    <FilePenLine className="h-5 w-5 md:w-auto md:h-auto cursor-pointer" />
                   </Link>
                   <button
                     onClick={() => {
@@ -218,7 +219,7 @@ const BlogList = () => {
                     }}
                     className="text-red-400 hover:text-red-500"
                   >
-                    <Trash2 className="h-4 w-4 md:w-auto md:h-auto cursor-pointer" />
+                    <Trash2 className="h-5 w-5 md:w-auto md:h-auto cursor-pointer" />
                   </button>
                   {
                     <DeleteBlogPoup
@@ -265,7 +266,7 @@ const BlogList = () => {
               </div>
             </div>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5 lg:p-0  gap-5">
             {filteredBlogs.map((blog: any) => (
               <div key={blog?._id}>
                 <BlogCard
