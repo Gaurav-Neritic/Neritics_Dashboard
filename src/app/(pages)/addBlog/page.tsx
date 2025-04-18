@@ -95,6 +95,7 @@ const AddBlogsPage = () => {
             <h1 className="text-3xl font-semibold">Add A New Blog</h1>
           </div>
         </div>
+
         <div className="hidden lg:block">
           <Link
             href={"/blogList"}

@@ -756,7 +756,7 @@ export default function Page({ params }: any) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center justify-center text-sm py-3 text-gray-600 animate-pulse">
+                    <div className="flex items-center justify-center text-sm py-3 text-gray-600 dark:text-gray-200 animate-pulse">
                       <sup>*</sup>Note ( Use "," comma for adding multiple
                       values)
                     </div>
@@ -890,10 +890,10 @@ export default function Page({ params }: any) {
                     <button
                       type="submit"
                       title="Save Updates"
-                      className={`px-4 py-2 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400`}
+                      className={`px-4 py-2 tex-sm border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400`}
                     >
                       <span className="flex items-center justify-center gap-2">
-                        {loading ? "" : <Save />}
+                        {loading ? "" : <Save className="h-5 w-5" />}
                         {loading ? <Loader title={"Saving..."} /> : "Save"}
                       </span>
                     </button>

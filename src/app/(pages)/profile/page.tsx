@@ -48,7 +48,7 @@ const page = () => {
             <div>
 
               <h1 className="text-lg py-2 ">Edit Details :</h1>
-              <div className="grid lg:grid-cols-2 grid-cols-1 border p-3 rounded border-lightBorder dark:bg-darkBorder">
+              <div className="grid lg:grid-cols-2 grid-cols-1 border p-3 rounded border-lightBorder dark:border-darkBorder dark:bg-neutral-800/60">
                 <div className="p-2">
                   <p className="my-1 text-sm uppercase">FullName : </p>
                   <div className="flex  gap-3">
