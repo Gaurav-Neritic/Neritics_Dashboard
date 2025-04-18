@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Fira_Code, Inter } from "next/font/google";
 import "../../app/globals.css";
-import SidebarNav from "@/components/Navbar/Navbar";
+import SidebarNav from "@/components/Navbar/(Navbar)/Navbar";
 import { Toaster } from "react-hot-toast";
 import AccessibilityMenu from "@/components/Navbar/AccessibilityMenu";
 import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
 import { UserContextProvider } from "../context/UserContext";
-import MobileNavbar from "@/components/Navbar/MobileNavbar";
+import MobileNavbar from "@/components/Navbar/(MobileNavbar)/MobileNavbar";
 
 const inter = Inter({
   variable: "--font-geist-sans",
