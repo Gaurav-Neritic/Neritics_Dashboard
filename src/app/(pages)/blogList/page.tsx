@@ -64,13 +64,14 @@ const BlogList = () => {
         blogs.filter((blog: any) => blog.publish === false)
       );
     } else {
-      setFilteredBlogs(blogs);
+      if (blogs.length > 0) {
+        setFilteredBlogs(blogs);
+      }
     }
-  }, [filter]);
 
-  useEffect(() => {
-    setFilteredBlogs(blogs);
-  }, [blogs]);
+
+  }, [filter, blogs]);
+
 
   return (
     <div className="p-5">
