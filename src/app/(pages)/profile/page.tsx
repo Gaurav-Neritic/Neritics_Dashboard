@@ -104,7 +104,7 @@ const page = () => {
                 </div>
 
                 <div className="p-2">
-                  <p className="my-1 text-sm uppercase">ADMIn : </p>
+                  <p className="my-1 text-sm uppercase">ROLE : </p>
                   <div className="flex  gap-3">
                     <h1 className=" px-3 py-2 border border-lightBorder dark:border-darkBorder rounded w-full">{user?.isAdmin ? "Admin" : "Visitor"}</h1>
                   </div>
