@@ -223,15 +223,15 @@ const ProductList = () => {
             <div className={`py-3 px-5 gap-5 grid md:grid-cols-8 grid-cols-5 place-items-center `} >
               <h1 className="w-full truncate hidden md:block">Products Id</h1>
               <h1 className="w-full truncate">Products Name</h1>
-              <div className="w-full place-items-center">
+              <div className="w-full text-center">
                 <h1 className="truncate w-full">Image</h1>
               </div>
               <h1 className="w-full truncate">Price</h1>
               <h1 className="w-full truncate hidden md:block">Category</h1>
-              <div className="w-full place-items-center">
+              <div className="w-full text-center">
                 <h1 className="truncate w-full">Publish</h1>
               </div>
-              <div className="w-full place-items-center hidden md:block">
+              <div className="w-full text-center hidden md:block">
                 <h1 className="truncate w-full ">Stock</h1>
               </div>
               <h1 className="w-full truncate">Action</h1>
@@ -275,10 +275,7 @@ const ProductList = () => {
                           </div>
 
                           <h1>
-                            <span className="hidden md:block">
-                              ₹
-                            </span>
-                            {price}</h1>
+                            ₹{price}</h1>
                           <h1 className="hidden md:block">{category}</h1>
                           <div className=" w-full place-items-center">
                             <h1>{listingStatus ? "🟢" : "🔴"}</h1>
