@@ -10,8 +10,6 @@ export async function PUT(request: NextRequest) {
 
         const { id, oldPassword, newPassword } = reqBody.data;
 
-        console.log(reqBody)
-
         if (!id || !oldPassword || !newPassword) {
             return NextResponse.json({ error: "All the fields are required" }, { status: 401 })
         }

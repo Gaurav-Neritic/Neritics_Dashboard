@@ -1,24 +1,43 @@
 "use client";
 import { useUser } from "@/app/context/UserContext";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Bell, CircleHelp, File, FileText, PackageSearch } from "lucide-react";
+import { Bell, CircleHelp, FileText, PackageSearch } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import Loader from "../Loaders/Loader";
 
 const AccessibilityMenu = () => {
   const { user } = useUser();
   const router = useRouter();
 
-  async function clearCookies() {
+  const logout = async () => {
+    const id = JSON.stringify(user?._id);
+    const _id = JSON.parse(id)
     try {
-      const response = await axios.get("api/clearCookies");
-      if (response.data?.data) {
-        router.push("/login");
+      const response = await axios.post('../api/logout', { _id });
+
+      if (response.data.data) {
+        localStorage.removeItem('user');
       }
     } catch (error) {
-      console.log(`Error clearing cookies : ${error}`);
+      console.log("Error logging out ", error)
     }
+  }
+
+  const logoutMutation = useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      toast.success("Logged Out")
+      router.push("/login");
+    }
+  })
+
+  const handelLogout = (e: React.MouseEvent) => {
+    e.preventDefault();
+    logoutMutation.mutate();
   }
 
   return (
@@ -80,11 +99,9 @@ const AccessibilityMenu = () => {
                 {user?.email}
               </h1>
               <button
-                onClick={() => {
-                  clearCookies();
-                  localStorage.clear();
-                }} className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer bg-red-300 ">
-                Logout
+                onClick={handelLogout} className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer bg-red-300 
+                ">
+                {logoutMutation.isPending ? <Loader title="Logging Out.." /> : "Logout"}
               </button>
             </div>
           </div>
