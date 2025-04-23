@@ -41,8 +41,6 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Failed to create the access and refresh Token" }, { status: 405 })
         }
 
-
-
         const loggedInUser = await User.findById(user?._id).select("-password -refreshToken");
 
         if (!loggedInUser) {
@@ -57,7 +55,13 @@ export async function POST(request: NextRequest) {
         }
         const cookieStore = await cookies();
         //Browser Cookies for authentication : Short Term
-        cookieStore.set('accessToken', accessToken);
+        cookieStore.set('accessToken', accessToken, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            path: '/',
+            maxAge: 60 * 60 * 24 // 1 day (or however long your token lasts)
+        });
         // DB token for validation : Long Term
         cookieStore.set('refreshToken', refreshToken, options);
 
