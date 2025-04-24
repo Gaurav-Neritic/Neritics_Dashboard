@@ -87,8 +87,10 @@ const OverView = () => {
       if (response.data.data) {
         return response.data.data;
       }
+      return []
     } catch (error: any) {
       console.log("Error fetching the products : ", error);
+      return []
     }
   }
 
