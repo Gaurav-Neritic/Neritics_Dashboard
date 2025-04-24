@@ -99,7 +99,7 @@ const AccessibilityMenu = () => {
                 {user?.email}
               </h1>
               <button
-                onClick={handelLogout} className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer bg-red-300 
+                onClick={handelLogout} className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer bg-red-200 text-red-500 dark:text-white dark:bg-red-400
                 ">
                 {logoutMutation.isPending ? <Loader title="Logging Out.." /> : "Logout"}
               </button>
