@@ -169,8 +169,8 @@ const StocksTable = () => {
             disabled={filteredProducts.length === 0}
             title="Download Excel"
           >
-            <Download className="h-4 w-4" />
             <span>Export</span>
+            <Download className="h-4 w-4" />
           </button>
         </div>
       </div>
