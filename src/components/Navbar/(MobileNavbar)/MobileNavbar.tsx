@@ -30,7 +30,7 @@ const MobileNavbar = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="lg:hidden flex items-center justify-between">
+      <div className="lg:hidden flex items-center justify-between p-2">
         <button
           onClick={() => {
             setIsMenuOpen(!isMenuOpen);
@@ -44,30 +44,31 @@ const MobileNavbar = () => {
           )}
         </button>
         {/* Navbar Buttons */}
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-2 sm:gap-3">
           <ToggleMode />
           <Link
             href="/blogList"
             title="View Blogs"
             className="p-2 border rounded-full border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800"
           >
-            <FileText />
+            <FileText className="w-6 h-6 sm:w-5 sm:h-5" />
           </Link>
           <Link
             href="/productList"
             title="View Products"
             className="p-2 border rounded-full border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800"
           >
-            <PackageSearch />
+            <PackageSearch className="w-6 h-6 sm:w-5 sm:h-5" />
           </Link>
           <div className="relative">
             <Image
               onClick={() => setDropDown((prev) => !prev)}
               src={user?.avatar || "/placeholder.jpg"}
               alt="user-image"
-              width={100}
-              height={100}
+              width={40}
+              height={40}
               className="h-10 w-10 rounded-full border border-gray-300 dark:border-neutral-700 cursor-pointer object-contain ring-2 ring-lightBorder"
+              style={{ height: "40px", width: "40px" }}
             />
             <span className="absolute -top-1 -right-1 text-[10px] animate-pulse">
               {user?.isAdmin ? "🟢" : "🔴"}
@@ -98,9 +99,9 @@ const MobileNavbar = () => {
 
       {/* Dropdown Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden min-h-screen py-10">
+        <div className="lg:hidden min-h-screen py-5">
           <div className="px-4 py-4">
-            <nav className="   ">
+            <nav>
               {navLinks.map((link) => (
                 <MobileNavLink
                   key={link.href}
@@ -115,7 +116,7 @@ const MobileNavbar = () => {
               ))}
 
               {/* Action Icons */}
-              <div className=" w-50  flex mx-auto p-2 my-5 rounded border border-lightBorder dark:border-darkBorder">
+              <div className=" w-50  flex mx-auto p-1.5 my-5 rounded border border-lightBorder dark:border-darkBorder">
                 <div className="grid grid-cols-3 place-items-center  mx-auto gap-4">
                   <ToggleMode />
                   <Link

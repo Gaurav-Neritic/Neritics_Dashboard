@@ -168,8 +168,8 @@ const StocksTable = () => {
             disabled={filteredProducts.length === 0}
             title="Download Excel"
           >
-            <Download className="h-4 w-4" />
             <span>Export</span>
+            <Download className="h-4 w-4" />
           </button>
         </div>
       </div>
@@ -187,13 +187,13 @@ const StocksTable = () => {
               <th className="py-3 px-2 text-left text-sm lg:text-md font-semibold">
                 Name
               </th>
-              <th className="py-3 px-2 text-left text-sm lg:text-md font-semibold">
+              <th className="py-3 px-2 text-center text-sm lg:text-md font-semibold">
                 In Stock
               </th>
-              <th className="py-3 px-2 text-left text-sm lg:text-md font-semibold">
+              <th className="py-3 px-2 text-centre text-sm lg:text-md font-semibold">
                 Total Stock
               </th>
-              <th className="py-3 px-2 text-left text-sm lg:text-md font-semibold">
+              <th className="py-3 px-2 text-center text-sm lg:text-md font-semibold">
                 Update
               </th>
             </tr>
@@ -239,11 +239,11 @@ const StocksTable = () => {
                   key={_id}
                   className="border-b last:border-b-0 border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
                 >
-                  <td className="py-6 px-2  text-sm " title={_id}>
-                    {_id}
+                  <td className="py-3 px-2  text-sm " title={_id}>
+                    <div className="truncate w-30">{_id}</div>
                   </td>
 
-                  <td className="py-3 px-2 text-sm lg:text-md ">
+                  <td className="py-3 px-2 text-sm lg:text-md  ">
                     <Image
                       src={image[0] || ""}
                       height={20}
@@ -253,9 +253,9 @@ const StocksTable = () => {
                     />
                   </td>
                   <td className="py-3 px-2 text-sm lg:text-md capitalize">
-                    {title}
+                    <div className="grid grid-row w-50">{title}</div>
                   </td>
-                  <td className="py-3 px-2 text-sm lg:text-md  ">
+                  <td className="py-3 px-2 text-sm lg:text-md text-center">
                     {stock <= 0 ? (
                       <span className="text-red-500">🔴</span>
                     ) : (
@@ -263,10 +263,12 @@ const StocksTable = () => {
 
                     )}
                   </td>
-                  <td className="py-3 px-2 text-sm lg:text-md ">{stock}</td>
-                  <td className="py-3 px-2 text-sm lg:text-md ">
+                  <td className="py-3 px-2 text-sm lg:text-md text-center">
+                    {stock}
+                  </td>
+                  <td className="py-3 px-2 text-sm lg:text-md flex items-center justify-center ">
                     <button
-                      className="cursor-pointer flex items-center"
+                      className="cursor-pointer "
                       onClick={() => handleEdit({ _id, title, stock })}
                     >
                       <SquarePen className="text-green-500 hover:text-green-600 " />
