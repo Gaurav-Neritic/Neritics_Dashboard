@@ -7,7 +7,7 @@ connectDB();
 export async function GET() {
     try {
 
-        const getProducts = await Product.find();
+        const getProducts = await Product.find({}, 'title price image category listingStatus stock');
 
 
         if (getProducts.length === 0) {

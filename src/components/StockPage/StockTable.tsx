@@ -161,11 +161,10 @@ const StocksTable = () => {
           {/* Export Excel */}
           <button
             onClick={handleExcelExport}
-            className={`flex items-center gap-2 px-3 py-2 bg-green-700  text-white rounded  ${
-              filteredProducts.length === 0
-                ? "hidden"
-                : "block  cursor-pointer hover:bg-green-600"
-            } text-sm`}
+            className={`flex items-center gap-2 px-3 py-2 bg-green-700  text-white rounded  ${filteredProducts.length === 0
+              ? "hidden"
+              : "block  cursor-pointer hover:bg-green-600"
+              } text-sm`}
             disabled={filteredProducts.length === 0}
             title="Download Excel"
           >
@@ -260,7 +259,8 @@ const StocksTable = () => {
                     {stock <= 0 ? (
                       <span className="text-red-500">🔴</span>
                     ) : (
-                      <span className="text-green-500">🟢</span>
+                      stock <= 10 ? <span className="text-yellow-500">🟡</span> : <span className="text-green-500">🟢</span>
+
                     )}
                   </td>
                   <td className="py-3 px-2 text-sm lg:text-md ">{stock}</td>
@@ -279,128 +279,130 @@ const StocksTable = () => {
         </table>
       </div>
       {/* Edit Product Popup */}
-      {editPopup && (
-        <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold gap-2 flex items-center capitalize">
-                Edit Product
-              </h2>
-              {/*cancel button */}
-              <button
-                onClick={() => {
-                  setEditPopup(false);
-                  setProductToEdit(null);
-                }}
-                className="text-gray-500 hover:text-gray-700 cursor-pointer dark:text-gray-300 dark:hover:text-white"
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            <form
-              className="space-y-4"
-              onSubmit={(e: React.FormEvent) => {
-                e.preventDefault();
-                handelEditStock(editForm.productId, editForm.inStock);
-              }}
-            >
-              {/* Product Id */}
-              <div>
-                <label
-                  htmlFor="productId"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                >
-                  Product ID
-                </label>
-                <input
-                  type="text"
-                  id="productId"
-                  name="productId"
-                  required
-                  value={editForm.productId}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed outline-none text-sm"
-                  readOnly
-                />
-              </div>
-              {/* Product Name */}
-              <div>
-                <label
-                  htmlFor="productName"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                >
-                  Product Name
-                </label>
-                <input
-                  type="text"
-                  id="productName"
-                  name="productName"
-                  disabled
-                  value={editForm.productName}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed text-sm"
-                />
-              </div>
-              {/* Previous Stock */}
-              <div>
-                <label
-                  htmlFor="totalStock"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 "
-                >
-                  Previous Stock
-                </label>
-                <input
-                  type="number"
-                  id="totalStock"
-                  required
-                  disabled
-                  name="totalStock"
-                  value={editForm.totalStock}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed text-sm"
-                />
-              </div>
-
-              {/* In Stock */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  New Stock
-                </label>
-                <input
-                  id="inStock"
-                  name="inStock"
-                  required
-                  type="number"
-                  min={0}
-                  value={editForm.inStock}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white text-sm"
-                />
-              </div>
-
-              {/* Save Changes */}
-              <div className="flex justify-end space-x-3 pt-4">
+      {
+        editPopup && (
+          <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold gap-2 flex items-center capitalize">
+                  Edit Product
+                </h2>
                 {/*cancel button */}
                 <button
-                  type="button"
                   onClick={() => {
                     setEditPopup(false);
                     setProductToEdit(null);
                   }}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700 cursor-pointer text-sm"
+                  className="text-gray-500 hover:text-gray-700 cursor-pointer dark:text-gray-300 dark:hover:text-white"
                 >
-                  Cancel
-                </button>
-                {/* save button */}
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 cursor-pointer text-sm"
-                >
-                  {loading ? <Loader title="Updating..." /> : "Update Stock"}
+                  <X className="h-6 w-6" />
                 </button>
               </div>
-            </form>
+              <form
+                className="space-y-4"
+                onSubmit={(e: React.FormEvent) => {
+                  e.preventDefault();
+                  handelEditStock(editForm.productId, editForm.inStock);
+                }}
+              >
+                {/* Product Id */}
+                <div>
+                  <label
+                    htmlFor="productId"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
+                    Product ID
+                  </label>
+                  <input
+                    type="text"
+                    id="productId"
+                    name="productId"
+                    required
+                    value={editForm.productId}
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed outline-none text-sm"
+                    readOnly
+                  />
+                </div>
+                {/* Product Name */}
+                <div>
+                  <label
+                    htmlFor="productName"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
+                    Product Name
+                  </label>
+                  <input
+                    type="text"
+                    id="productName"
+                    name="productName"
+                    disabled
+                    value={editForm.productName}
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed text-sm"
+                  />
+                </div>
+                {/* Previous Stock */}
+                <div>
+                  <label
+                    htmlFor="totalStock"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 "
+                  >
+                    Previous Stock
+                  </label>
+                  <input
+                    type="number"
+                    id="totalStock"
+                    required
+                    disabled
+                    name="totalStock"
+                    value={editForm.totalStock}
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed text-sm"
+                  />
+                </div>
+
+                {/* In Stock */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    New Stock
+                  </label>
+                  <input
+                    id="inStock"
+                    name="inStock"
+                    required
+                    type="number"
+                    min={0}
+                    value={editForm.inStock}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white text-sm"
+                  />
+                </div>
+
+                {/* Save Changes */}
+                <div className="flex justify-end space-x-3 pt-4">
+                  {/*cancel button */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEditPopup(false);
+                      setProductToEdit(null);
+                    }}
+                    className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700 cursor-pointer text-sm"
+                  >
+                    Cancel
+                  </button>
+                  {/* save button */}
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 cursor-pointer text-sm"
+                  >
+                    {loading ? <Loader title="Updating..." /> : "Update Stock"}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-      )}
-    </section>
+        )
+      }
+    </section >
   );
 };
 
