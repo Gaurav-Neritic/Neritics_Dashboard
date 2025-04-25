@@ -10,7 +10,6 @@ import {
   Check,
   Trash2,
 } from "lucide-react";
-import DeletePoup from "../Popups/DeletePoup";
 
 const QueriesTable = () => {
   const [expandedQuery, setExpandedQuery] = useState(null);
