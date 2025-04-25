@@ -127,7 +127,7 @@ const OverView = () => {
             <ChevronDown />
           </button>
         </div>
-        <div className="py-3 dark:bg-neutral-800">
+        <div className="py-3 dark:bg-neutral-800/50">
           <Pie data={data} />
         </div>
       </div>
@@ -138,7 +138,7 @@ const OverView = () => {
             Stock Analytics
           </h1>
         </div>
-        <div className="py-3 dark:bg-neutral-800 dark:text-gray-200">
+        <div className="py-3 dark:bg-neutral-800/50 dark:text-gray-200">
           {isError && <span>Something went Wrong</span>}
           {isLoading ? <Loader title="Fetching..." /> :
             <Radar data={anlyticsData} options={options} />}

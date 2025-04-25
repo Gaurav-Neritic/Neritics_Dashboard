@@ -23,13 +23,13 @@ export async function PUT(request: NextRequest) {
 
         const reqBody = await request.json();
 
-        const { _id, newStock } = reqBody;
+        const { productId, newStock } = reqBody;
 
         if (!newStock) {
             return NextResponse.json({ error: "New Stock Field is required" }, { status: 402 })
         }
 
-        const updatedStock = await Product.findByIdAndUpdate(_id,
+        const updatedStock = await Product.findByIdAndUpdate(productId,
             {
                 $set: {
                     stock: newStock

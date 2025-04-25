@@ -29,7 +29,7 @@ const Activity = () => {
                     </button>
                 </div>
             </div>
-            <div className="flex dark:bg-neutral-800 mt-4">
+            <div className="flex dark:bg-neutral-800/50 mt-4">
                 <LineChart
                     className="w-full"
                     xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
