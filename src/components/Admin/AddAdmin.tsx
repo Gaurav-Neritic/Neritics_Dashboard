@@ -8,6 +8,8 @@ import Loader from "../Loaders/Loader";
 import { useUser } from "@/app/context/UserContext";
 import toast from "react-hot-toast";
 
+interface userRequestsProps { name: string, _id: string, avatar: string, email: string, isAdmin: boolean, isSuperAdmin: boolean }
+
 const AddAdmin = () => {
   const [isVisible, setIsVisible] = useState(true);
   const { user } = useUser();
@@ -147,121 +149,57 @@ const AddAdmin = () => {
             </h1>
             <button
               onClick={() => setIsVisible(!isVisible)}
-              className="cursor-pointer flex gap-2 text-gray-500 "
-            >
+              className="cursor-pointer flex gap-2 text-gray-500">
               {isVisible ? "Show Less" : "Show More"}{" "}
               {isVisible ? <ChevronUp /> : <ChevronDown />}
             </button>
           </div>
-
-          {isLoading && (
-            <div className="p-2 m-5 border border-lightBorder rounded dark:border-darkBorder">
-              <Loader title="Fetching..." />
-            </div>
-          )}
-
-          {isVisible && (
-            <>
-              {!isLoading && userRequests.length <= 0 && (
-                <div className="p-2 m-5 border text-center border-lightBorder rounded dark:border-darkBorder">
-                  No Requests As Of Now
-                </div>
-              )}
-              {userRequests?.map(
-                ({
-                  name,
-                  _id,
-                  avatar,
-                  email,
-                  isAdmin,
-                  isSuperAdmin,
-                }: {
-                  name: string;
-                  _id: string;
-                  avatar: string;
-                  email: string;
-                  isAdmin: boolean;
-                  isSuperAdmin: boolean;
-                }) => {
-                  return (
-                    <div
-                      key={_id}
-                      className="grid  md:grid-cols-[1fr_2fr_2fr_3fr] 
-                    grid-cols-[1fr_1fr_3fr]  place-items-center m-5 py-2 border border-lightBorder dark:border-darkBorder rounded "
-                    >
-                      <div>
-                        <Image
-                          src={avatar || "/placeholder.jpg"}
-                          alt="image"
-                          width={50}
-                          height={50}
-                          className="w-10 h-10 object-cover ring-lightBorder rounded-full ring-2"
-                        />
-                      </div>
-                      <div>
-                        <h1 className="capitalize">{name}</h1>
-                      </div>
-                      <div className="hidden md:block">
-                        <h1 className="">{email}</h1>
-                      </div>
-                      <div className="flex items-center justify-center gap-2 flex-wrap">
-                        <button
-                          disabled={isAdmin ? true : false}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handelAccess(_id);
-                          }}
-                          className={`bg-green-600  px-4 py-1 relative rounded text-white ${
-                            isAdmin
-                              ? "cursor-not-allowed"
-                              : "cursor-pointer hover:bg-green-700"
-                          }`}
-                        >
-                          {isAdmin ? "Authorized" : "Authorize"}
-                          {isAdmin && (
-                            <span className="absolute text-black text-[10px] -top-2 px-[4px] -right-1 bg-white rounded-full ring ring-lightBorder dark:ring-darkBorder">
-                              Admin
-                            </span>
-                          )}
-                        </button>
-                        {!isSuperAdmin && (
-                          <>
-                            <button
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handelRemoveAccess(_id);
-                              }}
-                              className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white"
-                            >
-                              {" "}
-                              Un-Set
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handelDeleteUser(_id);
-                              }}
-                              className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white w-auto"
-                            >
-                              <Trash2 />
-                            </button>
-                          </>
-                        )}
-
-                        {isSuperAdmin && (
-                          <div className="py-1 px-3 text-xs rounded-full bg-gradient-to-r from-red-500 to-yellow-400 text-white ring-2 ring-red-300">
-                            Super Admin
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                }
-              )}
-            </>
-          )}
-        </div>
-      </div>
+          {isLoading && <div className='p-2 m-5 border border-lightBorder rounded dark:border-darkBorder'><Loader title='Fetching...' /></div>}
+          {isVisible && (<>
+            {(!isLoading && userRequests.length <= 0) && <div className='p-2 m-5 border text-center border-lightBorder rounded dark:border-darkBorder'>No Requests As Of Now</div>}
+            {userRequests?.map(({ name, _id, avatar, email, isAdmin, isSuperAdmin }: userRequestsProps) => {
+              return (
+                <div key={_id} className="grid  md:grid-cols-[1fr_2fr_2fr_3fr] 
+                    grid-cols-[1fr_1fr_3fr]  place-items-center m-5 py-2 border border-lightBorder dark:border-darkBorder rounded ">
+                  <div>
+                    <Image
+                      src={avatar || "/placeholder.jpg"}
+                      alt="image"
+                      width={50}
+                      height={50}
+                      className="w-10 h-10 object-cover ring-lightBorder rounded-full ring-2" />
+                  </div>
+                  <div>
+                    <h1 className="capitalize">{name}</h1>
+                  </div>
+                  <div className="hidden md:block">
+                    <h1 className="">{email}</h1>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                    <button
+                      disabled={isAdmin ? true : false}
+                      onClick={(e) => { e.preventDefault(); handelAccess(_id) }}
+                      className={`bg-green-600  px-4 py-1 relative rounded text-white ${isAdmin ? "cursor-not-allowed" : "cursor-pointer hover:bg-green-700"}`}>
+                      {isAdmin ? "Authorized" : "Authorize"}
+                      {isAdmin && <span className="absolute text-black text-[10px] -top-2 px-[4px] -right-1 bg-white rounded-full ring ring-lightBorder dark:ring-darkBorder">Admin</span>}
+                    </button>
+                    {!isSuperAdmin && <>
+                      <button
+                        onClick={(e) => { e.preventDefault(); handelRemoveAccess(_id) }} className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white"> Un-Set</button>
+                      <button
+                        onClick={(e) => { e.preventDefault(); handelDeleteUser(_id) }} className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white w-auto">
+                        <Trash2 />
+                      </button>
+                    </>}
+                    {isSuperAdmin && <div className="py-1 px-3 text-xs rounded-full bg-gradient-to-r from-red-500 to-yellow-400 text-white ring-2 ring-red-300">
+                      Super Admin
+                    </div>}
+                  </div>
+                </div>)
+            })}
+          </>)}
+        </div >
+      </div >
     </>
   );
 };
