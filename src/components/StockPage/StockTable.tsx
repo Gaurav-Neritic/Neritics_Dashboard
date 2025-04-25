@@ -130,7 +130,7 @@ const StocksTable = () => {
       const worksheet = XLSX.utils.json_to_sheet(excelData);
       const columnWidths = [{ wch: 24 }, { wch: 40 }, { wch: 10 }];
       worksheet["!cols"] = columnWidths;
-      worksheet["!rows"] = Array(excelData.length).fill({ hpt: 30 });
+      worksheet["!rows"] = Array(excelData.length).fill({ hpt: 20 });
 
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "StockTable");
