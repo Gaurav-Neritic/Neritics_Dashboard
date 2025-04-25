@@ -110,7 +110,7 @@ const OverView = () => {
         borderWidth: 1,
       },
     ],
-  };
+  }
   return (
     <div className="grid-cols-1 lg:grid-cols-2 grid gap-4">
       <div className="border my-5 p-4 rounded border-lightBorder dark:border-darkBorder ">

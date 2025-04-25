@@ -27,7 +27,7 @@ const DashBoardStats = () => {
     }
   }
 
-  const { data: totalProducts = [], isLoading, isError } = useQuery({ queryFn: getProducts, queryKey: ['totalProducts'] });
+  const { data: totalProducts = [], isLoading } = useQuery({ queryFn: getProducts, queryKey: ['totalProducts'] });
 
   return (
     <section>
