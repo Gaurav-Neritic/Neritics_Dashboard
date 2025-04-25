@@ -87,7 +87,7 @@ const MobileNavbar = () => {
                     clearCookies();
                     localStorage.clear();
                   }}
-                  className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded text-sm"
+                  className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded text-sm cursor-pointer hover:bg-red-500/80 hover:text-white"
                 >
                   Logout
                 </button>

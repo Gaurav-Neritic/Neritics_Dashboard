@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import "../app/globals.css";
-import { House } from "lucide-react";
 import { Fira_Code, Inter } from "next/font/google";
 
 const inter = Inter({
@@ -35,10 +34,9 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className=" flex gap-3 p-2 border border-lightBorder rounded hover:bg-red-500/85 hover:text-white text-md font-bold text-gray-800"
+          className=" flex gap-3 p-2 border border-neutral-200 rounded  hover:bg-red-500/80 hover:text-white text-md font-semibold text-gray-800 hover:ring ring-gray-600"
         >
-          Return to
-          <House className="h-6 w-6" />
+          Go Back Home
         </Link>
       </div>
     </div>

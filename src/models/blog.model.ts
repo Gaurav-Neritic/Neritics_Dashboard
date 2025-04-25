@@ -21,8 +21,8 @@ const blogSchema = new Schema(
     },
     publish: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -1,19 +1,20 @@
 import mongoose, { Schema } from "mongoose";
 
 const typeSchema = new Schema(
-    {
-        label: {
-            type: String,
-            required: [true, "Category Name is required"],
-            unique: true,
-            sparse: true,
-            trim: true,
-            lowerCase: true
-        }
+  {
+    label: {
+      type: String,
+      required: [true, "Category Name is required"],
+      unique: true,
+      sparse: true,
+      trim: true,
+      lowerCase: true,
     },
-    {
-        timestamps: true
-    }
-)
+  },
+  {
+    timestamps: true,
+  }
+);
 
-export const Category = mongoose.models.Category || mongoose.model("Category", typeSchema)
+export const Category =
+  mongoose.models.Category || mongoose.model("Category", typeSchema);

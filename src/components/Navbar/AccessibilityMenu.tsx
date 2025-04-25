@@ -15,30 +15,30 @@ const AccessibilityMenu = () => {
 
   const logout = async () => {
     const id = JSON.stringify(user?._id);
-    const _id = JSON.parse(id)
+    const _id = JSON.parse(id);
     try {
-      const response = await axios.post('../api/logout', { _id });
+      const response = await axios.post("../api/logout", { _id });
 
       if (response.data.data) {
-        localStorage.removeItem('user');
+        localStorage.removeItem("user");
       }
     } catch (error) {
-      console.log("Error logging out ", error)
+      console.log("Error logging out ", error);
     }
-  }
+  };
 
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
-      toast.success("Logged Out")
+      toast.success("Logged Out");
       router.push("/login");
-    }
-  })
+    },
+  });
 
   const handelLogout = (e: React.MouseEvent) => {
     e.preventDefault();
     logoutMutation.mutate();
-  }
+  };
 
   return (
     <div className="hidden lg:block">
@@ -60,7 +60,9 @@ const AccessibilityMenu = () => {
             className="flex items-center justify-center gap-2 group cursor-pointer"
           >
             <CircleHelp className="text-blue-400 dark:text-white group-hover:fill-blue-200 dark:group-hover:fill-blue-400" />
-            <span className="text-gray-700 dark:text-white hidden lg:block">Ask Help</span>
+            <span className="text-gray-700 dark:text-white hidden lg:block">
+              Ask Help
+            </span>
           </Link>
         </div>
         <div className="flex gap-3">
@@ -99,15 +101,21 @@ const AccessibilityMenu = () => {
                 {user?.email}
               </h1>
               <button
-                onClick={handelLogout} className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer bg-red-200 text-red-500 dark:text-white dark:bg-red-400
-                ">
-                {logoutMutation.isPending ? <Loader title="Logging Out.." /> : "Logout"}
+                onClick={handelLogout}
+                className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer  text-red-500 dark:text-white hover:bg-red-500/80 hover:text-white
+                "
+              >
+                {logoutMutation.isPending ? (
+                  <Loader title="Logging Out.." />
+                ) : (
+                  "Logout"
+                )}
               </button>
             </div>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
