@@ -16,8 +16,8 @@ const geistMono = Fira_Code({
 export default function NotFound() {
   return (
     <div
-    className={`${inter.className} ${geistMono.variable} flex flex-col justify-center items-center`}
-  >
+      className={`${inter.className} ${geistMono.variable} flex flex-col justify-center items-center`}
+    >
       <Image
         src="/404-main.svg"
         alt="404 Image"
