@@ -16,21 +16,21 @@ const geistMono = Fira_Code({
 export default function NotFound() {
   return (
     <div
-      className={`${inter.className} ${geistMono.variable}" h-screen flex flex-col justify-center items-center`}
-    >
+    className={`${inter.className} ${geistMono.variable} flex flex-col justify-center items-center`}
+  >
       <Image
         src="/404-main.svg"
         alt="404 Image"
-        width={900}
-        height={900}
-        className="mb-4 object-cover "
+        width={800}
+        height={800}
+        className="mb-4 object-cover h-[500px] w-auto "
       />
       <div className="flex flex-col justify-center items-center space-y-4">
         <h1 className="text-4xl font-bold text-gray-800">
           Oops! Page not found
         </h1>
         <p className="text-lg text-gray-600 capitalize">
-          Page you are looking for doesn't exist.
+          Page you are looking for doesn&apos;t exist.
         </p>
         <Link
           href="/"
