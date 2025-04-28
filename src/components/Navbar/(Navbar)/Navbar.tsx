@@ -41,7 +41,7 @@ const SidebarNav = () => {
         <div className="grid grid-cols-3 place-items-center">
           <ToggleMode />
           <Link
-            href={"https://gmail.com"}
+            href={"mailto:gaurav@neriticindustries.in"}
             target="_blank"
             className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
           >

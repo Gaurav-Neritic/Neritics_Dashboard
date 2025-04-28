@@ -45,7 +45,7 @@ const AccessibilityMenu = () => {
       <div className=" flex items-center justify-between p-5 gap-3 border-b border-lightBorder dark:border-darkBorder  m-5">
         <div className="flex gap-5 border  px-3 py-2 rounded border-lightBorder dark:border-darkBorder ">
           <Link
-            href={"/notifications"}
+            href={"/enquiry"}
             className="flex items-center justify-center gap-2 group cursor-pointer"
           >
             <Bell className="text-red-400 cursor-pointer dark:text-white group-hover:fill-red-200 dark:group-hover:fill-red-400" />

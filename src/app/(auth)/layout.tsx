@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "../../app/globals.css"
 import { Fira_Code, Inter } from "next/font/google";
 import ReactQueryProvider from "@/components/Providers/ReactQueryProvider";
 import { Toaster } from "react-hot-toast";
