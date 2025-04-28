@@ -23,7 +23,6 @@ const DeletePoup = ({ isVisible, onClose, prodName, id }: DeletePopupProps) => {
     },
   });
 
-
   async function handelDelete(id: string) {
     deleteMutation.mutate(id);
     onClose();
@@ -51,8 +50,8 @@ const DeletePoup = ({ isVisible, onClose, prodName, id }: DeletePopupProps) => {
 
   if (!isVisible) return null;
   return (
-    <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 mx-5 lg:mx-0">
-      <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full">
+    <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 mx-5 lg:mx-0  ">
+      <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg lg:max-w-md  w-full mx-4 lg:mx-0">
         <div className="flex items-center mb-4 text-red-500">
           <AlertCircle className="mr-2" />
           <h2 className="text-xl font-bold">Confirm Delete</h2>

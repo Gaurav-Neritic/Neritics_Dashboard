@@ -1,23 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import "../app/globals.css";
-import { Fira_Code, Inter } from "next/font/google";
-
-const inter = Inter({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Fira_Code({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function NotFound() {
   return (
-    <div
-      className={`${inter.className} ${geistMono.variable} flex flex-col justify-center items-center`}
-    >
+    <div className="flex flex-col justify-center items-center">
       <Image
         src="/404-main.svg"
         alt="404 Image"
