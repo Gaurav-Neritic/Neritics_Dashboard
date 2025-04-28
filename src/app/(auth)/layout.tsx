@@ -24,13 +24,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={`${inter.className} ${geistMono.variable} antialiased max-w-[85rem] mx-auto dark:bg-darkMode dark:text-white`}>
-                <ReactQueryProvider>
-                    {children}
-                    <Toaster position="top-center" reverseOrder={false} />
-                </ReactQueryProvider>
-            </body>
-        </html>
+        <ReactQueryProvider>
+            {children}
+            <Toaster position="top-center" reverseOrder={false} />
+        </ReactQueryProvider>
     );
 }
