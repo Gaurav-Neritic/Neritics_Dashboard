@@ -33,6 +33,12 @@ const userSchema = new Schema(
       default: false,
       required: true,
     },
+    verifyOTP: {
+      type: Number
+    },
+    verifyOTPExpires: {
+      type: Date,
+    },
     refreshToken: {
       type: String,
     },

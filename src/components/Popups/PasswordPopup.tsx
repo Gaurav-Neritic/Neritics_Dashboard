@@ -1,5 +1,6 @@
 "use client"
 
+import { useUser } from "@/app/context/UserContext";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Edit, Images, Loader2, X } from "lucide-react";
@@ -14,48 +15,53 @@ interface imageProps {
 }
 
 const PasswordPopup = ({ isVisible, onClose, id }: imageProps) => {
-
-    const [oldPassword, setOldPassword] = useState("");
+    const { user } = useUser();
     const [newPassword, setNewPassword] = useState("");
+    const [otp, setOtp] = useState("")
     const router = useRouter()
 
-    async function clearCookies() {
+    const logout = async () => {
+        const id = JSON.stringify(user?._id);
+        const _id = JSON.parse(id);
         try {
-            const response = await axios.get("api/clearCookies");
-            if (response.data?.data) {
-                router.push("/login");
+            const response = await axios.post("../api/logout", { _id });
+            if (response.data.data) {
+                localStorage.removeItem("user");
             }
         } catch (error) {
-            console.log(`Error clearing cookies : ${error}`);
+            console.log("Error logging out ", error);
         }
-    }
+    };
 
 
-    async function updatePassword({ oldPassword, newPassword, id }: { oldPassword: string, newPassword: string, id: string }) {
+
+    async function updatePassword({ newPassword, id }: { newPassword: string, id: string }) {
         try {
-            const response = await axios.put('../api/updatePassword', { data: { oldPassword, newPassword, id } });
+            const response = await axios.put('../api/updatePassword', { data: { newPassword, id, otp } });
 
             if (response.data.data) {
                 return response.data.data
+            } else {
+                toast.error("In-Valid OTP")
             }
-            return [];
         } catch (error) {
-            console.log(`Error updating the password : `, error)
-            return [];
+            console.log(`Error updating the password : `, error);
+            toast.error("In-Valid OTP")
         }
     }
 
     const updatePasswordMutation = useMutation({
-        mutationFn: updatePassword
-        , onSuccess: () => {
+        mutationFn: updatePassword,
+        onSuccess: () => {
             toast.success("Password Updated");
             onClose();
-            clearCookies();
+            logout();
+            router.push('/login')
         }
     })
 
-    const handelPassword = (oldPassword: string, newPassword: string) => {
-        updatePasswordMutation.mutate({ oldPassword, newPassword, id });
+    const handelPassword = (newPassword: string) => {
+        updatePasswordMutation.mutate({ newPassword, id });
     }
 
     if (!isVisible) return null
@@ -63,7 +69,7 @@ const PasswordPopup = ({ isVisible, onClose, id }: imageProps) => {
         <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 mx-5 lg:mx-0">
             <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg w-full max-w-md">
                 <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 py-5">
                         <Images className="w-6 h-6" />
                         <h1 className="text-lg font-semibold">Update Password</h1>
                     </div>
@@ -77,17 +83,8 @@ const PasswordPopup = ({ isVisible, onClose, id }: imageProps) => {
                     </button>
                 </div>
 
-                <div className="flex items-center gap-4">
-                    <input
-                        type={"text"}
-                        value={oldPassword}
-                        placeholder="Enter Old Password..."
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setOldPassword(e.target.value)
-                        }}
-                        required
-                        className="w-full text-gray-700 py-2 px-3 font-medium text-sm bg-white border rounded"
-                    />
+                <form onSubmit={(e) => { e.preventDefault(); handelPassword(newPassword) }} className="flex items-center gap-4 flex-col ">
+
                     <input
                         type={"text"}
                         value={newPassword}
@@ -98,13 +95,24 @@ const PasswordPopup = ({ isVisible, onClose, id }: imageProps) => {
                         required
                         className="w-full text-gray-700 py-2 px-3 font-medium text-sm bg-white border rounded"
                     />
+                    <input
+                        type={"text"}
+                        value={otp}
+                        placeholder="Enter Your 6 Digit OTP..."
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setOtp(e.target.value)
+                        }}
+                        required
+                        className="w-full text-gray-700 py-2 px-3 font-medium text-sm bg-white border rounded"
+                    />
+                    <span className="text-gray-400 animate-pulse text-sm">*Note : Check Your Registered Email For OTP</span>
                     <button
-                        type="button"
-                        onClick={(e) => { e.preventDefault(); handelPassword(oldPassword, newPassword) }}
-                        className="p-2 border border-lightBorder dark:border-darkBorder text-green-500 hover:text-green-600  rounded cursor-pointer">
-                        {updatePasswordMutation.isPending ? <Loader2 className="animate-spin" /> : < Edit />}
+                        type="submit"
+                        className="p-2 w-full border border-lightBorder dark:border-darkBorder text-green-500 hover:text-green-600  rounded cursor-pointer">
+                        {updatePasswordMutation.isPending ? <Loader2 className="animate-spin" /> :
+                            (<div className="flex items-center justify-center gap-3">< Edit /> Update Password</div>)}
                     </button>
-                </div>
+                </form>
 
             </div>
         </div>

@@ -2,9 +2,12 @@
 import { useUser } from "@/app/context/UserContext";
 import SettingsPopup from "@/components/Popups/EditSettingsPopup";
 import PasswordPopup from "@/components/Popups/PasswordPopup";
-import { Edit } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { Edit, Loader2 } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const page = () => {
   const { user } = useUser();
@@ -12,6 +15,33 @@ const page = () => {
   const [passwordPopup, setPasswordPopup] = useState(false)
   const [value, setValue] = useState("")
   const [editName, setEditName] = useState("")
+
+
+  async function gmailVerificationCode(email: string) {
+    try {
+      const response = await axios.post('api/verifyEmail', { email });
+      if (response.data.data) {
+        return response.data.data
+      }
+      return []
+    } catch (error) {
+      console.log(`Error sending the verification code :`, error);
+      return []
+    }
+  }
+
+  const emailMutation = useMutation({
+    mutationFn: gmailVerificationCode,
+    onSuccess: () => {
+      toast.success("OTP Sent on Email");
+      setPasswordPopup(!passwordPopup);
+    }
+  })
+
+  const handelGmailVerification = (email: string) => {
+    emailMutation.mutate(email);
+  }
+
 
   return (
     <div className="p-5">
@@ -64,7 +94,7 @@ const page = () => {
                 </div>
 
                 <div className="p-2">
-                  <p className="my-1 text-sm uppercase">UserNAme : </p>
+                  <p className="my-1 text-sm uppercase">UserName : </p>
                   <div className="flex  gap-3">
                     <h1 className=" px-3 py-2 border border-lightBorder dark:border-darkBorder rounded w-full">{user?.name}</h1>
                     <button
@@ -96,10 +126,13 @@ const page = () => {
                   <div className="flex  gap-3">
                     <h1 className=" px-3 py-2 border border-lightBorder dark:border-darkBorder rounded w-full">{"*********"}</h1>
                     <button
-                      onClick={() => {
-                        setPasswordPopup(!passwordPopup);
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handelGmailVerification(user?.email as string);
                       }}
-                      className="bg-green-600 px-2 rounded text-white cursor-pointer"><Edit /></button>
+                      className="bg-green-600 px-2 rounded text-white cursor-pointer">
+                      {emailMutation.isPending ? <Loader2 className="animate-spin" /> : < Edit />}
+                    </button>
                   </div>
                 </div>
 

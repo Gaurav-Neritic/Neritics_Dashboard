@@ -22,9 +22,9 @@ export async function PUT(request: NextRequest) {
     try {
         const reqBody = await request.json();
 
-        const { id, oldPassword, newPassword } = reqBody.data;
+        const { id, newPassword, otp } = reqBody.data;
 
-        if (!id || !oldPassword || !newPassword) {
+        if (!id || !newPassword || !otp) {
             return NextResponse.json({ error: "All the fields are required" }, { status: 401 })
         }
 
@@ -34,13 +34,19 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized Access" }, { status: 402 })
         }
 
-        const checkPrevPass = validAdmin.isPasswordCorrect(oldPassword);
+        if (validAdmin?.verifyOTP !== Number(otp)) {
+            return NextResponse.json({ error: "In-Valid OTP" }, { status: 403 })
+        }
 
-        if (!checkPrevPass) {
-            return NextResponse.json({ error: "Old Password didnt matched" }, { status: 403 })
+        if (validAdmin?.verifyOTPExpires < new Date()) {
+            validAdmin?.verifyOTP === undefined;
+            validAdmin.verifyOTPExpires = undefined;
+            await validAdmin.save({ validateBeforeSave: true })
         }
 
         validAdmin.password = newPassword;
+        validAdmin.verifyOTP = undefined;
+        validAdmin.verifyOTPExpires = undefined;
 
         const updatedPass = await validAdmin.save({ validateBeforeSave: true });
 
