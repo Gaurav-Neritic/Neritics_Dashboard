@@ -46,8 +46,7 @@ const AccessibilityMenu = () => {
         <div className="flex gap-5 border  px-3 py-2 rounded border-lightBorder dark:border-darkBorder ">
           <Link
             href={"/enquiry"}
-            className="flex items-center justify-center gap-2 group cursor-pointer"
-          >
+            className="flex items-center justify-center gap-2 group cursor-pointer"  >
             <Bell className="text-red-400 cursor-pointer dark:text-white group-hover:fill-red-200 dark:group-hover:fill-red-400" />
             <span className="text-gray-700 dark:text-white hidden lg:block">
               {" "}
@@ -57,8 +56,7 @@ const AccessibilityMenu = () => {
           <span className="h-auto w-[1px] bg-gray-300" />
           <Link
             href={"/help"}
-            className="flex items-center justify-center gap-2 group cursor-pointer"
-          >
+            className="flex items-center justify-center gap-2 group cursor-pointer">
             <CircleHelp className="text-blue-400 dark:text-white group-hover:fill-blue-200 dark:group-hover:fill-blue-400" />
             <span className="text-gray-700 dark:text-white hidden lg:block">
               Ask Help
@@ -68,15 +66,13 @@ const AccessibilityMenu = () => {
         <div className="flex gap-3">
           <Link
             href={"/blogList"}
-            className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
-          >
+            className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800">
             <FileText />
             View Blogs
           </Link>
           <Link
             href={"/productList"}
-            className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
-          >
+            className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800">
             <PackageSearch />
             View Products
           </Link>
@@ -87,8 +83,7 @@ const AccessibilityMenu = () => {
                 alt="user-image"
                 width={100}
                 height={100}
-                className="h-10 w-10 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer object-contain ring-2 ring-lightBorder"
-              />
+                className="h-10 w-10 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer object-contain ring-2 ring-lightBorder" />
               <span className="absolute -top-1 -right-1 text-[10px] animate-pulse">
                 {user?.isAdmin ? "🟢" : "🔴"}
               </span>
@@ -102,9 +97,7 @@ const AccessibilityMenu = () => {
               </h1>
               <button
                 onClick={handelLogout}
-                className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer  text-red-500 dark:text-white hover:bg-red-500/80 hover:text-white
-                "
-              >
+                className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer  text-red-500 dark:text-white hover:bg-red-500/80 hover:text-white">
                 {logoutMutation.isPending ? (
                   <Loader title="Logging Out.." />
                 ) : (
