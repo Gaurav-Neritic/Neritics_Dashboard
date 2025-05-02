@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Loader from "@/components/Loaders/Loader";
@@ -5,16 +6,17 @@ import EditImagePopup from "@/components/ProductPage/EditImagePopup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { FilePenLine, ImagePlus, Save } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function Page({ params }: any) {
+const Page = ({ params }: any) => {
   const router = useRouter();
   const { edit }: any = use(params);
   const [details, setDetails]: any = useState({});
 
-  const [name, setName]: any = useState("");
+  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [discount, setDiscount] = useState("");
@@ -212,14 +214,16 @@ export default function Page({ params }: any) {
 
   useEffect(() => {
     try {
-      getEditableProduct();
-      getCategories();
-      getTypes();
-      getProductForms();
-      getContainerTypes();
-      getCountries();
+      {
+        getEditableProduct();
+        getCategories();
+        getTypes();
+        getProductForms();
+        getContainerTypes();
+        getCountries();
+      }
     } catch (error) {
-      console.log("Error Fetching products data : ", error);
+      console.error("Error Fetching products data : ", error);
       toast.error("Error Fetching Data");
     }
   }, []);
@@ -597,8 +601,11 @@ export default function Page({ params }: any) {
                             className="border border-lightBorder dark:border-darkBorder rounded py-2 place-items-center relative"
                           >
                             <div>
-                              <img
+                              <Image
                                 src={img}
+                                width={200}
+                                height={200}
+                                loading="lazy"
                                 alt="saved images"
                                 className="h-18 w-18 rounded border border-lightBorder dark:border-darkBorder"
                               />
@@ -690,7 +697,7 @@ export default function Page({ params }: any) {
                 <div className="py-5">
                   <div className="pb-2">
                     <h2 className="text-lg font-semibold antialiased">
-                      Additional Info {"  "}( Separate by " , " )
+                      Additional Info {"  "}( Separate by &quot; , &quot; )
                     </h2>
                   </div>
                   <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
@@ -750,14 +757,13 @@ export default function Page({ params }: any) {
                               onChange={(e) => {
                                 setCoating(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
-                            />
+                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 " />
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="flex items-center justify-center text-sm py-3 text-gray-600 dark:text-gray-200 animate-pulse">
-                      <sup>*</sup>Note ( Use "," comma for adding multiple
+                      <sup>*</sup>Note ( Use &quot;,&quot; comma for adding multiple
                       values)
                     </div>
                   </div>
@@ -874,15 +880,15 @@ export default function Page({ params }: any) {
                 {/* Add Product Button */}
                 <div className="py-3">
                   {category === "Select Category" ||
-                  type === "Select Type" ||
-                  isAyurvedic === "Nature Of Medicine" ||
-                  container === "Container Type" ||
-                  suitableFor === "Edible For" ||
-                  gender === "Select Gender" ||
-                  form === "Select Form" ||
-                  ageRange === "Select Age Range" ||
-                  publish === "Publishing Status" ||
-                  coo === "Select Country" ? (
+                    type === "Select Type" ||
+                    isAyurvedic === "Nature Of Medicine" ||
+                    container === "Container Type" ||
+                    suitableFor === "Edible For" ||
+                    gender === "Select Gender" ||
+                    form === "Select Form" ||
+                    ageRange === "Select Age Range" ||
+                    publish === "Publishing Status" ||
+                    coo === "Select Country" ? (
                     <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
                       Note : Please Select Valid Options Only
                     </div>
@@ -907,3 +913,5 @@ export default function Page({ params }: any) {
     </section>
   );
 }
+
+export default Page;

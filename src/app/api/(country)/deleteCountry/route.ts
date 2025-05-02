@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Country } from "@/models/country.model";
 import { User } from "@/models/user.model";
@@ -37,6 +38,6 @@ export async function DELETE(request: NextRequest) {
         return NextResponse.json({ data: deletedCountry }, { status: 200 })
 
     } catch (error) {
-        return NextResponse.json({ error: "Failed to delete the category" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to delete the category": ${error}` }, { status: 500 })
     }
 }

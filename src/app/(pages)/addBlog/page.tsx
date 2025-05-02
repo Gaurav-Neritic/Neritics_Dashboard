@@ -9,13 +9,14 @@ import { useRouter } from "next/navigation";
 import Editor from "@/components/BlogPage/Editor";
 import Input from "@/components/ProductForm/Input";
 import Loader from "@/components/Loaders/Loader";
+import Image from "next/image";
 
 const AddBlogsPage = () => {
   const [blogData, setBlogData] = useState({
     title: "",
     author: "",
   });
-  const [description, setDescription]: any = useState({});
+  const [description, setDescription] = useState({});
   const [blogImage, setBlogImage] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [publish, setPublish] = useState("");
@@ -156,9 +157,12 @@ const AddBlogsPage = () => {
                   className="w-full text-gray-700 my-2 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-[9.3px] file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                 />
                 {blogImage && (
-                  <img
+                  <Image
                     src={getPreviewUrl(blogImage) || ""}
                     alt="Main Image Preview"
+                    loading="lazy"
+                    height={200}
+                    width={200}
                     className="mt-2 p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
                   />
                 )}

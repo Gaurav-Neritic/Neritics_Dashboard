@@ -2,9 +2,7 @@ import { SlidersHorizontal } from "lucide-react";
 import React from "react";
 
 const FilterTray = () => {
-    function setFilter(value: string) {
-        throw new Error("Function not implemented.");
-    }
+
 
     return (
         <div className="border px-4 py-2 rounded border-lightBorder dark:border-darkBorder ">
@@ -38,9 +36,7 @@ const FilterTray = () => {
                 </select>
 
                 <select
-                    onChange={(e) => {
-                        setFilter(e.target.value);
-                    }}
+                    onChange={() => { }}
                     className="border  border-lightBorder dark:border-darkBorder px-3 py-1 rounded outline-none"
                 >
                     <option className="dark:bg-neutral-600">All</option>

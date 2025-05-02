@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { Images, ImageUp, Loader2, X } from "lucide-react";
+import Image from "next/image";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -90,7 +92,9 @@ const ImagePopup = ({ isVisible, onClose, id }: imageProps) => {
             {updateImageMutation.isPending ? <Loader2 className="animate-spin" /> : < ImageUp />}
           </button>
           {newImage && (
-            <img
+            <Image
+              height={200}
+              width={200}
               src={
                 getPreviewUrl(newImage) ||
                 "https://dummyimage.com/600x400/000/fff"

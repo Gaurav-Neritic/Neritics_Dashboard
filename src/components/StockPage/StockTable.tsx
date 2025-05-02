@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import axios from "axios";
 import { SquarePen, Search, Download } from "lucide-react";
@@ -39,19 +40,20 @@ const StocksTable = () => {
         toast.error("Failed to fetch the data");
       }
     } catch (error: any) {
-      error.response.status === 401
-        ? toast.success("No Products Found")
-        : toast.error("Failed to fetch the product data");
+
+      if (error.response.status === 401) {
+        toast.success("No Products Found")
+      }
     }
   }
 
   //SearchBar Handle
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const text = e.target.value;
     setSearchText(text);
     const filtered = getStocks.filter(
-      (product: any) =>
+      (product: { title: string, _id: string }) =>
         product.title.toLowerCase().includes(text.toLowerCase()) ||
         product._id.toLowerCase().includes(text.toLowerCase())
     );
@@ -67,7 +69,7 @@ const StocksTable = () => {
   // Excel Download handle
   const handleExcelExport = () => {
     try {
-      const excelData = filteredProducts.map((product: any) => ({
+      const excelData = filteredProducts.map((product: { _id: string, title: string, stock: number }) => ({
         ID: product._id,
         Title: product.title,
         Stock: product.stock,
@@ -84,6 +86,7 @@ const StocksTable = () => {
       toast.success("Excel file downloaded successfully");
     } catch (error) {
       toast.error("Failed to download Excel file");
+      console.error("Failed to download Excel file", error);
     }
   };
 

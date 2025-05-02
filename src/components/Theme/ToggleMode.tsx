@@ -23,7 +23,7 @@ const ToggleMode = () => {
 
 
   useEffect(() => {
-    const localModule: any = localStorage.getItem("siteMode");
+    const localModule = localStorage.getItem("siteMode");
     if (localModule === null) {
       setMode("")
     }
@@ -37,7 +37,12 @@ const ToggleMode = () => {
       }
     }
 
-    mode === "dark" ? document.body.classList.add("dark") : document.body.classList.remove("dark")
+    if (mode === "dark") {
+      document.body.classList.add("dark")
+    } else {
+      document.body.classList.remove("dark");
+    }
+
 
   }, [mode]);
 

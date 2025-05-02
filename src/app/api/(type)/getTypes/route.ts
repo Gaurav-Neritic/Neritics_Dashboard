@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import connectDB from "@/db/dbConfig";
 import { Type } from "@/models/type.model";
 import { User } from "@/models/user.model";
@@ -28,6 +29,6 @@ export async function GET() {
         return NextResponse.json({ data: getAllTypes }, { status: 200 })
 
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch categories" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to fetch categories" : ${error}` }, { status: 500 })
     }
 }

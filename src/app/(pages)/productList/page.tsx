@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 import DeletePoup from "@/components/Popups/DeletePoup";
 import Loader from "@/components/Loaders/Loader";
@@ -39,19 +41,22 @@ const ProductList = () => {
       }
       return [];
     } catch (error: any) {
-      error.response.status === 401
-        ? toast.success("No Products Found")
-        : toast.error("Failed to fetch the product data");
+      if (error.response.status === 401) {
+        toast.success("No Products Found")
+      } else {
+        toast.error("Failed to fetch the product data");
+      }
+      console.error("Failed to fetch the product data", error)
       return [];
     }
   }
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const text = e.target.value;
     setSearchText(text);
     const filtered = getProductsData.filter(
-      (product: any) =>
+      (product: { title: string, _id: string }) =>
         product.title.toLowerCase().includes(text.toLowerCase()) ||
         product._id.toLowerCase().includes(text.toLowerCase())
     );
@@ -65,11 +70,11 @@ const ProductList = () => {
   useEffect(() => {
     if (filter === "Listed") {
       setFilteredProducts(
-        getProductsData.filter((product: any) => product.listingStatus === true)
+        getProductsData.filter((product: productDataProps) => product.listingStatus === true)
       );
     } else if (filter === "UnListed") {
       setFilteredProducts(
-        getProductsData.filter((product: any) => product.listingStatus === false)
+        getProductsData.filter((product: productDataProps) => product.listingStatus === false)
       );
     } else {
       if (getProductsData.length > 0) {
@@ -82,7 +87,7 @@ const ProductList = () => {
   // Excel Download handle
   const handleExcelExport = () => {
     try {
-      const excelData = filteredProducts.map((product: any) => ({
+      const excelData = filteredProducts.map((product: productDataProps) => ({
         ID: product._id,
         Title: product.title,
         Images: product.image[0],
@@ -112,6 +117,7 @@ const ProductList = () => {
       toast.success("Excel file downloaded successfully");
     } catch (error) {
       toast.error("Failed to download Excel file");
+      console.error("Failed to download Excel file", error);
     }
   };
 
@@ -332,7 +338,6 @@ const ProductList = () => {
                     price,
                     category,
                     stock,
-                    discount,
                     listingStatus,
                     image,
                   }: productDataProps) => {

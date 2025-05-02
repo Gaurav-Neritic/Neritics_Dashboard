@@ -145,7 +145,7 @@ const AddProduct = () => {
         setLoading(false);
         toast.error("Failed to add the product");
       }
-    } catch (error: unknown) {
+    } catch (error) {
       setLoading(false);
       console.log("Error Adding the product !", error);
       toast.error("Error Adding the product !");
@@ -154,41 +154,51 @@ const AddProduct = () => {
 
   const handelClearFields = () => {
     try {
-      (productData.title = ""),
-        (productData.description = ""),
-        (productData.price = ""),
-        (productData.discount = ""),
-        (productData.quantity = ""),
-        (productData.category = ""),
-        (productData.type = ""),
-        (productData.stock = ""),
-        (productData.gender = ""),
-        (productData.ageRange = ""),
-        (productData.brandName = ""),
-        (productData.form = ""),
-        (productData.isAyurvedic = ""),
-        (productData.container = ""),
-        (productData.coo = ""),
-        (productData.hsnCode = ""),
-        (productData.gst = ""),
-        (productData.shelfLife = ""),
-        (productData.suitableFor = ""),
-        (productData.publish = ""),
-        (productData.benefits = ""),
-        (productData.alergyInfo = ""),
-        (productData.specialIngredients = ""),
-        (productData.coating = ""),
-        (productData.height = ""),
-        (productData.width = ""),
-        (productData.weight = ""),
-        setMainImage(null),
-        setPrimaryImage(null),
-        setSecondImage(null),
-        setThirdImage(null),
-        setFourthImage(null),
-        toast.success("All Fields Cleared");
+      setProductData({
+        title: "",
+        description: "",
+        price: "",
+        discount: "",
+        quantity: "",
+        category: "",
+        type: "",
+        stock: "",
+        gender: "",
+        ageRange: "",
+        brandName: "",
+        form: "",
+        isAyurvedic: "",
+        container: "",
+        coo: "",
+        hsnCode: "",
+        gst: "",
+        shelfLife: "",
+        suitableFor: "",
+        publish: "",
+        benefits: "",
+        alergyInfo: "",
+        specialIngredients: "",
+        coating: "",
+        height: "",
+        width: "",
+        weight: "",
+        categoryData: [],
+        typeData: [],
+        formData: [],
+        containerData: [],
+        countryData: [],
+      });
+      {
+        setMainImage(null);
+        setPrimaryImage(null);
+        setSecondImage(null);
+        setThirdImage(null);
+        setFourthImage(null);
+      }
+      toast.success("All Fields Cleared");
     } catch (error) {
       setLoading(false);
+      console.log("Error Clearing The Fields", error)
       toast.error("Error Clearing The Fields");
       toast.error("Try Refreshing");
     }
@@ -744,7 +754,7 @@ const AddProduct = () => {
           <div className="py-5">
             <div className="pb-2">
               <h2 className="text-lg font-semibold antialiased">
-                Additional Info {"  "}( Separate by " , " )
+                Additional Info ( Separate by 	&quot;,	&quot; )
               </h2>
             </div>
             <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
@@ -799,7 +809,7 @@ const AddProduct = () => {
                 </div>
               </div>
               <div className="flex items-center justify-center text-sm py-3 text-gray-600 dark:text-gray-200 animate-pulse">
-                <sup>*</sup>Note ( Use "," comma for adding multiple values)
+                <sup>*</sup>Note ( Use 	&quot;,	&quot; comma for adding multiple values)
               </div>
             </div>
           </div>

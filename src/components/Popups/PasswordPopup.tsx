@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { useUser } from "@/app/context/UserContext";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Edit, Images, Loader2, X } from "lucide-react";
@@ -15,7 +15,6 @@ interface imageProps {
 }
 
 const PasswordPopup = ({ isVisible, onClose, id }: imageProps) => {
-    const { user } = useUser();
     const [newPassword, setNewPassword] = useState("");
     const [otp, setOtp] = useState("")
     const router = useRouter()

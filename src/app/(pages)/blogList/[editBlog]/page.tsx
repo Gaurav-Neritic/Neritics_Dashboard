@@ -11,9 +11,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { FormEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export const dynamic = "force-dynamic";
-
-const page = () => {
+const Page = () => {
     const { editBlog } = useParams();
 
     const [title, setTitle] = useState("");
@@ -28,7 +26,6 @@ const page = () => {
     const {
         data: blogDetails = [],
         isLoading,
-        isError,
     } = useQuery({
         queryKey: ["blogDetails", editBlog],
         queryFn: () => getBlogDetails(editBlog as string),
@@ -66,7 +63,7 @@ const page = () => {
             }
             return [];
         } catch (error) {
-            console.log("Error Updating the blogs");
+            console.error("Error Updating the blogs", error);
             return [];
         }
     }
@@ -214,10 +211,10 @@ const page = () => {
                         <h2 className="text-lg font-semibold antialiased">Description</h2>
                     </div>
                     {blogDetails?.description && (
-                       <BlogEditor
-                       content={blogDetails?.description?.replace(/^"(.*)"$/, "$1") || " "}
-                       onContentChange={setDescription}
-                     />
+                        <BlogEditor
+                            content={blogDetails?.description?.replace(/^"(.*)"$/, "$1") || " "}
+                            onContentChange={setDescription}
+                        />
                     )}
                 </div>
 
@@ -243,4 +240,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

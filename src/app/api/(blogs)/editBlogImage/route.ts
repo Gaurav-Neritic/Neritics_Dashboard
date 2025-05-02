@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { Blog } from "@/models/blog.model";
 import { User } from "@/models/user.model";

@@ -135,7 +135,8 @@ const StockPopup = ({
               type="number"
               min={0}
               value={newStock}
-              onChange={(e: any) => setNewStock(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewStock(
+                Number(e.target.value))}
               className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white text-sm"
             />
           </div>
@@ -163,8 +164,8 @@ const StockPopup = ({
             </button>
           </div>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

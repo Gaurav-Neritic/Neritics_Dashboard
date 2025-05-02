@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Category } from "@/models/category.model";
 import { User } from "@/models/user.model";
 import jwt from "jsonwebtoken";
@@ -36,6 +38,6 @@ export async function DELETE(request: NextRequest) {
         return NextResponse.json({ data: deletedCategory }, { status: 200 })
 
     } catch (error) {
-        return NextResponse.json({ error: "Failed to delete the category" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to delete the category": ${error}` }, { status: 500 })
     }
 }

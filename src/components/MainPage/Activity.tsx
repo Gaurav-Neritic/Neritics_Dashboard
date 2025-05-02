@@ -1,15 +1,11 @@
 "use client";
 import { LineChart } from "@mui/x-charts";
 import { CircleDot } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 
 const Activity = () => {
-    const [isHovered, setIsHovered] = useState(false);
 
-    const handleHover = () => {
-        setIsHovered(!isHovered);
-    };
     return (
         <div className="border my-5 p-4 rounded border-lightBorder  dark:border-darkBorder">
             <div className="flex items-center justify-between ">

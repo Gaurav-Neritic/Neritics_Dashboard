@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { Product } from "@/models/product.model";
 import { User } from "@/models/user.model";
@@ -38,7 +40,7 @@ export async function GET() {
         return NextResponse.json({ data: getProducts }, { status: 200 })
 
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch the products" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to fetch the products" : ${error}` }, { status: 500 })
     }
 
 }

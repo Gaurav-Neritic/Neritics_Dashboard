@@ -4,7 +4,7 @@ import ToggleMode from "../Theme/ToggleMode";
 import Image from "next/image";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import Loader from "../Loaders/Loader";
 import Link from "next/link";

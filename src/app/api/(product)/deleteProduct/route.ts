@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Product } from "@/models/product.model";
 import { User } from "@/models/user.model";
 import jwt from "jsonwebtoken";
@@ -36,6 +38,6 @@ export async function DELETE(request: NextRequest) {
 
 
     } catch (error) {
-        return NextResponse.json({ error: "Failed to delete the produt from database" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to delete the produt from database": ${error}` }, { status: 500 })
     }
 }

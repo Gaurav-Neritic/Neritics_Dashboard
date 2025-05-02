@@ -23,16 +23,18 @@ import {
 } from "lucide-react";
 
 const navLinks = [
-  { href: "/", icon: Home, label: "Home" },
-  { href: "/addProduct", icon: FilePlus, label: "Add Product" },
-  { href: "/addBlog", icon: SquarePlus, label: " Add Blog" },
-  { href: "/orders", icon: PackagePlus, label: " Orders" },
-  { href: "/queries", icon: MessageCircleQuestion, label: "Queries" },
-  { href: "/sales", icon: ChartPie, label: "Sales" },
-  { href: "/stocks", icon: Blocks, label: " Stocks" },
-  { href: "/enquiry", icon: MessageSquareMore, label: "Enquiry" },
-  { href: "/profile", icon: CircleUserRound, label: "Profile" },
-  { href: "/settings", icon: Settings, label: "Settings" },
+  {
+    href: "/", icon: <Home />, label: "Home"
+  },
+  { href: "/addProduct", icon: <FilePlus />, label: "Add Product" },
+  { href: "/addBlog", icon: <SquarePlus />, label: " Add Blog" },
+  { href: "/orders", icon: <PackagePlus />, label: " Orders" },
+  { href: "/queries", icon: <MessageCircleQuestion />, label: "Queries" },
+  { href: "/sales", icon: <ChartPie />, label: "Sales" },
+  { href: "/stocks", icon: <Blocks />, label: " Stocks" },
+  { href: "/enquiry", icon: <MessageSquareMore />, label: "Enquiry" },
+  { href: "/profile", icon: <CircleUserRound />, label: "Profile" },
+  { href: "/settings", icon: <Settings />, label: "Settings" },
 ];
 
 const MobileNavbar = () => {
@@ -127,16 +129,16 @@ const MobileNavbar = () => {
         <div className="lg:hidden min-h-screen py-5">
           <div className="px-4 py-4">
             <nav>
-              {navLinks.map((link) => (
+              {navLinks.map(({ href, icon, label }: { href: string, icon: React.JSX.Element, label: string }) => (
                 <MobileNavLink
-                  key={link.href}
-                  href={link.href}
-                  icon={link.icon}
+                  key={href}
+                  href={href}
+                  icon={icon}
                   onClick={() => {
                     setIsMenuOpen(!isMenuOpen);
                   }}
                 >
-                  {link.label}
+                  {label}
                 </MobileNavLink>
               ))}
 

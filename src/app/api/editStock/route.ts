@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { Product } from "@/models/product.model";
 import { User } from "@/models/user.model";
@@ -47,6 +49,6 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ data: updatedStock }, { status: 200 })
 
     } catch (error) {
-        return NextResponse.json({ error: "Error Editing the Stock" }, { status: 500 })
+        return NextResponse.json({ error: `"Error Editing the Stock":${error}` }, { status: 500 })
     }
 }

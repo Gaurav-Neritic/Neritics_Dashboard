@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { generateVerificationCode } from "@/helpers/generateVerificationCode";
 import { User } from "@/models/user.model";
@@ -47,6 +49,6 @@ export async function POST(request: NextRequest) {
 
 
     } catch (error) {
-        return NextResponse.json({ error: `Failed to send the Verification OTP` }, { status: 500 })
+        return NextResponse.json({ error: `Failed to send the Verification OTP ${error}` }, { status: 500 })
     }
 }

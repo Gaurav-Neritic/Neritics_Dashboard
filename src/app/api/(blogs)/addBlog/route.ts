@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { Blog } from "@/models/blog.model";
 import { User } from "@/models/user.model";
@@ -70,6 +72,6 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ data: "Data Added Successfully" }, { status: 200 })
 
     } catch (error) {
-        return NextResponse.json({ error: "Failed to Add the bolg to database" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to Add the bolg to database" : ${error}` }, { status: 500 })
     }
 }
