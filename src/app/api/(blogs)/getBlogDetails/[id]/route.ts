@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_: NextRequest, params: { params: Promise<{ id: string }> }) {
     await connectDB();
     const cookieStore = cookies();
 
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     }
 
     try {
-        const { id } = await params;
+        const { id } = await params.params;
 
         console.log(id);
 
