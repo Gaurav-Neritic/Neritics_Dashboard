@@ -8,7 +8,32 @@ import { useUser } from "@/app/context/UserContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import MobileNavLink from "./MobileNavLink";
-import { navLinks } from "@/lib/navLinks";
+
+import {
+  Home,
+  FilePlus,
+  SquarePlus,
+  PackagePlus,
+  MessageCircleQuestion,
+  ChartPie,
+  Blocks,
+  MessageSquareMore,
+  CircleUserRound,
+  Settings,
+} from "lucide-react";
+
+const navLinks = [
+  { href: "/", icon: Home, label: "Home" },
+  { href: "/addProduct", icon: FilePlus, label: "Add Product" },
+  { href: "/addBlog", icon: SquarePlus, label: " Add Blog" },
+  { href: "/orders", icon: PackagePlus, label: " Orders" },
+  { href: "/queries", icon: MessageCircleQuestion, label: "Queries" },
+  { href: "/sales", icon: ChartPie, label: "Sales" },
+  { href: "/stocks", icon: Blocks, label: " Stocks" },
+  { href: "/enquiry", icon: MessageSquareMore, label: "Enquiry" },
+  { href: "/profile", icon: CircleUserRound, label: "Profile" },
+  { href: "/settings", icon: Settings, label: "Settings" },
+];
 
 const MobileNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
