@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 
 export async function sendEmail(email: string, verificationCode: string | number) {
     const mailOptions = {
-        from: process.env.EMAIL_USER,
+        from: "Neritic Wellness PVT.LTD",
         to: email,
         subject: 'Your Verification Code',
         text: `Your verification code is: ${verificationCode}`,
