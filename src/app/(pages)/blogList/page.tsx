@@ -141,7 +141,7 @@ const BlogList = () => {
       </div>
 
       {/* List View */}
-      <div className={`p-0 md:p-4 border border-lightBorder dark:border-darkBorder rounded `}>
+      <div className={`p-0 md:p-4 border border-lightBorder dark:border-darkBorder rounded text-sm`}>
         <div className={`w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"}`} >
           {/* Header */}
           <div className="p-2 flex w-full justify-between items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder">
@@ -203,14 +203,14 @@ const BlogList = () => {
                   loading="lazy"
                   src={blog.image}
                   alt={blog.title}
-                  height={100}
-                  width={100}
+                  height={200}
+                  width={200}
                   className="w-10 h-10  object-cover rounded"
                 />
               </div>
 
 
-              <div className="px-4 w-1/12 flex text-sm md:text-xl">
+              <div className="px-4 w-1/12 flex text-sm md:text-md">
                 {blog.publish ? "🟢" : "🔴"}
               </div>
               <div className="px-2  w-2/12 items-start justify-start ">

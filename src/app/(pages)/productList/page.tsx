@@ -225,7 +225,7 @@ const ProductList = () => {
       {/* Products List */}
       <div className="py-2 md:block">
         <div className="p-1 border border-lightBorder dark:border-darkBorder  rounded ">
-          <div className={` ${listView ? "block" : "hidden py-0 px-0 "} m-0 md:m-5  border border-lightBorder dark:border-darkBorder  rounded`} >
+          <div className={` ${listView ? "block" : "hidden py-0 px-0 "} m-0 md:m-5  border border-lightBorder dark:border-darkBorder  rounded text-sm`} >
             <div className={`py-3 px-5 gap-5 grid md:grid-cols-8 grid-cols-5 place-items-center `} >
               <h1 className="w-full truncate hidden md:block">Products Id</h1>
               <h1 className="w-full truncate">Products Name</h1>
@@ -273,10 +273,10 @@ const ProductList = () => {
                           <div className="w-full place-items-center">
                             <Image
                               src={image[0] || "/placeholder.jpg"}
-                              width={50}
-                              height={50}
+                              width={200}
+                              height={200}
                               alt="img"
-                              className=" rounded bg-lightBorder dark:bg-darkBorder"
+                              className="h-12 w-12 rounded bg-lightBorder dark:bg-darkBorder"
                             />
                           </div>
 
