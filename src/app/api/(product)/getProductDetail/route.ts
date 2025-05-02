@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import connectDB from "@/db/dbConfig";
 import { Product } from "@/models/product.model";
 import { User } from "@/models/user.model";
@@ -39,6 +40,6 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ data: productDetails }, { status: 200 })
     } catch (error) {
         console.log("Error fetching details : ", error)
-        return NextResponse.json({ error: "Failed to fetch the product detail" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to fetch the product detail":${error}` }, { status: 500 })
     }
 }

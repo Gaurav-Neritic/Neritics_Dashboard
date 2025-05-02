@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { Type } from "@/models/type.model";
 import { User } from "@/models/user.model";
@@ -43,6 +45,6 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
         console.log("Error Adding Category : ", error)
-        return NextResponse.json({ error: "Failed to Add the category in DB" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to Add the category in DB": ${error}` }, { status: 500 })
     }
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { Container } from "@/models/container.model";
 import { User } from "@/models/user.model";
@@ -43,6 +45,6 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
         console.log("Error Adding newContainerType : ", error)
-        return NextResponse.json({ error: "Failed to Add the newContainerType in DB" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to Add the newContainerType in DB": ${error}` }, { status: 500 })
     }
 }

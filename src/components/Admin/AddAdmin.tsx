@@ -1,3 +1,4 @@
+
 "use client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -121,10 +122,16 @@ const AddAdmin = () => {
   };
 
   const totalRequests = userRequests.filter(
-    (user: any) => user?.isAdmin === false
+    (user: { isAdmin: boolean }) => user?.isAdmin === false
   );
-  accessMutation?.isError ? toast.error("Something Went Wrong") : "";
-  removeAccessMutation?.isError ? toast.error("Something Went Wrong") : "";
+
+  if (accessMutation.isError) {
+    toast.error("Something Went Wrong");
+  }
+
+  if (removeAccessMutation.isError) {
+    toast.error("Something Went Wrong");
+  }
 
   if (user?.isSuperAdmin === false) return null;
   return (
@@ -138,11 +145,10 @@ const AddAdmin = () => {
             <h1 className={`text-lg mb-1 flex`}>
               Admin Requests :
               <span
-                className={`ml-2 ${
-                  totalRequests.length > 0
-                    ? "animate-pulse text-red-600 font-semibold bg-red-100 px-2 rounded"
-                    : ""
-                }`}
+                className={`ml-2 ${totalRequests.length > 0
+                  ? "animate-pulse text-red-600 font-semibold bg-red-100 px-2 rounded"
+                  : ""
+                  }`}
               >
                 {totalRequests.length}
               </span>

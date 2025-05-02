@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { LayoutGrid, List, Trash2, FilePenLine, ChevronDown } from "lucide-react";
+import { LayoutGrid, List, Trash2, FilePenLine } from "lucide-react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,6 +8,15 @@ import BlogCard from "@/components/BlogPage/BlogCard";
 import DeleteBlogPoup from "@/components/Popups/DeleteBlogPopup";
 import Loader from "@/components/Loaders/Loader";
 import Image from "next/image";
+
+interface blogInfo {
+  _id: string,
+  title: string,
+  description: string,
+  author: string,
+  image: string,
+  publish: boolean
+}
 
 const BlogList = () => {
   const [viewMode, setViewMode] = useState("list");
@@ -33,12 +42,12 @@ const BlogList = () => {
     }
   }
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const text = e.target.value;
     setSearchText(text);
     const filtered = blogs.filter(
-      (blog: any) =>
+      (blog: blogInfo) =>
         blog.title.toLowerCase().includes(text.toLowerCase()) ||
         blog.author.toLowerCase().includes(text.toLowerCase())
     );
@@ -57,11 +66,11 @@ const BlogList = () => {
   useEffect(() => {
     if (filter === "🟢 Live") {
       setFilteredBlogs(
-        blogs.filter((blog: any) => blog.publish === true)
+        blogs.filter((blog: blogInfo) => blog.publish === true)
       );
     } else if (filter === "🔴 UnListed") {
       setFilteredBlogs(
-        blogs.filter((blog: any) => blog.publish === false)
+        blogs.filter((blog: blogInfo) => blog.publish === false)
       );
     } else {
       if (blogs.length > 0) {
@@ -132,7 +141,7 @@ const BlogList = () => {
       </div>
 
       {/* List View */}
-      <div className={`p-0 md:p-4 border border-lightBorder dark:border-darkBorder rounded `}>
+      <div className={`p-0 md:p-4 border border-lightBorder dark:border-darkBorder rounded text-sm`}>
         <div className={`w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"}`} >
           {/* Header */}
           <div className="p-2 flex w-full justify-between items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder">
@@ -167,7 +176,7 @@ const BlogList = () => {
             </div>
           )}
           {/* Blog items */}
-          {filteredBlogs.map((blog: any) => (
+          {filteredBlogs.map((blog: blogInfo) => (
             <div
               key={blog?._id}
               className="p-2 flex w-full justify-start items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder gap-3"
@@ -194,14 +203,14 @@ const BlogList = () => {
                   loading="lazy"
                   src={blog.image}
                   alt={blog.title}
-                  height={100}
-                  width={100}
+                  height={200}
+                  width={200}
                   className="w-10 h-10  object-cover rounded"
                 />
               </div>
 
 
-              <div className="px-4 w-1/12 flex text-sm md:text-xl">
+              <div className="px-4 w-1/12 flex text-sm md:text-md">
                 {blog.publish ? "🟢" : "🔴"}
               </div>
               <div className="px-2  w-2/12 items-start justify-start ">
@@ -267,7 +276,7 @@ const BlogList = () => {
             </div>
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5 lg:p-0  gap-5">
-            {filteredBlogs.map((blog: any) => (
+            {filteredBlogs.map((blog: blogInfo) => (
               <div key={blog?._id}>
                 <BlogCard
                   _id={blog?._id}

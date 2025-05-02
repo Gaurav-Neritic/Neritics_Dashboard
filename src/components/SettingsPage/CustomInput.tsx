@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import axios from 'axios'
@@ -52,7 +53,9 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
             }
         } catch (error: any) {
             setLoading(false)
-            error.status === 403 ? toast.success("Aleary Exist In Database", { icon: "🖥" }) : ""
+            if (error.status === 403) {
+                toast.success("Aleary Exist In Database", { icon: "🖥" })
+            }
             console.log("Error adding", error)
         }
     }
@@ -110,7 +113,7 @@ const CustomInput = ({ label, placeholder, apiEndPoint, categoryArray, deleteApi
                         placeholder={placeholder}
                     />
                     <button
-                        onClick={(e) => { e.preventDefault(); handelAddItem(name) }}
+                        onClick={(e) => { e.preventDefault(); handelAddItem(name as string) }}
                         className="px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition cursor-pointer">
                         {loading ? <RotateCw className='animate-spin' /> : <SquarePlus className="w-6 h-6" />}
                     </button>

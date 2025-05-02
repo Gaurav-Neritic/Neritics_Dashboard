@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
-import { Category } from "@/models/category.model";
 import { Country } from "@/models/country.model";
 import { User } from "@/models/user.model";
 import jwt from "jsonwebtoken";
@@ -29,6 +30,6 @@ export async function GET() {
         return NextResponse.json({ data: getAllCountries }, { status: 200 })
 
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch categories" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to fetch categories": ${error}` }, { status: 500 })
     }
 }

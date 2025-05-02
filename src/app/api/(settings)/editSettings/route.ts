@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { User } from "@/models/user.model";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
@@ -55,6 +57,6 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ data: updatedUser }, { status: 200 })
         }
     } catch (error) {
-        return NextResponse.json({ error: `Error updating the userDetails` }, { status: 500 })
+        return NextResponse.json({ error: `Error updating the userDetails : ${error}` }, { status: 500 })
     }
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Product } from "@/models/product.model";
 import { User } from "@/models/user.model";
 import { uploadAssetOnCloudinary } from "@/utils/uploadAssetOnCloudinary";
@@ -149,6 +151,6 @@ export async function PUT(request: NextRequest) {
         }
 
     } catch (error) {
-        return NextResponse.json({ error: "Failed to update the images in database" }, { status: 500 })
+        return NextResponse.json({ error: `"Failed to update the images in database": ${error}` }, { status: 500 })
     }
 }

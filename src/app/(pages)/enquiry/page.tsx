@@ -2,7 +2,7 @@
 import {  Trash2 } from "lucide-react";
 import React, { useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [isToggled, setIsToggled] = useState(false);
 
   const handleChange = () => {
@@ -50,4 +50,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

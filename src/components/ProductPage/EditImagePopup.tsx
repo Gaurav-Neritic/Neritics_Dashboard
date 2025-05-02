@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { Images, ImageUp, RotateCw, X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -9,7 +10,7 @@ interface editImageProps {
   onClose: () => void;
   imgIndex: number;
   id: string;
-  reRender: () => {};
+  reRender: () => void;
 }
 
 const EditImagePopup = ({
@@ -43,7 +44,7 @@ const EditImagePopup = ({
       }
     } catch (error) {
       setLoading(false);
-      console.log("Error Updating the image");
+      console.log("Error Updating the image", error);
       toast.error("Failed to upload try again!");
       onClose();
     }
@@ -99,8 +100,8 @@ const EditImagePopup = ({
             <input
               type="file"
               required
-              onChange={(e: any) => {
-                setEditImage(e.target.files[0]);
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setEditImage(e.target.files && e.target.files[0]);
               }}
               className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-300 file:hover:bg-gray-200 file:text-black rounded"
             />
@@ -115,7 +116,10 @@ const EditImagePopup = ({
               )}
             </button>
             {editImage && (
-              <img
+              <Image
+                height={2000}
+                width={2000}
+                loading="lazy"
                 src={
                   getPreviewUrl(editImage) ||
                   "https://dummyimage.com/600x400/000/fff"

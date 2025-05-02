@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
-import { useUser } from "@/app/context/UserContext";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { Edit, Images, Loader2, X } from "lucide-react";
@@ -15,25 +15,22 @@ interface imageProps {
 }
 
 const PasswordPopup = ({ isVisible, onClose, id }: imageProps) => {
-    const { user } = useUser();
     const [newPassword, setNewPassword] = useState("");
     const [otp, setOtp] = useState("")
     const router = useRouter()
 
-    const logout = async () => {
-        const id = JSON.stringify(user?._id);
-        const _id = JSON.parse(id);
+
+    const clearCookies = async () => {
         try {
-            const response = await axios.post("../api/logout", { _id });
+            const response = await axios.get('../api/clearCookies');
             if (response.data.data) {
-                localStorage.removeItem("user");
+                localStorage.removeItem('user');
+                router.push('/login')
             }
         } catch (error) {
-            console.log("Error logging out ", error);
+            console.error("Error clearing cookies ", error)
         }
-    };
-
-
+    }
 
     async function updatePassword({ newPassword, id }: { newPassword: string, id: string }) {
         try {
@@ -54,9 +51,8 @@ const PasswordPopup = ({ isVisible, onClose, id }: imageProps) => {
         mutationFn: updatePassword,
         onSuccess: () => {
             toast.success("Password Updated");
+            clearCookies();
             onClose();
-            logout();
-            router.push('/login')
         }
     })
 

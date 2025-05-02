@@ -1,3 +1,4 @@
+
 "use client"
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -13,9 +14,10 @@ type User = {
     isSuperAdmin: boolean
 }
 
+
 const UserContext = createContext<{
     user: User | null;
-    setUser: React.Dispatch<React.SetStateAction<User | null>>;
+    setUser: React.Dispatch<React.SetStateAction<User | null>>
 }>(
     {
         user: null,
@@ -41,15 +43,14 @@ export const UserContextProvider = ({ children }: { children: React.ReactNode })
     }
 
     useEffect(() => {
-        const localUser: any = localStorage.getItem("user");
-        const loggedUser = JSON.parse(localUser)
+        const localUser: string | null = localStorage.getItem("user");
+        const loggedUser = JSON.parse(localUser as string)
 
         if (loggedUser?.isAdmin) {
             setUser(loggedUser);
         } else {
             clearCookies();
         }
-
     }, []);
 
 

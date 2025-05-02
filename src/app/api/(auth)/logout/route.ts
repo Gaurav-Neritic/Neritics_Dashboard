@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+
 import connectDB from "@/db/dbConfig";
 import { User } from "@/models/user.model";
 import { cookies } from "next/headers";
@@ -28,7 +30,9 @@ export async function POST(request: NextRequest) {
 
         const cookieStore = cookies();
 
-        (await cookieStore).delete('accessToken') && (await cookieStore).delete('refreshToken')
+        {
+            (await cookieStore).delete('accessToken') && (await cookieStore).delete('refreshToken');
+        };
 
         if (!loggedOutUser) {
             return NextResponse.json({ error: `Failed to logout the user` }, { status: 402 })

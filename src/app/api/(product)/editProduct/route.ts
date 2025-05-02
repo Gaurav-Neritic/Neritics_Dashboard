@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { Product } from "@/models/product.model";
 import { User } from "@/models/user.model";
@@ -165,7 +167,7 @@ export async function PUT(request: NextRequest) {
 
     } catch (error) {
         return NextResponse.json(
-            { error: "Failed to Update the product details" },
+            { error: `"Failed to Update the product details":${error}` },
             { status: 500 }
         );
     }

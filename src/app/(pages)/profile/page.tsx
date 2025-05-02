@@ -9,7 +9,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const { user } = useUser();
   const [popup, setPopup] = useState(false)
   const [passwordPopup, setPasswordPopup] = useState(false)
@@ -167,4 +167,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

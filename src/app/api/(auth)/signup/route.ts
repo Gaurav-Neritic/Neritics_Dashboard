@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import connectDB from "@/db/dbConfig";
 import { User } from "@/models/user.model";
 import { uploadAssetOnCloudinary } from "@/utils/uploadAssetOnCloudinary";

@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
-import { border, borderRightColor, color, style } from "@mui/system";
-import Color from "@tiptap/extension-color";
 import {
   AlignCenter,
   AlignJustify,
@@ -25,14 +25,14 @@ import React, { useMemo, useState } from "react";
 const Toolbar = ({ editor }: any) => {
   const [showFontSizes, setShowFontSizes] = useState(false);
 
-  const fontSizes = [
+  const fontSizes = useMemo(() => [
     { label: "H1", value: "32px" },
     { label: "H2", value: "24px" },
     { label: "H3", value: "18.72px" },
     { label: "H4", value: "16px" },
     { label: "H5", value: "13.28px" },
     { label: "H6", value: "	10.72px" },
-  ];
+  ], []);
 
   const toolbarMemo = useMemo(() => {
     if (!editor) {
@@ -44,9 +44,8 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive("bold") ? "bg-neutral-200 dark:bg-neutral-800" : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive("bold") ? "bg-neutral-200 dark:bg-neutral-800" : ""
+            }`}
           title="Bold"
         >
           <Bold size={18} />
@@ -54,11 +53,10 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive("italic")
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive("italic")
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Italic"
         >
           <Italic size={18} />
@@ -66,11 +64,10 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive("underline")
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive("underline")
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Underline"
         >
           <Underline size={18} />
@@ -81,22 +78,20 @@ const Toolbar = ({ editor }: any) => {
           onClick={() =>
             editor.chain().focus().toggleHighlight({ color: "#f8ff00" }).run()
           }
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive("highlight")
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive("highlight")
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
         >
           <Highlighter size={18} />
         </button>
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive("strike")
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive("strike")
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Strike Through"
         >
           <Strikethrough size={18} />
@@ -138,9 +133,8 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleCode().run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive("code") ? "bg-neutral-200 dark:bg-neutral-800" : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive("code") ? "bg-neutral-200 dark:bg-neutral-800" : ""
+            }`}
           title="Code"
         >
           <Code size={18} />
@@ -170,11 +164,10 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive({ textAlign: "left" })
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive({ textAlign: "left" })
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Align Left"
         >
           <AlignLeft size={18} />
@@ -182,11 +175,10 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive({ textAlign: "center" })
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive({ textAlign: "center" })
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Align Center"
         >
           <AlignCenter size={18} />
@@ -194,11 +186,10 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive({ textAlign: "right" })
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive({ textAlign: "right" })
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Align Right"
         >
           <AlignRight size={18} />
@@ -206,11 +197,10 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().setTextAlign("justify").run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive({ textAlign: "justify" })
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive({ textAlign: "justify" })
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Align Justify"
         >
           <AlignJustify size={18} />
@@ -221,11 +211,10 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive("bulletList")
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive("bulletList")
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Bullet List"
         >
           <CircleSmall size={18} />
@@ -233,11 +222,10 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${
-            editor.isActive("orderedList")
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : ""
-          }`}
+          className={`px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer ${editor.isActive("orderedList")
+            ? "bg-neutral-200 dark:bg-neutral-800"
+            : ""
+            }`}
           title="Ordered List"
         >
           <ListOrdered size={18} />

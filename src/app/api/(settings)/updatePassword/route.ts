@@ -1,18 +1,18 @@
 
 import connectDB from "@/db/dbConfig";
 import { User } from "@/models/user.model";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(request: NextRequest) {
     await connectDB()
 
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
 
-    const token: any = (await cookieStore).get('accessToken')?.value;
+    const token: string | undefined = cookieStore.get('accessToken')?.value;
 
-    const decodedToken: any = jwt.decode(token);
+    const decodedToken = jwt.decode(token ?? "") as JwtPayload;
 
     const authorizedUser = await User.findById(decodedToken?._id);
 
@@ -39,7 +39,7 @@ export async function PUT(request: NextRequest) {
         }
 
         if (validAdmin?.verifyOTPExpires < new Date()) {
-            validAdmin?.verifyOTP === undefined;
+            validAdmin.verifyOTP = undefined;
             validAdmin.verifyOTPExpires = undefined;
             await validAdmin.save({ validateBeforeSave: true })
         }
