@@ -17,10 +17,10 @@ const SalesPage = () => {
                 <th className="py-2 px-4 text-left text-sm  font-semibold">
                   #ID
                 </th>
-                <th className="py-2 px-2 text-left text-sm font-semibold">
+                <th className="py-2 text-left text-sm font-semibold">
                   Name
                 </th>
-                <th className="py-2 px-2 text-left text-sm font-semibold">
+                <th className="py-2 text-left text-sm font-semibold">
                   Products
                 </th>
                 <th className="py-2 px-2 text-center text-sm font-semibold">
@@ -43,12 +43,12 @@ const SalesPage = () => {
 
             {/* Table Body */}
             <tbody>
-              <tr className=" border-b last:border-b-0 border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50 ">
-                <td className="py-2 px-4 text-sm  capitalize text-left">#1020</td>
-                <td className="py-2 px-4 text-sm  capitalize text-left">
+              <tr className=" border-b last:border-b-0 border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50 my-3">
+                <td className="p-4 text-sm  capitalize text-left">#1020</td>
+                <td className="text-sm  capitalize text-left">
                   Sanket Pathare
                 </td>
-                <td className="py-2 px-2 text-sm  capitalize text-left">
+                <td className="py-2 text-sm  capitalize text-left">
                   <div className="line-clamp-2 ">
                     Nerileum – Roll On Herbal Pain Relief Oil
                   </div>
