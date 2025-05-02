@@ -21,7 +21,7 @@ export async function GET(_: NextRequest, params: { params: Promise<{ id: string
     }
 
     try {
-        const { id } = await params;
+        const { id } = await params.params;
 
         console.log(id);
 
