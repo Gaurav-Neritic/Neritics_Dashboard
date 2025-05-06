@@ -50,8 +50,8 @@ const DeletePoup = ({ isVisible, onClose, prodName, id }: DeletePopupProps) => {
 
   if (!isVisible) return null;
   return (
-    <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 mx-5 lg:mx-0  ">
-      <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg lg:max-w-md  w-full mx-4 lg:mx-0">
+    <div className="fixed inset-0 z-50 flex items-center justify-center mx-5 bg-opacity-50 backdrop-blur-sm lg:mx-0 ">
+      <div className="w-full p-6 mx-4 bg-white border rounded-lg shadow-lg dark:bg-neutral-800 border-neutral-700 lg:max-w-md lg:mx-0">
         <div className="flex items-center mb-4 text-red-500">
           <AlertCircle className="mr-2" />
           <h2 className="text-xl font-bold">Confirm Delete</h2>
@@ -64,7 +64,7 @@ const DeletePoup = ({ isVisible, onClose, prodName, id }: DeletePopupProps) => {
         <div className="flex justify-end space-x-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 border rounded-md border-lightBorder dark:border-darkBorder  dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
+            className="px-4 py-2 border rounded-md border-lightBorder dark:border-darkBorder dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
           >
             Cancel
           </button>
@@ -73,7 +73,7 @@ const DeletePoup = ({ isVisible, onClose, prodName, id }: DeletePopupProps) => {
               e.preventDefault();
               handelDelete(id);
             }}
-            className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 cursor-pointer"
+            className="px-4 py-2 text-white bg-red-500 rounded-md cursor-pointer hover:bg-red-600"
           >
             {loading ? <Loader title="Deleting..." /> : <span>Delete</span>}
           </button>

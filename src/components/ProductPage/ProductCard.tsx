@@ -65,8 +65,8 @@ const ProductCard = ({
   }
 
   return (
-    <div className="h-full flex flex-col border border-lightBorder dark:border-darkBorder rounded p-5">
-      {isError && <div className="p-5 flex items-center justify-center">
+    <div className="flex flex-col h-full p-5 border rounded border-lightBorder dark:border-darkBorder">
+      {isError && <div className="flex items-center justify-center p-5">
         <h1>Something Went Wrong</h1>
       </div>}
       <Image
@@ -77,18 +77,18 @@ const ProductCard = ({
         className="w-auto h-[250px] object-cover bg-gray-100 dark:bg-neutral-700 border border-lightBorder dark:border-darkBorder rounded"
       />
       <div className="flex flex-col flex-grow pb-2">
-        <h1 className="mt-2 line-clamp-2 capitalize text-xl font-semibold h-14">
+        <h1 className="mt-2 text-xl font-semibold capitalize line-clamp-2 h-14">
           {title}
         </h1>
-        <h1 className="mt-2 text-md font-normal">
+        <h1 className="mt-2 font-normal text-md">
           <span className="font-light dark:text-gray-300"> Status </span> :{" "}
           {listingStatus ? "✅ Published " : "❌ Un-Listed"}
         </h1>
-        <h1 className="mt-2 text-md font-normal">
+        <h1 className="mt-2 font-normal text-md">
           <span className="font-light dark:text-gray-300">Stock</span> :{" "}
           {stock <= 0 ? `❌ ${stock}` : `✅ ${stock}`}
         </h1>
-        <h1 className="mt-2 text-md font-semibold">
+        <h1 className="mt-2 font-semibold text-md">
           <span className="font-light dark:text-gray-300">Price</span> : ₹
           {price}
         </h1>
@@ -96,9 +96,9 @@ const ProductCard = ({
       <div className="grid grid-cols-2 gap-2 pt-2 border-t border-lightBorder dark:border-darkBorder">
         <Link
           href={`/productList/${_id}`}
-          className="flex justify-center items-center gap-2 text-green-500 hover:text-green-600 bg-green-100 hover:bg-green-200 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm"
+          className="flex items-center justify-center gap-2 p-2 text-sm text-green-500 bg-green-100 border rounded hover:text-green-600 hover:bg-green-200 border-lightBorder dark:border-darkBorder"
         >
-          <FilePenLine className="h-5 w-5 cursor-pointer" />
+          <FilePenLine className="w-5 h-5 cursor-pointer" />
           Edit
         </Link>
         <button
@@ -107,16 +107,16 @@ const ProductCard = ({
             e.preventDefault();
             handelDelete(_id);
           }}
-          className=" bg-red-100 hover:bg-red-200 text-red-500 hover:text-red-600 p-2 border border-lightBorder dark:border-darkBorder rounded text-sm cursor-pointer bg-red-2"
+          className="p-2 text-sm text-red-500 bg-red-100 border rounded cursor-pointer hover:bg-red-200 hover:text-red-600 border-lightBorder dark:border-darkBorder bg-red-2"
         >
           {loading ? (
-            <span className="flex justify-center items-center gap-2 animate-spin">
-              <LoaderCircle className="h-5 w-5 cursor-pointer" />
+            <span className="flex items-center justify-center gap-2 animate-spin">
+              <LoaderCircle className="w-5 h-5 cursor-pointer" />
               Deleting...
             </span>
           ) : (
-            <span className="flex justify-center items-center gap-2">
-              <Trash2 className="h-5 w-5 cursor-pointer" />
+            <span className="flex items-center justify-center gap-2">
+              <Trash2 className="w-5 h-5 cursor-pointer" />
               Delete
             </span>
           )}

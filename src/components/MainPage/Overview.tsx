@@ -112,10 +112,10 @@ const OverView = () => {
     ],
   }
   return (
-    <div className="grid-cols-1 lg:grid-cols-2 grid gap-4">
-      <div className="border my-5 p-4 rounded border-lightBorder dark:border-darkBorder ">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="p-4 my-5 border rounded border-lightBorder dark:border-darkBorder ">
         <div className="flex items-center justify-between pb-3 border-b border-lightBorder dark:border-darkBorder ">
-          <h1 className="font-semibold uppercase text-gray-600 dark:text-gray-200">
+          <h1 className="font-semibold text-gray-600 uppercase dark:text-gray-200">
             Sales Overview
           </h1>
           <button
@@ -131,9 +131,9 @@ const OverView = () => {
         </div>
       </div>
 
-      <div className="border my-5 p-4 rounded border-lightBorder dark:border-darkBorder ">
+      <div className="p-4 my-5 border rounded border-lightBorder dark:border-darkBorder ">
         <div className="flex items-center justify-between pb-3 border-b border-lightBorder dark:border-darkBorder ">
-          <h1 className="font-semibold uppercase text-gray-600 dark:text-gray-200">
+          <h1 className="font-semibold text-gray-600 uppercase dark:text-gray-200">
             Stock Analytics
           </h1>
         </div>

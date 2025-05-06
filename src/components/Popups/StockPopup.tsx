@@ -54,18 +54,18 @@ const StockPopup = ({
 
   if (!isVisible) return null;
   return (
-    <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg max-w-md w-full mx-2 lg:mx-0">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
+      <div className="w-full max-w-md p-6 mx-2 bg-white border rounded-lg shadow-lg dark:bg-neutral-800 border-neutral-700 lg:mx-0">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold gap-2 flex items-center capitalize">
+          <h2 className="flex items-center gap-2 text-2xl font-bold capitalize">
             Edit Product
           </h2>
           {/*cancel button */}
           <button
             onClick={() => onClose()}
-            className="text-gray-500 hover:text-gray-700 cursor-pointer dark:text-gray-300 dark:hover:text-white"
+            className="text-gray-500 cursor-pointer hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
           >
-            <X className="h-6 w-6" />
+            <X className="w-6 h-6" />
           </button>
         </div>
         <form className="space-y-4" onSubmit={handelSubmit}>
@@ -73,7 +73,7 @@ const StockPopup = ({
           <div>
             <label
               htmlFor="productId"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Product ID
             </label>
@@ -83,7 +83,7 @@ const StockPopup = ({
               name="productId"
               required
               value={productId}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed outline-none text-sm"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md outline-none cursor-not-allowed dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
               readOnly
             />
           </div>
@@ -91,7 +91,7 @@ const StockPopup = ({
           <div>
             <label
               htmlFor="productName"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Product Name
             </label>
@@ -101,14 +101,14 @@ const StockPopup = ({
               name="productName"
               disabled
               value={productName}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed text-sm"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md cursor-not-allowed dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
             />
           </div>
           {/* Previous Stock */}
           <div>
             <label
               htmlFor="totalStock"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 "
+              className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300 "
             >
               Previous Stock
             </label>
@@ -119,13 +119,13 @@ const StockPopup = ({
               disabled
               name="totalStock"
               value={totalStock}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white cursor-not-allowed text-sm"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md cursor-not-allowed dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
             />
           </div>
 
           {/* In Stock */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
               New Stock
             </label>
             <input
@@ -137,24 +137,24 @@ const StockPopup = ({
               value={newStock}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewStock(
                 Number(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 rounded-md dark:bg-neutral-700 dark:text-white text-sm"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
             />
           </div>
 
           {/* Save Changes */}
-          <div className="flex justify-end space-x-3 pt-4">
+          <div className="flex justify-end pt-4 space-x-3">
             {/*cancel button */}
             <button
               type="button"
               onClick={() => onClose()}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700 cursor-pointer text-sm"
+              className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-md cursor-pointer dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700"
             >
               Cancel
             </button>
             {/* save button */}
             <button
               type="submit"
-              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 cursor-pointer text-sm"
+              className="px-4 py-2 text-sm text-white bg-green-600 rounded-md cursor-pointer hover:bg-green-700"
             >
               {editStockMutation.isPending ? (
                 <Loader title="Updating..." />

@@ -33,12 +33,12 @@ const DashBoardStats = () => {
   return (
     <section>
       {/* Dashboard Stats Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 ">
         {/* Single Container */}
         {/* TODO: Still need to make it dynamic */}
-        <div className="border border-lightBorder  dark:border-darkBorder lg:py-3 h-auto px-6 rounded dark:bg-neutral-800/50">
+        <div className="h-auto px-6 border rounded border-lightBorder dark:border-darkBorder lg:py-3 dark:bg-neutral-800/50">
           <div className="py-3">
-            <h1 className="lg:text-4xl text-2xl font-semibold pb-2">0 +</h1>
+            <h1 className="pb-2 text-2xl font-semibold lg:text-4xl">0 +</h1>
             <p className="text-gray-500 dark:text-gray-400">Total Sales</p>
           </div>
           <div className="flex items-end justify-between py-3">
@@ -47,15 +47,15 @@ const DashBoardStats = () => {
               0%
             </div>
             <div>
-              <ChartNoAxesCombined className="lg:h-12 lg:w-12 h-10 w-10 text-white bg-yellow-400 p-1 rounded" />
+              <ChartNoAxesCombined className="w-10 h-10 p-1 text-white bg-yellow-400 rounded lg:h-12 lg:w-12" />
             </div>
           </div>
         </div>
 
         {/* Total Sales Revenue */}
-        <div className="border border-lightBorder dark:border-darkBorder lg:py-3 h-auto px-6 rounded dark:bg-neutral-800/50">
+        <div className="h-auto px-6 border rounded border-lightBorder dark:border-darkBorder lg:py-3 dark:bg-neutral-800/50">
           <div className="py-3">
-            <h1 className="lg:text-4xl text-2xl font-semibold pb-2">₹ 0 </h1>
+            <h1 className="pb-2 text-2xl font-semibold lg:text-4xl">₹ 0 </h1>
             <p className="text-gray-500 dark:text-gray-400">Sales Revenue</p>
           </div>
           <div className="flex items-end justify-between py-3">
@@ -64,15 +64,15 @@ const DashBoardStats = () => {
               0%
             </div>
             <div>
-              <IndianRupee className="lg:h-12 lg:w-12 h-10 w-10 text-white bg-green-400 p-1 rounded" />
+              <IndianRupee className="w-10 h-10 p-1 text-white bg-green-400 rounded lg:h-12 lg:w-12" />
             </div>
           </div>
         </div>
 
         {/* Total Number of Orders */}
-        <div className="border border-lightBorder dark:border-darkBorder lg:py-3 h-auto px-6 rounded dark:bg-neutral-800/50">
+        <div className="h-auto px-6 border rounded border-lightBorder dark:border-darkBorder lg:py-3 dark:bg-neutral-800/50">
           <div className="py-3">
-            <h1 className="lg:text-4xl text-2xl font-semibold pb-2">0</h1>
+            <h1 className="pb-2 text-2xl font-semibold lg:text-4xl">0</h1>
             <p className="text-gray-500 dark:text-gray-400">Total Orders</p>
           </div>
           <div className="flex items-end justify-between py-3">
@@ -81,15 +81,15 @@ const DashBoardStats = () => {
               0%
             </div>
             <div>
-              <PackagePlus className="lg:h-12 lg:w-12 h-10 w-10 text-white bg-blue-400 p-1 rounded" />
+              <PackagePlus className="w-10 h-10 p-1 text-white bg-blue-400 rounded lg:h-12 lg:w-12" />
             </div>
           </div>
         </div>
 
         {/* Total Number of Queries */}
-        <div className="border border-lightBorder dark:border-darkBorder lg:py-3 h-auto px-6 rounded dark:bg-neutral-800/50">
+        <div className="h-auto px-6 border rounded border-lightBorder dark:border-darkBorder lg:py-3 dark:bg-neutral-800/50">
           {isLoading ? <Loader title="Fetching..." /> : <>  <div className="py-3">
-            <h1 className="lg:text-4xl text-2xl font-semibold pb-2">{totalProducts.length}</h1>
+            <h1 className="pb-2 text-2xl font-semibold lg:text-4xl">{totalProducts.length}</h1>
             <p className="text-gray-500 dark:text-gray-400">Total Products</p>
           </div>
             <div className="flex items-end justify-between py-3">
@@ -98,7 +98,7 @@ const DashBoardStats = () => {
                 {totalProducts.length >= 5 ? <span className="text-green-500">25 %</span> : <span className="text-red-500">5 %</span>}
               </div>
               <div>
-                <CircleHelp className="lg:h-12 lg:w-12 h-10 w-10 text-white bg-red-400 p-1 rounded" />
+                <CircleHelp className="w-10 h-10 p-1 text-white bg-red-400 rounded lg:h-12 lg:w-12" />
               </div>
             </div>
           </>}

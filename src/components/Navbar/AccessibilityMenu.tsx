@@ -42,13 +42,13 @@ const AccessibilityMenu = () => {
 
   return (
     <div className="hidden lg:block">
-      <div className=" flex items-center justify-between p-5 gap-3 border-b border-lightBorder dark:border-darkBorder  m-5">
-        <div className="flex gap-5 border  px-3 py-2 rounded border-lightBorder dark:border-darkBorder ">
+      <div className="flex items-center justify-between gap-3 p-5 m-5 border-b border-lightBorder dark:border-darkBorder">
+        <div className="flex gap-5 px-3 py-2 border rounded border-lightBorder dark:border-darkBorder ">
           <Link
             href={"/enquiry"}
-            className="flex items-center justify-center gap-2 group cursor-pointer"  >
+            className="flex items-center justify-center gap-2 cursor-pointer group"  >
             <Bell className="text-red-400 cursor-pointer dark:text-white group-hover:fill-red-200 dark:group-hover:fill-red-400" />
-            <span className="text-gray-700 dark:text-white hidden lg:block">
+            <span className="hidden text-gray-700 dark:text-white lg:block">
               {" "}
               Notifications
             </span>
@@ -56,9 +56,9 @@ const AccessibilityMenu = () => {
           <span className="h-auto w-[1px] bg-gray-300" />
           <Link
             href={"/help"}
-            className="flex items-center justify-center gap-2 group cursor-pointer">
+            className="flex items-center justify-center gap-2 cursor-pointer group">
             <CircleHelp className="text-blue-400 dark:text-white group-hover:fill-blue-200 dark:group-hover:fill-blue-400" />
-            <span className="text-gray-700 dark:text-white hidden lg:block">
+            <span className="hidden text-gray-700 dark:text-white lg:block">
               Ask Help
             </span>
           </Link>
@@ -66,38 +66,38 @@ const AccessibilityMenu = () => {
         <div className="flex gap-3">
           <Link
             href={"/blogList"}
-            className="px-4 py-2 border rounded border-gray-300 text-gray-700 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800">
+            className="flex items-center justify-center gap-2 px-4 py-2 text-gray-700 transition-all duration-200 ease-linear border border-gray-300 rounded cursor-pointer dark:text-white dark:border-neutral-600 hover:bg-gray-100 dark:hover:bg-neutral-800">
             <FileText />
             View Blogs
           </Link>
           <Link
             href={"/productList"}
-            className="px-4 py-2 border rounded border-gray-300 text-gray-700 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800">
+            className="flex items-center justify-center gap-2 px-4 py-2 text-gray-700 transition-all duration-200 ease-linear border border-gray-300 rounded cursor-pointer dark:text-white dark:border-neutral-600 hover:bg-gray-100 dark:hover:bg-neutral-800">
             <PackageSearch />
             View Products
           </Link>
-          <div className="relative group hidden lg:block">
+          <div className="relative hidden group lg:block">
             <div className="relative">
               <Image
                 src={user?.avatar || "/placeholder.jpg"}
                 alt="user-image"
                 width={100}
                 height={100}
-                className="h-10 w-10 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer object-contain ring-2 ring-lightBorder" />
+                className="object-contain w-10 h-10 border border-gray-300 rounded-full cursor-pointer dark:border-neutral-700 dark:text-white ring-2 ring-lightBorder" />
               <span className="absolute -top-1 -right-1 text-[10px] animate-pulse">
                 {user?.isAdmin ? "🟢" : "🔴"}
               </span>
             </div>
             <div className="absolute -right-10 my-[5px] hidden group-hover:block w-auto border border-lightBorder dark:border-darkBorder p-2 rounded z-10 bg-white dark:bg-darkMode dark:text-white ">
-              <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">
+              <h1 className="px-2 py-1 my-1 border rounded border-lightBorder dark:border-darkBorder">
                 {user?.name}
               </h1>
-              <h1 className="py-1 px-2 border border-lightBorder dark:border-darkBorder my-1 rounded">
+              <h1 className="px-2 py-1 my-1 border rounded border-lightBorder dark:border-darkBorder">
                 {user?.email}
               </h1>
               <button
                 onClick={handelLogout}
-                className="p-1 w-full border border-red-500 dark:border-darkBorder my-1 rounded cursor-pointer  text-red-500 dark:text-white hover:bg-red-500/80 hover:text-white">
+                className="w-full p-1 my-1 text-red-500 border border-red-500 rounded cursor-pointer dark:border-darkBorder dark:text-white hover:bg-red-500/80 hover:text-white">
                 {logoutMutation.isPending ? (
                   <Loader title="Logging Out.." />
                 ) : (

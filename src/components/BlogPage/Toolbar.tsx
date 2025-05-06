@@ -40,7 +40,7 @@ const Toolbar = ({ editor }: any) => {
     }
 
     return (
-      <div className="flex flex-wrap gap-2 px-5 py-2 border mb-2 border-lightBorder dark:border-darkBorder rounded">
+      <div className="flex flex-wrap gap-2 px-5 py-2 mb-2 border rounded border-lightBorder dark:border-darkBorder">
         <button
           type="button"
           onClick={() => editor.chain().focus().toggleBold().run()}
@@ -97,13 +97,13 @@ const Toolbar = ({ editor }: any) => {
           <Strikethrough size={18} />
         </button>
 
-        <div className="border my-1 border-lightBorder dark:border-darkBorder"></div>
+        <div className="my-1 border border-lightBorder dark:border-darkBorder"></div>
 
         <div className="relative">
           <button
             type="button"
             onClick={() => setShowFontSizes(!showFontSizes)}
-            className="px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer flex items-center gap-1 "
+            className="flex items-center gap-1 px-2 py-1 transition-colors duration-200 rounded cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-800 "
             title="Font Size"
           >
             <Type size={18} />
@@ -111,7 +111,7 @@ const Toolbar = ({ editor }: any) => {
           </button>
 
           {showFontSizes && (
-            <div className="absolute top-full left-0 mt-1 bg-white dark:bg-neutral-900 shadow-md border border-lightBorder dark:border-darkBorder rounded p-1 z-10">
+            <div className="absolute left-0 z-10 p-1 mt-1 bg-white border rounded shadow-md top-full dark:bg-neutral-900 border-lightBorder dark:border-darkBorder">
               {fontSizes.map((size) => (
                 <button
                   key={size.value}
@@ -120,7 +120,7 @@ const Toolbar = ({ editor }: any) => {
                     editor.chain().focus().setFontSize(size.value).run();
                     setShowFontSizes(false);
                   }}
-                  className="block w-full text-left px-2 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded"
+                  className="block w-full px-2 py-1 text-sm text-left rounded hover:bg-neutral-100 dark:hover:bg-neutral-800"
                   style={{ fontSize: 15 }}
                 >
                   {size.label}
@@ -140,12 +140,12 @@ const Toolbar = ({ editor }: any) => {
           <Code size={18} />
         </button>
 
-        <div className="border my-1 border-lightBorder dark:border-darkBorder"></div>
+        <div className="my-1 border border-lightBorder dark:border-darkBorder"></div>
 
         <button
           type="button"
           onClick={() => editor.chain().focus().undo().run()}
-          className="px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer"
+          className="px-2 py-1 transition-colors duration-200 rounded cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-800"
           title="Undo"
         >
           <Undo size={18} />
@@ -153,13 +153,13 @@ const Toolbar = ({ editor }: any) => {
         <button
           type="button"
           onClick={() => editor.chain().focus().redo().run()}
-          className="px-2 py-1 rounded hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-colors duration-200 cursor-pointer"
+          className="px-2 py-1 transition-colors duration-200 rounded cursor-pointer hover:bg-neutral-200 dark:hover:bg-neutral-800"
           title="Redo"
         >
           <Redo size={18} />
         </button>
 
-        <div className="border my-1 border-lightBorder dark:border-darkBorder"></div>
+        <div className="my-1 border border-lightBorder dark:border-darkBorder"></div>
 
         <button
           type="button"
@@ -206,7 +206,7 @@ const Toolbar = ({ editor }: any) => {
           <AlignJustify size={18} />
         </button>
 
-        <div className="border my-1 border-lightBorder dark:border-darkBorder"></div>
+        <div className="my-1 border border-lightBorder dark:border-darkBorder"></div>
 
         <button
           type="button"
@@ -231,14 +231,14 @@ const Toolbar = ({ editor }: any) => {
           <ListOrdered size={18} />
         </button>
 
-        <div className="border my-1 border-lightBorder dark:border-darkBorder"></div>
+        <div className="my-1 border border-lightBorder dark:border-darkBorder"></div>
 
         <input
           type="color"
           onChange={(e) =>
             editor.chain().focus().setColor(e.target.value).run()
           }
-          className="h-auto w-10 cursor-pointer"
+          className="w-10 h-auto cursor-pointer"
           title="Text Color"
         />
       </div>

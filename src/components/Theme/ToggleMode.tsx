@@ -50,7 +50,7 @@ const ToggleMode = () => {
     <>
       <button
         onClick={handelMode}
-        className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
+        className="p-1 border border-gray-300 rounded-full cursor-pointer dark:border-neutral-700 dark:text-white"
       >
         {mode === "" ? (
           <span className="text-2xl" title="day-time">

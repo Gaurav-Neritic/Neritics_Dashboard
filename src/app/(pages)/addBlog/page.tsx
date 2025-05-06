@@ -84,7 +84,7 @@ const AddBlogsPage = () => {
 
   return (
     <div className="px-5">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div className="flex items-center justify-start gap-3 py-5">
           <div className="p-1 border border-gray-500 rounded">
             <FileText />
@@ -100,7 +100,7 @@ const AddBlogsPage = () => {
         <div className="hidden lg:block">
           <Link
             href={"/blogList"}
-            className="px-4 py-2 border rounded border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 transition-all ease-linear duration-200 dark:hover:bg-neutral-800"
+            className="flex items-center justify-center gap-2 px-4 py-2 text-gray-500 transition-all duration-200 ease-linear border border-gray-300 rounded cursor-pointer dark:text-white dark:border-neutral-600 hover:bg-gray-100 dark:hover:bg-neutral-800"
           >
             <Files />
             View Blogs
@@ -111,12 +111,12 @@ const AddBlogsPage = () => {
       <form onSubmit={handelSubmit}>
         <div>
           <div className="pb-2">
-            <h2 className="text-lg font-semibold antialiased">
+            <h2 className="text-lg antialiased font-semibold">
               Blog Title & Author
             </h2>
           </div>
           <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-10">
               <div className="w-full">
                 <label>Blog Title:</label>
                 <Input
@@ -141,10 +141,10 @@ const AddBlogsPage = () => {
 
         <div className="my-5">
           <div className="pb-2">
-            <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
+            <h2 className="text-lg antialiased font-semibold">Blog Images</h2>
           </div>
           <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-10">
               <div>
                 <label>Blog Image:</label>
                 <br />
@@ -163,7 +163,7 @@ const AddBlogsPage = () => {
                     loading="lazy"
                     height={200}
                     width={200}
-                    className="mt-2 p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                    className="object-cover w-20 h-20 p-1 mt-2 bg-gray-100 rounded-full dark:bg-neutral-700"
                   />
                 )}
               </div>
@@ -185,16 +185,16 @@ const AddBlogsPage = () => {
 
         <div className="my-5">
           <div className="pb-2">
-            <h2 className="text-lg font-semibold antialiased">Description</h2>
+            <h2 className="text-lg antialiased font-semibold">Description</h2>
           </div>
           <Editor description={setDescription} />
         </div>
 
-        <div className="py-5 flex gap-3 justify-end">
+        <div className="flex justify-end gap-3 py-5">
           <button
             type="submit"
             disabled={isLoading}
-            className="px-4 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
+            className="px-4 text-blue-600 transition-all duration-200 ease-linear bg-blue-100 border border-blue-300 rounded cursor-pointer hover:border-blue-300 hover:bg-blue-200 dark:border-blue-400"
           >
             {isLoading ? (
               <span className="flex items-center justify-center">
@@ -212,7 +212,7 @@ const AddBlogsPage = () => {
               clearFields();
               toast.success("Fields Cleared");
             }}
-            className="px-4 py-2 border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
+            className="px-4 py-2 text-red-500 transition-all duration-200 ease-linear bg-red-100 border border-red-300 rounded cursor-pointer hover:border-red-300 hover:bg-red-200 dark:border-red-400"
           >
             <span className="flex items-center justify-center gap-2">
               <Eraser />

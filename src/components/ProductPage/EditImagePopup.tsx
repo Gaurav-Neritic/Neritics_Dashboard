@@ -60,10 +60,10 @@ const EditImagePopup = ({
 
   if (!isVisible) return null;
   return (
-    <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg w-fit">
-        <div className="flex items-center justify-between p-5  gap-4">
-          <div className="flex items-center justify-center  gap-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
+      <div className="p-6 bg-white border rounded-lg shadow-lg dark:bg-neutral-800 border-neutral-700 w-fit">
+        <div className="flex items-center justify-between gap-4 p-5">
+          <div className="flex items-center justify-center gap-4">
             <Images className="w-8 h-8 " />
             <h1 className="text-2xl font-semibold ">Edit Image</h1>
           </div>
@@ -96,18 +96,18 @@ const EditImagePopup = ({
               * 4 <sup>th</sup> Fourth Image{" "}
             </label>
           )}
-          <div className="flex justify-start items-center py-3 gap-6">
+          <div className="flex items-center justify-start gap-6 py-3">
             <input
               type="file"
               required
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setEditImage(e.target.files && e.target.files[0]);
               }}
-              className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-300 file:hover:bg-gray-200 file:text-black rounded"
+              className="w-full text-sm font-medium text-gray-700 bg-white border rounded cursor-pointer file:cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-300 file:hover:bg-gray-200 file:text-black"
             />
             <button
               onClick={handelEditUpload}
-              className="p-2 border border-lightBorder dark:border-darkBorder text-green-500 hover:text-green-600  rounded cursor-pointer"
+              className="p-2 text-green-500 border rounded cursor-pointer border-lightBorder dark:border-darkBorder hover:text-green-600"
             >
               {loading ? (
                 <RotateCw className="animate-spin text-darkMode" />
@@ -125,7 +125,7 @@ const EditImagePopup = ({
                   "https://dummyimage.com/600x400/000/fff"
                 }
                 alt="Main Image Preview"
-                className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                className="object-cover w-20 h-20 p-1 mt-2 bg-gray-100 rounded-full dark:bg-neutral-700"
               />
             )}
           </div>

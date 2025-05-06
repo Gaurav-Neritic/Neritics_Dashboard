@@ -52,8 +52,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center ">
-      <div className=" w-full mx-5 lg:max-w-fit p-0 lg:p-5  relative grid grid-cols-2 max-sm:grid-cols-1  border border-lightBorder dark:border-darkBorder rounded">
+    <div className="flex items-center justify-center min-h-screen ">
+      <div className="relative grid w-full grid-cols-2 p-0 mx-5 border rounded lg:max-w-fit lg:p-5 max-sm:grid-cols-1 border-lightBorder dark:border-darkBorder">
         {/* Image  */}
         <div className="">
           <Image
@@ -61,18 +61,18 @@ const LoginForm = () => {
             alt="image"
             width={400}
             height={400}
-            className="lg:block hidden"
+            className="hidden lg:block"
           />
         </div>
         {/* Login Login */}
-        <div className="p-5 sm:border-l  border-lightBorder dark:border-darkBorder">
-          <h1 className="text-2xl  py-5 text-center font-semibold uppercase">
+        <div className="p-5 sm:border-l border-lightBorder dark:border-darkBorder">
+          <h1 className="py-5 text-2xl font-semibold text-center uppercase">
             Login
           </h1>
           <div>
             <form
               onSubmit={handelLogin}
-              className="flex items-start justify-center flex-col gap-2 "
+              className="flex flex-col items-start justify-center gap-2 "
             >
               <label className="text-sm lg:text-base">Email:</label>
               <input
@@ -81,7 +81,7 @@ const LoginForm = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email..."
                 required
-                className="p-2 w-full border border-lightBorder dark:border-darkBorder rounded outline-none placeholder:text-sm"
+                className="w-full p-2 border rounded outline-none border-lightBorder dark:border-darkBorder placeholder:text-sm"
               />
 
               <label className="text-sm lg:text-base">Password:</label>
@@ -93,12 +93,12 @@ const LoginForm = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter password..."
                   required
-                  className="p-2 w-full border border-lightBorder dark:border-darkBorder rounded outline-none placeholder:text-sm"
+                  className="w-full p-2 border rounded outline-none border-lightBorder dark:border-darkBorder placeholder:text-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 dark:text-gray-400 cursor-pointer outline-none"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 outline-none cursor-pointer dark:text-gray-400"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -107,7 +107,7 @@ const LoginForm = () => {
 
               <button
                 type="submit"
-                className="text-sm lg:text- py-2 my-5 px-3 w-full border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+                className="w-full px-3 py-2 my-5 text-sm border rounded cursor-pointer lg:text- border-lightBorder dark:border-darkBorder"
               >
                 {loginMutation.isPending ? (
                   <Loader title="Logging In...." />
@@ -115,7 +115,7 @@ const LoginForm = () => {
                   "Login"
                 )}
               </button>
-              <div className="text-center w-full text-sm lg:text-base">
+              <div className="w-full text-sm text-center lg:text-base">
                 Request Admin Access -{" "}
                 <Link
                   href={"/signup"}
@@ -124,13 +124,13 @@ const LoginForm = () => {
                   SignUp
                 </Link>
               </div>
-              <div className="text-center text-sm lg:text-base w-full animate-pulse ">
+              <div className="w-full text-sm text-center lg:text-base animate-pulse ">
                 *Note : (Only Admin Access)
               </div>
             </form>
           </div>
         </div>
-        <div className="absolute -right-5 -top-5 bg-white dark:bg-darkMode">
+        <div className="absolute bg-white -right-5 -top-5 dark:bg-darkMode">
           <ToggleMode />
         </div>
       </div>

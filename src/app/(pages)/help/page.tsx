@@ -3,14 +3,14 @@ import Link from "next/link";
 const HelpPage = () => {
   return (
     <div className="p-5">
-      <h1 className="text-3xl font-bold text-center mb-6 uppercase ">
+      <h1 className="mb-6 text-3xl font-bold text-center uppercase ">
         Need Help?
       </h1>
-      <p className="text-center  mb-8 space-y-3">
+      <p className="mb-8 space-y-3 text-center">
         Welcome to the help center. Here you will find answers to common
         questions and ways to contact support if needed.
       </p>
-      <div className="p-6 border border-lightBorder dark:border-darkBorder  rounded">
+      <div className="p-6 border rounded border-lightBorder dark:border-darkBorder">
         {/* Documentation & Guides Section */}
         <div className="pt-4 text-center">
           <h2 className="text-xl font-semibold">Documentation & Guides</h2>
@@ -18,7 +18,7 @@ const HelpPage = () => {
             Explore our step-by-step guides and documentation for detailed
             instructions.
           </p>
-          <div className="mt-4  flex justify-center items-center gap-3">
+          <div className="flex items-center justify-center gap-3 mt-4">
             <Link href="/" className="text-sky-600">
               Getting Started Guide
             </Link>
@@ -30,7 +30,7 @@ const HelpPage = () => {
             </Link>
           </div>
           {/* Feedback & Bug Reporting Section */}
-          <div className="mt-10 border-t border-lightBorder dark:border-darkBorder pt-6 text-center">
+          <div className="pt-6 mt-10 text-center border-t border-lightBorder dark:border-darkBorder">
             <h2 className="text-xl font-semibold">Feedback & Bug Reporting</h2>
             <p className="mt-2">
               Help us improve by providing feedback or reporting any issues you
@@ -38,7 +38,7 @@ const HelpPage = () => {
             </p>
             <div className="mt-4 space-y-2">
               Report a bug:{" "}
-              <div className="flex gap-3 justify-center text-center">
+              <div className="flex justify-center gap-3 text-center">
                 <a
                   href="mailto: gaurav@neriticindustries.in"
                   className="text-red-600"
@@ -57,7 +57,7 @@ const HelpPage = () => {
           </div>
         </div>
         {/* Contact Section */}
-        <div className="mt-10 border-t border-lightBorder dark:border-darkBorder pt-6 text-center">
+        <div className="pt-6 mt-10 text-center border-t border-lightBorder dark:border-darkBorder">
           <h2 className="text-xl font-semibold">Still need help?</h2>
           <p className="mt-2">Contact our support team.</p>
           <div className="mt-4 space-y-2">

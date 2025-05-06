@@ -54,14 +54,14 @@ const OrderList = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <div className="flex justify-between items-center mb-6">
+    <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold uppercase ">Order Lists</h1>
       </div>
-      <div className=" border  border-lightBorder dark:border-darkBorder  rounded overflow-hidden">
+      <div className="overflow-hidden border rounded border-lightBorder dark:border-darkBorder">
         {/* Tabs Button */}
         <div className="p-5">
-          <div className="flex gap-5 justify-center items-center border   border-lightBorder dark:border-darkBorder rounded">
+          <div className="flex items-center justify-center gap-5 border rounded border-lightBorder dark:border-darkBorder">
             <div className="flex">
               <button
                 onClick={() => setActiveTab("all")}
@@ -92,7 +92,7 @@ const OrderList = () => {
         </div>
 
         {/* Header */}
-        <div className=" grid grid-cols-7 px-4 py-3 border-y    border-lightBorder dark:border-darkBorder ">
+        <div className="grid grid-cols-7 px-4 py-3 border-y border-lightBorder dark:border-darkBorder">
           <div className="">#</div>
           <div className="">Order ID</div>
           <div className="">Product Name</div>
@@ -102,11 +102,11 @@ const OrderList = () => {
           <div className="">Status</div>
         </div>
         {/* Order Rows */}
-        <div className="divide-y divide-lightBorder  dark:divide-darkBorder  ">
+        <div className="divide-y divide-lightBorder dark:divide-darkBorder ">
           {filteredOrders.map((order) => (
             <div
               key={order.id}
-              className="grid grid-cols-7 px-4 py-4 items-center "
+              className="grid items-center grid-cols-7 px-4 py-4 "
             >
               <div className="">{order.id}</div>
               <div className="">{order.orderID}</div>

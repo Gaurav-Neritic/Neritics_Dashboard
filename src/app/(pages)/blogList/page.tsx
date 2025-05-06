@@ -84,10 +84,10 @@ const BlogList = () => {
 
   return (
     <div className="p-5">
-      <h1 className="text-2xl py-5 uppercase font-semibold max-sm:block hidden">All - Blogs</h1>
+      <h1 className="hidden py-5 text-2xl font-semibold uppercase max-sm:block">All - Blogs</h1>
       <div className="flex items-center justify-between py-5 text-wrap">
         <div>
-          <h1 className="text-2xl lg:text-xl lg:py-0 py-5 max-sm:hidden uppercase font-semibold">All - Blogs</h1>
+          <h1 className="py-5 text-2xl font-semibold uppercase lg:text-xl lg:py-0 max-sm:hidden">All - Blogs</h1>
         </div>
 
         <div className="grid grid-cols-[3fr_1fr_0.5fr] max-md:grid-cols-[3fr_1fr] gap-3 max-lg:grid-cols-[3fr_1fr] max-sm:grid-cols-2 max-sm:w-full max-md:place-items-end ">
@@ -97,9 +97,9 @@ const BlogList = () => {
             value={searchText}
             onChange={handleSearch}
             placeholder="Search by blog title..."
-            className="py-2 px-4 w-full border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
+            className="w-full px-4 py-2 text-sm border border-gray-300 rounded outline-none dark:border-darkBorder dark:bg-neutral-700"
           />
-          <select className="p-2 px-4 border border-gray-300 dark:border-darkBorder rounded appearance-auto text-sm bg-transparent outline-none"
+          <select className="p-2 px-4 text-sm bg-transparent border border-gray-300 rounded outline-none dark:border-darkBorder appearance-auto"
             onChange={(e) => {
               setFilter(e.target.value);
             }}
@@ -108,7 +108,7 @@ const BlogList = () => {
             <option className="dark:text-darkMode">🟢 Live</option>
             <option className="dark:text-darkMode">🔴 UnListed</option>
           </select>
-          <div className="lg:flex gap-3 hidden">
+          <div className="hidden gap-3 lg:flex">
             <button
               onClick={() => setViewMode("card")}
               className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer `}
@@ -125,7 +125,7 @@ const BlogList = () => {
         </div>
       </div>
 
-      <div className="flex gap-3 items-end w-full justify-end lg:hidden pb-4">
+      <div className="flex items-end justify-end w-full gap-3 pb-4 lg:hidden">
         <button
           onClick={() => setViewMode("card")}
           className={`p-2 rounded border border-lightBorder dark:border-darkBorder cursor-pointer `}
@@ -144,13 +144,13 @@ const BlogList = () => {
       <div className={`p-0 md:p-4 border border-lightBorder dark:border-darkBorder rounded text-sm`}>
         <div className={`w-full rounded border border-lightBorder dark:border-darkBorder ${viewMode === "list" ? "block" : "hidden"}`} >
           {/* Header */}
-          <div className="p-2 flex w-full justify-between items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder">
-            <div className="p-2 w-2/12 font-medium hidden md:block">Blog Id</div>
-            <div className="p-2 w-3/12 font-medium text-start truncate">Title</div>
-            <div className="p-2 w-3/12 font-medium text-start truncate">Author</div>
-            <div className="p-2 w-2/12 font-medium text-start truncate">Image</div>
-            <div className="p-2 w-1/12 font-medium text-start truncate">Status</div>
-            <div className="p-2 w-2/12 text-start font-medium truncate">Actions</div>
+          <div className="flex items-center justify-between w-full p-2 border-b last:border-b-0 border-lightBorder dark:border-darkBorder">
+            <div className="hidden w-2/12 p-2 font-medium md:block">Blog Id</div>
+            <div className="w-3/12 p-2 font-medium truncate text-start">Title</div>
+            <div className="w-3/12 p-2 font-medium truncate text-start">Author</div>
+            <div className="w-2/12 p-2 font-medium truncate text-start">Image</div>
+            <div className="w-1/12 p-2 font-medium truncate text-start">Status</div>
+            <div className="w-2/12 p-2 font-medium truncate text-start">Actions</div>
           </div>
           {isLoading && (
             <div className="flex items-center justify-center py-10">
@@ -163,12 +163,12 @@ const BlogList = () => {
             </div>
           )}
           {!isLoading && filteredBlogs?.length <= 0 && (
-            <div className="flex flex-col gap-5 items-center justify-start py-10 uppercase font-semibold ">
+            <div className="flex flex-col items-center justify-start gap-5 py-10 font-semibold uppercase ">
               <h1 className="text-2xl"> No Blogs !</h1>
               <div>
                 <Link
                   href={"/addBlog"}
-                  className="text-teal-800 rounded capitalize  underline underline-offset-2 hover:underline-offset-4"
+                  className="text-teal-800 underline capitalize rounded underline-offset-2 hover:underline-offset-4"
                 >
                   Add One
                 </Link>
@@ -179,47 +179,47 @@ const BlogList = () => {
           {filteredBlogs.map((blog: blogInfo) => (
             <div
               key={blog?._id}
-              className="p-2 flex w-full justify-start items-center border-b last:border-b-0  border-lightBorder dark:border-darkBorder gap-3"
+              className="flex items-center justify-start w-full gap-3 p-2 border-b last:border-b-0 border-lightBorder dark:border-darkBorder"
             >
-              <div className="px-2  w-2/12 truncate text-gray-500 dark:text-gray-50 text-start hidden md:block">
+              <div className="hidden w-2/12 px-2 text-gray-500 truncate dark:text-gray-50 text-start md:block">
                 {blog._id}
               </div>
 
 
 
-              <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 line-clamp-1 lg:line-clamp-2 text-start ">
+              <div className="w-3/12 px-2 text-gray-500 dark:text-gray-50 line-clamp-1 lg:line-clamp-2 text-start ">
                 {blog.title}
               </div>
 
 
 
-              <div className="px-2 w-3/12 text-gray-500 dark:text-gray-50 capitalize  line-clamp-1">
+              <div className="w-3/12 px-2 text-gray-500 capitalize dark:text-gray-50 line-clamp-1">
                 {blog.author}
               </div>
 
 
-              <div className="px-2 w-2/12 flex items-start">
+              <div className="flex items-start w-2/12 px-2">
                 <Image
                   loading="lazy"
                   src={blog.image}
                   alt={blog.title}
                   height={200}
                   width={200}
-                  className="w-10 h-10  object-cover rounded"
+                  className="object-cover w-10 h-10 rounded"
                 />
               </div>
 
 
-              <div className="px-4 w-1/12 flex text-sm md:text-md">
+              <div className="flex w-1/12 px-4 text-sm md:text-md">
                 {blog.publish ? "🟢" : "🔴"}
               </div>
-              <div className="px-2  w-2/12 items-start justify-start ">
-                <div className="flex justify-start items-start gap-2">
+              <div className="items-start justify-start w-2/12 px-2 ">
+                <div className="flex items-start justify-start gap-2">
                   <Link
                     href={`/blogList/${blog?._id}`}
                     className="text-green-400 hover:text-green-500"
                   >
-                    <FilePenLine className="h-5 w-5 md:w-auto md:h-auto cursor-pointer" />
+                    <FilePenLine className="w-5 h-5 cursor-pointer md:w-auto md:h-auto" />
                   </Link>
                   <button
                     onClick={() => {
@@ -228,7 +228,7 @@ const BlogList = () => {
                     }}
                     className="text-red-400 hover:text-red-500"
                   >
-                    <Trash2 className="h-5 w-5 md:w-auto md:h-auto cursor-pointer" />
+                    <Trash2 className="w-5 h-5 cursor-pointer md:w-auto md:h-auto" />
                   </button>
                   {
                     <DeleteBlogPoup
@@ -263,19 +263,19 @@ const BlogList = () => {
             </div>
           )}
           {!isLoading && filteredBlogs?.length <= 0 && (
-            <div className="flex flex-col gap-5 items-center justify-center py-10 uppercase font-semibold ">
+            <div className="flex flex-col items-center justify-center gap-5 py-10 font-semibold uppercase ">
               <h1 className="text-2xl"> No Blogs !</h1>
               <div>
                 <Link
                   href={"/addBlog"}
-                  className="text-teal-800 rounded capitalize  underline underline-offset-2 hover:underline-offset-4"
+                  className="text-teal-800 underline capitalize rounded underline-offset-2 hover:underline-offset-4"
                 >
                   Add One
                 </Link>
               </div>
             </div>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5 lg:p-0  gap-5">
+          <div className="grid grid-cols-1 gap-5 p-5 md:grid-cols-2 lg:grid-cols-3 lg:p-0">
             {filteredBlogs.map((blog: blogInfo) => (
               <div key={blog?._id}>
                 <BlogCard

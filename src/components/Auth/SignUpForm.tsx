@@ -49,17 +49,17 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center ">
-      <div className=" w-full mx-5 lg:max-w-fit lg:p-5  p-0 relative grid  sm:grid-cols-2   border  border-lightBorder dark:border-darkBorder rounded">
+    <div className="flex items-center justify-center min-h-screen ">
+      <div className="relative grid w-full p-0 mx-5 border rounded lg:max-w-fit lg:p-5 sm:grid-cols-2 border-lightBorder dark:border-darkBorder">
         {/* Login Login */}
-        <div className="p-5 sm:border-r  border-lightBorder dark:border-darkBorder">
-          <h1 className="text-2xl py-5 text-center font-semibold uppercase">
+        <div className="p-5 sm:border-r border-lightBorder dark:border-darkBorder">
+          <h1 className="py-5 text-2xl font-semibold text-center uppercase">
             Request Access
           </h1>
           <div>
             <form
               onSubmit={handelSubmit}
-              className="flex items-start justify-center flex-col gap-2"
+              className="flex flex-col items-start justify-center gap-2"
             >
               <label className="text-sm lg:text-base">Name:</label>
               <input
@@ -68,7 +68,7 @@ const SignUpForm = () => {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter Name..."
                 required
-                className="p-2 w-full border border-lightBorder dark:border-darkBorder rounded outline-none placeholder:text-sm"
+                className="w-full p-2 border rounded outline-none border-lightBorder dark:border-darkBorder placeholder:text-sm"
               />
 
               <label className="text-sm lg:text-base">Email:</label>
@@ -78,7 +78,7 @@ const SignUpForm = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter email..."
                 required
-                className="p-2 w-full border border-lightBorder dark:border-darkBorder rounded outline-none placeholder:text-sm"
+                className="w-full p-2 border rounded outline-none border-lightBorder dark:border-darkBorder placeholder:text-sm"
               />
 
               <label className="text-sm lg:text-base">Password:</label>
@@ -88,7 +88,7 @@ const SignUpForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password..."
                 required
-                className="w-full p-2 border border-lightBorder dark:border-darkBorder rounded outline-none placeholder:text-sm "
+                className="w-full p-2 border rounded outline-none border-lightBorder dark:border-darkBorder placeholder:text-sm "
               />
 
               <label className="text-sm lg:text-base">Avatar:</label>
@@ -97,12 +97,11 @@ const SignUpForm = () => {
                 onChange={(e) => setAvatar(e.target.files?.[0] || null)}
                 placeholder="Enter email..."
                 required
-                className=" text-sm lg:text-base w-full text-gray-700 font-medium bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded 
-                        dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500 p-2"
+                className="w-full p-2 text-sm font-medium text-gray-700 bg-white border rounded cursor-pointer lg:text-base border-lightBorder dark:border-darkBorder file:cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
               />
               <button
                 type="submit"
-                className="py-2 my-5 px-3 w-full border border-lightBorder dark:border-darkBorder rounded cursor-pointer text-sm lg:text-base"
+                className="w-full px-3 py-2 my-5 text-sm border rounded cursor-pointer border-lightBorder dark:border-darkBorder lg:text-base"
               >
                 {signUpUserMutation.isPending ? (
                   <Loader title="Requesting..." />
@@ -110,7 +109,7 @@ const SignUpForm = () => {
                   "Request Access"
                 )}
               </button>
-              <div className="text-center w-full text-sm lg:text-base ">
+              <div className="w-full text-sm text-center lg:text-base ">
                 Already Requested ?{" "}
                 <Link
                   href={"/login"}
@@ -119,7 +118,7 @@ const SignUpForm = () => {
                   Login
                 </Link>
               </div>
-              <div className="text-center w-full animate-pulse text-sm lg:text-base">
+              <div className="w-full text-sm text-center animate-pulse lg:text-base">
                 *Note : (Request For Admin Access)
               </div>
             </form>
@@ -132,11 +131,11 @@ const SignUpForm = () => {
             alt="image"
             width={400}
             height={400}
-            className="lg:block hidden"
+            className="hidden lg:block"
           />
         </div>
 
-        <div className="absolute -right-5 -top-5 bg-white dark:bg-darkMode">
+        <div className="absolute bg-white -right-5 -top-5 dark:bg-darkMode">
           <ToggleMode />
         </div>
       </div>

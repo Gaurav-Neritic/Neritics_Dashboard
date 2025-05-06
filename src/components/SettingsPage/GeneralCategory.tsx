@@ -122,19 +122,19 @@ const GeneralCategory = () => {
       <div className="p-5">
         {/* Category Settings: */}
         <div className="w-auto">
-          <div className="mt-5 border border-lightBorder dark:border-darkBorder rounded">
-            <div className="p-4 flex justify-between items-center">
-              <h1 className="text-lg mb-1">Category Settings:</h1>
+          <div className="mt-5 border rounded border-lightBorder dark:border-darkBorder">
+            <div className="flex items-center justify-between p-4">
+              <h1 className="mb-1 text-lg">Category Settings:</h1>
               <button
                 onClick={() => setIsVisible(!isVisible)}
-                className="cursor-pointer flex gap-2 text-gray-500"
+                className="flex gap-2 text-gray-500 cursor-pointer"
               >
                 {isVisible ? "Show Less" : "Show More"}{" "}
                 {isVisible ? <ChevronUp /> : <ChevronDown />}
               </button>
             </div>
             {isVisible && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {/* Add Category */}
                 <CustomInput
                   label={"Add Category"}

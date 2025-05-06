@@ -93,7 +93,7 @@ const StocksTable = () => {
   return (
     <section className="p-5">
       <h1 className="text-2xl font-bold">Stocks In Inventory</h1>
-      <div className="flex justify-between items-center mb-6 mt-4  md:flex-row gap-2">
+      <div className="flex items-center justify-between gap-2 mt-4 mb-6 md:flex-row">
         {/* Search Bar */}
         <div className="relative w-full md:max-w-md">
           <input
@@ -101,7 +101,7 @@ const StocksTable = () => {
             placeholder="Search by product name or ID..."
             value={searchText}
             onChange={handleSearch}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm"
+            className="w-full py-2 pl-10 pr-4 text-sm border border-gray-300 rounded outline-none dark:border-darkBorder dark:bg-neutral-700"
           />
           <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400 dark:text-gray-300" />
         </div>
@@ -113,31 +113,31 @@ const StocksTable = () => {
             disabled={filteredProducts.length === 0}
             title="Download Excel">
             <span>Export</span>
-            <Download className="h-4 w-4" />
+            <Download className="w-4 h-4" />
           </button>
         </div>
       </div>
       {/* Products List */}
-      <div className="border border-lightBorder dark:border-darkBorder rounded overflow-x-auto">
+      <div className="overflow-x-auto border rounded border-lightBorder dark:border-darkBorder">
         <table className="w-full table-auto">
           <thead>
-            <tr className="border-b  border-lightBorder dark:border-darkBorder">
-              <th className="py-3 px-2 text-left text-sm lg:text-md font-semibold uppercase">
+            <tr className="border-b border-lightBorder dark:border-darkBorder">
+              <th className="px-2 py-3 text-sm font-semibold text-left uppercase lg:text-md">
                 ID
               </th>
-              <th className="py-3 px-2 text-left text-sm font-semibold lg:text-md  uppercase ">
+              <th className="px-2 py-3 text-sm font-semibold text-left uppercase lg:text-md ">
                 Image
               </th>
-              <th className="py-3 px-2 text-left text-sm lg:text-md font-semibold uppercase">
+              <th className="px-2 py-3 text-sm font-semibold text-left uppercase lg:text-md">
                 Name
               </th>
-              <th className="py-3 px-2 text-center text-sm lg:text-md font-semibold uppercase">
+              <th className="px-2 py-3 text-sm font-semibold text-center uppercase lg:text-md">
                 In Stock
               </th>
-              <th className="py-3 px-2 text-centre text-sm lg:text-md font-semibold uppercase">
+              <th className="px-2 py-3 text-sm font-semibold uppercase text-centre lg:text-md">
                 Total Stock
               </th>
-              <th className="py-3 px-2 text-center text-sm lg:text-md font-semibold uppercase">
+              <th className="px-2 py-3 text-sm font-semibold text-center uppercase lg:text-md">
                 Update
               </th>
             </tr>
@@ -159,7 +159,7 @@ const StocksTable = () => {
             )}
             {!isLoading && filteredProducts.length === 0 && (
               <tr>
-                <td colSpan={6} className="py-5 text-center uppercase font-semibold" >
+                <td colSpan={6} className="py-5 font-semibold text-center uppercase" >
                   <h1>Products Not Found</h1>
                 </td>
               </tr>
@@ -168,27 +168,27 @@ const StocksTable = () => {
               ({ _id, title, stock, image, }: filterProps) => (
                 <tr
                   key={_id}
-                  className="border-b last:border-b-0 border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
-                  <td className="py-3 px-2 text-sm" title={_id}>
+                  className="text-gray-500 border-b border-gray-200 last:border-b-0 dark:border-neutral-600 dark:text-gray-50">
+                  <td className="px-2 py-3 text-sm" title={_id}>
                     <div className="truncate w-30">{_id}</div>
                   </td>
 
-                  <td className="py-3 px-2 text-sm lg:text-md  ">
+                  <td className="px-2 py-3 text-sm lg:text-md ">
                     <Image
                       src={image[0] || ""}
                       height={200}
                       width={200}
                       alt="img"
-                      className="object-contain h-12 w-12 rounded ring ring-white" />
+                      className="object-contain w-12 h-12 rounded ring ring-white" />
                   </td>
-                  <td className="py-3 px-2 text-sm lg:text-md capitalize">
+                  <td className="px-2 py-3 text-sm capitalize lg:text-md">
                     <div className="grid grid-row w-50">{title}</div>
                   </td>
-                  <td className="py-3 px-2 text-sm lg:text-md text-center">
+                  <td className="px-2 py-3 text-sm text-center lg:text-md">
                     {stock <= 0 ? (<span className="text-red-500">🔴</span>)
                       : stock <= 10 ? (<span className="text-yellow-500">🟡</span>) : (<span className="text-green-500">🟢</span>)}
                   </td>
-                  <td className="py-3 px-2 text-sm lg:text-md text-center">
+                  <td className="px-2 py-3 text-sm text-center lg:text-md">
                     {stock}
                   </td>
                   <td className="text-sm lg:text-md ">

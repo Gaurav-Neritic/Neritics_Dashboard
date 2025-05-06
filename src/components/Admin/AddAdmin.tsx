@@ -140,8 +140,8 @@ const AddAdmin = () => {
         <h1 className="text-2xl font-bold"> Admin Settings</h1>
       </div>
       <div className="p-5">
-        <div className="border border-lightBorder dark:border-darkBorder rounded">
-          <div className="p-4 flex justify-between items-center flex-wrap">
+        <div className="border rounded border-lightBorder dark:border-darkBorder">
+          <div className="flex flex-wrap items-center justify-between p-4">
             <h1 className={`text-lg mb-1 flex`}>
               Admin Requests :
               <span
@@ -155,14 +155,14 @@ const AddAdmin = () => {
             </h1>
             <button
               onClick={() => setIsVisible(!isVisible)}
-              className="cursor-pointer flex gap-2 text-gray-500">
+              className="flex gap-2 text-gray-500 cursor-pointer">
               {isVisible ? "Show Less" : "Show More"}{" "}
               {isVisible ? <ChevronUp /> : <ChevronDown />}
             </button>
           </div>
-          {isLoading && <div className='p-2 m-5 border border-lightBorder rounded dark:border-darkBorder'><Loader title='Fetching...' /></div>}
+          {isLoading && <div className='p-2 m-5 border rounded border-lightBorder dark:border-darkBorder'><Loader title='Fetching...' /></div>}
           {isVisible && (<>
-            {(!isLoading && userRequests.length <= 0) && <div className='p-2 m-5 border text-center border-lightBorder rounded dark:border-darkBorder'>No Requests As Of Now</div>}
+            {(!isLoading && userRequests.length <= 0) && <div className='p-2 m-5 text-center border rounded border-lightBorder dark:border-darkBorder'>No Requests As Of Now</div>}
             {userRequests?.map(({ name, _id, avatar, email, isAdmin, isSuperAdmin }: userRequestsProps) => {
               return (
                 <div key={_id} className="grid  md:grid-cols-[1fr_2fr_2fr_3fr] 
@@ -173,7 +173,7 @@ const AddAdmin = () => {
                       alt="image"
                       width={50}
                       height={50}
-                      className="w-10 h-10 object-cover ring-lightBorder rounded-full ring-2" />
+                      className="object-cover w-10 h-10 rounded-full ring-lightBorder ring-2" />
                   </div>
                   <div>
                     <h1 className="capitalize">{name}</h1>
@@ -181,7 +181,7 @@ const AddAdmin = () => {
                   <div className="hidden md:block">
                     <h1 className="">{email}</h1>
                   </div>
-                  <div className="flex items-center justify-center gap-2 flex-wrap">
+                  <div className="flex flex-wrap items-center justify-center gap-2">
                     <button
                       disabled={isAdmin ? true : false}
                       onClick={(e) => { e.preventDefault(); handelAccess(_id) }}
@@ -191,13 +191,13 @@ const AddAdmin = () => {
                     </button>
                     {!isSuperAdmin && <>
                       <button
-                        onClick={(e) => { e.preventDefault(); handelRemoveAccess(_id) }} className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white"> Un-Set</button>
+                        onClick={(e) => { e.preventDefault(); handelRemoveAccess(_id) }} className="px-4 py-1 text-white bg-red-600 rounded cursor-pointer hover:bg-red-500"> Un-Set</button>
                       <button
-                        onClick={(e) => { e.preventDefault(); handelDeleteUser(_id) }} className="bg-red-600 cursor-pointer hover:bg-red-500 px-4 py-1 rounded text-white w-auto">
+                        onClick={(e) => { e.preventDefault(); handelDeleteUser(_id) }} className="w-auto px-4 py-1 text-white bg-red-600 rounded cursor-pointer hover:bg-red-500">
                         <Trash2 />
                       </button>
                     </>}
-                    {isSuperAdmin && <div className="py-1 px-3 text-xs rounded-full bg-gradient-to-r from-red-500 to-yellow-400 text-white ring-2 ring-red-300">
+                    {isSuperAdmin && <div className="px-3 py-1 text-xs text-white rounded-full bg-gradient-to-r from-red-500 to-yellow-400 ring-2 ring-red-300">
                       Super Admin
                     </div>}
                   </div>

@@ -71,7 +71,7 @@ const Editor = ({ description }: Props) => {
       <Toolbar editor={editor} />
       <EditorContent
         editor={editor}
-        className="p-4 border border-lightBorder dark:border-darkBorder rounded"
+        className="p-4 border rounded border-lightBorder dark:border-darkBorder"
       />
     </div>
   );

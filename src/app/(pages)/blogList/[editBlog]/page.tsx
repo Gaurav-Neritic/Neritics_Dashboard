@@ -101,17 +101,17 @@ const Page = () => {
                 </div>
             )}
 
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
                 <div className="flex items-center justify-start gap-3 py-5">
-                    <div className="p-1 border border-gray-500 rounded hidden lg:block">
+                    <div className="hidden p-1 border border-gray-500 rounded lg:block">
                         <FileText />
                     </div>
                     <div className="py-5">
                         <p className="text-sm font-normal text-gray-500">
                             All the fields are required
                         </p>
-                        <h1 className="text-md font-normal">
-                            <span className=" text-lg lg:text-3xl font-semibold">Editing Blog:</span> {title}{" "}
+                        <h1 className="font-normal text-md">
+                            <span className="text-lg font-semibold lg:text-3xl">Editing Blog:</span> {title}{" "}
                         </h1>
                     </div>
                 </div>
@@ -120,18 +120,18 @@ const Page = () => {
             <form onSubmit={handelSubmit}>
                 <div>
                     <div className="pb-2">
-                        <h2 className="text-lg font-semibold antialiased">
+                        <h2 className="text-lg antialiased font-semibold">
                             Blog Title & Author
                         </h2>
                     </div>
                     <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
+                        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-10">
                             <div className="w-full">
                                 <label>Blog Title:</label>
                                 <input
                                     type="text"
                                     value={title || ""}
-                                    className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded"
+                                    className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0"
                                     placeholder="Enter Blog Title"
                                     required
                                     onChange={(e) => {
@@ -144,7 +144,7 @@ const Page = () => {
                                 <input
                                     type="text"
                                     value={author || ""}
-                                    className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded"
+                                    className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0"
                                     placeholder="Enter Blog Author"
                                     required
                                     onChange={(e) => {
@@ -158,19 +158,19 @@ const Page = () => {
 
                 <div className="my-5">
                     <div className="pb-2">
-                        <h2 className="text-lg font-semibold antialiased">Blog Images</h2>
+                        <h2 className="text-lg antialiased font-semibold">Blog Images</h2>
                     </div>
                     <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
+                        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-10">
                             <div>
-                                <div className="border border-lightBorder dark:border-darkBorder rounded p-1 relative ">
+                                <div className="relative p-1 border rounded border-lightBorder dark:border-darkBorder ">
                                     <div className="">
                                         <Image
                                             height={200}
                                             width={200}
                                             src={image || "/placeholder.jpg"}
                                             alt="saved images"
-                                            className="h-auto lg:w-24 w-fit rounded border border-lightBorder dark:border-darkBorder object-cover"
+                                            className="object-cover h-auto border rounded lg:w-24 w-fit border-lightBorder dark:border-darkBorder"
                                         />
                                     </div>
 
@@ -180,7 +180,7 @@ const Page = () => {
                                             onClick={() => {
                                                 setPopup(true);
                                             }}
-                                            className="text-lightBorder hover:text-darkBorder dark:hover:text-lightBorder dark:text-darkBorder cursor-pointer"
+                                            className="cursor-pointer text-lightBorder hover:text-darkBorder dark:hover:text-lightBorder dark:text-darkBorder"
                                         >
                                             <ImagePlus />
                                         </button>
@@ -208,7 +208,7 @@ const Page = () => {
 
                 <div className="my-5">
                     <div className="pb-2">
-                        <h2 className="text-lg font-semibold antialiased">Description</h2>
+                        <h2 className="text-lg antialiased font-semibold">Description</h2>
                     </div>
                     {blogDetails?.description && (
                         <BlogEditor
@@ -218,11 +218,11 @@ const Page = () => {
                     )}
                 </div>
 
-                <div className="py-5 flex gap-3 justify-end">
+                <div className="flex justify-end gap-3 py-5">
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="px-4 py-2 border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
+                        className="px-4 py-2 text-blue-600 transition-all duration-200 ease-linear bg-blue-100 border border-blue-300 rounded cursor-pointer hover:border-blue-300 hover:bg-blue-200 dark:border-blue-400"
                     >
                         {updateMutation.isPending ? (
                             <span className="flex items-center justify-center">

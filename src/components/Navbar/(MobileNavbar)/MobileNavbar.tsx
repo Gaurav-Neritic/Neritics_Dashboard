@@ -22,7 +22,7 @@ import {
   Settings,
 } from "lucide-react";
 
-const navLinks = [
+  const navLinks = [
   {
     href: "/", icon: <Home />, label: "Home"
   },
@@ -57,12 +57,12 @@ const MobileNavbar = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="lg:hidden flex items-center justify-between p-2">
+      <div className="flex items-center justify-between p-2 lg:hidden">
         <button
           onClick={() => {
             setIsMenuOpen(!isMenuOpen);
           }}
-          className="p-2  "
+          className="p-2 "
         >
           {isMenuOpen ? (
             <X className="w-6 h-6 dark:text-white" />
@@ -76,14 +76,14 @@ const MobileNavbar = () => {
           <Link
             href="/blogList"
             title="View Blogs"
-            className="p-2 border rounded-full border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800"
+            className="flex items-center justify-center gap-2 p-2 text-gray-500 border border-gray-300 rounded-full cursor-pointer dark:text-white dark:border-neutral-600 hover:bg-gray-100 dark:hover:bg-neutral-800"
           >
             <FileText className="w-6 h-6 sm:w-5 sm:h-5" />
           </Link>
           <Link
             href="/productList"
             title="View Products"
-            className="p-2 border rounded-full border-gray-300 text-gray-500 flex items-center justify-center gap-2 dark:text-white dark:border-neutral-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800"
+            className="flex items-center justify-center gap-2 p-2 text-gray-500 border border-gray-300 rounded-full cursor-pointer dark:text-white dark:border-neutral-600 hover:bg-gray-100 dark:hover:bg-neutral-800"
           >
             <PackageSearch className="w-6 h-6 sm:w-5 sm:h-5" />
           </Link>
@@ -94,7 +94,7 @@ const MobileNavbar = () => {
               alt="user-image"
               width={40}
               height={40}
-              className="h-10 w-10 rounded-full border border-gray-300 dark:border-neutral-700 cursor-pointer object-contain ring-2 ring-lightBorder"
+              className="object-contain w-10 h-10 border border-gray-300 rounded-full cursor-pointer dark:border-neutral-700 ring-2 ring-lightBorder"
               style={{ height: "40px", width: "40px" }}
             />
             <span className="absolute -top-1 -right-1 text-[10px] animate-pulse">
@@ -102,11 +102,11 @@ const MobileNavbar = () => {
             </span>
 
             {dropDown && (
-              <div className="absolute -right-2 mt-2 w-max border border-lightBorder dark:border-darkBorder p-2 rounded z-10 bg-white dark:bg-darkMode dark:text-white">
-                <h1 className="py-1 px-2 text-sm border border-lightBorder dark:border-darkBorder my-1 rounded">
+              <div className="absolute z-10 p-2 mt-2 bg-white border rounded -right-2 w-max border-lightBorder dark:border-darkBorder dark:bg-darkMode dark:text-white">
+                <h1 className="px-2 py-1 my-1 text-sm border rounded border-lightBorder dark:border-darkBorder">
                   {user?.name}
                 </h1>
-                <h1 className="py-1 px-2 text-sm border border-lightBorder dark:border-darkBorder my-1 rounded">
+                <h1 className="px-2 py-1 my-1 text-sm border rounded border-lightBorder dark:border-darkBorder">
                   {user?.email}
                 </h1>
                 <button
@@ -114,7 +114,7 @@ const MobileNavbar = () => {
                     clearCookies();
                     localStorage.clear();
                   }}
-                  className="p-1 w-full border border-lightBorder dark:border-darkBorder my-1 rounded text-sm cursor-pointer hover:bg-red-500/80 hover:text-white"
+                  className="w-full p-1 my-1 text-sm border rounded cursor-pointer border-lightBorder dark:border-darkBorder hover:bg-red-500/80 hover:text-white"
                 >
                   Logout
                 </button>
@@ -126,7 +126,7 @@ const MobileNavbar = () => {
 
       {/* Dropdown Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden min-h-screen py-5">
+        <div className="min-h-screen py-5 lg:hidden">
           <div className="px-4 py-4">
             <nav>
               {navLinks.map(({ href, icon, label }: { href: string, icon: React.JSX.Element, label: string }) => (
@@ -144,12 +144,12 @@ const MobileNavbar = () => {
 
               {/* Action Icons */}
               <div className=" w-50  flex mx-auto p-1.5 my-5 rounded border border-lightBorder dark:border-darkBorder">
-                <div className="grid grid-cols-3 place-items-center  mx-auto gap-4">
+                <div className="grid grid-cols-3 gap-4 mx-auto place-items-center">
                   <ToggleMode />
                   <Link
                     href="https://gmail.com"
                     target="_blank"
-                    className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
+                    className="p-1 border border-gray-300 rounded-full cursor-pointer dark:border-neutral-700 dark:text-white"
                   >
                     <span className="text-2xl" title="mail">
                       ✉️
@@ -158,7 +158,7 @@ const MobileNavbar = () => {
                   <Link
                     href="https://neriticwellness.com/"
                     target="_blank"
-                    className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
+                    className="p-1 border border-gray-300 rounded-full cursor-pointer dark:border-neutral-700 dark:text-white"
                   >
                     <span className="text-2xl" title="site">
                       🌐

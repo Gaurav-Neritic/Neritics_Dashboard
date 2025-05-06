@@ -124,30 +124,30 @@ const ProductList = () => {
 
   return (
     <section className="p-5">
-      <div className="border px-4 py-2 overflow-x-hidden rounded border-lightBorder dark:border-darkBorder ">
+      <div className="px-4 py-2 overflow-x-hidden border rounded border-lightBorder dark:border-darkBorder ">
         <div className="flex items-center justify-start gap-3 overflow-x-scroll no-scrollbar">
           <SlidersHorizontal className="hidden lg:block" />
-          <select className="border  border-lightBorder dark:border-darkBorder px-3 py-1 rounded outline-none">
+          <select className="px-3 py-1 border rounded outline-none border-lightBorder dark:border-darkBorder">
             <option className="dark:bg-neutral-600">Filter One</option>
             <option className="dark:text-black">Option 2</option>
             <option className="dark:text-black">Option 3</option>
             <option className="dark:text-black">Option 4</option>
           </select>
-          <select className="border  border-lightBorder dark:border-darkBorder px-3 py-1 rounded outline-none">
+          <select className="px-3 py-1 border rounded outline-none border-lightBorder dark:border-darkBorder">
             <option className="dark:bg-neutral-600">Type</option>
             <option className="dark:text-black">Type 2</option>
             <option className="dark:text-black">Type 3</option>
             <option className="dark:text-black">Type 4</option>
           </select>
 
-          <select className="border  border-lightBorder dark:border-darkBorder px-3 py-1 rounded outline-none">
+          <select className="px-3 py-1 border rounded outline-none border-lightBorder dark:border-darkBorder">
             <option className="dark:bg-neutral-600">Range</option>
             <option className="dark:text-black">From 1 to 2</option>
             <option className="dark:text-black">From 2 to 3</option>
             <option className="dark:text-black">From 3 to 4</option>
           </select>
 
-          <select className="border  border-lightBorder dark:border-darkBorder px-3 py-1 rounded outline-none">
+          <select className="px-3 py-1 border rounded outline-none border-lightBorder dark:border-darkBorder">
             <option className="dark:bg-neutral-600">Time</option>
             <option className="dark:text-black">Recently</option>
             <option className="dark:text-black">Frequently</option>
@@ -155,7 +155,7 @@ const ProductList = () => {
           </select>
 
           <select onChange={(e) => { setFilter(e.target.value); }}
-            className="border border-lightBorder dark:border-darkBorder px-3 py-1 rounded outline-none">
+            className="px-3 py-1 border rounded outline-none border-lightBorder dark:border-darkBorder">
             <option className="dark:bg-neutral-600">All</option>
             <option className="dark:text-black">Listed</option>
             <option className="dark:text-black">UnListed</option>
@@ -164,9 +164,9 @@ const ProductList = () => {
       </div>
 
       {/*    Product Button (ListView & CardView) */}
-      <div className="py-5 flex justify-between items-center">
+      <div className="flex items-center justify-between py-5">
         <div>
-          <h1 className="text-2xl lg:text-xl lg:py-0 py-5 uppercase font-semibold">Product Lists</h1>
+          <h1 className="py-5 text-2xl font-semibold uppercase lg:text-xl lg:py-0">Product Lists</h1>
         </div>
         <div className="grid grid-cols-[3fr_1fr_0.5fr] max-md:grid-cols-[3fr_1fr] gap-3 max-lg:grid-cols-[3fr_1fr] max-sm:grid-cols-1 max-md:place-items-end ">
           <input
@@ -174,7 +174,7 @@ const ProductList = () => {
             placeholder="Search by product name..."
             value={searchText}
             onChange={handleSearch}
-            className="py-2 px-4 border border-gray-300 dark:border-darkBorder rounded dark:bg-neutral-700 outline-none text-sm w-full"
+            className="w-full px-4 py-2 text-sm border border-gray-300 rounded outline-none dark:border-darkBorder dark:bg-neutral-700"
           />
           <button
             onClick={handleExcelExport}
@@ -182,22 +182,22 @@ const ProductList = () => {
             disabled={filteredProducts?.length === 0}
             title="Download Excel"
           >
-            <Download className="h-4 w-4" />
+            <Download className="w-4 h-4" />
             <span className="">Export</span>
           </button>
 
-          <div className="lg:flex gap-3 hidden">
+          <div className="hidden gap-3 lg:flex">
             <button
               title="Grid View"
               onClick={() => setListView(false)}
-              className=" flex gap-2 p-2 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+              className="flex gap-2 p-2 border rounded cursor-pointer border-lightBorder dark:border-darkBorder"
             >
               <LayoutGrid className="h-[20px] w-[20px]" />
             </button>
             <button
               title="List View"
               onClick={() => setListView(true)}
-              className=" flex gap-2 p-2 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+              className="flex gap-2 p-2 border rounded cursor-pointer border-lightBorder dark:border-darkBorder"
             >
               <Logs className="h-[20px] w-[20px]" />
             </button>
@@ -205,18 +205,18 @@ const ProductList = () => {
         </div>
       </div>
 
-      <div className="flex gap-3 items-end w-full justify-end lg:hidden">
+      <div className="flex items-end justify-end w-full gap-3 lg:hidden">
         <button
           title="Grid View"
           onClick={() => setListView(false)}
-          className=" flex gap-2 p-2 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+          className="flex gap-2 p-2 border rounded cursor-pointer border-lightBorder dark:border-darkBorder"
         >
           <LayoutGrid className="h-[20px] w-[20px]" />
         </button>
         <button
           title="List View"
           onClick={() => setListView(true)}
-          className=" flex gap-2 p-2 border border-lightBorder dark:border-darkBorder rounded cursor-pointer"
+          className="flex gap-2 p-2 border rounded cursor-pointer border-lightBorder dark:border-darkBorder"
         >
           <Logs className="h-[20px] w-[20px]" />
         </button>
@@ -224,32 +224,32 @@ const ProductList = () => {
 
       {/* Products List */}
       <div className="py-2 md:block">
-        <div className="p-1 border border-lightBorder dark:border-darkBorder  rounded ">
+        <div className="p-1 border rounded border-lightBorder dark:border-darkBorder ">
           <div className={` ${listView ? "block" : "hidden py-0 px-0 "} m-0 md:m-5  border border-lightBorder dark:border-darkBorder  rounded text-sm`} >
             <div className={`py-3 px-5 gap-5 grid md:grid-cols-8 grid-cols-5 place-items-center `} >
-              <h1 className="w-full truncate hidden md:block">Products Id</h1>
+              <h1 className="hidden w-full truncate md:block">Products Id</h1>
               <h1 className="w-full truncate">Products Name</h1>
               <div className="w-full text-center">
-                <h1 className="truncate w-full">Image</h1>
+                <h1 className="w-full truncate">Image</h1>
               </div>
               <h1 className="w-full truncate">Price</h1>
-              <h1 className="w-full truncate hidden md:block">Category</h1>
+              <h1 className="hidden w-full truncate md:block">Category</h1>
               <div className="w-full text-center">
-                <h1 className="truncate w-full">Publish</h1>
+                <h1 className="w-full truncate">Publish</h1>
               </div>
-              <div className="w-full text-center hidden md:block">
-                <h1 className="truncate w-full ">Stock</h1>
+              <div className="hidden w-full text-center md:block">
+                <h1 className="w-full truncate ">Stock</h1>
               </div>
               <h1 className="w-full truncate">Action</h1>
             </div>
-            <hr className=" my-1 text-gray-300 dark:border-neutral-700 " />
+            <hr className="my-1 text-gray-300 dark:border-neutral-700" />
             <div>
               {/* Product Item */}
               <div className={`${listView ? "block" : "hidden"}`}>
                 {/*  */}
                 {isLoading && <div className="p-5"><Loader title="Fetching" /></div>}
-                {(!isLoading && filteredProducts.length === 0) && <div className="flex items-center justify-center py-5 uppercase font-semibold"><h1>Products Not Found</h1></div>}
-                {isError && <div className="p-5 flex items-center justify-center"><h1>Something Went Wrong</h1></div>}
+                {(!isLoading && filteredProducts.length === 0) && <div className="flex items-center justify-center py-5 font-semibold uppercase"><h1>Products Not Found</h1></div>}
+                {isError && <div className="flex items-center justify-center p-5"><h1>Something Went Wrong</h1></div>}
                 {filteredProducts?.length !== 0 &&
                   filteredProducts?.map(
                     ({
@@ -264,10 +264,10 @@ const ProductList = () => {
                       return (
                         <div
                           key={_id}
-                          className="py-3 px-5 grid md:grid-cols-8 grid-cols-5 place-items-start gap-4 border-b last:border-b-0 border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50"
+                          className="grid grid-cols-5 gap-4 px-5 py-3 text-gray-500 border-b border-gray-200 md:grid-cols-8 place-items-start last:border-b-0 dark:border-neutral-600 dark:text-gray-50"
                         >
-                          <h1 className=" w-full truncate hidden md:block" title={_id}>{_id}</h1>
-                          <h1 className=" line-clamp-1 md:line-clamp-2 w-full capitalize">
+                          <h1 className="hidden w-full truncate md:block" title={_id}>{_id}</h1>
+                          <h1 className="w-full capitalize line-clamp-1 md:line-clamp-2">
                             {title}
                           </h1>
                           <div className="w-full place-items-center">
@@ -276,17 +276,17 @@ const ProductList = () => {
                               width={200}
                               height={200}
                               alt="img"
-                              className="h-12 w-12 rounded bg-lightBorder dark:bg-darkBorder"
+                              className="w-12 h-12 rounded bg-lightBorder dark:bg-darkBorder"
                             />
                           </div>
 
                           <h1>
                             ₹{price}</h1>
                           <h1 className="hidden md:block">{category}</h1>
-                          <div className=" w-full place-items-center">
+                          <div className="w-full place-items-center">
                             <h1>{listingStatus ? "🟢" : "🔴"}</h1>
                           </div>
-                          <div className=" w-full place-items-center hidden md:block">
+                          <div className="hidden w-full place-items-center md:block">
                             <h1 className="">{stock}</h1>
                           </div>
 
@@ -295,7 +295,7 @@ const ProductList = () => {
                               href={`/productList/${_id}`}
                               className="text-green-400 hover:text-green-500"
                             >
-                              <FilePenLine className="h-5 w-5 md:h-auto md:w-auto cursor-pointer" />
+                              <FilePenLine className="w-5 h-5 cursor-pointer md:h-auto md:w-auto" />
                             </Link>
                             <button
                               className="text-red-400 hover:text-red-500"
@@ -305,7 +305,7 @@ const ProductList = () => {
                                 setDeletePopup(true);
                               }}
                             >
-                              <Trash2 className="h-5 w-5 md:h-auto md:w-auto cursor-pointer" />
+                              <Trash2 className="w-5 h-5 cursor-pointer md:h-auto md:w-auto" />
                             </button>
                           </div>
                           {
@@ -329,7 +329,7 @@ const ProductList = () => {
 
           {/* Grid View */}
           <div className={`${listView ? "hidden" : "block "}`}>
-            <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 gap-5 p-5">
+            <div className="grid grid-cols-1 gap-5 p-5 lg:grid-cols-3 md:grid-cols-2">
               {filteredProducts.length !== 0 &&
                 filteredProducts.map(
                   ({
@@ -356,7 +356,7 @@ const ProductList = () => {
                 )}
             </div>
             {filteredProducts.length === 0 && (
-              <div className="place-items-center uppercase text-gray-600 font-semibold py-10">
+              <div className="py-10 font-semibold text-gray-600 uppercase place-items-center">
                 <h1>No Products to display</h1>
               </div>
             )}

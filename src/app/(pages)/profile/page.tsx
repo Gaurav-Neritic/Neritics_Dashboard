@@ -47,26 +47,26 @@ const Page = () => {
     <div className="p-5">
       <h1 className="text-2xl font-bold">Profile Settings</h1>
       <div className="py-5">
-        <div className=" border border-lightBorder dark:border-darkBorder rounded">
+        <div className="border rounded border-lightBorder dark:border-darkBorder">
           <div className="p-5 grid lg:grid-cols-[2fr_5fr] grid-cols-1 gap-5">
             {/* Avatar */}
             <div className="sticky top-0">
-              <h1 className="text-lg pb-2">Avatar:</h1>
-              <div className="p-1 w-full border border-lightBorder dark:border-darkBorder rounded  relative">
+              <h1 className="pb-2 text-lg">Avatar:</h1>
+              <div className="relative w-full p-1 border rounded border-lightBorder dark:border-darkBorder">
                 <Image
                   src={user?.avatar || "/placeholder.jpg"}
                   width={200}
                   height={200}
                   alt="image"
-                  className="object-contain rounded w-auto lg:w-full h-24 lg:h-full"
+                  className="object-contain w-auto h-24 rounded lg:w-full lg:h-full"
                 />
                 <div className="absolute -top-1 -right-3">
                   {user?.isSuperAdmin ? (
-                    <div className="px-2 py-1 text-xs rounded-full bg-gradient-to-r from-red-500 to-yellow-400 text-white border-b-2 border-lightBorder">
+                    <div className="px-2 py-1 text-xs text-white border-b-2 rounded-full bg-gradient-to-r from-red-500 to-yellow-400 border-lightBorder">
                       Super Admin
                     </div>
                   ) : (
-                    <div className="px-2 text-xs rounded-full bg-gradient-to-r from-teal-300 to-green-500 text-white border-b-2 border-lightBorder">
+                    <div className="px-2 text-xs text-white border-b-2 rounded-full bg-gradient-to-r from-teal-300 to-green-500 border-lightBorder">
                       Admin
                     </div>
                   )}
@@ -77,60 +77,60 @@ const Page = () => {
             {/* Col 2 */}
             <div>
 
-              <h1 className="text-lg py-2 ">Edit Details :</h1>
-              <div className="grid lg:grid-cols-2 grid-cols-1 border p-3 rounded border-lightBorder dark:border-darkBorder dark:bg-darkMode">
+              <h1 className="py-2 text-lg ">Edit Details :</h1>
+              <div className="grid grid-cols-1 p-3 border rounded lg:grid-cols-2 border-lightBorder dark:border-darkBorder dark:bg-darkMode">
                 <div className="p-2">
                   <p className="my-1 text-sm uppercase">FullName : </p>
-                  <div className="flex  gap-3">
-                    <h1 className=" px-3 py-2 border border-lightBorder dark:border-darkBorder rounded w-full">{user?.name}</h1>
+                  <div className="flex gap-3">
+                    <h1 className="w-full px-3 py-2 border rounded border-lightBorder dark:border-darkBorder">{user?.name}</h1>
                     <button
                       onClick={() => {
                         setPopup(!popup);
                         setValue(user?.name as string);
                         setEditName("Full Name")
                       }}
-                      className="bg-green-600 px-2 rounded text-white cursor-pointer"><Edit /></button>
+                      className="px-2 text-white bg-green-600 rounded cursor-pointer"><Edit /></button>
                   </div>
                 </div>
 
                 <div className="p-2">
                   <p className="my-1 text-sm uppercase">UserName : </p>
-                  <div className="flex  gap-3">
-                    <h1 className=" px-3 py-2 border border-lightBorder dark:border-darkBorder rounded w-full">{user?.name}</h1>
+                  <div className="flex gap-3">
+                    <h1 className="w-full px-3 py-2 border rounded border-lightBorder dark:border-darkBorder">{user?.name}</h1>
                     <button
                       onClick={() => {
                         setPopup(!popup);
                         setValue(user?.name as string);
                         setEditName("User Name")
                       }}
-                      className="bg-green-600 px-2 rounded text-white cursor-pointer"><Edit /></button>
+                      className="px-2 text-white bg-green-600 rounded cursor-pointer"><Edit /></button>
                   </div>
                 </div>
 
                 <div className="p-2">
                   <p className="my-1 text-sm uppercase">Email : </p>
-                  <div className="flex  gap-3">
-                    <h1 className=" px-3 py-2 border border-lightBorder dark:border-darkBorder rounded w-full truncate">{user?.email}</h1>
+                  <div className="flex gap-3">
+                    <h1 className="w-full px-3 py-2 truncate border rounded border-lightBorder dark:border-darkBorder">{user?.email}</h1>
                     <button
                       onClick={() => {
                         setPopup(!popup);
                         setValue(user?.email as string);
                         setEditName("Email")
                       }}
-                      className="bg-green-600 px-2 rounded text-white cursor-pointer"><Edit /></button>
+                      className="px-2 text-white bg-green-600 rounded cursor-pointer"><Edit /></button>
                   </div>
                 </div>
 
                 <div className="p-2">
                   <p className="my-1 text-sm uppercase">Password : </p>
-                  <div className="flex  gap-3">
-                    <h1 className=" px-3 py-2 border border-lightBorder dark:border-darkBorder rounded w-full">{"*********"}</h1>
+                  <div className="flex gap-3">
+                    <h1 className="w-full px-3 py-2 border rounded border-lightBorder dark:border-darkBorder">{"*********"}</h1>
                     <button
                       onClick={(e) => {
                         e.preventDefault();
                         handelGmailVerification(user?.email as string);
                       }}
-                      className="bg-green-600 px-2 rounded text-white cursor-pointer">
+                      className="px-2 text-white bg-green-600 rounded cursor-pointer">
                       {emailMutation.isPending ? <Loader2 className="animate-spin" /> : < Edit />}
                     </button>
                   </div>
@@ -138,8 +138,8 @@ const Page = () => {
 
                 <div className="p-2">
                   <p className="my-1 text-sm uppercase">ROLE : </p>
-                  <div className="flex  gap-3">
-                    <h1 className=" px-3 py-2 border border-lightBorder dark:border-darkBorder rounded w-full">{user?.isAdmin ? "Admin" : "Visitor"}</h1>
+                  <div className="flex gap-3">
+                    <h1 className="w-full px-3 py-2 border rounded border-lightBorder dark:border-darkBorder">{user?.isAdmin ? "Admin" : "Visitor"}</h1>
                   </div>
                 </div>
                 {popup &&

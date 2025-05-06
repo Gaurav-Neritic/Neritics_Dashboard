@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center">
       <Image
         src="/404-main.svg"
         alt="404 Image"
@@ -11,7 +11,7 @@ export default function NotFound() {
         height={800}
         className="mb-4 object-cover h-[500px] w-auto "
       />
-      <div className="flex flex-col justify-center items-center space-y-4">
+      <div className="flex flex-col items-center justify-center space-y-4">
         <h1 className="text-4xl font-bold text-gray-800">
           Oops! Page not found
         </h1>
@@ -20,7 +20,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className=" flex gap-3 p-2 border border-neutral-200 rounded  hover:bg-red-500/80 hover:text-white text-md font-semibold text-gray-800 hover:ring ring-gray-600"
+          className="flex gap-3 p-2 font-semibold text-gray-800 border rounded border-neutral-200 hover:bg-red-500/80 hover:text-white text-md hover:ring ring-gray-600"
         >
           Go Back Home
         </Link>

@@ -42,19 +42,19 @@ const SidebarNav = () => {
       {/* logo Dashboard */}
       <div className="hidden lg:block">
         <div className="flex items-center justify-center py-3">
-          <Link href={"/"} className="flex items-center justify-center uppercase font-semibold text-lg text-green-600">
+          <Link href={"/"} className="flex items-center justify-center text-lg font-semibold text-green-600 uppercase">
             <Image
               src={"/logo-wellness.png"}
               priority
               width={120}
               height={120}
               alt="logo"
-              className="h-auto w-auto" />
+              className="w-auto h-auto" />
           </Link>
         </div>
       </div>
 
-      <nav className="hidden lg:block py-5 dark:text-black">
+      <nav className="hidden py-5 lg:block dark:text-black">
         {navLinks.map(({ href, icon, label }) => (
           <Link
             key={href}
@@ -77,14 +77,14 @@ const SidebarNav = () => {
           <Link
             href={"mailto:gaurav@neriticindustries.in"}
             target="_blank"
-            className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
+            className="p-1 border border-gray-300 rounded-full cursor-pointer dark:border-neutral-700 dark:text-white"
           >
             <span className="text-2xl" title="mail">✉️</span>
           </Link>
           <Link
             href={"https://neriticwellness.com/"}
             target="_blank"
-            className="p-1 rounded-full border border-gray-300 dark:border-neutral-700 dark:text-white cursor-pointer"
+            className="p-1 border border-gray-300 rounded-full cursor-pointer dark:border-neutral-700 dark:text-white"
           >
             <span className="text-2xl" title="site">🌐</span>
           </Link>

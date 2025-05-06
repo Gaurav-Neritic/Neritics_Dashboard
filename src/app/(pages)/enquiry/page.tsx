@@ -15,8 +15,8 @@ const Page = () => {
         <h1 className="text-2xl font-bold">Enquiry</h1>
       </div>
       {/* Sale Lists */}
-      <div className=" mt-5 border  border-lightBorder dark:border-darkBorder rounded">
-        <div className=" py-3 px-5 grid grid-cols-6 place-items-center  ">
+      <div className="mt-5 border rounded border-lightBorder dark:border-darkBorder">
+        <div className="grid grid-cols-6 px-5 py-3 place-items-center">
           <h1 className="text-md ">Email Id</h1>
           <h1 className="text-md">User Name</h1>
           <h1 className="text-md">Phone Number </h1>
@@ -24,10 +24,10 @@ const Page = () => {
           <h1 className="text-md">Status</h1>
           <h1 className="text-md">Action</h1>
         </div>
-        <hr className=" my-1 text-gray-300 dark:border-neutral-700" />
+        <hr className="my-1 text-gray-300 dark:border-neutral-700" />
         {/* enquiry-1 */}
-        <div className="px-5 py-3 grid grid-cols-6 place-items-center gap-4 border-b last:border-b-0  border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50">
-          <h1 className="text-sm w-full truncate">
+        <div className="grid grid-cols-6 gap-4 px-5 py-3 text-gray-500 border-b border-gray-200 place-items-center last:border-b-0 dark:border-neutral-600 dark:text-gray-50">
+          <h1 className="w-full text-sm truncate">
             Sanketpathare8808@gmail.com
           </h1>
           <h1 className="text-sm">Sanket Pathare</h1>

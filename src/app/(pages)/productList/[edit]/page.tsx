@@ -268,7 +268,7 @@ const Page = ({ params }: any) => {
     <section className="p-5">
       <div>
         <div className="flex items-center justify-start gap-3 py-5">
-          <div className="p-1 border border-gray-500 rounded hidden lg:block">
+          <div className="hidden p-1 border border-gray-500 rounded lg:block">
             <FilePenLine />
           </div>
           <div>
@@ -277,23 +277,23 @@ const Page = ({ params }: any) => {
             </p>
             <h1 className="text-lg lg:text-[28px] font-semibold capitalize">
               Editing -{" "}
-              <span className=" text-sm lg:text-xl font-normal ">{name}</span>
+              <span className="text-sm font-normal lg:text-xl">{name}</span>
             </h1>
           </div>
         </div>
         <form onSubmit={handelUpdate}>
           <div className="p-2">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
-              <div className=" border-gray-400 rounded">
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 ">
+              <div className="border-gray-400 rounded ">
                 {/* Product Description */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Description
                     </h2>
                   </div>
 
-                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
                     <div>
                       <div className="w-full py-2">
                         <label className="mb-2">Product Name</label>
@@ -305,7 +305,7 @@ const Page = ({ params }: any) => {
                           }}
                           placeholder="Name"
                           required
-                          className="block w-full border border-lightBorder dark:border-darkBorder outline-none focus:outline-0 px-4 py-2 mt-2 rounded "
+                          className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                         />
                       </div>
 
@@ -319,7 +319,7 @@ const Page = ({ params }: any) => {
                           }}
                           rows={5}
                           required
-                          className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 mt-2 rounded "
+                          className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                         />
                       </div>
                     </div>
@@ -329,12 +329,12 @@ const Page = ({ params }: any) => {
                 {/* Product Category */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Category
                     </h2>
                   </div>
 
-                  <div className="border  rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
                     <div>
                       <div className="w-full py-2">
                         <label>Product Category</label>
@@ -344,7 +344,7 @@ const Page = ({ params }: any) => {
                             setCategory(e.target.value);
                           }}
                           required
-                          className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2 dark:bg-darkMode"
+                          className="block w-full px-4 py-2 mt-2 text-gray-400 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 dark:bg-darkMode"
                         >
                           <option>Select Category</option>
 
@@ -361,7 +361,7 @@ const Page = ({ params }: any) => {
                           onChange={(e) => {
                             setType(e.target.value);
                           }}
-                          className="block w-full border border-lightBorder dark:border-darkBorder dark:bg-darkMode outline-none focus:outline-0 px-4 py-2 rounded text-gray-400 mt-2"
+                          className="block w-full px-4 py-2 mt-2 text-gray-400 border rounded outline-none border-lightBorder dark:border-darkBorder dark:bg-darkMode focus:outline-0"
                         >
                           <option>Select Type</option>
                           {typeData.map(({ _id, label }) => {
@@ -376,15 +376,15 @@ const Page = ({ params }: any) => {
                 {/* Product Features */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Features
                     </h2>
                   </div>
 
-                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                           <div>
                             <label>Brand Name</label>
                             <input
@@ -395,7 +395,7 @@ const Page = ({ params }: any) => {
                               }}
                               required
                               placeholder="Brand Name"
-                              className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
+                              className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0"
                             />
                           </div>
 
@@ -406,7 +406,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setForm(e.target.value);
                               }}
-                              className=" w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2 "
+                              className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder dark:bg-darkMode focus:outline-0"
                             >
                               <option>Select Form</option>
                               {formData.map(({ _id, label }) => {
@@ -424,7 +424,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setIsAyurvedic(e.target.value);
                               }}
-                              className=" w-full border border-lightBorder dark:border-darkBorder outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2"
+                              className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder dark:bg-darkMode focus:outline-0"
                             >
                               <option>Nature Of Medicine</option>
                               <option>True</option>
@@ -440,7 +440,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setContainer(e.target.value);
                               }}
-                              className=" w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2 "
+                              className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder dark:bg-darkMode focus:outline-0"
                             >
                               <option>Container Type</option>
                               {containerData.map(({ _id, label }) => {
@@ -459,7 +459,7 @@ const Page = ({ params }: any) => {
                                 setQuantity(e.target.value);
                               }}
                               placeholder="Quantity"
-                              className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
 
@@ -472,7 +472,7 @@ const Page = ({ params }: any) => {
                               min={0}
                               onChange={(e) => setStock(e.target.value)}
                               placeholder="Stock Available"
-                              className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
                         </div>
@@ -484,15 +484,15 @@ const Page = ({ params }: any) => {
                 {/* Dimension OF Product*/}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Dimension of Product
                     </h2>
                   </div>
                   {/* height  */}
-                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                           <div>
                             <label>Height ( In cm )</label>
                             <input
@@ -503,7 +503,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setHeight(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
                           <div>
@@ -516,7 +516,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setWidth(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
                           <div>
@@ -529,7 +529,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setWeight(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0"
                             />
                           </div>
                           {/*  */}
@@ -542,12 +542,12 @@ const Page = ({ params }: any) => {
                 {/* Product Pricing */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Pricing
                     </h2>
                   </div>
 
-                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
                     <div>
                       <div className="w-full py-2">
                         <div className="flex items-center justify-center gap-4">
@@ -561,7 +561,7 @@ const Page = ({ params }: any) => {
                               }}
                               required
                               type="number"
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
                           <div>
@@ -572,7 +572,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => setDiscount(e.target.value)}
                               required
                               type="number"
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
                         </div>
@@ -588,17 +588,17 @@ const Page = ({ params }: any) => {
                 {/* Images editing div */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Images
                     </h2>
                   </div>
-                  <div className="border rounded border-lightBorder dark:border-darkBorder p-4 ">
-                    <div className="grid grid-cols-2 gap-5 relative group">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
+                    <div className="relative grid grid-cols-2 gap-5 group">
                       {images.map((img: string, index: number) => {
                         return (
                           <div
                             key={index}
-                            className="border border-lightBorder dark:border-darkBorder rounded py-2 place-items-center relative"
+                            className="relative py-2 border rounded border-lightBorder dark:border-darkBorder place-items-center"
                           >
                             <div>
                               <Image
@@ -607,7 +607,7 @@ const Page = ({ params }: any) => {
                                 height={200}
                                 loading="lazy"
                                 alt="saved images"
-                                className="h-18 w-18 rounded border border-lightBorder dark:border-darkBorder"
+                                className="border rounded h-18 w-18 border-lightBorder dark:border-darkBorder"
                               />
                             </div>
 
@@ -617,7 +617,7 @@ const Page = ({ params }: any) => {
                                   setImgIndex(index);
                                   setPopup(!popup);
                                 }}
-                                className="text-lightBorder hover:text-darkBorder dark:hover:text-lightBorder dark:text-darkBorder cursor-pointer"
+                                className="cursor-pointer text-lightBorder hover:text-darkBorder dark:hover:text-lightBorder dark:text-darkBorder"
                               >
                                 <ImagePlus />
                               </button>
@@ -645,15 +645,15 @@ const Page = ({ params }: any) => {
                 {/* Gender and AgeRange */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Targeted For
                     </h2>
                   </div>
                   {/*  Price (MRP)  */}
-                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                           <div>
                             <label>Gender (Both/Male/Female)</label>
                             <select
@@ -662,7 +662,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setGender(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             >
                               <option>Select Gender</option>
                               <option>Male</option>
@@ -679,7 +679,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setAgeRange(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             >
                               <option>Select Age Range</option>
                               <option>1 to 18</option>
@@ -696,14 +696,14 @@ const Page = ({ params }: any) => {
                 {/* Product Additional Info  */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Additional Info {"  "}( Separate by &quot; , &quot; )
                     </h2>
                   </div>
-                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                           {/* Benefit 1  */}
                           <div>
                             <label>Benefits </label>
@@ -715,7 +715,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setBenefits(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
                           {/* Benefit 2  */}
@@ -729,7 +729,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setSpecialIngredients(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
                           {/* Benefit 3  */}
@@ -743,7 +743,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setAlergyInfo(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
                           {/* Benefit 4  */}
@@ -757,12 +757,12 @@ const Page = ({ params }: any) => {
                               onChange={(e) => {
                                 setCoating(e.target.value);
                               }}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 " />
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 " />
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center justify-center text-sm py-3 text-gray-600 dark:text-gray-200 animate-pulse">
+                    <div className="flex items-center justify-center py-3 text-sm text-gray-600 dark:text-gray-200 animate-pulse">
                       <sup>*</sup>Note ( Use &quot;,&quot; comma for adding multiple
                       values)
                     </div>
@@ -771,15 +771,15 @@ const Page = ({ params }: any) => {
                 {/* Product Manufacturing */}
                 <div className="py-5">
                   <div className="pb-2">
-                    <h2 className="text-lg font-semibold antialiased">
+                    <h2 className="text-lg antialiased font-semibold">
                       Manufacturing
                     </h2>
                   </div>
 
-                  <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+                  <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
                     <div>
                       <div className="w-full py-2">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                           <div>
                             <label>Country Of Origin</label>
                             <select
@@ -788,7 +788,7 @@ const Page = ({ params }: any) => {
                                 setCoo(e.target.value);
                               }}
                               required
-                              className="w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 dark:bg-darkMode"
+                              className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 dark:bg-darkMode"
                             >
                               <option>Select Country</option>
                               {countryData.map(({ _id, label }) => {
@@ -806,7 +806,7 @@ const Page = ({ params }: any) => {
                               onChange={(e) => setHsnCode(e.target.value)}
                               required
                               type="number"
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2  "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
 
@@ -819,7 +819,7 @@ const Page = ({ params }: any) => {
                               required
                               type="number"
                               min={0}
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2 "
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0 "
                             />
                           </div>
 
@@ -834,7 +834,7 @@ const Page = ({ params }: any) => {
                               type="number"
                               min={1}
                               required
-                              className="block w-full border border-lightBorder dark:border-darkBorder  outline-none focus:outline-0 px-4 py-2 rounded mt-2"
+                              className="block w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder focus:outline-0"
                             />
                           </div>
 
@@ -846,7 +846,7 @@ const Page = ({ params }: any) => {
                                 setSuitableFor(e.target.value);
                               }}
                               required
-                              className="w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2"
+                              className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder dark:bg-darkMode focus:outline-0"
                             >
                               <option>Edible For</option>
                               <option>Vegeterian</option>
@@ -863,7 +863,7 @@ const Page = ({ params }: any) => {
                                 onChange={(e) => {
                                   setPublish(e.target.value);
                                 }}
-                                className="w-full border border-lightBorder dark:border-darkBorder  outline-none dark:bg-darkMode focus:outline-0 px-4 py-2 rounded mt-2  "
+                                className="w-full px-4 py-2 mt-2 border rounded outline-none border-lightBorder dark:border-darkBorder dark:bg-darkMode focus:outline-0 "
                               >
                                 <option>Publishing Status</option>
                                 <option>Publish</option>
@@ -889,7 +889,7 @@ const Page = ({ params }: any) => {
                     ageRange === "Select Age Range" ||
                     publish === "Publishing Status" ||
                     coo === "Select Country" ? (
-                    <div className="animate-bounce text-red-500 border border-lightBorder px-4 py-2 w-full text-center rounded dark:border-darkBorder">
+                    <div className="w-full px-4 py-2 text-center text-red-500 border rounded animate-bounce border-lightBorder dark:border-darkBorder">
                       Note : Please Select Valid Options Only
                     </div>
                   ) : (
@@ -899,7 +899,7 @@ const Page = ({ params }: any) => {
                       className={`px-4 py-2 tex-sm border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400`}
                     >
                       <span className="flex items-center justify-center gap-2">
-                        {loading ? "" : <Save className="h-5 w-5" />}
+                        {loading ? "" : <Save className="w-5 h-5" />}
                         {loading ? <Loader title={"Saving..."} /> : "Save"}
                       </span>
                     </button>

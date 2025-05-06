@@ -46,8 +46,8 @@ const SettingsPopup = ({ isVisible, onClose, id, value, editName }: imageProps) 
 
     if (!isVisible) return null
     return (
-        <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 mx-5 lg:mx-0">
-            <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg w-full max-w-md mx-2 lg:mx-0">
+        <div className="fixed inset-0 z-50 flex items-center justify-center mx-5 bg-opacity-50 backdrop-blur-sm lg:mx-0">
+            <div className="w-full max-w-md p-6 mx-2 bg-white border rounded-lg shadow-lg dark:bg-neutral-800 border-neutral-700 lg:mx-0">
                 <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                         <Images className="w-6 h-6" />
@@ -71,12 +71,12 @@ const SettingsPopup = ({ isVisible, onClose, id, value, editName }: imageProps) 
                             setEditedValue(e.target.value)
                         }}
                         required
-                        className="w-full text-gray-700 py-2 px-3 font-medium text-sm bg-white border rounded"
+                        className="w-full px-3 py-2 text-sm font-medium text-gray-700 bg-white border rounded"
                     />
                     <button
                         type="button"
                         onClick={(e) => { e.preventDefault(); handelEditSettings(editedValue) }}
-                        className="p-2 border border-lightBorder dark:border-darkBorder text-green-500 hover:text-green-600  rounded cursor-pointer">
+                        className="p-2 text-green-500 border rounded cursor-pointer border-lightBorder dark:border-darkBorder hover:text-green-600">
                         {editSettingsMutation.isPending ? <Loader2 className="animate-spin" /> : < Edit />}
                     </button>
                 </div>

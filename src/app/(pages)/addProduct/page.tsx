@@ -332,16 +332,16 @@ const AddProduct = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 ">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 ">
         {/* Grid col-1  */}
-        <div className=" border-gray-400 rounded">
+        <div className="border-gray-400 rounded ">
           {/* Product Description */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">Description</h2>
+              <h2 className="text-lg antialiased font-semibold">Description</h2>
             </div>
 
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder">
               <div>
                 <div className="w-full py-2">
                   <label className="mb-2">Product Name</label>
@@ -370,10 +370,10 @@ const AddProduct = () => {
           {/* Product Category */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">Category</h2>
+              <h2 className="text-lg antialiased font-semibold">Category</h2>
             </div>
 
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
               <div>
                 <div className="w-full py-2">
                   <label>Product Category</label>
@@ -403,12 +403,12 @@ const AddProduct = () => {
           {/* Product Features */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">Features</h2>
+              <h2 className="text-lg antialiased font-semibold">Features</h2>
             </div>
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                     {/* Brand Name */}
                     <div>
                       <label>Brand Name</label>
@@ -482,15 +482,15 @@ const AddProduct = () => {
           {/* Dimension OF Product*/}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">
+              <h2 className="text-lg antialiased font-semibold">
                 Dimension of Product
               </h2>
             </div>
             {/* height  */}
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
               <div>
                 <div className="w-full py-2">
-                  <div className=" grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center">
                     <div>
                       <label>Height ( In cm )</label>
                       <InputNumber
@@ -528,13 +528,13 @@ const AddProduct = () => {
           {/* Product Pricing */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">Pricing</h2>
+              <h2 className="text-lg antialiased font-semibold">Pricing</h2>
             </div>
             {/*  Price (MRP)  */}
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                     <div>
                       <label>Price (MRP)</label>
                       <InputNumber
@@ -566,12 +566,12 @@ const AddProduct = () => {
           {/* Product Images */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">Images</h2>
+              <h2 className="text-lg antialiased font-semibold">Images</h2>
             </div>
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                  <div className="grid grid-cols-1 gap-4 mt-2 md:grid-cols-2">
                     {/* Main Image */}
                     <div className="relative">
                       <label className="text-neutral-700 dark:text-gray-300">
@@ -584,8 +584,7 @@ const AddProduct = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                           setMainImage(e.target.files?.[0] || null);
                         }}
-                        className="w-full text-gray-700 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
+                        className="w-full text-sm font-medium text-gray-700 bg-white border rounded cursor-pointer border-lightBorder dark:border-darkBorder file:cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {mainImage && (
                         <Image
@@ -593,13 +592,13 @@ const AddProduct = () => {
                           width={20}
                           height={20}
                           alt="Main Image Preview"
-                          className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                          className="object-cover w-20 h-20 p-1 mt-2 bg-gray-100 rounded-full dark:bg-neutral-700"
                         />
                       )}
                     </div>
                     {/*  First Image */}
                     <div className="relative">
-                      <label className="text-neutral-700 dark:text-gray-300 z-20 ">
+                      <label className="z-20 text-neutral-700 dark:text-gray-300 ">
                         * 1<sup>st</sup> Image
                       </label>
                       <input
@@ -608,8 +607,7 @@ const AddProduct = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                           setPrimaryImage(e.target.files?.[0] || null);
                         }}
-                        className="w-full text-gray-700 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
+                        className="w-full text-sm font-medium text-gray-700 bg-white border rounded cursor-pointer border-lightBorder dark:border-darkBorder file:cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {primaryImage && (
                         <Image
@@ -617,15 +615,15 @@ const AddProduct = () => {
                           width={20}
                           height={20}
                           alt="Main Image Preview"
-                          className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                          className="object-cover w-20 h-20 p-1 mt-2 bg-gray-100 rounded-full dark:bg-neutral-700"
                         />
                       )}
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                  <div className="grid grid-cols-1 gap-4 mt-2 md:grid-cols-2">
                     {/* Second Image */}
                     <div className="relative">
-                      <label className="text-neutral-700 dark:text-gray-300 z-20">
+                      <label className="z-20 text-neutral-700 dark:text-gray-300">
                         * 2<sup>nd</sup> Image
                       </label>
                       <input
@@ -634,8 +632,7 @@ const AddProduct = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                           setSecondImage(e.target.files?.[0] || null);
                         }}
-                        className="w-full text-gray-700 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
+                        className="w-full text-sm font-medium text-gray-700 bg-white border rounded cursor-pointer border-lightBorder dark:border-darkBorder file:cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {secondImage && (
                         <Image
@@ -643,7 +640,7 @@ const AddProduct = () => {
                           width={20}
                           height={20}
                           alt="Main Image Preview"
-                          className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                          className="object-cover w-20 h-20 p-1 mt-2 bg-gray-100 rounded-full dark:bg-neutral-700"
                         />
                       )}
                     </div>
@@ -659,8 +656,7 @@ const AddProduct = () => {
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                           setThirdImage(e.target.files?.[0] || null);
                         }}
-                        className="w-full text-gray-700 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode  dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
+                        className="w-full text-sm font-medium text-gray-700 bg-white border rounded cursor-pointer border-lightBorder dark:border-darkBorder file:cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                       />
                       {thirdImage && (
                         <Image
@@ -668,7 +664,7 @@ const AddProduct = () => {
                           width={20}
                           height={20}
                           alt="Main Image Preview"
-                          className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                          className="object-cover w-20 h-20 p-1 mt-2 bg-gray-100 rounded-full dark:bg-neutral-700"
                         />
                       )}
                     </div>
@@ -685,8 +681,7 @@ const AddProduct = () => {
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         setFourthImage(e.target.files?.[0] || null);
                       }}
-                      className="w-full text-gray-700 font-medium text-sm bg-white border border-lightBorder dark:border-darkBorder file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black rounded
-                        dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
+                      className="w-full text-sm font-medium text-gray-700 bg-white border rounded cursor-pointer border-lightBorder dark:border-darkBorder file:cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-gray-200 file:hover:bg-gray-100 file:text-black dark:bg-darkMode dark:text-gray-500 dark:file:bg-neutral-800 dark:file:text-white dark:hover:file:text-gray-500"
                     />
                     {fourthImage && (
                       <Image
@@ -694,7 +689,7 @@ const AddProduct = () => {
                         width={20}
                         height={20}
                         alt="Main Image Preview"
-                        className="mt-2  p-1 h-20 w-20 object-cover rounded-full bg-gray-100 dark:bg-neutral-700"
+                        className="object-cover w-20 h-20 p-1 mt-2 bg-gray-100 rounded-full dark:bg-neutral-700"
                       />
                     )}
                   </div>
@@ -706,15 +701,15 @@ const AddProduct = () => {
           {/* Gender and AgeRange */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">
+              <h2 className="text-lg antialiased font-semibold">
                 Targeted For
               </h2>
             </div>
             {/*  Price (MRP)  */}
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                     <div>
                       <label>Gender (Both/Male/Female)</label>
                       <Select
@@ -753,14 +748,14 @@ const AddProduct = () => {
           {/* Product Additional Info  */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">
+              <h2 className="text-lg antialiased font-semibold">
                 Additional Info ( Separate by 	&quot;,	&quot; )
               </h2>
             </div>
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                     {/* Benefit 1  */}
                     <div>
                       <label>Benefits </label>
@@ -808,7 +803,7 @@ const AddProduct = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-center text-sm py-3 text-gray-600 dark:text-gray-200 animate-pulse">
+              <div className="flex items-center justify-center py-3 text-sm text-gray-600 dark:text-gray-200 animate-pulse">
                 <sup>*</sup>Note ( Use 	&quot;,	&quot; comma for adding multiple values)
               </div>
             </div>
@@ -817,14 +812,14 @@ const AddProduct = () => {
           {/* Product Manufacturing */}
           <div className="py-5">
             <div className="pb-2">
-              <h2 className="text-lg font-semibold antialiased">
+              <h2 className="text-lg antialiased font-semibold">
                 Manufacturing
               </h2>
             </div>
-            <div className="border rounded border-lightBorder dark:border-darkBorder  p-4 ">
+            <div className="p-4 border rounded border-lightBorder dark:border-darkBorder ">
               <div>
                 <div className="w-full py-2">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:place-items-center ">
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:place-items-center ">
                     {/* Country Of Origin */}
                     <div>
                       <label>Country Of Origin</label>
@@ -901,23 +896,23 @@ const AddProduct = () => {
           </div>
 
           {/* Add Product Button */}
-          <div className="py-5 mx-2 flex gap-3 place-content-center lg:place-content-start">
+          <div className="flex gap-3 py-5 mx-2 place-content-center lg:place-content-start">
             <button
               type="submit"
-              className="px-4 text-sm border border-blue-300 hover:border-blue-300 hover:bg-blue-200 rounded bg-blue-100 text-blue-600 transition-all ease-linear duration-200 cursor-pointer dark:border-blue-400"
+              className="px-4 text-sm text-blue-600 transition-all duration-200 ease-linear bg-blue-100 border border-blue-300 rounded cursor-pointer hover:border-blue-300 hover:bg-blue-200 dark:border-blue-400"
             >
               <span className="flex items-center justify-center gap-2">
-                {loading ? "" : <Plus className="h-5 w-5" />}
+                {loading ? "" : <Plus className="w-5 h-5" />}
                 {loading ? <Loader title={"Adding..."} /> : "Add Product"}
               </span>
             </button>
             <button
               onClick={handelClearFields}
               type="reset"
-              className="px-4 py-2 text-sm border border-red-300 hover:border-red-300 hover:bg-red-200 rounded bg-red-100 text-red-500 transition-all ease-linear duration-200 cursor-pointer dark:border-red-400"
+              className="px-4 py-2 text-sm text-red-500 transition-all duration-200 ease-linear bg-red-100 border border-red-300 rounded cursor-pointer hover:border-red-300 hover:bg-red-200 dark:border-red-400"
             >
               <span className="flex items-center justify-center gap-2">
-                <Eraser className="h-5 w-5" />
+                <Eraser className="w-5 h-5" />
                 Clear Fields
               </span>
             </button>

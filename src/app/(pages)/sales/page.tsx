@@ -8,34 +8,34 @@ const SalesPage = () => {
       <div className="py-4">
         <h1 className="text-2xl font-bold">Sale Lists</h1>
       </div>
-      <div className="p-5 border border-lightBorder dark:border-darkBorder rounded">
-        <div className=" border border-lightBorder dark:border-darkBorder rounded overflow-x-auto  ">
+      <div className="p-5 border rounded border-lightBorder dark:border-darkBorder">
+        <div className="overflow-x-auto border rounded border-lightBorder dark:border-darkBorder">
           {/* Table Selection */}
-          <table className="w-full  table-auto ">
+          <table className="w-full table-auto ">
             <thead>
-              <tr className=" border-b border-lightBorder dark:border-darkBorder rounded my-3">
-                <th className="py-2 px-4 text-left text-sm  font-semibold">
+              <tr className="my-3 border-b rounded border-lightBorder dark:border-darkBorder">
+                <th className="px-4 py-2 text-sm font-semibold text-left">
                   #ID
                 </th>
-                <th className="py-2 text-left text-sm font-semibold">
+                <th className="py-2 text-sm font-semibold text-left">
                   Name
                 </th>
-                <th className="py-2 text-left text-sm font-semibold">
+                <th className="py-2 text-sm font-semibold text-left">
                   Products
                 </th>
-                <th className="py-2 px-2 text-center text-sm font-semibold">
+                <th className="px-2 py-2 text-sm font-semibold text-center">
                   Amount
                 </th>
-                <th className="py-2 px-2 text-center text-sm  font-semibol">
+                <th className="px-2 py-2 text-sm text-center font-semibol">
                   Paid
                 </th>
-                <th className="py-2 px-2 text-center text-sm font-semibold">
+                <th className="px-2 py-2 text-sm font-semibold text-center">
                   Status
                 </th>
-                <th className="py-2 px-2 text-center text-sm font-semibold">
+                <th className="px-2 py-2 text-sm font-semibold text-center">
                   Date
                 </th>
-                <th className="py-2 px-2 text-center text-sm font-semibold">
+                <th className="px-2 py-2 text-sm font-semibold text-center">
                   Action
                 </th>
               </tr>
@@ -43,33 +43,33 @@ const SalesPage = () => {
 
             {/* Table Body */}
             <tbody>
-              <tr className=" border-b last:border-b-0 border-gray-200 dark:border-neutral-600 text-gray-500 dark:text-gray-50 my-3">
-                <td className="p-4 text-sm  capitalize text-left">#1020</td>
-                <td className="text-sm  capitalize text-left">
+              <tr className="my-3 text-gray-500 border-b border-gray-200 last:border-b-0 dark:border-neutral-600 dark:text-gray-50">
+                <td className="p-4 text-sm text-left capitalize">#1020</td>
+                <td className="text-sm text-left capitalize">
                   Sanket Pathare
                 </td>
-                <td className="py-2 text-sm  capitalize text-left">
+                <td className="py-2 text-sm text-left capitalize">
                   <div className="line-clamp-2 ">
                     Nerileum – Roll On Herbal Pain Relief Oil
                   </div>
                 </td>
-                <td className="py-2 px-4 text-sm  capitalize text-center">
+                <td className="px-4 py-2 text-sm text-center capitalize">
                   ₹280.00
                 </td>
-                <td className="py-2 px-4 text-sm  capitalize text-center  ">
+                <td className="px-4 py-2 text-sm text-center capitalize ">
                   Paid
                 </td>
-                <td className="py-2 px-4  capitalize text-center ">
+                <td className="px-4 py-2 text-center capitalize ">
                   <h1 className="p-0.5 border border-green-500/40 bg-green-500/40 rounded-full text-sm  text-center">
                     Shipped
                   </h1>
                 </td>
-                <td className="py-2 px-4 text-sm  capitalize text-center">
+                <td className="px-4 py-2 text-sm text-center capitalize">
                   2025-03-25
                 </td>
                 <td>
                   <div className="flex items-center justify-center">
-                    <button className="cursor-pointer flex items-center">
+                    <button className="flex items-center cursor-pointer">
                       <SquarePen className="text-red-500 hover:text-green-600 " />
                     </button>
                   </div>

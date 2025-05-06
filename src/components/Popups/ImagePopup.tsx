@@ -59,8 +59,8 @@ const ImagePopup = ({ isVisible, onClose, id }: imageProps) => {
 
   if (!isVisible) return null
   return (
-    <div className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 mx-5 lg:mx-0">
-      <div className="bg-white dark:bg-neutral-800 border border-neutral-700 p-6 rounded-lg shadow-lg w-full max-w-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center mx-5 bg-opacity-50 backdrop-blur-sm lg:mx-0">
+      <div className="w-full max-w-md p-6 bg-white border rounded-lg shadow-lg dark:bg-neutral-800 border-neutral-700">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <Images className="w-6 h-6" />
@@ -83,12 +83,12 @@ const ImagePopup = ({ isVisible, onClose, id }: imageProps) => {
               setNewImage(e.target.files?.[0] || null)
             }}
             required
-            className="w-full text-gray-700 font-medium text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-3 file:mr-4 file:bg-gray-300 file:hover:bg-gray-200 file:text-black rounded"
+            className="w-full text-sm font-medium text-gray-700 bg-white border rounded cursor-pointer file:cursor-pointer file:border-0 file:py-2 file:px-3 file:mr-4 file:bg-gray-300 file:hover:bg-gray-200 file:text-black"
           />
           <button
             type="button"
             onClick={handelUpdateImage}
-            className="p-2 border border-lightBorder dark:border-darkBorder text-green-500 hover:text-green-600  rounded cursor-pointer">
+            className="p-2 text-green-500 border rounded cursor-pointer border-lightBorder dark:border-darkBorder hover:text-green-600">
             {updateImageMutation.isPending ? <Loader2 className="animate-spin" /> : < ImageUp />}
           </button>
           {newImage && (
@@ -100,7 +100,7 @@ const ImagePopup = ({ isVisible, onClose, id }: imageProps) => {
                 "https://dummyimage.com/600x400/000/fff"
               }
               alt="Main Image Preview"
-              className="mt-2  p-1 h-18 w-18 object-cover rounded-sm border-2 border-gray-100 dark:bg-neutral-700"
+              className="object-cover p-1 mt-2 border-2 border-gray-100 rounded-sm h-18 w-18 dark:bg-neutral-700"
             />
           )}
         </div>
