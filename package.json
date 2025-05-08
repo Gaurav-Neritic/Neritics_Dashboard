@@ -30,7 +30,6 @@
     "@tiptap/pm": "^2.11.7",
     "@tiptap/react": "^2.11.7",
     "@tiptap/starter-kit": "^2.11.7",
-    "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "axios": "^1.8.2",
@@ -53,14 +52,18 @@
     "react-hot-toast": "^2.5.2",
     "tailwindcss": "^4",
     "tiptap-extension-font-size": "^1.2.0",
-    "typescript": "^5",
+    "typescript": "^5.8.3",
     "xlsx": "^0.18.5"
   },
   "engines": {
     "node": "22.14.0"
   },
   "devDependencies": {
+    "@types/estree": "^1.0.7",
     "@types/jsonwebtoken": "^9.0.9",
-    "@types/nodemailer": "^6.4.17"
+    "@types/node": "^22.15.16",
+    "@types/nodemailer": "^6.4.17",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0"
   }
 }
