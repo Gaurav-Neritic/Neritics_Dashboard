@@ -55,6 +55,9 @@
     "typescript": "^5",
     "xlsx": "^0.18.5"
   },
+  "engines": {
+  "node": "18.x"
+},
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.9",
     "@types/nodemailer": "^6.4.17"
