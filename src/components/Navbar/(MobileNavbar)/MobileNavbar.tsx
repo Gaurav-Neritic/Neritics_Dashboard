@@ -8,34 +8,8 @@ import { useUser } from "@/app/context/UserContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import MobileNavLink from "./MobileNavLink";
+import { navLinks } from "../navlinks";
 
-import {
-  Home,
-  FilePlus,
-  SquarePlus,
-  PackagePlus,
-  MessageCircleQuestion,
-  ChartPie,
-  Blocks,
-  MessageSquareMore,
-  CircleUserRound,
-  Settings,
-} from "lucide-react";
-
-  const navLinks = [
-  {
-    href: "/", icon: <Home />, label: "Home"
-  },
-  { href: "/addProduct", icon: <FilePlus />, label: "Add Product" },
-  { href: "/addBlog", icon: <SquarePlus />, label: " Add Blog" },
-  { href: "/orders", icon: <PackagePlus />, label: " Orders" },
-  { href: "/queries", icon: <MessageCircleQuestion />, label: "Queries" },
-  { href: "/sales", icon: <ChartPie />, label: "Sales" },
-  { href: "/stocks", icon: <Blocks />, label: " Stocks" },
-  { href: "/enquiry", icon: <MessageSquareMore />, label: "Enquiry" },
-  { href: "/profile", icon: <CircleUserRound />, label: "Profile" },
-  { href: "/settings", icon: <Settings />, label: "Settings" },
-];
 
 const MobileNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -129,18 +103,28 @@ const MobileNavbar = () => {
         <div className="min-h-screen py-5 lg:hidden">
           <div className="px-4 py-4">
             <nav>
-              {navLinks.map(({ href, icon, label }: { href: string, icon: React.JSX.Element, label: string }) => (
-                <MobileNavLink
-                  key={href}
-                  href={href}
-                  icon={icon}
-                  onClick={() => {
-                    setIsMenuOpen(!isMenuOpen);
-                  }}
-                >
-                  {label}
-                </MobileNavLink>
-              ))}
+              {navLinks.map(
+                ({
+                  href,
+                  icon,
+                  label,
+                }: {
+                  href: string;
+                  icon: React.JSX.Element;
+                  label: string;
+                }) => (
+                  <MobileNavLink
+                    key={href}
+                    href={href}
+                    icon={icon}
+                    onClick={() => {
+                      setIsMenuOpen(!isMenuOpen);
+                    }}
+                  >
+                    {label}
+                  </MobileNavLink>
+                )
+              )}
 
               {/* Action Icons */}
               <div className=" w-50  flex mx-auto p-1.5 my-5 rounded border border-lightBorder dark:border-darkBorder">
