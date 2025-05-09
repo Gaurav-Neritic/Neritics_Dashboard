@@ -85,10 +85,7 @@ const GeneralCategory = () => {
     }
   }
 
-  const {
-    data: category = [],
-    isLoading,
-  } = useQuery({
+  const { data: category = [], isLoading } = useQuery({
     queryKey: ["category"],
     queryFn: getCategories,
     refetchOnWindowFocus: false,
